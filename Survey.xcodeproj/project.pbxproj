@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		19BF1440DDB106A937E8075D /* Pods_Survey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC97F33B9C3F5A9FA6EF11C /* Pods_Survey.framework */; };
 		1CB1866D288E4FAA00372D50 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1866C288E4FAA00372D50 /* ViewModel.swift */; };
-		1CB1866F288E50CB00372D50 /* CancelBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1866E288E50CB00372D50 /* CancelBag.swift */; };
 		1CB18671288E52E500372D50 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB18670288E52E500372D50 /* Driver.swift */; };
 		1CB18673288E532700372D50 /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB18672288E532700372D50 /* ErrorTracker.swift */; };
 		1CB18675288E534400372D50 /* ActivityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB18674288E534400372D50 /* ActivityTracker.swift */; };
@@ -107,7 +106,6 @@
 		16E10E52E1F7EAF6527F4E27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		198438883A4D493209169F74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1CB1866C288E4FAA00372D50 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		1CB1866E288E50CB00372D50 /* CancelBag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelBag.swift; sourceTree = "<group>"; };
 		1CB18670288E52E500372D50 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		1CB18672288E532700372D50 /* ErrorTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
 		1CB18674288E534400372D50 /* ActivityTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTracker.swift; sourceTree = "<group>"; };
@@ -306,7 +304,6 @@
 			children = (
 				1CE7C6C5288A853000B0EB1B /* Observable.swift */,
 				1CB1866C288E4FAA00372D50 /* ViewModel.swift */,
-				1CB1866E288E50CB00372D50 /* CancelBag.swift */,
 				1CB18670288E52E500372D50 /* Driver.swift */,
 				1CB18672288E532700372D50 /* ErrorTracker.swift */,
 				1CB18674288E534400372D50 /* ActivityTracker.swift */,
@@ -1140,7 +1137,6 @@
 				1CE7C6BF288A795300B0EB1B /* SDecoderType.swift in Sources */,
 				5FF41CF5DBD3563A224ED81D /* UIView+Subviews.swift in Sources */,
 				1CE7C6E5288AB3A000B0EB1B /* UIFont+.swift in Sources */,
-				1CB1866F288E50CB00372D50 /* CancelBag.swift in Sources */,
 				FA53AB0C4A65A8F81BC85C63 /* R.generated.swift in Sources */,
 				2DCFC13E272ADCD4CD027071 /* Typealiases.swift in Sources */,
 				1CE7C6C6288A853000B0EB1B /* Observable.swift in Sources */,

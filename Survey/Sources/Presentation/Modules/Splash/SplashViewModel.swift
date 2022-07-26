@@ -17,7 +17,7 @@ extension SplashViewModel: ViewModel {
         let errorTracker = ErrorTracker()
         let activityTracker = ActivityTracker(false)
         let output = Output()
-        var cancelBag = Set<AnyCancellable>()
+        var cancelBag = CancelBag()
 
         errorTracker
             .receive(on: RunLoop.main)

@@ -12,12 +12,10 @@ public struct AlertMessage {
 
     public var title = ""
     public var message = ""
-    public var isShowing = false
 
-    public init(title: String, message: String, isShowing: Bool) {
+    public init(title: String, message: String) {
         self.title = title
         self.message = message
-        self.isShowing = isShowing
     }
 
     public init() {}
@@ -30,6 +28,5 @@ extension AlertMessage {
         title = "Error"
         let message = error.localizedDescription
         self.message = message
-        isShowing = !message.isEmpty
     }
 }

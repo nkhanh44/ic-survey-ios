@@ -30,19 +30,19 @@ struct SplashView: View {
 
             Image("ic_logo")
                 .resizable()
-                .frame(width: 200, height: 48, alignment: .center)
+                .frame(width: 200.0, height: 48.0, alignment: .center)
                 .onAppear(perform: {
-                    withAnimation(Animation.easeInOut(duration: 1).delay(2)) {
+                    withAnimation(Animation.easeInOut(duration: 1.0)) {
                         fadeInOut.toggle()
                     }
                 })
-                .opacity(fadeInOut ? 1 : 0)
+                .opacity(fadeInOut ? 1.0 : 0.0)
         }
     }
 
     init(viewModel: SplashViewModel) {
         let input = SplashViewModel.Input(loadTrigger: loadTrigger.asDriver())
-        output = viewModel.transform(input, cancelBag: cancelBag)
+        output = viewModel.transform(input)
         self.input = input
     }
 }

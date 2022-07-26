@@ -13,21 +13,22 @@ struct SplashViewModel {}
 
 extension SplashViewModel: ViewModel {
 
-    func transform(_ input: Input, cancelBag: CancelBag) -> Output {
+    func transform(_ input: Input) -> Output {
         let errorTracker = ErrorTracker()
         let activityTracker = ActivityTracker(false)
         let output = Output()
+        var cancelBag = Set<AnyCancellable>()
 
         errorTracker
             .receive(on: RunLoop.main)
             .map { AlertMessage(error: $0) }
             .assign(to: \.alert, on: output)
-            .store(in: cancelBag)
+            .store(in: &cancelBag)
 
         activityTracker
             .receive(on: RunLoop.main)
             .assign(to: \.isLoading, on: output)
-            .store(in: cancelBag)
+            .store(in: &cancelBag)
 
         return output
     }
@@ -43,7 +44,8 @@ extension SplashViewModel {
     }
 
     final class Output: ObservableObject {
-        @Published var alert = AlertMessage()
+
+        @Published var alert: AlertMessage?
         @Published var isLoading = false
     }
 }

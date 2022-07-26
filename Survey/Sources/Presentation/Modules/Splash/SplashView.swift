@@ -15,7 +15,6 @@ struct SplashView: View {
     private var input: SplashViewModel.Input
     @ObservedObject var output: SplashViewModel.Output
 
-    private let cancelBag = CancelBag()
     private let loadTrigger = PassthroughSubject<Void, Never>()
 
     @State private var image: UIImage? = UIImage(named: "ic_background")

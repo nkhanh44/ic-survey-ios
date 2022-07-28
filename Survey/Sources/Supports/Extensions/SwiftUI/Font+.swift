@@ -6,14 +6,14 @@
 //  Copyright © 2022 Nimble. All rights reserved.
 //
 
-import UIKit
+import SwiftUI
 
 protocol FontStyle {
 
     var name: String { get }
 }
 
-extension UIFont {
+extension Font {
 
     enum NeuzeiStyle: FontStyle {
 
@@ -23,17 +23,14 @@ extension UIFont {
         var name: String {
             switch self {
             case .regular:
-                return "NeuzeitBook"
+                return "NeuzeitSLTStd-Book"
             case .bold:
-                return "NeuzeitHeavy"
+                return "NeuzeitSLTStd-BookHeavy"
             }
         }
     }
 
-    static func neuzei(style: NeuzeiStyle = .regular, size: CGFloat) -> UIFont {
-        guard let font = UIFont(name: style.name, size: size) else {
-            return UIFont.systemFont(ofSize: size)
-        }
-        return font
+    static func neuzei(style: NeuzeiStyle = .regular, size: CGFloat = 17.0) -> Font {
+        return Font.custom(style.name, size: size)
     }
 }

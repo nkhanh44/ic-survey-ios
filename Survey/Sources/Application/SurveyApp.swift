@@ -13,7 +13,7 @@ struct SurveyApp: App {
 
     var body: some Scene {
         WindowGroup {
-            SplashView(viewModel: SplashViewModel())
+            LoginView(viewModel: LoginViewModel())
         }
     }
 }

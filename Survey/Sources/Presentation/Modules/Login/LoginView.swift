@@ -1,0 +1,106 @@
+//
+//  LoginView.swift
+//  Survey
+//
+//  Created by Khanh on 27/07/2022.
+//  Copyright © 2022 Nimble. All rights reserved.
+//
+
+import Combine
+import SwiftUI
+import UIKit
+
+struct LoginView: View {
+
+    private var input: LoginViewModel.Input
+    @ObservedObject var output: LoginViewModel.Output
+
+    private let loadTrigger = PassthroughSubject<Void, Never>()
+
+    @State private var image: UIImage? = UIImage(named: "ic_background")
+    @State private var email = ""
+    @State private var password = ""
+
+    private var loginTitle = "Login"
+
+    private let gradient = LinearGradient(
+        gradient: Gradient(stops: [
+            .init(color: .black, location: 0.0),
+            .init(color: .black.opacity(0.2), location: 1.0)
+        ]),
+        startPoint: .bottom,
+        endPoint: .top
+    )
+
+    var body: some View {
+        GeometryReader { geo in
+            ZStack {
+                backgroundSetup()
+                VStack {
+                    logoSetup()
+                        .frame(height: geo.size.height * (1.0 / 3.0))
+                    componentSetup()
+                        .frame(height: geo.size.height * (1.0 / 3.0))
+                    Text("")
+                        .frame(height: geo.size.height * (1.0 / 3.0))
+                }
+            }
+        }
+        .preferredColorScheme(.dark)
+    }
+
+    init(viewModel: LoginViewModel) {
+        let input = LoginViewModel.Input(loadTrigger: loadTrigger.asDriver())
+        output = viewModel.transform(input)
+        self.input = input
+    }
+
+    private func backgroundSetup() -> some View {
+        Image("ic_background")
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .overlay(
+                ZStack(alignment: .bottom) {
+                    Image("ic_background")
+                        .resizable()
+                        .blur(radius: 15.0, opaque: true)
+                        .clipped()
+                    gradient
+                }
+            )
+            .edgesIgnoringSafeArea(.all)
+    }
+
+    private func componentSetup() -> some View {
+        VStack(alignment: .center, spacing: 0.0) {
+            STextFieldView(field: $email)
+                .frame(height: 56.0)
+                .modifier(PlaceholderModifier(showPlaceHolder: email.isEmpty, placeholder: "Email"))
+                .padding(.bottom, 20.0)
+
+            SSecureFieldView(field: $password)
+                .frame(height: 56.0)
+                .modifier(PlaceholderModifier(showPlaceHolder: password.isEmpty, placeholder: "Password"))
+                .padding(.bottom, 20.0)
+
+            SButtonView(title: loginTitle)
+        }
+        .padding([.leading, .trailing], 24.0)
+    }
+
+    private func logoSetup() -> some View {
+        VStack {
+            Image("ic_logo")
+                .resizable()
+                .frame(width: 167.84, height: 40.0)
+        }
+    }
+}
+
+struct LoginViewPreView: PreviewProvider {
+
+    static var previews: some View {
+        let viewModel = LoginViewModel()
+        return LoginView(viewModel: viewModel)
+    }
+}

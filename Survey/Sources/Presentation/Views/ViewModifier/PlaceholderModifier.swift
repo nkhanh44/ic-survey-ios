@@ -23,6 +23,15 @@ struct PlaceholderModifier: ViewModifier {
                     .opacity(0.3)
             }
             content
+                .textFieldStyle(PaddingTextFieldStyle())
+                .disableAutocorrection(true)
+                .textInputAutocapitalization(.never)
+                .font(.neuzei())
+                .foregroundColor(.white)
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 12.0, style: .continuous).fill(.white).opacity(0.17))
+                .accentColor(.stoneGray)
+                .frame(height: 56.0)
         }
     }
 }

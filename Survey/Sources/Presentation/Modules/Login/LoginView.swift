@@ -73,13 +73,11 @@ struct LoginView: View {
 
     private func componentSetup() -> some View {
         VStack(alignment: .center, spacing: 0.0) {
-            STextFieldView(field: $email)
-                .frame(height: 56.0)
+            TextField("", text: $email)
                 .modifier(PlaceholderModifier(showPlaceHolder: email.isEmpty, placeholder: "Email"))
                 .padding(.bottom, 20.0)
 
-            SSecureFieldView(field: $password)
-                .frame(height: 56.0)
+            SecureField("", text: $password)
                 .modifier(PlaceholderModifier(showPlaceHolder: password.isEmpty, placeholder: "Password"))
                 .padding(.bottom, 20.0)
 

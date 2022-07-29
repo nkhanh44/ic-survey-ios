@@ -17,17 +17,16 @@ struct SplashView: View {
 
     private let loadTrigger = PassthroughSubject<Void, Never>()
 
-    @State private var image: UIImage? = UIImage(named: "ic_background")
     @State private var fadeInOut = false
 
     var body: some View {
         ZStack {
-            Image("ic_background")
+            Assets.ic_background.image
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .edgesIgnoringSafeArea(.top)
 
-            Image("ic_logo")
+            Assets.ic_logo.image
                 .resizable()
                 .frame(width: 200.0, height: 48.0, alignment: .center)
                 .onAppear(perform: {

@@ -37,10 +37,7 @@ extension LoginViewModel: ViewModel {
 
 extension LoginViewModel {
 
-    struct Input {
-
-        let loadTrigger: Driver<Void>
-    }
+    struct Input {}
 
     final class Output: ObservableObject {
 

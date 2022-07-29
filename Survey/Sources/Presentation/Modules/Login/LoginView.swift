@@ -15,9 +15,6 @@ struct LoginView: View {
     private var input: LoginViewModel.Input
     @ObservedObject var output: LoginViewModel.Output
 
-    private let loadTrigger = PassthroughSubject<Void, Never>()
-
-    @State private var image: UIImage? = UIImage(named: "ic_background")
     @State private var email = ""
     @State private var password = ""
 
@@ -36,32 +33,34 @@ struct LoginView: View {
         GeometryReader { geo in
             ZStack {
                 backgroundSetup()
-                VStack {
+                VStack(spacing: 0.0) {
                     logoSetup()
                         .frame(height: geo.size.height * (1.0 / 3.0))
+                        .offset(y: 20.0)
                     componentSetup()
                         .frame(height: geo.size.height * (1.0 / 3.0))
-                    Text("")
+                    Spacer()
                         .frame(height: geo.size.height * (1.0 / 3.0))
                 }
             }
         }
+        .edgesIgnoringSafeArea(.all)
         .preferredColorScheme(.dark)
     }
 
     init(viewModel: LoginViewModel) {
-        let input = LoginViewModel.Input(loadTrigger: loadTrigger.asDriver())
+        let input = LoginViewModel.Input()
         output = viewModel.transform(input)
         self.input = input
     }
 
     private func backgroundSetup() -> some View {
-        Image("ic_background")
+        Assets.ic_background.image
             .resizable()
             .aspectRatio(contentMode: .fill)
             .overlay(
                 ZStack(alignment: .bottom) {
-                    Image("ic_background")
+                    Assets.ic_background.image
                         .resizable()
                         .blur(radius: 15.0, opaque: true)
                         .clipped()
@@ -88,7 +87,7 @@ struct LoginView: View {
 
     private func logoSetup() -> some View {
         VStack {
-            Image("ic_logo")
+            Assets.ic_logo.image
                 .resizable()
                 .frame(width: 167.84, height: 40.0)
         }

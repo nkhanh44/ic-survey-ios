@@ -23,6 +23,8 @@ extension Color {
 
 extension Color {
 
+    /// #15151A
     static let smokeGray = Color(hex: 0x15151A)
+    /// #757B83
     static let stoneGray = Color(hex: 0x757B83)
 }

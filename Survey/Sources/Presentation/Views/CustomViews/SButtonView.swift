@@ -13,7 +13,6 @@ struct SButtonView: View {
     let isValid: Bool = true
     let textColor: Color = .white
     let backgroundColor: Color = .black
-    let font: Font = .neuzei(style: .bold)
 
     var loginAction: (() -> Void)?
 
@@ -24,7 +23,7 @@ struct SButtonView: View {
             loginAction?()
         }, label: {
             Text(title)
-                .font(font)
+                .font(.boldBody)
         })
         .frame(maxWidth: .infinity, maxHeight: 56.0)
         .background(isValid ? .white : .stoneGray)

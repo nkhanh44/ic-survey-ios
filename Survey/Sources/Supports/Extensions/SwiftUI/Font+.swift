@@ -15,7 +15,7 @@ protocol FontStyle {
 
 extension Font {
 
-    enum NeuzeiStyle: FontStyle {
+    private enum NeuzeiStyle: FontStyle {
 
         case regular
         case bold
@@ -30,7 +30,13 @@ extension Font {
         }
     }
 
-    static func neuzei(style: NeuzeiStyle = .regular, size: CGFloat = 17.0) -> Font {
+    /// Weight: 400, Size: 17
+    static let regularBody: Font = .neuzei()
+
+    /// Weight: 800, Size: 17
+    static let boldBody: Font = .neuzei(style: .bold)
+
+    private static func neuzei(style: NeuzeiStyle = .regular, size: CGFloat = 17.0) -> Font {
         return Font.custom(style.name, size: size)
     }
 }

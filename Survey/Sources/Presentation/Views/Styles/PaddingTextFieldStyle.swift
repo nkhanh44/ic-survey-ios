@@ -15,7 +15,7 @@ struct PaddingTextFieldStyle: TextFieldStyle {
     func _body(configuration: TextField<Self._Label>) -> some View {
         configuration
             .textFieldStyle(.plain)
-            .font(.neuzei())
+            .font(.regularBody)
             .padding(3.0)
     }
 }

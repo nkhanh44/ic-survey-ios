@@ -17,7 +17,7 @@ struct PlaceholderModifier: ViewModifier {
         ZStack(alignment: .leading) {
             if showPlaceHolder {
                 Text(placeholder)
-                    .font(.neuzei())
+                    .font(.regularBody)
                     .padding(.horizontal, 18.0)
                     .foregroundColor(.white)
                     .opacity(0.3)
@@ -26,7 +26,7 @@ struct PlaceholderModifier: ViewModifier {
                 .textFieldStyle(PaddingTextFieldStyle())
                 .disableAutocorrection(true)
                 .textInputAutocapitalization(.never)
-                .font(.neuzei())
+                .font(.regularBody)
                 .foregroundColor(.white)
                 .padding()
                 .background(RoundedRectangle(cornerRadius: 12.0, style: .continuous).fill(.white).opacity(0.17))

@@ -5,7 +5,7 @@
 import Alamofire
 import Foundation
 
-protocol RequestConfiguration {
+protocol RequestConfigurationType {
 
     var baseURL: String { get }
 
@@ -24,16 +24,41 @@ protocol RequestConfiguration {
     var interceptor: RequestInterceptor? { get }
 }
 
-extension RequestConfiguration {
+struct RequestConfiguration: RequestConfigurationType {
+
+    let baseURL: String = Constants.API.getAPIURL(enviroment: BuildConfiguration.shared.environment)
+    let endpoint: String
+    let method: HTTPMethod
+    let encoding: ParameterEncoding
+    let parameters: Parameters?
+    var headers: HTTPHeaders?
+    var interceptor: RequestInterceptor?
 
     var url: URLConvertible {
         let url = URL(string: baseURL)?.appendingPathComponent(endpoint)
         return url?.absoluteString ?? "\(baseURL)\(endpoint)"
     }
 
+    init(
+        endpoint: String,
+        method: HTTPMethod,
+        encoding: ParameterEncoding,
+        parameters: Parameters? = nil,
+        headers: HTTPHeaders? = nil,
+        interceptor: RequestInterceptor? = nil
+    ) {
+        self.endpoint = endpoint
+        self.method = method
+        self.encoding = encoding
+        self.parameters = parameters
+        self.headers = headers
+        self.interceptor = interceptor
+    }
+}
+
+extension RequestConfigurationType {
+
     var parameters: Parameters? { nil }
-
     var headers: HTTPHeaders? { nil }
-
     var interceptor: RequestInterceptor? { nil }
 }

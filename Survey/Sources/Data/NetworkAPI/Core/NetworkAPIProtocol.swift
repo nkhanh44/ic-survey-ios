@@ -8,7 +8,7 @@ import Japx
 
 protocol NetworkAPIProtocol {
 
-    func performRequest<T: Decodable & Encodable>(_ configuration: RequestConfiguration, for type: T.Type) -> Future<T, Error>
+    func performRequest<T: Decodable & Encodable>(_ configuration: RequestConfiguration) -> Future<T, Error>
 }
 
 // swiftlint:disable closure_body_length

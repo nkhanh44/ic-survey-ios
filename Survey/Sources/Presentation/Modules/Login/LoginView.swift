@@ -12,8 +12,10 @@ import UIKit
 
 struct LoginView: View {
 
-    private var input: LoginViewModel.Input
+    @ObservedObject var input: LoginViewModel.Input
     @ObservedObject var output: LoginViewModel.Output
+
+    private let logInTrigger = PassthroughSubject<Void, Never>()
 
     @State private var email = ""
     @State private var password = ""
@@ -49,7 +51,7 @@ struct LoginView: View {
     }
 
     init(viewModel: LoginViewModel) {
-        let input = LoginViewModel.Input()
+        let input = LoginViewModel.Input(logInTrigger: logInTrigger.asDriver())
         output = viewModel.transform(input)
         self.input = input
     }
@@ -80,7 +82,9 @@ struct LoginView: View {
                 .modifier(PlaceholderModifier(showPlaceHolder: password.isEmpty, placeholder: "Password"))
                 .padding(.bottom, 20.0)
 
-            SButtonView(title: loginTitle)
+            SButtonView(loginAction: {
+                logInTrigger.send(())
+            }, title: loginTitle)
         }
         .padding([.leading, .trailing], 24.0)
     }
@@ -97,7 +101,8 @@ struct LoginView: View {
 struct LoginViewPreView: PreviewProvider {
 
     static var previews: some View {
-        let viewModel = LoginViewModel()
+        let useCase = LogInUseCase(loginRepository: LogInRepository(api: NetworkAPI(decoder: .japxDecoder)))
+        let viewModel = LoginViewModel(useCase: useCase)
         return LoginView(viewModel: viewModel)
     }
 }

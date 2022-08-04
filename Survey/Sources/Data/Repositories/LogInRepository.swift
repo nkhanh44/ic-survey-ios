@@ -9,12 +9,12 @@
 import Combine
 import Foundation
 
-protocol LogInRepositoryType: AnyObject {
+protocol LogInRepositoryProtocol: AnyObject {
 
     func login(email: String, password: String) -> Observable<APIToken>
 }
 
-final class LogInRepository: LogInRepositoryType {
+final class LogInRepository: LogInRepositoryProtocol {
 
     private var networkAPI: NetworkAPIProtocol!
 

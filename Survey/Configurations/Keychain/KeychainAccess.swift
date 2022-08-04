@@ -18,11 +18,11 @@ enum KeychainAccess {
 
     private static let keychain = Keychain(service: Bundle.main.bundleIdentifier ?? "")
 
-    static var token: APIToken? {
+    static var token: KeychainToken? {
         get {
             let decoder = JSONDecoder()
             guard let savedToken = keychain[data: Keys.token.rawValue],
-                  let user = try? decoder.decode(APIToken.self, from: savedToken) else {
+                  let user = try? decoder.decode(KeychainToken.self, from: savedToken) else {
                 return nil
             }
             return user

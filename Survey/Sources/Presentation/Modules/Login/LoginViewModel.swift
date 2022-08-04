@@ -11,7 +11,7 @@ import SwiftUI
 
 struct LoginViewModel {
 
-    let useCase: LogInUseCaseType
+    let useCase: LogInUseCaseProtocol
 }
 
 extension LoginViewModel: ViewModel {

@@ -9,14 +9,14 @@
 import Combine
 import Foundation
 
-protocol LogInUseCaseType {
+protocol LogInUseCaseProtocol {
 
     func login(email: String, password: String) -> Observable<APIToken>
 }
 
-struct LogInUseCase: LogInUseCaseType {
+struct LogInUseCase: LogInUseCaseProtocol {
 
-    var loginRepository: LogInRepositoryType
+    var loginRepository: LogInRepositoryProtocol
 
     func login(email: String, password: String) -> Observable<APIToken> {
         loginRepository

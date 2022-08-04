@@ -11,7 +11,7 @@ import Foundation
 enum Environment {
 
     static func based<T>(staging: T, production: T) -> T {
-        #if DEBUG
+        #if PROD
             return production
         #else
             return staging

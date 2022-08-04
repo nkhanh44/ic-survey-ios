@@ -18,14 +18,13 @@ extension Constants.API {
     )
 }
 
-// swiftlint:disable force_try
 extension Constants.Keys {
 
     static var clientId: String {
-        try! Configuration.value(for: "CLIENT_ID")
+        (try? Configuration.value(for: "CLIENT_ID")) ?? ""
     }
 
     static var clientSecret: String {
-        try! Configuration.value(for: "CLIENT_SECRET")
+        (try? Configuration.value(for: "CLIENT_SECRET")) ?? ""
     }
 }

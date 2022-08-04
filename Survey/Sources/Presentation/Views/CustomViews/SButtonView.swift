@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SButtonView: View {
 
-    let isValid: Bool = true
+    @Binding var isValid: Bool
     let textColor: Color = .white
     let backgroundColor: Color = .black
 
@@ -28,6 +28,7 @@ struct SButtonView: View {
         .frame(maxWidth: .infinity, maxHeight: 56.0)
         .background(isValid ? .white : .stoneGray)
         .foregroundColor(isValid ? .smokeGray : .white)
+        .disabled(!isValid)
         .cornerRadius(10.0)
     }
 }

@@ -11,7 +11,7 @@ import Foundation
 
 protocol LogInRepositoryProtocol: AnyObject {
 
-    func login(email: String, password: String) -> Observable<APIToken>
+    func login(email: String, password: String) -> Observable<Token>
 }
 
 final class LogInRepository: LogInRepositoryProtocol {
@@ -22,7 +22,7 @@ final class LogInRepository: LogInRepositoryProtocol {
         networkAPI = api
     }
 
-    func login(email: String, password: String) -> Observable<APIToken> {
+    func login(email: String, password: String) -> Observable<Token> {
         let requestConfiguration = LogInRequestConfiguration.login(email: email, password: password)
         return networkAPI.performRequest(requestConfiguration)
             .map { $0 as APIToken }

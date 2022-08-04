@@ -43,7 +43,10 @@ extension NetworkAPIProtocol {
                             promise(.success(res))
                         }
                     case let .failure(error):
-                        promise(.failure(error))
+                        guard let data = data.data else {
+                            return promise(.failure(error))
+                        }
+                        promise(.failure(data.errorData))
                     }
                 } catch {
                     promise(.failure(error))

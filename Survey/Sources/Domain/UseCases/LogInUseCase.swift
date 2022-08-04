@@ -11,14 +11,14 @@ import Foundation
 
 protocol LogInUseCaseProtocol {
 
-    func login(email: String, password: String) -> Observable<APIToken>
+    func login(email: String, password: String) -> Observable<Token>
 }
 
 struct LogInUseCase: LogInUseCaseProtocol {
 
     var loginRepository: LogInRepositoryProtocol
 
-    func login(email: String, password: String) -> Observable<APIToken> {
+    func login(email: String, password: String) -> Observable<Token> {
         loginRepository
             .login(email: email, password: password)
             .eraseToAnyPublisher()

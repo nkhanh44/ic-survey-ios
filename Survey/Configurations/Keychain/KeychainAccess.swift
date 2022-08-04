@@ -22,10 +22,10 @@ enum KeychainAccess {
         get {
             let decoder = JSONDecoder()
             guard let savedToken = keychain[data: Keys.token.rawValue],
-                  let user = try? decoder.decode(KeychainToken.self, from: savedToken) else {
+                  let token = try? decoder.decode(KeychainToken.self, from: savedToken) else {
                 return nil
             }
-            return user
+            return token
         }
 
         set {
@@ -33,6 +33,10 @@ enum KeychainAccess {
             guard let encoded = try? encoder.encode(newValue) else { return }
             keychain[data: Keys.token.rawValue] = encoded
         }
+    }
+
+    static var isLoggedIn: Bool {
+        keychain[Keys.token.rawValue] != nil
     }
 
     static func remove() {

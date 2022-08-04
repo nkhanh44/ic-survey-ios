@@ -6,6 +6,7 @@
 //  Copyright © 2022 Nimble. All rights reserved.
 //
 
+import Alamofire
 import Combine
 
 public struct AlertMessage {
@@ -26,7 +27,10 @@ extension AlertMessage {
 
     init(error: Error) {
         title = "Error"
-        let message = error.localizedDescription
+        var message = error.asAFError?.underlyingError?.localizedDescription ?? ""
+        if let sError = error as? SError {
+            message = sError.detail
+        }
         self.message = message
     }
 }

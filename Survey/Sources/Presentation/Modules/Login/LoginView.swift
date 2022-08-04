@@ -15,10 +15,11 @@ struct LoginView: View {
     @ObservedObject var input: LoginViewModel.Input
     @ObservedObject var output: LoginViewModel.Output
 
-    private let logInTrigger = PassthroughSubject<Void, Never>()
+    @EnvironmentObject private var appRouter: AppRouter
 
-    @State private var email = ""
-    @State private var password = ""
+    private let logInTrigger = PassthroughSubject<Void, Never>()
+    private let emailTrigger = PassthroughSubject<Void, Never>()
+    private let passwordTrigger = PassthroughSubject<Void, Never>()
 
     private var loginTitle = "Login"
 
@@ -32,7 +33,7 @@ struct LoginView: View {
     )
 
     var body: some View {
-        GeometryReader { geo in
+        LoadingView(isShowing: $output.isLoading, text: .constant("")) { geo in
             ZStack {
                 backgroundSetup()
                 VStack(spacing: 0.0) {
@@ -46,12 +47,26 @@ struct LoginView: View {
                 }
             }
         }
-        .edgesIgnoringSafeArea(.all)
-        .preferredColorScheme(.dark)
+        .alert(isPresented: .constant($output.alert.wrappedValue != nil)) {
+            Alert(
+                title: Text(output.alert?.title ?? ""),
+                message: Text(output.alert?.message ?? ""),
+                dismissButton: .default(Text("OK"), action: {
+                    $output.alert.wrappedValue = nil
+                })
+            )
+        }
+        .onReceive(output.$isLoggedInSuccessfully) {
+            if $0 {
+                appRouter.state = .home
+            }
+        }
     }
 
     init(viewModel: LoginViewModel) {
-        let input = LoginViewModel.Input(logInTrigger: logInTrigger.asDriver())
+        let input = LoginViewModel.Input(logInTrigger: logInTrigger.asDriver(),
+                                         emailTrigger: emailTrigger.asDriver(),
+                                         passwordTrigger: passwordTrigger.asDriver())
         output = viewModel.transform(input)
         self.input = input
     }
@@ -73,20 +88,52 @@ struct LoginView: View {
     }
 
     private func componentSetup() -> some View {
-        VStack(alignment: .center, spacing: 0.0) {
-            TextField("", text: $email)
-                .modifier(PlaceholderModifier(showPlaceHolder: email.isEmpty, placeholder: "Email"))
-                .padding(.bottom, 20.0)
-
-            SecureField("", text: $password)
-                .modifier(PlaceholderModifier(showPlaceHolder: password.isEmpty, placeholder: "Password"))
-                .padding(.bottom, 20.0)
-
-            SButtonView(loginAction: {
-                logInTrigger.send(())
-            }, title: loginTitle)
+        VStack(alignment: .leading, spacing: 0.0) {
+            emailSetup()
+            passwordSetup()
+            SButtonView(
+                isValid: $output.isLoginEnabled,
+                loginAction: { logInTrigger.send(()) },
+                title: loginTitle
+            )
         }
         .padding([.leading, .trailing], 24.0)
+    }
+
+    private func emailSetup() -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            TextField("", text: $input.email)
+                .modifier(PlaceholderModifier(showPlaceHolder: input.email.isEmpty, placeholder: "Email"))
+                .padding(.bottom, 3.0)
+                .onChange(of: input.email, perform: { newValue in
+                    if !newValue.isEmpty {
+                        emailTrigger.send(())
+                    }
+                })
+
+            Text(SError.invalidEmail.detail)
+                .modifier(ErrorTextModifier())
+                .padding(.bottom, 7.0)
+                .hidden(output.isEmailValid)
+        }
+    }
+
+    private func passwordSetup() -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            SecureField("", text: $input.password)
+                .modifier(PlaceholderModifier(showPlaceHolder: input.password.isEmpty, placeholder: "Password"))
+                .padding(.bottom, 3.0)
+                .onChange(of: input.password, perform: { newValue in
+                    if !newValue.isEmpty {
+                        passwordTrigger.send(())
+                    }
+                })
+
+            Text(SError.invalidPassword.detail)
+                .modifier(ErrorTextModifier())
+                .padding(.bottom, 7.0)
+                .hidden(output.isPasswordValid)
+        }
     }
 
     private func logoSetup() -> some View {

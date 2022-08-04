@@ -15,9 +15,11 @@ struct SplashView: View {
     private var input: SplashViewModel.Input
     @ObservedObject var output: SplashViewModel.Output
 
-    private let loadTrigger = PassthroughSubject<Void, Never>()
+    @EnvironmentObject private var appRouter: AppRouter
 
     @State private var fadeInOut = false
+
+    private let loadTrigger = PassthroughSubject<Void, Never>()
 
     var body: some View {
         ZStack {
@@ -35,6 +37,12 @@ struct SplashView: View {
                     }
                 })
                 .opacity(fadeInOut ? 1.0 : 0.0)
+        }
+        .preferredColorScheme(.dark)
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                appRouter.state = .login
+            }
         }
     }
 

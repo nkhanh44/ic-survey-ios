@@ -29,7 +29,6 @@
 		1CD6FA732897ACD900B4B0D7 /* LogInRequestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6FA722897ACD900B4B0D7 /* LogInRequestConfiguration.swift */; };
 		1CD6FA752897AE6900B4B0D7 /* Constants+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6FA742897AE6900B4B0D7 /* Constants+.swift */; };
 		1CD6FA792897AF2D00B4B0D7 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6FA782897AF2D00B4B0D7 /* Environment.swift */; };
-		1CD6FA7B2897AF4500B4B0D7 /* BuildConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6FA7A2897AF4500B4B0D7 /* BuildConfiguration.swift */; };
 		1CD6FA7D2897AF5800B4B0D7 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6FA7C2897AF5800B4B0D7 /* Configuration.swift */; };
 		1CD6FA7F2897AFC000B4B0D7 /* LogInUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6FA7E2897AFC000B4B0D7 /* LogInUseCase.swift */; };
 		1CD6FA842898603300B4B0D7 /* KeychainAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6FA832898603300B4B0D7 /* KeychainAccess.swift */; };
@@ -141,7 +140,6 @@
 		1CD6FA722897ACD900B4B0D7 /* LogInRequestConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInRequestConfiguration.swift; sourceTree = "<group>"; };
 		1CD6FA742897AE6900B4B0D7 /* Constants+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+.swift"; sourceTree = "<group>"; };
 		1CD6FA782897AF2D00B4B0D7 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
-		1CD6FA7A2897AF4500B4B0D7 /* BuildConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildConfiguration.swift; sourceTree = "<group>"; };
 		1CD6FA7C2897AF5800B4B0D7 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		1CD6FA7E2897AFC000B4B0D7 /* LogInUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInUseCase.swift; sourceTree = "<group>"; };
 		1CD6FA832898603300B4B0D7 /* KeychainAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainAccess.swift; sourceTree = "<group>"; };
@@ -377,7 +375,6 @@
 			isa = PBXGroup;
 			children = (
 				1CD6FA782897AF2D00B4B0D7 /* Environment.swift */,
-				1CD6FA7A2897AF4500B4B0D7 /* BuildConfiguration.swift */,
 				1CD6FA7C2897AF5800B4B0D7 /* Configuration.swift */,
 			);
 			path = Environment;
@@ -1252,7 +1249,6 @@
 				4EB668FA98599FBE41D546B5 /* NetworkAPI.swift in Sources */,
 				1CB186872890F9D200372D50 /* LoginNavigator.swift in Sources */,
 				1CB186892890F9DA00372D50 /* LoginViewModel.swift in Sources */,
-				1CD6FA7B2897AF4500B4B0D7 /* BuildConfiguration.swift in Sources */,
 				1CE7C6DA288A91BA00B0EB1B /* SurveyApp.swift in Sources */,
 				F0A89AD5F68C7A57786D5EE2 /* Navigator+Scene.swift in Sources */,
 				1CD6FA792897AF2D00B4B0D7 /* Environment.swift in Sources */,
@@ -1478,7 +1474,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.khanh.survey;
 				PRODUCT_NAME = Survey;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUGSTAGING;
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.6.1;

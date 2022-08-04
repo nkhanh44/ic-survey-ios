@@ -12,14 +12,10 @@ extension Constants.API {
 
     static let apiPathVersion = "/api/v1/"
 
-    static func getAPIURL(enviroment env: Environment) -> String {
-        switch env {
-        case .development:
-            return "https://survey-api.nimblehq.co" + apiPathVersion
-        case .staging:
-            return "https://nimble-survey-web-staging.herokuapp.com" + apiPathVersion
-        }
-    }
+    static let baseUrl = Environment.based(
+        staging: "https://nimble-survey-web-staging.herokuapp.com" + apiPathVersion,
+        production: "https://survey-api.nimblehq.co" + apiPathVersion
+    )
 }
 
 // swiftlint:disable force_try

@@ -8,8 +8,13 @@
 
 import Foundation
 
-enum Environment: String {
+enum Environment {
 
-    case development = "Debug Production"
-    case staging = "Debug Staging"
+    static func based<T>(staging: T, production: T) -> T {
+        #if DEBUG
+            return production
+        #else
+            return staging
+        #endif
+    }
 }

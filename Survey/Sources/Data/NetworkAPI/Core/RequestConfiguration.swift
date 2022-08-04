@@ -26,7 +26,7 @@ protocol RequestConfigurationType {
 
 struct RequestConfiguration: RequestConfigurationType {
 
-    let baseURL: String = Constants.API.getAPIURL(enviroment: BuildConfiguration.shared.environment)
+    let baseURL: String = Constants.API.baseUrl
     let endpoint: String
     let method: HTTPMethod
     let encoding: ParameterEncoding

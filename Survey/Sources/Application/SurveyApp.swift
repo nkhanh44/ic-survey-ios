@@ -15,7 +15,9 @@ struct SurveyApp: App {
     var body: some Scene {
         configure()
         return WindowGroup {
-            LoginView(viewModel: LoginViewModel())
+            let useCase = LogInUseCase(loginRepository: LogInRepository(api: NetworkAPI(decoder: .japxDecoder)))
+            let viewModel = LoginViewModel(useCase: useCase)
+            LoginView(viewModel: viewModel)
         }
     }
 

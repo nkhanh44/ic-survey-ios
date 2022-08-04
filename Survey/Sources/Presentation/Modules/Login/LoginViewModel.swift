@@ -9,7 +9,10 @@
 import Combine
 import SwiftUI
 
-struct LoginViewModel {}
+struct LoginViewModel {
+
+    let useCase: LogInUseCaseProtocol
+}
 
 extension LoginViewModel: ViewModel {
 
@@ -37,7 +40,16 @@ extension LoginViewModel: ViewModel {
 
 extension LoginViewModel {
 
-    struct Input {}
+    final class Input: ObservableObject {
+
+        @Published var username = ""
+        @Published var password = ""
+        let logInTrigger: Driver<Void>
+
+        init(logInTrigger: Driver<Void>) {
+            self.logInTrigger = logInTrigger
+        }
+    }
 
     final class Output: ObservableObject {
 

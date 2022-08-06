@@ -18,9 +18,6 @@ struct LoginView: View {
     @EnvironmentObject private var appRouter: AppRouter
 
     private let logInTrigger = PassthroughSubject<Void, Never>()
-    private let emailTrigger = PassthroughSubject<Void, Never>()
-    private let passwordTrigger = PassthroughSubject<Void, Never>()
-
     private var loginTitle = "Login"
 
     private let gradient = LinearGradient(
@@ -64,9 +61,7 @@ struct LoginView: View {
     }
 
     init(viewModel: LoginViewModel) {
-        let input = LoginViewModel.Input(logInTrigger: logInTrigger.asDriver(),
-                                         emailTrigger: emailTrigger.asDriver(),
-                                         passwordTrigger: passwordTrigger.asDriver())
+        let input = LoginViewModel.Input(logInTrigger: logInTrigger.asDriver())
         output = viewModel.transform(input)
         self.input = input
     }
@@ -101,15 +96,10 @@ struct LoginView: View {
     }
 
     private func emailSetup() -> some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading, spacing: 0.0) {
             TextField("", text: $input.email)
                 .modifier(PlaceholderModifier(showPlaceHolder: input.email.isEmpty, placeholder: "Email"))
                 .padding(.bottom, 3.0)
-                .onChange(of: input.email, perform: { newValue in
-                    if !newValue.isEmpty {
-                        emailTrigger.send(())
-                    }
-                })
 
             Text(SError.invalidEmail.detail)
                 .modifier(ErrorTextModifier())
@@ -119,15 +109,10 @@ struct LoginView: View {
     }
 
     private func passwordSetup() -> some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading, spacing: 0.0) {
             SecureField("", text: $input.password)
                 .modifier(PlaceholderModifier(showPlaceHolder: input.password.isEmpty, placeholder: "Password"))
                 .padding(.bottom, 3.0)
-                .onChange(of: input.password, perform: { newValue in
-                    if !newValue.isEmpty {
-                        passwordTrigger.send(())
-                    }
-                })
 
             Text(SError.invalidPassword.detail)
                 .modifier(ErrorTextModifier())

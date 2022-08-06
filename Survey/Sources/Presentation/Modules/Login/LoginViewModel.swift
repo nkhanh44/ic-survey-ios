@@ -21,11 +21,13 @@ extension LoginViewModel: ViewModel {
         let activityTracker = ActivityTracker(false)
         let output = Output()
 
-        let isEmailValid = Publishers.CombineLatest(input.$email, input.emailTrigger)
-            .map { $0.0.isEmailValid && !$0.0.isEmpty }
+        let isEmailValid = input.$email
+            .map { $0.isEmailValid && !$0.isEmpty }
+            .dropFirst()
 
-        let isPasswordValid = Publishers.CombineLatest(input.$password, input.passwordTrigger)
-            .map { $0.0.isPasswordMustLeast8Letters && !$0.0.isEmpty }
+        let isPasswordValid = input.$password
+            .map { $0.isPasswordValid && !$0.isEmpty }
+            .dropFirst()
 
         isEmailValid
             .assign(to: \.isEmailValid, on: output)
@@ -49,11 +51,7 @@ extension LoginViewModel: ViewModel {
                     .asDriver()
             }
             .switchToLatest()
-            .sink(receiveValue: {
-                KeychainAccess.remove()
-                KeychainAccess.token = $0 as? KeychainToken
-                output.isLoggedInSuccessfully = KeychainAccess.isLoggedIn
-            })
+            .assign(to: \.isLoggedInSuccessfully, on: output)
             .store(in: &output.cancelBag)
 
         errorTracker
@@ -80,13 +78,9 @@ extension LoginViewModel {
         @Published var email = ""
         @Published var password = ""
         let logInTrigger: Driver<Void>
-        let emailTrigger: Driver<Void>
-        let passwordTrigger: Driver<Void>
 
-        init(logInTrigger: Driver<Void>, emailTrigger: Driver<Void>, passwordTrigger: Driver<Void>) {
+        init(logInTrigger: Driver<Void>) {
             self.logInTrigger = logInTrigger
-            self.emailTrigger = emailTrigger
-            self.passwordTrigger = passwordTrigger
         }
     }
 

@@ -11,16 +11,21 @@ import Foundation
 
 protocol LogInUseCaseProtocol {
 
-    func login(email: String, password: String) -> Observable<Token>
+    func login(email: String, password: String) -> Observable<Bool>
 }
 
 struct LogInUseCase: LogInUseCaseProtocol {
 
     var loginRepository: LogInRepositoryProtocol
 
-    func login(email: String, password: String) -> Observable<Token> {
+    func login(email: String, password: String) -> Observable<Bool> {
         loginRepository
             .login(email: email, password: password)
+            .map { token in
+                KeychainAccess.remove()
+                KeychainAccess.token = token as? KeychainToken
+                return KeychainAccess.isLoggedIn
+            }
             .eraseToAnyPublisher()
     }
 }

@@ -19,8 +19,6 @@ struct SplashView: View {
 
     @State private var fadeInOut = false
 
-    private let loadTrigger = PassthroughSubject<Void, Never>()
-
     var body: some View {
         ZStack {
             Assets.ic_background.image
@@ -47,7 +45,7 @@ struct SplashView: View {
     }
 
     init(viewModel: SplashViewModel) {
-        let input = SplashViewModel.Input(loadTrigger: loadTrigger.asDriver())
+        let input = SplashViewModel.Input()
         output = viewModel.transform(input)
         self.input = input
     }

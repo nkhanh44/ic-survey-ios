@@ -20,11 +20,11 @@ struct SurveyApp: App {
             SplashView(viewModel: SplashViewModel())
         case .login:
             let loginUseCase = LogInUseCase(loginRepository: LogInRepository(api: NetworkAPI(decoder: .japxDecoder)))
-            let storeTokenUseCase = StoreTokenUseCase()
+            let storeTokenUseCase = StoreTokenUseCase(keychain: KeychainService.shared)
             let viewModel = LoginViewModel(loginUseCase: loginUseCase, storeUseCase: storeTokenUseCase)
             LoginView(viewModel: viewModel)
         case .home:
-            Text("Home")
+            HomeView(viewModel: HomeViewModel())
         }
     }
 

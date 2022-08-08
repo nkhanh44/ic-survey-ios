@@ -16,9 +16,12 @@ protocol StoreTokenUseCaseProtocol {
 
 struct StoreTokenUseCase: StoreTokenUseCaseProtocol {
 
+    var keychain: KeychainService
+
     func store(token: Token) -> Observable<Bool> {
-        KeychainAccess.remove()
-        KeychainAccess.token = token as? KeychainToken
-        return Just(KeychainAccess.isLoggedIn).asObservable()
+        try? keychain.removeToken(with: Keys.token)
+        try? keychain.set(newToken: token as? KeychainToken, for: Keys.token)
+        let isLoggedIn = (try? keychain.isLoggedIn()) ?? false
+        return Just(isLoggedIn).asObservable()
     }
 }

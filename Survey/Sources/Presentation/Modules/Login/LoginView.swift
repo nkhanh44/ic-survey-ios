@@ -91,6 +91,7 @@ struct LoginView: View {
                 loginAction: { logInTrigger.send(()) },
                 title: loginTitle
             )
+            .accessibilityIdentifier(TestConstants.Login.loginButton)
         }
         .padding([.leading, .trailing], 24.0)
     }
@@ -100,6 +101,7 @@ struct LoginView: View {
             TextField("", text: $input.email)
                 .modifier(PlaceholderModifier(showPlaceHolder: input.email.isEmpty, placeholder: "Email"))
                 .padding(.bottom, 3.0)
+                .accessibilityIdentifier(TestConstants.Login.emailInputTextField)
 
             Text(SError.invalidEmail.detail)
                 .modifier(ErrorTextModifier())
@@ -113,6 +115,7 @@ struct LoginView: View {
             SecureField("", text: $input.password)
                 .modifier(PlaceholderModifier(showPlaceHolder: input.password.isEmpty, placeholder: "Password"))
                 .padding(.bottom, 3.0)
+                .accessibilityIdentifier(TestConstants.Login.passwordInputTextField)
 
             Text(SError.invalidPassword.detail)
                 .modifier(ErrorTextModifier())
@@ -134,7 +137,7 @@ struct LoginViewPreView: PreviewProvider {
 
     static var previews: some View {
         let loginUseCase = LogInUseCase(loginRepository: LogInRepository(api: NetworkAPI(decoder: .japxDecoder)))
-        let storeTokenUseCase = StoreTokenUseCase()
+        let storeTokenUseCase = StoreTokenUseCase(keychain: KeychainService.shared)
         let viewModel = LoginViewModel(loginUseCase: loginUseCase, storeUseCase: storeTokenUseCase)
         return LoginView(viewModel: viewModel)
     }

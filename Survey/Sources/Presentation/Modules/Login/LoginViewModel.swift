@@ -11,11 +11,12 @@ import SwiftUI
 
 struct LoginViewModel {
 
-    let useCase: LogInUseCaseProtocol
+    let loginUseCase: LogInUseCaseProtocol
+    let storeUseCase: StoreTokenUseCaseProtocol
 }
 
 extension LoginViewModel: ViewModel {
-
+    // swiftlint:disable function_body_length
     func transform(_ input: Input) -> Output {
         let errorTracker = ErrorTracker()
         let activityTracker = ActivityTracker(false)
@@ -45,10 +46,14 @@ extension LoginViewModel: ViewModel {
         input.logInTrigger
             .filter { output.isLoginEnabled }
             .map { _ in
-                self.useCase.login(email: input.email, password: input.password)
+                self.loginUseCase.login(email: input.email, password: input.password)
                     .trackError(errorTracker)
                     .trackActivity(activityTracker)
                     .asDriver()
+            }
+            .switchToLatest()
+            .map {
+                self.storeUseCase.store(token: $0).asDriver()
             }
             .switchToLatest()
             .assign(to: \.isLoggedInSuccessfully, on: output)

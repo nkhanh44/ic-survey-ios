@@ -27,10 +27,10 @@ extension AlertMessage {
 
     init(error: Error) {
         title = "Error"
-        var message = error.asAFError?.underlyingError?.localizedDescription ?? ""
         if let sError = error as? SError {
             message = sError.detail
+        } else {
+            message = error.asAFError?.underlyingError?.localizedDescription ?? ""
         }
-        self.message = message
     }
 }

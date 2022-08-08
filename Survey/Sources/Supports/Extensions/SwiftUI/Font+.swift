@@ -30,11 +30,14 @@ extension Font {
         }
     }
 
-    /// Weight: 400, Size: 17
+    /// Weight: 400, Size: 17.0
     static let regularBody: Font = .neuzei()
 
-    /// Weight: 800, Size: 17
+    /// Weight: 800, Size: 17.0
     static let boldBody: Font = .neuzei(style: .bold)
+
+    /// Weight: 400, Size: 10.0
+    static let errorBody: Font = .neuzei(size: 10.0)
 
     private static func neuzei(style: NeuzeiStyle = .regular, size: CGFloat = 17.0) -> Font {
         return Font.custom(style.name, size: size)

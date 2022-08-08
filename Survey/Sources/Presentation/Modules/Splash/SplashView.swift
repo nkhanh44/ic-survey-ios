@@ -15,7 +15,7 @@ struct SplashView: View {
     private var input: SplashViewModel.Input
     @ObservedObject var output: SplashViewModel.Output
 
-    private let loadTrigger = PassthroughSubject<Void, Never>()
+    @EnvironmentObject private var appRouter: AppRouter
 
     @State private var fadeInOut = false
 
@@ -36,10 +36,16 @@ struct SplashView: View {
                 })
                 .opacity(fadeInOut ? 1.0 : 0.0)
         }
+        .preferredColorScheme(.dark)
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                appRouter.state = .login
+            }
+        }
     }
 
     init(viewModel: SplashViewModel) {
-        let input = SplashViewModel.Input(loadTrigger: loadTrigger.asDriver())
+        let input = SplashViewModel.Input()
         output = viewModel.transform(input)
         self.input = input
     }

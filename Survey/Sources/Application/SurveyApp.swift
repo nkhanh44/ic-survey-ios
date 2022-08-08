@@ -12,12 +12,26 @@ import SwiftUI
 @main
 struct SurveyApp: App {
 
+    @StateObject var appRouter = AppRouter()
+
+    @ViewBuilder var rootView: some View {
+        switch appRouter.state {
+        case .splash:
+            SplashView(viewModel: SplashViewModel())
+        case .login:
+            let loginUseCase = LogInUseCase(loginRepository: LogInRepository(api: NetworkAPI(decoder: .japxDecoder)))
+            let storeTokenUseCase = StoreTokenUseCase()
+            let viewModel = LoginViewModel(loginUseCase: loginUseCase, storeUseCase: storeTokenUseCase)
+            LoginView(viewModel: viewModel)
+        case .home:
+            Text("Home")
+        }
+    }
+
     var body: some Scene {
         configure()
         return WindowGroup {
-            let useCase = LogInUseCase(loginRepository: LogInRepository(api: NetworkAPI(decoder: .japxDecoder)))
-            let viewModel = LoginViewModel(useCase: useCase)
-            LoginView(viewModel: viewModel)
+            rootView.environmentObject(appRouter)
         }
     }
 

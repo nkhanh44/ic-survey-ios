@@ -15,11 +15,9 @@ struct LoginView: View {
     @ObservedObject var input: LoginViewModel.Input
     @ObservedObject var output: LoginViewModel.Output
 
+    @EnvironmentObject private var appRouter: AppRouter
+
     private let logInTrigger = PassthroughSubject<Void, Never>()
-
-    @State private var email = ""
-    @State private var password = ""
-
     private var loginTitle = "Login"
 
     private let gradient = LinearGradient(
@@ -32,7 +30,7 @@ struct LoginView: View {
     )
 
     var body: some View {
-        GeometryReader { geo in
+        LoadingView(isShowing: $output.isLoading, text: .constant("")) { geo in
             ZStack {
                 backgroundSetup()
                 VStack(spacing: 0.0) {
@@ -46,8 +44,20 @@ struct LoginView: View {
                 }
             }
         }
-        .edgesIgnoringSafeArea(.all)
-        .preferredColorScheme(.dark)
+        .alert(isPresented: .constant($output.alert.wrappedValue != nil)) {
+            Alert(
+                title: Text(output.alert?.title ?? ""),
+                message: Text(output.alert?.message ?? ""),
+                dismissButton: .default(Text("OK"), action: {
+                    $output.alert.wrappedValue = nil
+                })
+            )
+        }
+        .onReceive(output.$isLoggedInSuccessfully) {
+            if $0 {
+                appRouter.state = .home
+            }
+        }
     }
 
     init(viewModel: LoginViewModel) {
@@ -73,20 +83,42 @@ struct LoginView: View {
     }
 
     private func componentSetup() -> some View {
-        VStack(alignment: .center, spacing: 0.0) {
-            TextField("", text: $email)
-                .modifier(PlaceholderModifier(showPlaceHolder: email.isEmpty, placeholder: "Email"))
-                .padding(.bottom, 20.0)
-
-            SecureField("", text: $password)
-                .modifier(PlaceholderModifier(showPlaceHolder: password.isEmpty, placeholder: "Password"))
-                .padding(.bottom, 20.0)
-
-            SButtonView(loginAction: {
-                logInTrigger.send(())
-            }, title: loginTitle)
+        VStack(alignment: .leading, spacing: 0.0) {
+            emailSetup()
+            passwordSetup()
+            SButtonView(
+                isValid: $output.isLoginEnabled,
+                loginAction: { logInTrigger.send(()) },
+                title: loginTitle
+            )
         }
         .padding([.leading, .trailing], 24.0)
+    }
+
+    private func emailSetup() -> some View {
+        VStack(alignment: .leading, spacing: 0.0) {
+            TextField("", text: $input.email)
+                .modifier(PlaceholderModifier(showPlaceHolder: input.email.isEmpty, placeholder: "Email"))
+                .padding(.bottom, 3.0)
+
+            Text(SError.invalidEmail.detail)
+                .modifier(ErrorTextModifier())
+                .padding(.bottom, 7.0)
+                .hidden(output.isEmailValid)
+        }
+    }
+
+    private func passwordSetup() -> some View {
+        VStack(alignment: .leading, spacing: 0.0) {
+            SecureField("", text: $input.password)
+                .modifier(PlaceholderModifier(showPlaceHolder: input.password.isEmpty, placeholder: "Password"))
+                .padding(.bottom, 3.0)
+
+            Text(SError.invalidPassword.detail)
+                .modifier(ErrorTextModifier())
+                .padding(.bottom, 7.0)
+                .hidden(output.isPasswordValid)
+        }
     }
 
     private func logoSetup() -> some View {
@@ -101,8 +133,9 @@ struct LoginView: View {
 struct LoginViewPreView: PreviewProvider {
 
     static var previews: some View {
-        let useCase = LogInUseCase(loginRepository: LogInRepository(api: NetworkAPI(decoder: .japxDecoder)))
-        let viewModel = LoginViewModel(useCase: useCase)
+        let loginUseCase = LogInUseCase(loginRepository: LogInRepository(api: NetworkAPI(decoder: .japxDecoder)))
+        let storeTokenUseCase = StoreTokenUseCase()
+        let viewModel = LoginViewModel(loginUseCase: loginUseCase, storeUseCase: storeTokenUseCase)
         return LoginView(viewModel: viewModel)
     }
 }

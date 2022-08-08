@@ -37,10 +37,7 @@ extension SplashViewModel: ViewModel {
 
 extension SplashViewModel {
 
-    struct Input {
-
-        let loadTrigger: Driver<Void>
-    }
+    struct Input {}
 
     final class Output: ObservableObject {
 

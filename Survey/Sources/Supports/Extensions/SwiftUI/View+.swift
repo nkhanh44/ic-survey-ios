@@ -11,6 +11,6 @@ import SwiftUI
 extension View {
 
     func hidden(_ shouldHide: Bool) -> some View {
-        return opacity(shouldHide ? 0 : 1)
+        return opacity(shouldHide ? 0.0 : 1.0)
     }
 }

@@ -136,9 +136,16 @@ struct LoginView: View {
 struct LoginViewPreView: PreviewProvider {
 
     static var previews: some View {
-        let loginUseCase = LogInUseCase(loginRepository: LogInRepository(api: NetworkAPI(decoder: .japxDecoder)))
-        let storeTokenUseCase = StoreTokenUseCase(keychain: KeychainService.shared)
-        let viewModel = LoginViewModel(loginUseCase: loginUseCase, storeUseCase: storeTokenUseCase)
+        let loginUseCase = LogInUseCase(
+            loginRepository: LogInRepository(
+                api: NetworkAPI(decoder: .japxDecoder)
+            )
+        )
+        let storeTokenUseCase = StoreTokenUseCase()
+        let viewModel = LoginViewModel(
+            loginUseCase: loginUseCase,
+            storeUseCase: storeTokenUseCase
+        )
         return LoginView(viewModel: viewModel)
     }
 }

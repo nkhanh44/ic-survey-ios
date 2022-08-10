@@ -13,6 +13,8 @@
 		1C516B7B28A15BF600DB7B7B /* APIToken+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C516B7A28A15BF600DB7B7B /* APIToken+Dummy.swift */; };
 		1C516B8528A1619D00DB7B7B /* LoginViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C516B8428A1619D00DB7B7B /* LoginViewSpec.swift */; };
 		1C516B8728A1CB6700DB7B7B /* StoreTokenUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C516B8628A1CB6700DB7B7B /* StoreTokenUseCaseSpec.swift */; };
+		1C516B8A28A2C31A00DB7B7B /* KeychainServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C516B8928A2C31A00DB7B7B /* KeychainServiceMock.swift */; };
+		1C516B9028A2D6AA00DB7B7B /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C516B8E28A2D68A00DB7B7B /* KeychainKeys.swift */; };
 		1C94DA1228996C8100ED0984 /* SError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C94DA1128996C8100ED0984 /* SError.swift */; };
 		1C94DA14289983EA00ED0984 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C94DA13289983EA00ED0984 /* LoadingView.swift */; };
 		1C94DA162899845900ED0984 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C94DA152899845900ED0984 /* ActivityIndicator.swift */; };
@@ -147,6 +149,8 @@
 		1C516B7A28A15BF600DB7B7B /* APIToken+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIToken+Dummy.swift"; sourceTree = "<group>"; };
 		1C516B8428A1619D00DB7B7B /* LoginViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewSpec.swift; sourceTree = "<group>"; };
 		1C516B8628A1CB6700DB7B7B /* StoreTokenUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTokenUseCaseSpec.swift; sourceTree = "<group>"; };
+		1C516B8928A2C31A00DB7B7B /* KeychainServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainServiceMock.swift; sourceTree = "<group>"; };
+		1C516B8E28A2D68A00DB7B7B /* KeychainKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKeys.swift; sourceTree = "<group>"; };
 		1C94DA1128996C8100ED0984 /* SError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SError.swift; sourceTree = "<group>"; };
 		1C94DA13289983EA00ED0984 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		1C94DA152899845900ED0984 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -388,6 +392,14 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		1C516B8828A2C31100DB7B7B /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				1C516B8928A2C31A00DB7B7B /* KeychainServiceMock.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
 		1CB18676288E57A000372D50 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -545,6 +557,7 @@
 			isa = PBXGroup;
 			children = (
 				1CD6FA832898603300B4B0D7 /* KeychainService.swift */,
+				1C516B8E28A2D68A00DB7B7B /* KeychainKeys.swift */,
 			);
 			path = Keychain;
 			sourceTree = "<group>";
@@ -671,6 +684,7 @@
 		3BCCE08012756E065644651B /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				1C516B8828A2C31100DB7B7B /* Keychain */,
 				1C516B8128A1612F00DB7B7B /* Login */,
 				3197E0A2DED94F589FF1EA7F /* Sourcery */,
 			);
@@ -1394,6 +1408,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C516B9028A2D6AA00DB7B7B /* KeychainKeys.swift in Sources */,
 				1CB18678288E57AD00372D50 /* AlertMessage.swift in Sources */,
 				1CB186852890F9C700372D50 /* LoginView.swift in Sources */,
 				1CE7C6D2288A89A400B0EB1B /* SplashNavigator.swift in Sources */,
@@ -1469,6 +1484,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C516B7628A148AF00DB7B7B /* LoginRepositoryMock.swift in Sources */,
+				1C516B8A28A2C31A00DB7B7B /* KeychainServiceMock.swift in Sources */,
 				1CD4E341289F9B1300EA1E8B /* TestError.swift in Sources */,
 				1C516B8528A1619D00DB7B7B /* LoginViewSpec.swift in Sources */,
 				1C516B8728A1CB6700DB7B7B /* StoreTokenUseCaseSpec.swift in Sources */,

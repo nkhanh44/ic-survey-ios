@@ -10,11 +10,13 @@
 
 extension APIToken {
 
-    static let dummy = APIToken(id: "1",
-                                type: "token",
-                                accessToken: "accessToken",
-                                tokenType: "tokenType",
-                                expiresIn: 900,
-                                refreshToken: "refreshToken",
-                                createdAt: 1_888_882)
+    static let dummy = APIToken(
+        id: "1",
+        type: "token",
+        accessToken: "accessToken",
+        tokenType: "tokenType",
+        expiresIn: 900,
+        refreshToken: "refreshToken",
+        createdAt: 1_888_882
+    )
 }

@@ -37,14 +37,10 @@ final class LoginViewModelSpec: QuickSpec {
                 self.output = viewModel.transform(self.input)
             }
 
-            afterEach {
-                viewModel = nil
-            }
-
             context("when login with email and password returns success") {
 
                 it("returns output isLoggedInSuccessfully with true") {
-                    self.input.email = "nkhanh44@nimblehq.co"
+                    self.input.email = "example@gmail.com"
                     self.input.password = "12345678"
 
                     logInTrigger.send(())
@@ -60,7 +56,7 @@ final class LoginViewModelSpec: QuickSpec {
                 it("returns output with alert displayed") {
                     self.logInUseCase.loginSuccessfullyReturnValue = .failure(TestError())
 
-                    self.input.email = "nkhanh44@nimblehq.co"
+                    self.input.email = "example@gmail.com"
                     self.input.password = "12345678"
 
                     logInTrigger.send(())
@@ -72,7 +68,7 @@ final class LoginViewModelSpec: QuickSpec {
             context("when validate email and password fields returns valid") {
 
                 it("returns output with valid email, password and enabled login button ") {
-                    self.input.email = "nkhanh44@nimblehq.co"
+                    self.input.email = "example@gmail.com"
                     self.input.password = "12345678"
 
                     expect(self.output.isEmailValid) == true
@@ -84,7 +80,7 @@ final class LoginViewModelSpec: QuickSpec {
             context("when validate email and password fields returns invalid") {
 
                 it("returns output with invalid password and disabled login button") {
-                    self.input.email = "nkhanh44@nimblehq.co"
+                    self.input.email = "example@gmail.com"
                     self.input.password = "123"
 
                     expect(self.output.isEmailValid) == true
@@ -93,7 +89,7 @@ final class LoginViewModelSpec: QuickSpec {
                 }
 
                 it("returns output with invalid email, valid password and disabled login button ") {
-                    self.input.email = "nkhanh44nimblehq."
+                    self.input.email = "examplegmail"
                     self.input.password = "12345678"
 
                     expect(self.output.isEmailValid) == false

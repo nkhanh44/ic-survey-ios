@@ -29,7 +29,7 @@ final class LoginUseCaseSpec: QuickSpec {
             context("when login is called") {
 
                 beforeEach {
-                    _ = logInUseCase.login(email: "nkhanh44@nimblehq.co", password: "12345678")
+                    _ = logInUseCase.login(email: "example@gmail.com", password: "12345678")
                 }
 
                 it("returns correct response") {

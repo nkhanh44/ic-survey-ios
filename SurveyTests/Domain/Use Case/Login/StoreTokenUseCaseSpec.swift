@@ -15,14 +15,16 @@ final class StoreTokenUseCaseSpec: QuickSpec {
 
     override func spec() {
 
-        var storeTokenUseCase: StoreTokenUseCase!
-        var keychain: KeychainService!
+        var storeTokenUseCase: StoreTokenUseCaseMock!
+        var keychain: KeychainServiceMock!
 
         describe("a StoreTokenUseCase") {
 
             beforeEach {
-                keychain = KeychainService(service: "")
-                storeTokenUseCase = StoreTokenUseCase(keychain: keychain)
+                keychain = KeychainServiceMock()
+                storeTokenUseCase = StoreTokenUseCaseMock()
+                let token = APIToken.dummy
+                try? keychain.set(newToken: KeychainToken(token: token), for: .token)
             }
 
             context("when store token is called") {
@@ -32,6 +34,7 @@ final class StoreTokenUseCaseSpec: QuickSpec {
                 }
 
                 it("returns correct response") {
+                    expect(storeTokenUseCase.storeCalled) == true
                     expect(try? keychain.isLoggedIn()) == true
                 }
             }

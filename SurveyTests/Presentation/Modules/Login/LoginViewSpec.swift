@@ -19,8 +19,12 @@ final class LoginViewSpec: QuickSpec {
 
         describe("a LoginView") {
             beforeEach {
-                loginView = LoginView(viewModel: LoginViewModel(loginUseCase: LoginUseCaseMock(),
-                                                                storeUseCase: StoreTokenUseCaseMock()))
+                loginView = LoginView(
+                    viewModel: LoginViewModel(
+                        loginUseCase: LoginUseCaseMock(),
+                        storeUseCase: StoreTokenUseCaseMock()
+                    )
+                )
             }
 
             context("has onAppear called") {

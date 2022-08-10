@@ -18,6 +18,7 @@ final class LoginViewSpec: QuickSpec {
         var loginView: LoginView!
 
         describe("a LoginView") {
+
             beforeEach {
                 loginView = LoginView(
                     viewModel: LoginViewModel(

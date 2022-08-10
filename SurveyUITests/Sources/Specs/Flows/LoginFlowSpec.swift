@@ -16,7 +16,9 @@ class LoginFlowSpec: QuickSpec {
         var app: XCUIApplication!
 
         describe("a Survey app") {
+
             context("when go through login flow successfully") {
+
                 beforeEach {
                     self.continueAfterFailure = false
 

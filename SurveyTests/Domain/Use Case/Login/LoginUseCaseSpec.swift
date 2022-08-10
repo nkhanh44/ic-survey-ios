@@ -16,7 +16,6 @@ final class LoginUseCaseSpec: QuickSpec {
     var loginRepository: LoginRepositoryMock!
 
     override func spec() {
-
         var logInUseCase: LogInUseCase!
 
         describe("a LoginUseCase") {

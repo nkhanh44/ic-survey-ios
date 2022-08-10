@@ -14,7 +14,6 @@ struct HomeViewModel {}
 extension HomeViewModel: ViewModel {
 
     func transform(_ input: Input) -> Output {
-
         return Output()
     }
 }

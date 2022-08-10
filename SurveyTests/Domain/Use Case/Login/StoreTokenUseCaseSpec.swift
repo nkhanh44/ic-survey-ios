@@ -14,7 +14,6 @@ import Quick
 final class StoreTokenUseCaseSpec: QuickSpec {
 
     override func spec() {
-
         var storeTokenUseCase: StoreTokenUseCaseMock!
         var keychain: KeychainServiceMock!
 

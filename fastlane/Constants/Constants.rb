@@ -50,7 +50,7 @@ class Constants
 
   # a scheme name for testing
   def self.TESTS_SCHEME
-    'Survey Staging'
+    'Survey'
   end
 
   # a target name for tests

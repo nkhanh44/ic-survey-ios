@@ -5,7 +5,6 @@ import Quick
 final class ApplicationSpec: QuickSpec {
 
     override func spec() {
-
         var app: XCUIApplication!
 
         describe("a Survey app") {

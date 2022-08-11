@@ -24,7 +24,7 @@ struct SurveyApp: App {
             let viewModel = LoginViewModel(loginUseCase: loginUseCase, storeUseCase: storeTokenUseCase)
             LoginView(viewModel: viewModel)
         case .home:
-            Text("Home")
+            HomeView(viewModel: HomeViewModel())
         }
     }
 

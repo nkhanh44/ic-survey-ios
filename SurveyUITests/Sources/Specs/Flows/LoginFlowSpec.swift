@@ -36,7 +36,7 @@ class LoginFlowSpec: QuickSpec {
                 }
 
                 it("shows Home screen") {
-                    let buttonExists = app.buttons[TestConstants.Home.homeButton].waitForExistence(timeout: 5)
+                    let buttonExists = app.scrollViews[TestConstants.Home.scrollView].waitForExistence(timeout: 5)
                     expect(buttonExists).toEventually(beTrue())
                 }
             }

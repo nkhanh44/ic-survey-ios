@@ -14,11 +14,16 @@ struct SurveyItemView: View {
     @State private var fadeInOut = false
 
     let survey: Survey
+    let geo: GeometryProxy
 
     var body: some View {
-        ZStack(alignment: .bottom) {
+        ZStack {
             mainImageSetup()
             componentsSetup()
+                .frame(
+                    width: geo.size.width,
+                    height: geo.size.height
+                )
         }
         .onAppear(perform: {
             fadeInOut = false
@@ -30,30 +35,32 @@ struct SurveyItemView: View {
     }
 
     private func componentsSetup() -> some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text(survey.title)
-                    .modifier(TitleTextModifier())
-                    .lineLimit(4)
-                    .padding(.bottom, 16.0)
-                    .frame(alignment: .top)
+        VStack(alignment: .leading) {
+            Spacer()
+            HStack(alignment: .bottom) {
+                VStack(alignment: .leading) {
+                    Text(survey.title)
+                        .modifier(TitleTextModifier())
+                        .lineLimit(4)
+                        .padding(.bottom, 16.0)
 
-                Text(survey.description)
-                    .modifier(BodyTextModifier())
-                    .lineLimit(2)
+                    Text(survey.description)
+                        .modifier(BodyTextModifier())
+                        .lineLimit(2)
 
-                Spacer(minLength: 0.0)
+                    Spacer(minLength: 0.0)
+                }
+                .padding(.leading, 20.0)
+
+                Spacer(minLength: 20.0)
+
+                Button("") {}
+                    .modifier(CircleButtonModifier())
+                    .padding(.trailing, 20.0)
             }
-            .padding(.leading, 20.0)
+            .frame(height: 126.0)
             .padding(.bottom, 54.0)
-
-            Spacer(minLength: 20.0)
-
-            Button("") {}
-                .modifier(CircleButtonModifier())
-                .padding(.trailing, 20.0)
         }
-        .frame(height: 180.0)
     }
 
     private func mainImageSetup() -> some View {

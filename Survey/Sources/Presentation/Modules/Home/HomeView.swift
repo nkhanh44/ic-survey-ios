@@ -25,24 +25,22 @@ struct HomeView: View {
             text: .constant(""),
             content: { geo in
                 ZStack(alignment: .top) {
-                    ScrollView(.horizontal) {
-                        LazyHStack {
-                            tabViewSetup()
-                                .frame(
-                                    width: geo.size.width,
-                                    height: geo.size.height
-                                )
-                        }
-                        .overlay(alignment: .top) {
-                            HeaderHomeView()
-                                .padding(.top, 60.0)
-                                .padding(.leading, 20.0)
-                        }
+                    LazyHStack {
+                        tabViewSetup(geo: geo)
+                            .frame(
+                                width: geo.size.width,
+                                height: geo.size.height
+                            )
                     }
-                    .accessibilityIdentifier(TestConstants.Home.scrollView)
+                    .overlay(alignment: .top) {
+                        HeaderHomeView()
+                            .padding(.top, 60.0)
+                            .padding(.leading, 20.0)
+                    }
                 }
             }
         )
+        .accessibilityIdentifier(TestConstants.Home.view)
         .preferredColorScheme(.dark)
     }
 
@@ -52,11 +50,11 @@ struct HomeView: View {
         self.input = input
     }
 
-    private func tabViewSetup() -> some View {
+    private func tabViewSetup(geo: GeometryProxy) -> some View {
         TabView(selection: $tabSelection) {
             ForEach(list, id: \.element.id) { args in
                 let (index, survey) = args
-                SurveyItemView(survey: survey)
+                SurveyItemView(survey: survey, geo: geo)
                     .tag(index)
                     .onAppear {
                         currentPage = index
@@ -85,6 +83,7 @@ struct HomeView: View {
                 .padding(.bottom, 200.0)
             }
         }
+        .edgesIgnoringSafeArea(.all)
     }
 
     private func handleSwipe(translation: CGFloat) {

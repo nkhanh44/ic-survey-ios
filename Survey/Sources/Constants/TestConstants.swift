@@ -19,6 +19,6 @@ enum TestConstants {
 
     enum Home {
 
-        static let scrollView = "home.scrollView"
+        static let view = "home.view"
     }
 }

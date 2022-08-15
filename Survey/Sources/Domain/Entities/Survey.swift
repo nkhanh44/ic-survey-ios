@@ -15,10 +15,3 @@ protocol Survey {
     var description: String { get }
     var coverImageURL: String { get }
 }
-
-extension Survey {
-
-    var largeImageURL: URL? {
-        URL(string: coverImageURL + "l")
-    }
-}

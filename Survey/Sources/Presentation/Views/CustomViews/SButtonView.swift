@@ -14,13 +14,13 @@ struct SButtonView: View {
     let textColor: Color = .white
     let backgroundColor: Color = .black
 
-    var loginAction: () -> Void
+    var action: () -> Void
 
     var title: String
 
     var body: some View {
         Button(action: {
-            loginAction()
+            action()
         }, label: {
             Text(title)
                 .font(.boldBody)

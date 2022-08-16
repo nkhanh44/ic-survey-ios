@@ -90,7 +90,7 @@ struct LoginView: View {
             passwordSetup()
             SButtonView(
                 isValid: $output.isLoginEnabled,
-                loginAction: { logInTrigger.send(()) },
+                action: { logInTrigger.send(()) },
                 title: loginTitle
             )
             .accessibilityIdentifier(TestConstants.Login.loginButton)

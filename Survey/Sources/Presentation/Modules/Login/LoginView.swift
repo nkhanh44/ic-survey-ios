@@ -30,17 +30,19 @@ struct LoginView: View {
     )
 
     var body: some View {
-        LoadingView(isShowing: $output.isLoading, text: .constant("")) { geo in
-            ZStack {
-                backgroundSetup()
-                VStack(spacing: 0.0) {
-                    logoSetup()
-                        .frame(height: geo.size.height * (1.0 / 3.0))
-                        .offset(y: 20.0)
-                    componentSetup()
-                        .frame(height: geo.size.height * (1.0 / 3.0))
-                    Spacer()
-                        .frame(height: geo.size.height * (1.0 / 3.0))
+        LoadingView(isShowing: $output.isLoading, text: .constant("")) {
+            GeometryReader { geo in
+                ZStack {
+                    backgroundSetup()
+                    VStack(spacing: 0.0) {
+                        logoSetup()
+                            .frame(height: geo.size.height * (1.0 / 3.0))
+                            .offset(y: 20.0)
+                        componentSetup()
+                            .frame(height: geo.size.height * (1.0 / 3.0))
+                        Spacer()
+                            .frame(height: geo.size.height * (1.0 / 3.0))
+                    }
                 }
             }
         }

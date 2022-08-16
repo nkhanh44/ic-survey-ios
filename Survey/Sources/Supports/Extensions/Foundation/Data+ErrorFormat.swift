@@ -1,5 +1,5 @@
 //
-//  Data+.swift
+//  Data+ErrorFormat.swift
 //  Survey
 //
 //  Created by Khanh on 04/08/2022.

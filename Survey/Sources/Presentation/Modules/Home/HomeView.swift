@@ -17,26 +17,21 @@ struct HomeView: View {
     @State var tabSelection = 0
 
     private let minDragTranslationForSwipe: CGFloat = 60.0
+    // TODO: Remove dummy list of API Survey
     private let list = Array(APISurvey.dummyList.enumerated())
 
     var body: some View {
         LoadingView(
             isShowing: .constant(false),
             text: .constant(""),
-            content: { geo in
-                ZStack(alignment: .top) {
-                    LazyHStack {
-                        tabViewSetup(geo: geo)
-                            .frame(
-                                width: geo.size.width,
-                                height: geo.size.height
-                            )
-                    }
-                    .overlay(alignment: .top) {
-                        HeaderHomeView()
-                            .padding(.top, 60.0)
-                            .padding(.leading, 20.0)
-                    }
+            content: {
+                ZStack {
+                    tabViewSetup()
+                        .overlay(alignment: .top) {
+                            HeaderHomeView()
+                                .padding(.top, 60.0)
+                                .padding(.leading, 20.0)
+                        }
                 }
             }
         )
@@ -50,11 +45,11 @@ struct HomeView: View {
         self.input = input
     }
 
-    private func tabViewSetup(geo: GeometryProxy) -> some View {
+    private func tabViewSetup() -> some View {
         TabView(selection: $tabSelection) {
             ForEach(list, id: \.element.id) { args in
                 let (index, survey) = args
-                SurveyItemView(survey: survey, geo: geo)
+                SurveyItemView(survey: survey)
                     .tag(index)
                     .onAppear {
                         currentPage = index

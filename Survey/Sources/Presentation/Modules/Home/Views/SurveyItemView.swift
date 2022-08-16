@@ -14,15 +14,14 @@ struct SurveyItemView: View {
     @State private var fadeInOut = false
 
     let survey: Survey
-    let geo: GeometryProxy
 
     var body: some View {
         ZStack {
             mainImageSetup()
             componentsSetup()
                 .frame(
-                    width: geo.size.width,
-                    height: geo.size.height
+                    width: UIScreen.main.bounds.width,
+                    height: UIScreen.main.bounds.height
                 )
         }
         .onAppear(perform: {
@@ -64,12 +63,14 @@ struct SurveyItemView: View {
     }
 
     private func mainImageSetup() -> some View {
-        Image(survey.coverImageURL) // this dummy image setting for display purpose
+        // TODO: Remove dummy cover image url
+        Image(survey.coverImageURL)
             .resizable()
             .aspectRatio(contentMode: .fill)
             .overlay(
                 ZStack(alignment: .bottom) {
-                    Image(survey.coverImageURL) // this dummy image setting for display purpose
+                    // TODO: Remove dummy cover image url
+                    Image(survey.coverImageURL)
                         .resizable()
                 }
             )

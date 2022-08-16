@@ -1,5 +1,5 @@
 //  swiftlint:disable:this file_name
-//  Constants+Extensions.swift
+//  Constants+API.swift
 //  Survey
 //
 //  Created by Khanh on 01/08/2022.

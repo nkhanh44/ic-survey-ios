@@ -19,6 +19,11 @@ enum TestConstants {
 
     enum Home {
 
-        static let view = "home.view"
+        static let pageIndicator = "home.pageIndicator"
+    }
+
+    enum Toolbar {
+
+        static let keyboardDonebutton = "Done"
     }
 }

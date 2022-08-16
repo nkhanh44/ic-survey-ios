@@ -35,7 +35,6 @@ struct HomeView: View {
                 }
             }
         )
-        .accessibilityIdentifier(TestConstants.Home.view)
         .preferredColorScheme(.dark)
     }
 
@@ -75,6 +74,7 @@ struct HomeView: View {
                     height: 8.0,
                     alignment: .leading
                 )
+                .accessibilityIdentifier(TestConstants.Home.pageIndicator)
                 .padding(.bottom, 200.0)
             }
         }

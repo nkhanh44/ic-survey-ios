@@ -37,15 +37,15 @@ struct SplashView: View {
                 .opacity(fadeInOut ? 1.0 : 0.0)
         }
         .preferredColorScheme(.dark)
-        .onAppear {
+        .onReceive(output.$hasUserLoggedIn) { hasUserLoggedIn in
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                appRouter.state = .login
+                appRouter.state = hasUserLoggedIn ? .home : .login
             }
         }
     }
 
     init(viewModel: SplashViewModel) {
-        let input = SplashViewModel.Input()
+        let input = SplashViewModel.Input(loadTrigger: Driver.just(()))
         output = viewModel.transform(input)
         self.input = input
     }
@@ -54,7 +54,7 @@ struct SplashView: View {
 struct SplashViewPreView: PreviewProvider {
 
     static var previews: some View {
-        let viewModel = SplashViewModel()
+        let viewModel = SplashViewModel(useCase: UserSessionUseCase())
         return SplashView(viewModel: viewModel)
     }
 }

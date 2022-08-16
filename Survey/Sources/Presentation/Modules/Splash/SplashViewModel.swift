@@ -9,24 +9,23 @@
 import Combine
 import SwiftUI
 
-struct SplashViewModel {}
+struct SplashViewModel {
+
+    let useCase: UserSessionUseCaseProtocol
+}
 
 extension SplashViewModel: ViewModel {
 
     func transform(_ input: Input) -> Output {
-        let errorTracker = ErrorTracker()
-        let activityTracker = ActivityTracker(false)
         let output = Output()
 
-        errorTracker
-            .receive(on: RunLoop.main)
-            .map { AlertMessage(error: $0) }
-            .assign(to: \.alert, on: output)
-            .store(in: &output.cancelBag)
-
-        activityTracker
-            .receive(on: RunLoop.main)
-            .assign(to: \.isLoading, on: output)
+        input.loadTrigger
+            .map {
+                self.useCase.hasUserLoggedIn()
+                    .asDriver()
+            }
+            .switchToLatest()
+            .assign(to: \.hasUserLoggedIn, on: output)
             .store(in: &output.cancelBag)
 
         return output
@@ -37,13 +36,19 @@ extension SplashViewModel: ViewModel {
 
 extension SplashViewModel {
 
-    struct Input {}
+    struct Input {
+
+        let loadTrigger: Driver<Void>
+
+        init(loadTrigger: Driver<Void>) {
+            self.loadTrigger = loadTrigger
+        }
+    }
 
     final class Output: ObservableObject {
 
         var cancelBag = CancelBag()
 
-        @Published var alert: AlertMessage?
-        @Published var isLoading = false
+        @Published var hasUserLoggedIn = false
     }
 }

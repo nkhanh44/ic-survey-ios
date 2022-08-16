@@ -17,11 +17,22 @@ struct SurveyApp: App {
     @ViewBuilder var rootView: some View {
         switch appRouter.state {
         case .splash:
-            SplashView(viewModel: SplashViewModel())
+            SplashView(
+                viewModel: SplashViewModel(
+                    useCase: UserSessionUseCase()
+                )
+            )
         case .login:
-            let loginUseCase = LogInUseCase(loginRepository: LogInRepository(api: NetworkAPI(decoder: .japxDecoder)))
+            let loginUseCase = LogInUseCase(
+                loginRepository: LogInRepository(
+                    api: NetworkAPI(decoder: .japxDecoder)
+                )
+            )
             let storeTokenUseCase = StoreTokenUseCase()
-            let viewModel = LoginViewModel(loginUseCase: loginUseCase, storeUseCase: storeTokenUseCase)
+            let viewModel = LoginViewModel(
+                loginUseCase: loginUseCase,
+                storeUseCase: storeTokenUseCase
+            )
             LoginView(viewModel: viewModel)
         case .home:
             HomeView(viewModel: HomeViewModel())

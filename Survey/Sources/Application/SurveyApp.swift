@@ -19,7 +19,9 @@ struct SurveyApp: App {
         case .splash:
             SplashView(
                 viewModel: SplashViewModel(
-                    useCase: UserSessionUseCase()
+                    useCase: UserSessionUseCase(
+                        keychain: KeychainService.shared
+                    )
                 )
             )
         case .login:

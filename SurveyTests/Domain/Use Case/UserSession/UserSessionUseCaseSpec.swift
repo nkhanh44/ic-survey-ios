@@ -14,14 +14,14 @@ import Quick
 final class UserSessionUseCaseSpec: QuickSpec {
 
     override func spec() {
-        var useCase: UserSessionUseCaseMock!
+        var useCase: UserSessionUseCase!
         var keychain: KeychainServiceMock!
 
         describe("a UserSessionUseCase") {
 
             beforeEach {
                 keychain = KeychainServiceMock()
-                useCase = UserSessionUseCaseMock()
+                useCase = UserSessionUseCase(keychain: keychain)
                 let token = APIToken.dummy
                 try? keychain.set(newToken: KeychainToken(token: token), for: .token)
             }
@@ -33,7 +33,6 @@ final class UserSessionUseCaseSpec: QuickSpec {
                 }
 
                 it("returns correct response") {
-                    expect(useCase.hasUserLoggedInCalled) == true
                     expect(try? keychain.isLoggedIn()) == true
                 }
             }

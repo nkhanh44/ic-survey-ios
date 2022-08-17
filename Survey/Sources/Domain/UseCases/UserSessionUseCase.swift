@@ -16,8 +16,13 @@ protocol UserSessionUseCaseProtocol {
 
 struct UserSessionUseCase: UserSessionUseCaseProtocol {
 
+    let keychain: KeychainServiceProtocol
+
+    init(keychain: KeychainServiceProtocol) {
+        self.keychain = keychain
+    }
+
     func hasUserLoggedIn() -> Observable<Bool> {
-        let keychain = KeychainService.shared
         let isLoggedIn = (try? keychain.isLoggedIn()) ?? false
         return Just(isLoggedIn).asObservable()
     }

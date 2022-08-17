@@ -14,6 +14,7 @@ final class UserSessionUseCaseMock: UserSessionUseCaseProtocol {
 
     var hasUserLoggedInCalled = false
 
+    /// Default is `true`
     var hasUserLoggedInReturnValue = Observable.just(true)
 
     func hasUserLoggedIn() -> Observable<Bool> {

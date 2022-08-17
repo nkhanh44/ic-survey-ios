@@ -18,7 +18,7 @@ struct UserSessionUseCase: UserSessionUseCaseProtocol {
 
     let keychain: KeychainServiceProtocol
 
-    init(keychain: KeychainServiceProtocol) {
+    init(keychain: KeychainServiceProtocol = KeychainService.shared) {
         self.keychain = keychain
     }
 

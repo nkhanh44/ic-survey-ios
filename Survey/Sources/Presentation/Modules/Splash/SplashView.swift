@@ -55,9 +55,7 @@ struct SplashViewPreView: PreviewProvider {
 
     static var previews: some View {
         let viewModel = SplashViewModel(
-            useCase: UserSessionUseCase(
-                keychain: KeychainService.shared
-            )
+            useCase: UserSessionUseCase()
         )
         return SplashView(viewModel: viewModel)
     }

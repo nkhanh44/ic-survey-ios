@@ -36,6 +36,8 @@ struct SurveyApp: App {
     }
 
     private func configure() {
+        UIScrollView.appearance().bounces = false
+
         let IQKeyboard = IQKeyboardManager.shared
         IQKeyboard.enable = true
         IQKeyboard.shouldResignOnTouchOutside = true

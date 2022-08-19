@@ -60,11 +60,6 @@ struct SurveyDetailView: View {
             withAnimation(Animation.easeInOut(duration: 1.0)) {
                 fadeInOut.toggle()
             }
-
-            didScaleEffect = false
-            withAnimation(Animation.linear(duration: 0.5)) {
-                didScaleEffect.toggle()
-            }
         })
         .onReceive(output.$willGoToNextSurvey) {
             guard $0 else { return }
@@ -130,20 +125,36 @@ struct SurveyDetailView: View {
     }
 
     private func mainImageSetup() -> some View {
-        // TODO: Remove dummy cover image url
-        Image(survey.coverImageURL)
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .scaleEffect(
-                x: didScaleEffect ? 1.3 : 1.0,
-                y: didScaleEffect ? 1.3 : 1.0,
-                anchor: .trailing
-            )
-            .edgesIgnoringSafeArea(.all)
-            .frame(
-                width: UIScreen.main.bounds.width,
-                height: UIScreen.main.bounds.height
-            )
-            .opacity(0.6)
+        AsyncImage(url: survey.largeImageURL) { phase in
+            switch phase {
+            case .empty:
+                ProgressView()
+            case let .success(image):
+                image
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
+                    .opacity(0.6)
+                    .onAppear {
+                        didScaleEffect = false
+                        withAnimation(Animation.linear(duration: 1.0)) {
+                            didScaleEffect.toggle()
+                        }
+                    }
+            case .failure:
+                Image(systemName: "photo")
+            @unknown default:
+                EmptyView()
+            }
+        }
+        .scaleEffect(
+            x: didScaleEffect ? 1.3 : 1.0,
+            y: didScaleEffect ? 1.3 : 1.0,
+            anchor: .top
+        )
+        .frame(
+            width: UIScreen.main.bounds.width,
+            height: UIScreen.main.bounds.height
+        )
     }
 }

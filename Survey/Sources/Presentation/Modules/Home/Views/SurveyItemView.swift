@@ -10,7 +10,6 @@ import SwiftUI
 
 struct SurveyItemView: View {
 
-    @State var isShowing = false
     @State private var fadeInOut = false
 
     let survey: Survey
@@ -19,11 +18,14 @@ struct SurveyItemView: View {
     var body: some View {
         ZStack {
             mainImageSetup()
-            componentsSetup()
-                .frame(
-                    width: UIScreen.main.bounds.width,
-                    height: UIScreen.main.bounds.height
-                )
+                .overlay {
+                    componentsSetup()
+                        .frame(
+                            width: UIScreen.main.bounds.width,
+                            height: UIScreen.main.bounds.height
+                        )
+                        .opacity(fadeInOut ? 1.0 : 0.0)
+                }
         }
         .onAppear(perform: {
             fadeInOut = false
@@ -31,7 +33,6 @@ struct SurveyItemView: View {
                 fadeInOut.toggle()
             }
         })
-        .opacity(fadeInOut ? 1.0 : 0.0)
     }
 
     private func componentsSetup() -> some View {
@@ -68,11 +69,33 @@ struct SurveyItemView: View {
     }
 
     private func mainImageSetup() -> some View {
-        // TODO: Remove dummy cover image url
-        Image(survey.coverImageURL)
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .opacity(0.6)
-            .edgesIgnoringSafeArea(.all)
+        AsyncImage(url: survey.largeImageURL, transaction: Transaction(animation: .easeInOut(duration: 1.0))) { phase in
+            switch phase {
+            case .empty:
+                ProgressView()
+                    .hidden()
+            case let .success(image):
+                image
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
+                    .transition(.opacity)
+                    .onAppear(perform: {
+                        fadeInOut = true
+                    })
+            case .failure:
+                Assets.ic_background.image
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
+            @unknown default:
+                EmptyView()
+            }
+        }
+        .opacity(fadeInOut ? 0.6 : 0.0)
+        .frame(
+            width: UIScreen.main.bounds.width,
+            height: UIScreen.main.bounds.height
+        )
     }
 }

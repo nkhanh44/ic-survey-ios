@@ -17,13 +17,13 @@ struct HomeView: View {
     @State var tabSelection = 0
     @State var isModalPresented = false
 
+    private let loadTrigger = PassthroughSubject<Void, Never>()
+    private let willGoToDetail = PassthroughSubject<Void, Never>()
     private let minDragTranslationForSwipe: CGFloat = 60.0
-    // TODO: Remove dummy list of API Survey
-    private let list = Array(APISurvey.dummyList.enumerated())
 
     var body: some View {
         LoadingView(
-            isShowing: .constant(false),
+            isShowing: $output.isLoading,
             text: .constant(""),
             content: {
                 ZStack {
@@ -36,38 +36,32 @@ struct HomeView: View {
                 }
             }
         )
+        .onAppear(perform: {
+            output.surveys = UserStorage.cachedSurveyList
+            self.loadTrigger.send()
+        })
         .preferredColorScheme(.dark)
     }
 
     init(viewModel: HomeViewModel) {
-        let input = HomeViewModel.Input()
+        let input = HomeViewModel.Input(
+            loadTrigger: loadTrigger.asDriver(),
+            willGoToDetail: willGoToDetail.asDriver()
+        )
         output = viewModel.transform(input)
         self.input = input
     }
 
     private func tabViewSetup() -> some View {
-        TabView(selection: $tabSelection) {
-            ForEach(list, id: \.element.id) { args in
+        let surveyList = Array(output.surveys.enumerated())
+
+        return TabView(selection: $tabSelection) {
+            ForEach(surveyList, id: \.element.id) { args in
                 let (index, survey) = args
-                SurveyItemView(
-                    survey: survey,
-                    willGoToDetail: {
-                        withoutAnimation {
-                            isModalPresented.toggle()
-                        }
-                    }
+                surveyItemViewSetup(
+                    with: index,
+                    and: survey
                 )
-                .tag(index)
-                .onAppear {
-                    currentPage = index
-                }
-                .fullScreenCover(isPresented: $isModalPresented) {
-                    SurveyDetailView(
-                        viewModel: SurveyDetailViewModel(),
-                        isPresented: $isModalPresented,
-                        survey: survey
-                    )
-                }
             }
             .highPriorityGesture(DragGesture().onEnded {
                 handleSwipe(translation: $0.translation.width)
@@ -75,35 +69,82 @@ struct HomeView: View {
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         .overlay(alignment: .leading) {
-            VStack(alignment: .leading) {
-                Spacer()
-                PageControlView(
-                    currentPage: $currentPage,
-                    numberOfPages: list.count,
-                    didSelect: { index in
-                        tabSelection = index
-                    }
-                )
-                .frame(
-                    width: .zero,
-                    height: 8.0,
-                    alignment: .leading
-                )
-                .accessibilityIdentifier(TestConstants.Home.pageIndicator)
-                .padding(.bottom, 200.0)
-            }
+            pageControlViewSetup()
+        }
+        .alert(isPresented: .constant($output.alert.wrappedValue != nil)) {
+            Alert(
+                title: Text(output.alert?.title ?? ""),
+                message: Text(output.alert?.message ?? ""),
+                dismissButton: .default(Text("OK"), action: {
+                    $output.alert.wrappedValue = nil
+                })
+            )
         }
         .edgesIgnoringSafeArea(.all)
     }
 
+    private func surveyItemViewSetup(with index: Int, and survey: Survey) -> some View {
+        SurveyItemView(
+            survey: survey,
+            willGoToDetail: {
+                willGoToDetail.send()
+            }
+        )
+        .tag(index)
+        .onChange(of: tabSelection, perform: { newValue in
+            currentPage = newValue
+        })
+        .onReceive(output.$willGoToDetail) {
+            guard $0 else { return }
+            withoutAnimation {
+                isModalPresented = true
+            }
+        }
+        .onAppear {
+            isModalPresented = false
+        }
+        .fullScreenCover(isPresented: $isModalPresented) {
+            SurveyDetailView(
+                viewModel: SurveyDetailViewModel(),
+                isPresented: $isModalPresented,
+                survey: survey
+            )
+        }
+    }
+
+    private func pageControlViewSetup() -> some View {
+        VStack(alignment: .leading) {
+            Spacer()
+            PageControlView(
+                currentPage: $currentPage,
+                numberOfPages: output.surveys.count,
+                didSelect: { index in
+                    tabSelection = index
+                }
+            )
+            .frame(
+                width: .zero,
+                height: 8.0,
+                alignment: .leading
+            )
+            .accessibilityIdentifier(TestConstants.Home.pageIndicator)
+            .padding(.bottom, 200.0)
+        }
+    }
+
     private func handleSwipe(translation: CGFloat) {
-        let listCount = list.count
+        let surveyListCount = output.surveys.count
         let didMoveLeft = translation > minDragTranslationForSwipe && tabSelection > 0
-        let didMoveRight = translation < -minDragTranslationForSwipe && tabSelection < listCount - 1
+        let didMoveRight = translation < -minDragTranslationForSwipe && tabSelection < surveyListCount - 1
+
         if didMoveLeft {
             tabSelection -= 1
         } else if didMoveRight {
             tabSelection += 1
+        }
+
+        if tabSelection == surveyListCount - 1 {
+            loadTrigger.send()
         }
     }
 }
@@ -111,7 +152,13 @@ struct HomeView: View {
 struct HomeViewPreView: PreviewProvider {
 
     static var previews: some View {
-        let viewModel = HomeViewModel()
+        let viewModel = HomeViewModel(
+            useCase: HomeUseCase(
+                surveyRepository: SurveyRepository(
+                    api: AuthenticationNetworkAPI()
+                )
+            )
+        )
         HomeView(viewModel: viewModel)
     }
 }

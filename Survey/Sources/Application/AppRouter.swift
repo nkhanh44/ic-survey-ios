@@ -19,4 +19,3 @@ final class AppRouter: ObservableObject {
 
     @Published var state: AppState = .splash
 }
-

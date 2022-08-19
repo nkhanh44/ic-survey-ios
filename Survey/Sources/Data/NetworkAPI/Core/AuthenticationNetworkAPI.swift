@@ -1,5 +1,5 @@
 //
-//  AuthenNetworkAPI.swift
+//  AuthenticationNetworkAPI.swift
 //  Survey
 //
 //  Created by Khanh on 17/08/2022.
@@ -9,11 +9,11 @@
 import Alamofire
 import Combine
 
-final class AuthenNetworkAPI: NetworkAPIProtocol {
+final class AuthenticationNetworkAPI: NetworkAPIProtocol {
 
     private let decoder: SDecoderType
     private let session = Session(
-        interceptor: AuthenInterceptor(),
+        interceptor: AuthenticationInterceptor(),
         eventMonitors: [
             AlamofireLogger()
         ]

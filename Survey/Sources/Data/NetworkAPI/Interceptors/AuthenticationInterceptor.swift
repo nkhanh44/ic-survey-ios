@@ -1,5 +1,5 @@
 //
-//  AuthenInterceptor.swift
+//  AuthenticationInterceptor.swift
 //  Survey
 //
 //  Created by Khanh on 17/08/2022.
@@ -9,7 +9,7 @@
 import Alamofire
 import Foundation
 
-final class AuthenInterceptor: RequestInterceptor {
+final class AuthenticationInterceptor: RequestInterceptor {
 
     private var keychain: KeychainServiceProtocol
 

@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		19BF1440DDB106A937E8075D /* Pods_Survey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC97F33B9C3F5A9FA6EF11C /* Pods_Survey.framework */; };
 		1C044B9D28ACD9A5001FF098 /* HomeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C044B9C28ACD9A5001FF098 /* HomeUseCase.swift */; };
-		1C044B9F28ACDF58001FF098 /* AuthenInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C044B9E28ACDF58001FF098 /* AuthenInterceptor.swift */; };
-		1C044BA128ACE4C7001FF098 /* AuthenNetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C044BA028ACE4C7001FF098 /* AuthenNetworkAPI.swift */; };
+		1C044B9F28ACDF58001FF098 /* AuthenticationInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C044B9E28ACDF58001FF098 /* AuthenticationInterceptor.swift */; };
+		1C044BA128ACE4C7001FF098 /* AuthenticationNetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C044BA028ACE4C7001FF098 /* AuthenticationNetworkAPI.swift */; };
 		1C516B7628A148AF00DB7B7B /* LoginRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C516B7528A148AF00DB7B7B /* LoginRepositoryMock.swift */; };
 		1C516B7828A152F600DB7B7B /* LoginUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C516B7728A152F600DB7B7B /* LoginUseCaseSpec.swift */; };
 		1C516B7B28A15BF600DB7B7B /* APIToken+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C516B7A28A15BF600DB7B7B /* APIToken+Dummy.swift */; };
@@ -166,8 +166,8 @@
 		16E10E52E1F7EAF6527F4E27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		198438883A4D493209169F74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1C044B9C28ACD9A5001FF098 /* HomeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUseCase.swift; sourceTree = "<group>"; };
-		1C044B9E28ACDF58001FF098 /* AuthenInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenInterceptor.swift; sourceTree = "<group>"; };
-		1C044BA028ACE4C7001FF098 /* AuthenNetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenNetworkAPI.swift; sourceTree = "<group>"; };
+		1C044B9E28ACDF58001FF098 /* AuthenticationInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationInterceptor.swift; sourceTree = "<group>"; };
+		1C044BA028ACE4C7001FF098 /* AuthenticationNetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationNetworkAPI.swift; sourceTree = "<group>"; };
 		1C516B7528A148AF00DB7B7B /* LoginRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRepositoryMock.swift; sourceTree = "<group>"; };
 		1C516B7728A152F600DB7B7B /* LoginUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCaseSpec.swift; sourceTree = "<group>"; };
 		1C516B7A28A15BF600DB7B7B /* APIToken+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIToken+Dummy.swift"; sourceTree = "<group>"; };
@@ -240,8 +240,6 @@
 		1CEE603128A4EB5500748C63 /* PageControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControlView.swift; sourceTree = "<group>"; };
 		1CEE603328A6375900748C63 /* Date+StringFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+StringFormat.swift"; sourceTree = "<group>"; };
 		1CEE603528A6454500748C63 /* SurveyRequestConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyRequestConfiguration.swift; sourceTree = "<group>"; };
-		1CEE603728A647ED00748C63 /* APISurvey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISurvey.swift; sourceTree = "<group>"; };
-		1CEE603928A6480000748C63 /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
 		1CEE603B28A6483F00748C63 /* SurveyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyRepository.swift; sourceTree = "<group>"; };
 		1CEE604728ABC04C00748C63 /* SplashViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewSpec.swift; sourceTree = "<group>"; };
 		1CEE604928ABC70500748C63 /* UserSessionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionUseCase.swift; sourceTree = "<group>"; };
@@ -417,15 +415,6 @@
 				AC0B9B448FC4ABDCFDEF9FD9 /* Plists */,
 			);
 			path = Configurations;
-			sourceTree = "<group>";
-		};
-		1C044B9B28ACD82A001FF098 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				1CEE603728A647ED00748C63 /* APISurvey.swift */,
-				1CEE603928A6480000748C63 /* Survey.swift */,
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		1C516B7928A15B9400DB7B7B /* Login */ = {
@@ -885,7 +874,7 @@
 		93F074F1F6C2156A5409F9BD /* Interceptors */ = {
 			isa = PBXGroup;
 			children = (
-				1C044B9E28ACDF58001FF098 /* AuthenInterceptor.swift */,
+				1C044B9E28ACDF58001FF098 /* AuthenticationInterceptor.swift */,
 			);
 			path = Interceptors;
 			sourceTree = "<group>";
@@ -1083,7 +1072,7 @@
 				BDC9EB089E1B83396D57C856 /* NetworkAPIError.swift */,
 				09C4F595C9B788FC4958E23D /* NetworkAPIProtocol.swift */,
 				822B4D4E3F8E77A4D6EE1B73 /* NetworkAPI.swift */,
-				1C044BA028ACE4C7001FF098 /* AuthenNetworkAPI.swift */,
+				1C044BA028ACE4C7001FF098 /* AuthenticationNetworkAPI.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1149,7 +1138,6 @@
 				A72253F1937688568C1A31CD /* Frameworks */,
 				586803EF3EEDDB6484551736 /* Products */,
 				18E8ED2FA2512085EC5A207E /* Pods */,
-				1C044B9B28ACD82A001FF098 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1595,8 +1583,8 @@
 				1CEE602828A4ABE100748C63 /* BodyTextModifier.swift in Sources */,
 				1C94DA1A289BA04800ED0984 /* ErrorResponse.swift in Sources */,
 				1CEE603028A4B77D00748C63 /* HeaderHomeView.swift in Sources */,
-				1C044B9F28ACDF58001FF098 /* AuthenInterceptor.swift in Sources */,
-				1C044BA128ACE4C7001FF098 /* AuthenNetworkAPI.swift in Sources */,
+				1C044B9F28ACDF58001FF098 /* AuthenticationInterceptor.swift in Sources */,
+				1C044BA128ACE4C7001FF098 /* AuthenticationNetworkAPI.swift in Sources */,
 				1CEE602E28A4B28400748C63 /* CircleButtonModifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

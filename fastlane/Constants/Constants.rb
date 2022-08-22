@@ -17,12 +17,12 @@ class Constants
 
   # bundle ID for Staging app
   def self.BUNDLE_ID_STAGING
-    'com.khanh.survey.stg'
+    'co.nimblehq.khanh.survey-ic.staging'
   end
 
   # bundle ID for Production app
   def self.BUNDLE_ID_PRODUCTION
-    'com.khanh.survey'
+    'co.nimblehq.khanh.survey-ic'
   end
 
   #################
@@ -99,17 +99,17 @@ class Constants
 
   # a firebase app ID for Staging
   def self.FIREBASE_APP_ID_STAGING
-    '{PROJECT_FIREBASE_APP_ID}'
+    '1:859927641745:ios:52efe9a5087a17c3374930'
   end
 
   # a firebase app ID for Production
   def self.FIREBASE_APP_ID_PRODUCTION
-    '{PROJECT_FIREBASE_APP_ID}'
+    '1:859927641745:ios:d67ae5746cfda10e374930'
   end
 
   # Firebase Tester group name, seperate by comma(,) string
   def self.FIREBASE_TESTER_GROUPS
-    "nimble-dev"
+    ""
   end
 
   #################
@@ -132,7 +132,7 @@ class Constants
 
    # a developer portal team id
   def self.DEV_PORTAL_TEAM_ID
-    '{PROJECT_TEAM_ID}'
+    '4TWS7E2EPE'
   end
 
   # an staging environment scheme name
@@ -171,7 +171,7 @@ class Constants
 
   # Apple ID for Apple Developer Portal
   def self.DEV_PORTAL_APPLE_ID
-    '{dev@example.com}'
+    'khanh@nimblehq.co'
   end
 
   #####################

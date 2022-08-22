@@ -14,6 +14,7 @@ struct SurveyItemView: View {
     @State private var fadeInOut = false
 
     let survey: Survey
+    let didNext: () -> Void
 
     var body: some View {
         ZStack {
@@ -54,7 +55,11 @@ struct SurveyItemView: View {
                 Spacer(minLength: 20.0)
 
                 Button("") {}
-                    .modifier(CircleButtonModifier())
+                    .modifier(
+                        CircleButtonModifier(
+                            didAction: { didNext() }
+                        )
+                    )
                     .padding(.trailing, 20.0)
             }
             .frame(height: 126.0)
@@ -67,13 +72,6 @@ struct SurveyItemView: View {
         Image(survey.coverImageURL)
             .resizable()
             .aspectRatio(contentMode: .fill)
-            .overlay(
-                ZStack(alignment: .bottom) {
-                    // TODO: Remove dummy cover image url
-                    Image(survey.coverImageURL)
-                        .resizable()
-                }
-            )
             .opacity(0.6)
             .edgesIgnoringSafeArea(.all)
     }

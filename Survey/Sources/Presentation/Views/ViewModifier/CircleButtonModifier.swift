@@ -10,9 +10,13 @@ import SwiftUI
 
 struct CircleButtonModifier: ViewModifier {
 
+    var didAction: () -> Void
+
     func body(content: Content) -> some View {
         ZStack {
-            Button {} label: {
+            Button {
+                didAction()
+            } label: {
                 Assets.ic_next.image
                     .frame(
                         width: 56.0,

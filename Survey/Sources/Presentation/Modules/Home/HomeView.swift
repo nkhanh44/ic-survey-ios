@@ -15,6 +15,7 @@ struct HomeView: View {
     @ObservedObject var output: HomeViewModel.Output
     @State var currentPage = 0
     @State var tabSelection = 0
+    @State var isModalPresented = false
 
     private let minDragTranslationForSwipe: CGFloat = 60.0
     // TODO: Remove dummy list of API Survey
@@ -48,11 +49,25 @@ struct HomeView: View {
         TabView(selection: $tabSelection) {
             ForEach(list, id: \.element.id) { args in
                 let (index, survey) = args
-                SurveyItemView(survey: survey)
-                    .tag(index)
-                    .onAppear {
-                        currentPage = index
+                SurveyItemView(
+                    survey: survey,
+                    didNext: {
+                        withoutAnimation {
+                            isModalPresented.toggle()
+                        }
                     }
+                )
+                .tag(index)
+                .onAppear {
+                    currentPage = index
+                }
+                .fullScreenCover(isPresented: $isModalPresented) {
+                    SurveyDetailView(
+                        viewModel: SurveyDetailViewModel(),
+                        isPresented: $isModalPresented,
+                        survey: survey
+                    )
+                }
             }
             .highPriorityGesture(DragGesture().onEnded {
                 handleSwipe(translation: $0.translation.width)

@@ -5,27 +5,23 @@ inhibit_all_warnings!
 def testing_pods
   pod 'Quick'
   pod 'Nimble'
-  pod 'RxNimble', subspecs: ['RxBlocking', 'RxTest']
-  pod 'RxSwift'
   # TODO: Remove or update the version of `1.8.0` to the newest version (not 1.8.1) when init a new project.
   # Currently, there is a bug on `1.8.1` - the newest version.
   pod 'Sourcery', '1.8.0'
   pod 'SwiftFormat/CLI'
 end
 
-target '{PROJECT_NAME}' do
+target 'Survey' do
   # UI
   pod 'Kingfisher'
   pod 'SnapKit'
 
-  # Rx
-  pod 'RxAlamofire'
-  pod 'RxCocoa'
-  pod 'RxDataSources'
-  pod 'RxSwift'
-
   # Storage
   pod 'KeychainAccess'
+
+  # Networking
+  pod 'Alamofire'
+  pod 'Japx'
 
   # Tools
   pod 'Firebase/Crashlytics'
@@ -38,12 +34,12 @@ target '{PROJECT_NAME}' do
   pod 'SwiftLint'
   pod 'Wormholy', :configurations => ['Debug Staging', 'Debug Production']
 
-  target '{PROJECT_NAME}Tests' do
+  target 'SurveyTests' do
     inherit! :search_paths
     testing_pods
   end
 
-  target '{PROJECT_NAME}UITests' do
+  target 'SurveyUITests' do
     testing_pods
   end
 end

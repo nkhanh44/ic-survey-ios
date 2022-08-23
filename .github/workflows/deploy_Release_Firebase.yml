@@ -7,7 +7,7 @@ name: Deploy Release Build To Firebase
 
 on:
   push:
-    branches: [ release/** ]
+    branches: [ main, release/** ]
 
 jobs:
   Lint:

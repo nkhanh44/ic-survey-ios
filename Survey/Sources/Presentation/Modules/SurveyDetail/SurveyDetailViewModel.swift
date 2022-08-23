@@ -16,9 +16,9 @@ extension SurveyDetailViewModel: ViewModel {
     func transform(_ input: Input) -> Output {
         let output = Output()
 
-        input.nextToSurveyQuestionTrigger
+        input.startSurveyTrigger
             .map { true }
-            .assign(to: \.didNextSuccessfully, on: output)
+            .assign(to: \.willGoToNextSurvey, on: output)
             .store(in: &output.cancelBag)
 
         return output
@@ -31,10 +31,10 @@ extension SurveyDetailViewModel {
 
     final class Input: ObservableObject {
 
-        let nextToSurveyQuestionTrigger: Driver<Void>
+        let startSurveyTrigger: Driver<Void>
 
-        init(nextToSurveyQuestionTrigger: Driver<Void>) {
-            self.nextToSurveyQuestionTrigger = nextToSurveyQuestionTrigger
+        init(startSurveyTrigger: Driver<Void>) {
+            self.startSurveyTrigger = startSurveyTrigger
         }
     }
 
@@ -42,6 +42,6 @@ extension SurveyDetailViewModel {
 
         var cancelBag = CancelBag()
 
-        @Published var didNextSuccessfully = false
+        @Published var willGoToNextSurvey = false
     }
 }

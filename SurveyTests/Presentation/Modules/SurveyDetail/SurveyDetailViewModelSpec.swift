@@ -20,7 +20,7 @@ final class SurveyDetailViewModelSpec: QuickSpec {
 
     override func spec() {
         var viewModel: SurveyDetailViewModel!
-        let nextToSurveyQuestionTrigger = PassthroughSubject<Void, Never>()
+        let startSurveyTrigger = PassthroughSubject<Void, Never>()
 
         describe("a SurveyDetailViewModel") {
 
@@ -28,17 +28,17 @@ final class SurveyDetailViewModelSpec: QuickSpec {
                 viewModel = SurveyDetailViewModel()
 
                 self.input = SurveyDetailViewModel.Input(
-                    nextToSurveyQuestionTrigger: nextToSurveyQuestionTrigger.asDriver()
+                    startSurveyTrigger: startSurveyTrigger.asDriver()
                 )
                 self.output = viewModel.transform(self.input)
             }
 
             context("when tap next button returns success") {
 
-                it("returns output didNextSuccessfully with true") {
-                    nextToSurveyQuestionTrigger.send(())
+                it("returns output willGoToNextSurvey with true") {
+                    startSurveyTrigger.send(())
 
-                    expect(self.output.didNextSuccessfully).toEventually(beTrue())
+                    expect(self.output.willGoToNextSurvey).toEventually(beTrue())
                 }
             }
         }

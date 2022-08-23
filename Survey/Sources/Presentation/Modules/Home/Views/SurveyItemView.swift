@@ -14,7 +14,7 @@ struct SurveyItemView: View {
     @State private var fadeInOut = false
 
     let survey: Survey
-    let didNext: () -> Void
+    let willGoToDetail: () -> Void
 
     var body: some View {
         ZStack {
@@ -57,7 +57,7 @@ struct SurveyItemView: View {
                 Button("") {}
                     .modifier(
                         CircleButtonModifier(
-                            didAction: { didNext() }
+                            didAction: { willGoToDetail() }
                         )
                     )
                     .padding(.trailing, 20.0)

@@ -18,7 +18,7 @@ struct SurveyDetailView: View {
     @State var didScaleEffect = false
     @State var isSurveyQuestionPresented = false
 
-    private let nextToSurveyQuestionTrigger = PassthroughSubject<Void, Never>()
+    private let startSurveyTrigger = PassthroughSubject<Void, Never>()
     var isPresented: Binding<Bool>
     let survey: Survey
 
@@ -40,7 +40,7 @@ struct SurveyDetailView: View {
                         SButtonView(
                             isValid: .constant(true),
                             action: {
-                                nextToSurveyQuestionTrigger.send()
+                                startSurveyTrigger.send()
                             },
                             title: "Start Survey"
                         )
@@ -66,7 +66,7 @@ struct SurveyDetailView: View {
                 didScaleEffect.toggle()
             }
         })
-        .onReceive(output.$didNextSuccessfully) {
+        .onReceive(output.$willGoToNextSurvey) {
             guard $0 else { return }
             withoutAnimation {
                 isSurveyQuestionPresented.toggle()
@@ -87,7 +87,7 @@ struct SurveyDetailView: View {
         self.survey = survey
         self.isPresented = isPresented
         let input = SurveyDetailViewModel.Input(
-            nextToSurveyQuestionTrigger: nextToSurveyQuestionTrigger.asDriver()
+            startSurveyTrigger: startSurveyTrigger.asDriver()
         )
         output = viewModel.transform(input)
         self.input = input

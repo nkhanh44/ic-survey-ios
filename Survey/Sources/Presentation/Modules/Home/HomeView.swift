@@ -51,7 +51,7 @@ struct HomeView: View {
                 let (index, survey) = args
                 SurveyItemView(
                     survey: survey,
-                    didNext: {
+                    willGoToDetail: {
                         withoutAnimation {
                             isModalPresented.toggle()
                         }

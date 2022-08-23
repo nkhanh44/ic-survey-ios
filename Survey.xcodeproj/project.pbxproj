@@ -268,7 +268,7 @@
 		727F7D83813FA7F64C222B0F /* SurveyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SurveyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		72FA4D73863C568C23EEB941 /* ApplicationSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationSpec.swift; sourceTree = "<group>"; };
 		822B4D4E3F8E77A4D6EE1B73 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
-		A0804CAD6C01AC6009D88A55 /* Survey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Survey.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0804CAD6C01AC6009D88A55 /* SurveyX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurveyX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE24E9C3D7F3EC72DCEAE053 /* R.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		AEB9B8C9897F33241B813443 /* Pods-Survey-SurveyUITests.release production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Survey-SurveyUITests.release production.xcconfig"; path = "Target Support Files/Pods-Survey-SurveyUITests/Pods-Survey-SurveyUITests.release production.xcconfig"; sourceTree = "<group>"; };
 		B59CA74327D43B65C8C3B7A8 /* Pods-Survey.release staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Survey.release staging.xcconfig"; path = "Target Support Files/Pods-Survey/Pods-Survey.release staging.xcconfig"; sourceTree = "<group>"; };
@@ -839,7 +839,7 @@
 		586803EF3EEDDB6484551736 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A0804CAD6C01AC6009D88A55 /* Survey.app */,
+				A0804CAD6C01AC6009D88A55 /* SurveyX.app */,
 				727F7D83813FA7F64C222B0F /* SurveyTests.xctest */,
 				5A115DAC86D72B7F2CCCC346 /* SurveyUITests.xctest */,
 			);
@@ -1216,7 +1216,7 @@
 			);
 			name = Survey;
 			productName = Survey;
-			productReference = A0804CAD6C01AC6009D88A55 /* Survey.app */;
+			productReference = A0804CAD6C01AC6009D88A55 /* SurveyX.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E7449C1BBC882ADE61DB38AC /* SurveyUITests */ = {
@@ -1842,7 +1842,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nimblehq.khanh.survey-ic.staging";
-				PRODUCT_NAME = Survey;
+				PRODUCT_NAME = SurveyX;
 				PROVISIONING_PROFILE_SPECIFIER = Automatic;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUGSTAGING;
@@ -2103,7 +2103,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nimblehq.khanh.survey-ic";
-				PRODUCT_NAME = Survey;
+				PRODUCT_NAME = SurveyX;
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc co.nimblehq.khanh.survey-ic";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = PROD;
@@ -2131,7 +2131,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nimblehq.khanh.survey-ic.staging";
-				PRODUCT_NAME = Survey;
+				PRODUCT_NAME = SurveyX;
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc co.nimblehq.khanh.survey-ic.staging";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = STAGING;
@@ -2184,7 +2184,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nimblehq.khanh.survey-ic";
-				PRODUCT_NAME = Survey;
+				PRODUCT_NAME = SurveyX;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;

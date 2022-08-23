@@ -47,6 +47,7 @@
 		1CAFBB2328B2AD4200D068DD /* SurveyDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAFBB2228B2AD4200D068DD /* SurveyDetailViewModel.swift */; };
 		1CAFBB2428B325AE00D068DD /* SurveyDetailViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAFBB1E28B2AC8800D068DD /* SurveyDetailViewSpec.swift */; };
 		1CAFBB2528B3269A00D068DD /* SurveyDetailViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAFBB2028B2ACA000D068DD /* SurveyDetailViewModelSpec.swift */; };
+		1CA8B27228B4015100E5C225 /* AFRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA8B27128B4015100E5C225 /* AFRequest.swift */; };
 		1CB1866D288E4FAA00372D50 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1866C288E4FAA00372D50 /* ViewModel.swift */; };
 		1CB18671288E52E500372D50 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB18670288E52E500372D50 /* Driver.swift */; };
 		1CB18673288E532700372D50 /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB18672288E532700372D50 /* ErrorTracker.swift */; };
@@ -222,6 +223,7 @@
 		1CAFBB1E28B2AC8800D068DD /* SurveyDetailViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyDetailViewSpec.swift; sourceTree = "<group>"; };
 		1CAFBB2028B2ACA000D068DD /* SurveyDetailViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyDetailViewModelSpec.swift; sourceTree = "<group>"; };
 		1CAFBB2228B2AD4200D068DD /* SurveyDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyDetailViewModel.swift; sourceTree = "<group>"; };
+		1CA8B27128B4015100E5C225 /* AFRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFRequest.swift; sourceTree = "<group>"; };
 		1CB1866C288E4FAA00372D50 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		1CB18670288E52E500372D50 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		1CB18672288E532700372D50 /* ErrorTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
@@ -549,6 +551,14 @@
 				1CAFBB2028B2ACA000D068DD /* SurveyDetailViewModelSpec.swift */,
 			);
 			path = SurveyDetail;
+            sourceTree = "<group>";
+        };
+		1CA8B27028B4014300E5C225 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				1CA8B27128B4015100E5C225 /* AFRequest.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		1CB18676288E57A000372D50 /* Common */ = {
@@ -1098,6 +1108,7 @@
 		B43DA257D4A1D8DD1D0905E5 /* NetworkAPI */ = {
 			isa = PBXGroup;
 			children = (
+				1CA8B27028B4014300E5C225 /* Base */,
 				1CD4E36B28A0237F00EA1E8B /* Mocking */,
 				1CD6FA882898EC7400B4B0D7 /* Helpers */,
 				E1D8361DA5AF2388A362E066 /* Core */,
@@ -1709,6 +1720,7 @@
 				1C044B9D28ACD9A5001FF098 /* HomeUseCase.swift in Sources */,
 				1C94DA1E289BBC9B00ED0984 /* ErrorTextModifier.swift in Sources */,
 				1CA8B29D28BCD04F00E5C225 /* Array+Comparable.swift in Sources */,
+				1CA8B27228B4015100E5C225 /* AFRequest.swift in Sources */,
 				1CEE602828A4ABE100748C63 /* BodyTextModifier.swift in Sources */,
 				1C94DA1A289BA04800ED0984 /* ErrorResponse.swift in Sources */,
 				1CEE603028A4B77D00748C63 /* HeaderHomeView.swift in Sources */,

@@ -30,7 +30,7 @@ final class SurveyDetailViewSpec: QuickSpec {
 
             context("has onAppear called") {
 
-                it("did not call next") {
+                it("does not call next") {
                     expect(surveyDetailView.output.willGoToNextSurvey) == false
                 }
             }

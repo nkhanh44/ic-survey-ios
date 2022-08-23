@@ -11,36 +11,22 @@ import SwiftUI
 
 struct SurveyDetailView: View {
 
-    // TODO: Remove dummy survey
-    private let survey = APISurvey.dummyList.first
+    @ObservedObject var input: SurveyDetailViewModel.Input
+    @ObservedObject var output: SurveyDetailViewModel.Output
+
+    @State var fadeInOut = false
+    @State var didScaleEffect = false
+    @State var isSurveyQuestionPresented = false
+
+    private let startSurveyTrigger = PassthroughSubject<Void, Never>()
+    var isPresented: Binding<Bool>
+    let survey: Survey
 
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             ZStack(alignment: .topLeading) {
                 mainImageSetup()
-
-                VStack(alignment: .leading) {
-                    Button {} label: {
-                        Assets.ic_arrow_back.image
-                            .frame(
-                                width: 12.0,
-                                height: 20.0
-                            )
-                    }
-                    .padding(.bottom, 30.5)
-
-                    Text(survey?.title ?? "")
-                        .modifier(LargerTitleTextModifier())
-                        .padding(.bottom, 16.0)
-
-                    Text(survey?.description ?? "")
-                        .modifier(BodyTextModifier())
-
-                    Spacer(minLength: 120.0)
-                }
-                .padding(.top, 57.0)
-                .padding(.leading, 22.0)
-                .padding(.trailing, 22.0)
+                componentsSetup()
             }
         }
         .overlay(content: {
@@ -53,7 +39,9 @@ struct SurveyDetailView: View {
 
                         SButtonView(
                             isValid: .constant(true),
-                            action: {},
+                            action: {
+                                startSurveyTrigger.send()
+                            },
                             title: "Start Survey"
                         )
                         .frame(
@@ -62,28 +50,100 @@ struct SurveyDetailView: View {
                         )
                         .padding(.trailing, 20.0)
                         .padding(.bottom, 54.0)
+                        .opacity(fadeInOut ? 1.0 : 0.0)
                     }
                 }
             }
         })
+        .onAppear(perform: {
+            fadeInOut = false
+            withAnimation(Animation.easeInOut(duration: 1.0)) {
+                fadeInOut.toggle()
+            }
+
+            didScaleEffect = false
+            withAnimation(Animation.linear(duration: 0.5)) {
+                didScaleEffect.toggle()
+            }
+        })
+        .onReceive(output.$willGoToNextSurvey) {
+            guard $0 else { return }
+            withoutAnimation {
+                isSurveyQuestionPresented.toggle()
+            }
+        }
+        .fullScreenCover(isPresented: $isSurveyQuestionPresented) {
+            EmptyView()
+        }
         .edgesIgnoringSafeArea(.all)
         .preferredColorScheme(.dark)
     }
 
+    init(
+        viewModel: SurveyDetailViewModel,
+        isPresented: Binding<Bool>,
+        survey: Survey
+    ) {
+        self.survey = survey
+        self.isPresented = isPresented
+        let input = SurveyDetailViewModel.Input(
+            startSurveyTrigger: startSurveyTrigger.asDriver()
+        )
+        output = viewModel.transform(input)
+        self.input = input
+    }
+
+    private func componentsSetup() -> some View {
+        VStack(alignment: .leading) {
+            Button {
+                withAnimation(Animation.linear(duration: 0.5)) {
+                    didScaleEffect.toggle()
+                    fadeInOut.toggle()
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    withoutAnimation {
+                        isPresented.wrappedValue.toggle()
+                    }
+                }
+            } label: {
+                Assets.ic_arrow_back.image
+                    .frame(
+                        width: 12.0,
+                        height: 20.0
+                    )
+            }
+            .padding(.bottom, 30.5)
+
+            Text(survey.title)
+                .modifier(LargerTitleTextModifier())
+                .padding(.bottom, 16.0)
+
+            Text(survey.description)
+                .modifier(BodyTextModifier())
+
+            Spacer(minLength: 120.0)
+        }
+        .padding(.top, 57.0)
+        .padding(.leading, 22.0)
+        .padding(.trailing, 22.0)
+        .opacity(fadeInOut ? 1.0 : 0.0)
+    }
+
     private func mainImageSetup() -> some View {
         // TODO: Remove dummy cover image url
-        Image(survey?.coverImageURL ?? "")
+        Image(survey.coverImageURL)
             .resizable()
             .aspectRatio(contentMode: .fill)
-            .scaleEffect(x: 1.3, y: 1.3, anchor: .trailing)
-            .opacity(0.6)
+            .scaleEffect(
+                x: didScaleEffect ? 1.3 : 1.0,
+                y: didScaleEffect ? 1.3 : 1.0,
+                anchor: .trailing
+            )
             .edgesIgnoringSafeArea(.all)
-    }
-}
-
-struct SurveyDetailViewPreView: PreviewProvider {
-
-    static var previews: some View {
-        SurveyDetailView()
+            .frame(
+                width: UIScreen.main.bounds.width,
+                height: UIScreen.main.bounds.height
+            )
+            .opacity(0.6)
     }
 }

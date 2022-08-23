@@ -1,5 +1,5 @@
 //
-//  View+.swift
+//  View+Opacity.swift
 //  Survey
 //
 //  Created by Khanh on 05/08/2022.

@@ -12,7 +12,6 @@ import SwiftUI
 struct SurveyQuestionView: View {
 
     // TODO: Remove dummy survey and list
-    let survey = APISurvey.dummyList[0]
     let list = Array(APISurvey.dummyList.enumerated())
 
     var body: some View {
@@ -20,31 +19,29 @@ struct SurveyQuestionView: View {
             isShowing: .constant(false),
             text: .constant(""),
             content: {
-                ZStack {
-                    TabView {
-                        ForEach(list, id: \.element.id) { _ in
-                            SurveyQuestionBodyView()
-                        }
+                TabView {
+                    ForEach(list, id: \.element.id) { _ in
+                        SurveyQuestionBodyView()
                     }
-                    .padding(.top, 60.0)
-                    .padding(.bottom, 60.0)
-                    .tabViewStyle(
-                        PageTabViewStyle(
-                            indexDisplayMode: .never
-                        )
+                }
+                .padding(.top, 60.0)
+                .padding(.bottom, 60.0)
+                .tabViewStyle(
+                    PageTabViewStyle(
+                        indexDisplayMode: .never
                     )
-                }
-                .overlay {
-                    closeButtonSetup()
-                    nextQuestionButtonSetup()
-                }
+                )
             }
         )
+        .overlay {
+            closeButtonSetup()
+            nextQuestionButtonSetup()
+        }
         .padding(.bottom, 54.0)
         .padding(.top, 54.0)
         .background(
             // TODO: Remove dummy cover image url
-            Image(survey.coverImageURL)
+            Image(list.first?.element.coverImageURL ?? "")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .opacity(0.6)

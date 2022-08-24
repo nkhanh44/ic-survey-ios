@@ -12,6 +12,7 @@ import Foundation
 protocol SurveyRepositoryProtocol: AnyObject {
 
     func getSurveyList(pageNumber: Int, pageSize: Int) -> Observable<[Survey]>
+    func getSurveyDetail(id: String) -> Observable<Survey>
 }
 
 final class SurveyRepository: SurveyRepositoryProtocol {
@@ -31,6 +32,15 @@ final class SurveyRepository: SurveyRepositoryProtocol {
 
         return networkAPI.performRequest(requesConfiguration)
             .map { $0 as [APISurvey] }
+            .eraseToAnyPublisher()
+    }
+
+    func getSurveyDetail(id: String) -> Observable<Survey> {
+        networkAPI
+            .performRequest(
+                SurveyRequestConfiguration.getSurveyDetail(id: id)
+            )
+            .map { $0 as APISurvey }
             .eraseToAnyPublisher()
     }
 }

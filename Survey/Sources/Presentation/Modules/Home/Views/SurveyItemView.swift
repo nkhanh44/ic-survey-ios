@@ -69,7 +69,10 @@ struct SurveyItemView: View {
     }
 
     private func mainImageSetup() -> some View {
-        AsyncImage(url: survey.largeImageURL, transaction: Transaction(animation: .easeInOut(duration: 1.0))) { phase in
+        AsyncImage(
+            url: survey.largeImageURL,
+            transaction: Transaction(animation: .easeInOut(duration: 1.0))
+        ) { phase in
             switch phase {
             case .empty:
                 ProgressView()

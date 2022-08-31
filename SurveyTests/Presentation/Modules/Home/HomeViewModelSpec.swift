@@ -39,12 +39,20 @@ final class HomeViewModelSpec: QuickSpec {
 
             context("when load survey list returns success") {
 
-                it("returns output with not empty items and move to detail") {
+                beforeEach {
                     loadTrigger.send()
                     willGoToDetail.send()
-
+                }
+                
+                it("has getSurveyListCalled called") {
                     expect(useCase.getSurveyListCalled) == true
+                }
+
+                it("returns output with not empty items and move to detail") {
                     expect(self.output.surveys).toNotEventually(beEmpty())
+                }
+                
+                it("moves to detail") {
                     expect(self.output.willGoToDetail).toEventually(beTrue())
                 }
             }

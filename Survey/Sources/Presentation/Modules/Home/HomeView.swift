@@ -100,9 +100,6 @@ struct HomeView: View {
                 isModalPresented = true
             }
         }
-        .onAppear {
-            isModalPresented = false
-        }
         .fullScreenCover(isPresented: $isModalPresented) {
             SurveyDetailView(
                 viewModel: SurveyDetailViewModel(),

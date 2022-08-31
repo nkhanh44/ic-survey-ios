@@ -25,7 +25,7 @@ struct SplashView: View {
             isShowing: $output.isLoading,
             text: .constant(""),
             content: {
-                viewSetup()
+                setUpView()
                     .preferredColorScheme(.dark)
                     .onAppear(perform: {
                         loadTrigger.send()
@@ -65,7 +65,7 @@ struct SplashView: View {
         self.input = input
     }
 
-    private func viewSetup() -> some View {
+    private func setUpView() -> some View {
         ZStack {
             Assets.ic_background.image
                 .resizable()

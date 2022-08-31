@@ -17,9 +17,9 @@ struct SurveyItemView: View {
 
     var body: some View {
         ZStack {
-            mainImageSetup()
+            setUpMainImage()
                 .overlay {
-                    componentsSetup()
+                    setUpComponents()
                         .frame(
                             width: UIScreen.main.bounds.width,
                             height: UIScreen.main.bounds.height
@@ -35,7 +35,7 @@ struct SurveyItemView: View {
         })
     }
 
-    private func componentsSetup() -> some View {
+    private func setUpComponents() -> some View {
         VStack(alignment: .leading) {
             Spacer()
             HStack(alignment: .bottom) {
@@ -68,7 +68,7 @@ struct SurveyItemView: View {
         }
     }
 
-    private func mainImageSetup() -> some View {
+    private func setUpMainImage() -> some View {
         AsyncImage(
             url: survey.largeImageURL,
             transaction: Transaction(animation: .easeInOut(duration: 1.0))

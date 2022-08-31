@@ -33,12 +33,12 @@ struct LoginView: View {
         LoadingView(isShowing: $output.isLoading, text: .constant("")) {
             GeometryReader { geo in
                 ZStack {
-                    backgroundSetup()
+                    setupBackground()
                     VStack(spacing: 0.0) {
-                        logoSetup()
+                        setUpLogo()
                             .frame(height: geo.size.height * (1.0 / 3.0))
                             .offset(y: 20.0)
-                        componentSetup()
+                        setUpComponent()
                             .frame(height: geo.size.height * (1.0 / 3.0))
                         Spacer()
                             .frame(height: geo.size.height * (1.0 / 3.0))
@@ -68,7 +68,7 @@ struct LoginView: View {
         self.input = input
     }
 
-    private func backgroundSetup() -> some View {
+    private func setupBackground() -> some View {
         Assets.ic_background.image
             .resizable()
             .aspectRatio(contentMode: .fill)
@@ -84,10 +84,10 @@ struct LoginView: View {
             .edgesIgnoringSafeArea(.all)
     }
 
-    private func componentSetup() -> some View {
+    private func setUpComponent() -> some View {
         VStack(alignment: .leading, spacing: 0.0) {
-            emailSetup()
-            passwordSetup()
+            setUpEmail()
+            setUpPassword()
             SButtonView(
                 isValid: $output.isLoginEnabled,
                 action: { logInTrigger.send(()) },
@@ -98,7 +98,7 @@ struct LoginView: View {
         .padding([.leading, .trailing], 24.0)
     }
 
-    private func emailSetup() -> some View {
+    private func setUpEmail() -> some View {
         VStack(alignment: .leading, spacing: 0.0) {
             TextField("", text: $input.email)
                 .modifier(PlaceholderModifier(showPlaceHolder: input.email.isEmpty, placeholder: "Email"))
@@ -112,7 +112,7 @@ struct LoginView: View {
         }
     }
 
-    private func passwordSetup() -> some View {
+    private func setUpPassword() -> some View {
         VStack(alignment: .leading, spacing: 0.0) {
             SecureField("", text: $input.password)
                 .modifier(PlaceholderModifier(showPlaceHolder: input.password.isEmpty, placeholder: "Password"))
@@ -126,7 +126,7 @@ struct LoginView: View {
         }
     }
 
-    private func logoSetup() -> some View {
+    private func setUpLogo() -> some View {
         VStack {
             Assets.ic_logo.image
                 .resizable()

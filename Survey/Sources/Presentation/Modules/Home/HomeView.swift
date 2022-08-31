@@ -27,7 +27,7 @@ struct HomeView: View {
             text: .constant(""),
             content: {
                 ZStack {
-                    tabViewSetup()
+                    setUpTabView()
                         .overlay(alignment: .top) {
                             HeaderHomeView()
                                 .padding(.top, 60.0)
@@ -52,13 +52,13 @@ struct HomeView: View {
         self.input = input
     }
 
-    private func tabViewSetup() -> some View {
+    private func setUpTabView() -> some View {
         let surveyList = Array(output.surveys.enumerated())
 
         return TabView(selection: $tabSelection) {
             ForEach(surveyList, id: \.element.id) { args in
                 let (index, survey) = args
-                surveyItemViewSetup(
+                setUpSurveyItemView(
                     with: index,
                     and: survey
                 )
@@ -69,7 +69,7 @@ struct HomeView: View {
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         .overlay(alignment: .leading) {
-            pageControlViewSetup()
+            setUpPageControlView()
         }
         .alert(isPresented: .constant($output.alert.wrappedValue != nil)) {
             Alert(
@@ -83,7 +83,7 @@ struct HomeView: View {
         .edgesIgnoringSafeArea(.all)
     }
 
-    private func surveyItemViewSetup(with index: Int, and survey: Survey) -> some View {
+    private func setUpSurveyItemView(with index: Int, and survey: Survey) -> some View {
         SurveyItemView(
             survey: survey,
             willGoToDetail: {
@@ -109,7 +109,7 @@ struct HomeView: View {
         }
     }
 
-    private func pageControlViewSetup() -> some View {
+    private func setUpPageControlView() -> some View {
         VStack(alignment: .leading) {
             Spacer()
             PageControlView(

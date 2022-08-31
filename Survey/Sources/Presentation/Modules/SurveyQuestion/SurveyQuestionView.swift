@@ -34,8 +34,8 @@ struct SurveyQuestionView: View {
             }
         )
         .overlay {
-            closeButtonSetup()
-            nextQuestionButtonSetup()
+            setUpCloseButton()
+            setUpNextQuestionButton()
         }
         .padding(.bottom, 54.0)
         .padding(.top, 54.0)
@@ -50,7 +50,7 @@ struct SurveyQuestionView: View {
         .preferredColorScheme(.dark)
     }
 
-    private func closeButtonSetup() -> some View {
+    private func setUpCloseButton() -> some View {
         ZStack(alignment: .top) {
             VStack {
                 HStack {
@@ -70,7 +70,7 @@ struct SurveyQuestionView: View {
         }
     }
 
-    private func nextQuestionButtonSetup() -> some View {
+    private func setUpNextQuestionButton() -> some View {
         ZStack(alignment: .bottom) {
             VStack {
                 Spacer()

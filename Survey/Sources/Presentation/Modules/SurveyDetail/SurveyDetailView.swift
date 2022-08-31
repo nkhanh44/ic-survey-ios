@@ -25,8 +25,8 @@ struct SurveyDetailView: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             ZStack(alignment: .topLeading) {
-                mainImageSetup()
-                componentsSetup()
+                setUpMainImage()
+                setUpComponents()
             }
         }
         .overlay(content: {
@@ -88,7 +88,7 @@ struct SurveyDetailView: View {
         self.input = input
     }
 
-    private func componentsSetup() -> some View {
+    private func setUpComponents() -> some View {
         VStack(alignment: .leading) {
             Button {
                 withAnimation(Animation.linear(duration: 0.5)) {
@@ -124,7 +124,7 @@ struct SurveyDetailView: View {
         .opacity(fadeInOut ? 1.0 : 0.0)
     }
 
-    private func mainImageSetup() -> some View {
+    private func setUpMainImage() -> some View {
         AsyncImage(url: survey.largeImageURL) { phase in
             switch phase {
             case .empty:

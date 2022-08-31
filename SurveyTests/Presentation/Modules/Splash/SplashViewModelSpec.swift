@@ -5,6 +5,7 @@
 //  Created by Khanh on 16/08/2022.
 //  Copyright © 2022 Nimble. All rights reserved.
 //
+//  swiftlint:disable closure_body_length
 
 import Combine
 import Nimble
@@ -15,22 +16,29 @@ import SwiftUI
 
 final class SplashViewModelSpec: QuickSpec {
 
-    var useCase: UserSessionUseCaseMock!
+    var userSessionUseCase: UserSessionUseCaseMock!
+    var homeUseCase: HomeUseCaseMock!
     var input: SplashViewModel.Input!
     var output: SplashViewModel.Output!
 
     override func spec() {
         var viewModel: SplashViewModel!
         let loadTrigger = PassthroughSubject<Void, Never>()
+        let willFetchSurveysTrigger = PassthroughSubject<Void, Never>()
 
         describe("a SplashViewModel") {
 
             beforeEach {
-                self.useCase = UserSessionUseCaseMock()
-                viewModel = SplashViewModel(useCase: self.useCase)
+                self.userSessionUseCase = UserSessionUseCaseMock()
+                self.homeUseCase = HomeUseCaseMock()
+                viewModel = SplashViewModel(
+                    userSessionUseCase: self.userSessionUseCase,
+                    homeUseCase: self.homeUseCase
+                )
 
                 self.input = SplashViewModel.Input(
-                    loadTrigger: loadTrigger.eraseToAnyPublisher()
+                    loadTrigger: loadTrigger.eraseToAnyPublisher(),
+                    willFetchSurveysTrigger: willFetchSurveysTrigger.eraseToAnyPublisher()
                 )
                 self.output = viewModel.transform(self.input)
             }
@@ -38,21 +46,31 @@ final class SplashViewModelSpec: QuickSpec {
             context("when starting app with user logged in") {
 
                 it("returns output hasUserLoggedIn true") {
-                    loadTrigger.send(())
+                    loadTrigger.send()
 
-                    expect(self.useCase.hasUserLoggedInCalled) == true
+                    expect(self.userSessionUseCase.hasUserLoggedInCalled) == true
                     expect(self.output.hasUserLoggedIn).toEventually(beTrue())
+                }
+
+                it("fetches data and returns output fetchSuccessfully true") {
+                    loadTrigger.send()
+                    willFetchSurveysTrigger.send()
+
+                    expect(self.userSessionUseCase.hasUserLoggedInCalled) == true
+                    expect(self.output.hasUserLoggedIn).toEventually(beTrue())
+                    expect(self.homeUseCase.getSurveyListCalled) == true
+                    expect(self.output.fetchSuccessfully).toEventually(beTrue())
                 }
             }
 
             context("when starting app with user did not log in") {
 
                 it("returns output hasUserLoggedIn false") {
-                    self.useCase.hasUserLoggedInReturnValue = Observable.just(false)
+                    self.userSessionUseCase.hasUserLoggedInReturnValue = Observable.just(false)
 
-                    loadTrigger.send(())
+                    loadTrigger.send()
 
-                    expect(self.useCase.hasUserLoggedInCalled) == true
+                    expect(self.userSessionUseCase.hasUserLoggedInCalled) == true
                     expect(self.output.hasUserLoggedIn).toEventually(beFalse())
                 }
             }

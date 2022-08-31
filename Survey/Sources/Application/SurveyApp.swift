@@ -19,7 +19,12 @@ struct SurveyApp: App {
         case .splash:
             SplashView(
                 viewModel: SplashViewModel(
-                    useCase: UserSessionUseCase()
+                    userSessionUseCase: UserSessionUseCase(),
+                    homeUseCase: HomeUseCase(
+                        surveyRepository: SurveyRepository(
+                            api: AuthenticationNetworkAPI()
+                        )
+                    )
                 )
             )
         case .login:
@@ -35,7 +40,16 @@ struct SurveyApp: App {
             )
             LoginView(viewModel: viewModel)
         case .home:
-            HomeView(viewModel: HomeViewModel())
+            let useCase = HomeUseCase(
+                surveyRepository: SurveyRepository(
+                    api: AuthenticationNetworkAPI()
+                )
+            )
+            HomeView(
+                viewModel: HomeViewModel(
+                    useCase: useCase
+                )
+            )
         }
     }
 

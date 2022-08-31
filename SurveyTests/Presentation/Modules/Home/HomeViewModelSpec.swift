@@ -46,11 +46,11 @@ final class HomeViewModelSpec: QuickSpec {
                     willGoToDetail.send()
                 }
 
-                it("has getSurveyListCalled called") {
+                it("has getSurveyList called") {
                     expect(useCase.getSurveyListCalled) == true
                 }
 
-                it("returns output with not empty items and move to detail") {
+                it("returns output with not empty items") {
                     expect(self.output.surveys).toNotEventually(beEmpty())
                 }
 

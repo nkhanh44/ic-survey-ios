@@ -6,6 +6,8 @@
 //  Copyright © 2022 Nimble. All rights reserved.
 //
 
+//  swiftlint:disable closure_body_length
+
 import Combine
 import Nimble
 import Quick
@@ -43,7 +45,7 @@ final class HomeViewModelSpec: QuickSpec {
                     loadTrigger.send()
                     willGoToDetail.send()
                 }
-                
+
                 it("has getSurveyListCalled called") {
                     expect(useCase.getSurveyListCalled) == true
                 }
@@ -51,7 +53,7 @@ final class HomeViewModelSpec: QuickSpec {
                 it("returns output with not empty items and move to detail") {
                     expect(self.output.surveys).toNotEventually(beEmpty())
                 }
-                
+
                 it("moves to detail") {
                     expect(self.output.willGoToDetail).toEventually(beTrue())
                 }

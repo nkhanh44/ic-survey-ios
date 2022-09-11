@@ -10,11 +10,12 @@ import SwiftUI
 
 struct PersonalMenuView: View {
 
-    var user: User
+    var user: User?
+    var willLogoutAction: () -> Void
 
     @State var showAlert: Bool = false
     @Binding var showPersonalMenu: Bool
-    // TODO: Remove dummy Texts below
+
     var body: some View {
         HStack {
             setUpLeftView()
@@ -29,8 +30,7 @@ struct PersonalMenuView: View {
                         primaryButton: .destructive(
                             Text(AssetLocalization.commonLogoutText()),
                             action: {
-                                // TODO: Replace with logout action in integrate
-                                showAlert = false
+                                willLogoutAction()
                             }
                         ),
                         secondaryButton: .default(
@@ -52,7 +52,7 @@ struct PersonalMenuView: View {
     private func setUpAvatarButton() -> some View {
         Button(action: {}, label: {
             AsyncImage(
-                url: URL(string: user.avatarUrl),
+                url: URL(string: user?.avatarUrl ?? ""),
                 transaction: Transaction(animation: .easeIn(duration: 1.0))
             ) { phase in
                 switch phase {
@@ -80,7 +80,7 @@ struct PersonalMenuView: View {
     private func setUpComponents() -> some View {
         VStack {
             HStack {
-                Text(user.name)
+                Text(user?.name ?? "")
                     .font(.largeTitle)
                     .foregroundColor(.white)
                 Spacer()
@@ -142,6 +142,7 @@ struct PersonalMenuViewPreview: PreviewProvider {
     static var previews: some View {
         PersonalMenuView(
             user: APIUser.dummy,
+            willLogoutAction: {},
             showPersonalMenu: .constant(true)
         )
     }

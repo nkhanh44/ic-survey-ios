@@ -40,14 +40,27 @@ struct SurveyApp: App {
             )
             LoginView(viewModel: viewModel)
         case .home:
-            let useCase = HomeUseCase(
+            let homeUseCase = HomeUseCase(
                 surveyRepository: SurveyRepository(
                     api: AuthenticationNetworkAPI()
                 )
             )
+            let userUseCase = UserUseCase(
+                userRepository: UserRepository(
+                    api: AuthenticationNetworkAPI()
+                )
+            )
+            let logoutUserUseCase = UserUseCase(
+                userRepository: UserRepository(
+                    api: AuthenticationNetworkAPI(decoder: .jSONDecoder)
+                )
+            )
             HomeView(
                 viewModel: HomeViewModel(
-                    useCase: useCase
+                    homeUseCase: homeUseCase,
+                    userUseCase: userUseCase,
+                    logoutUserUseCase: logoutUserUseCase,
+                    userSessionUseCase: UserSessionUseCase()
                 )
             )
         }

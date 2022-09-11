@@ -22,7 +22,11 @@ final class HomeViewSpec: QuickSpec {
             beforeEach {
                 homeView = HomeView(
                     viewModel: HomeViewModel(
-                        useCase: HomeUseCaseMock())
+                        homeUseCase: HomeUseCaseMock(),
+                        userUseCase: UserUseCaseMock(),
+                        logoutUserUseCase: UserUseCaseMock(),
+                        userSessionUseCase: UserSessionUseCaseMock()
+                    )
                 )
             }
 

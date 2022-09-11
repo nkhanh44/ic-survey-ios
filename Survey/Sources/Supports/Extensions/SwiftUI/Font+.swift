@@ -30,6 +30,8 @@ extension Font {
         }
     }
 
+    /// Weight: 400, Size: 11.0
+    static let smallBody: Font = .neuzei(style: .bold, size: 11.0)
     /// Weight: 800, Size: 13.0
     static let smallBoldBody: Font = .neuzei(style: .bold, size: 13.0)
 

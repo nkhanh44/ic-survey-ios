@@ -16,10 +16,13 @@ struct HomeView: View {
     @State var currentPage = 0
     @State var tabSelection = 0
     @State var isModalPresented = false
+    @State var isShowingPersonalMenu = false
 
     private let loadTrigger = PassthroughSubject<Void, Never>()
     private let willGoToDetail = PassthroughSubject<Void, Never>()
     private let minDragTranslationForSwipe: CGFloat = 60.0
+
+    private let imageURL = "https://secure.gravatar.com/avatar/6733d09432e89459dba795de8312ac2d"
 
     var body: some View {
         LoadingView(
@@ -29,9 +32,22 @@ struct HomeView: View {
                 ZStack {
                     setUpTabView()
                         .overlay(alignment: .top) {
-                            HeaderHomeView()
+                            HeaderHomeView(
+                                imageURL: imageURL,
+                                isShowingPersonalMenu: $isShowingPersonalMenu
+                            )
+                            .padding(.top, 60.0)
+                            .padding(.leading, 20.0)
+                        }
+                        .overlay {
+                            if isShowingPersonalMenu {
+                                PersonalMenuView(
+                                    imageURL: imageURL,
+                                    showPersonalMenu: $isShowingPersonalMenu
+                                )
                                 .padding(.top, 60.0)
-                                .padding(.leading, 20.0)
+                                .transition(.move(edge: .trailing))
+                            }
                         }
                 }
             }

@@ -74,6 +74,12 @@
 		1CD4E36F28A023F200EA1E8B /* XCUIElement+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD4E36928A0227D00EA1E8B /* XCUIElement+.swift */; };
 		1CD4E37828A0CF6200EA1E8B /* StoreTokenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD4E37728A0CF6200EA1E8B /* StoreTokenUseCase.swift */; };
 		1CD4E37A28A0EEC100EA1E8B /* StoreTokenUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD4E37928A0EEC100EA1E8B /* StoreTokenUseCaseMock.swift */; };
+		1CD6E12428CDB76800A0457B /* PersonalMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6E12328CDB76800A0457B /* PersonalMenuView.swift */; };
+		1CD6E12628CDF3C700A0457B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6E12528CDF3C700A0457B /* User.swift */; };
+		1CD6E12828CDF4CB00A0457B /* APIUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6E12728CDF4CB00A0457B /* APIUser.swift */; };
+		1CD6E12D28CDF8BD00A0457B /* APIUser+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6E12C28CDF8BD00A0457B /* APIUser+Dummy.swift */; };
+		1CD6E13028CDFA0D00A0457B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1CD6E12F28CDFA0C00A0457B /* Localizable.strings */; };
+		1CD6E13228CDFD1B00A0457B /* Bundle+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6E13128CDFD1B00A0457B /* Bundle+Version.swift */; };
 		1CD6FA6B2897955000B4B0D7 /* APIToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6FA6A2897955000B4B0D7 /* APIToken.swift */; };
 		1CD6FA6D289797B000B4B0D7 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6FA6C289797B000B4B0D7 /* Token.swift */; };
 		1CD6FA712897A7D300B4B0D7 /* LogInRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6FA702897A7D300B4B0D7 /* LogInRepository.swift */; };
@@ -248,6 +254,12 @@
 		1CD4E36928A0227D00EA1E8B /* XCUIElement+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIElement+.swift"; sourceTree = "<group>"; };
 		1CD4E37728A0CF6200EA1E8B /* StoreTokenUseCase.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = StoreTokenUseCase.swift; sourceTree = "<group>"; };
 		1CD4E37928A0EEC100EA1E8B /* StoreTokenUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTokenUseCaseMock.swift; sourceTree = "<group>"; };
+		1CD6E12328CDB76800A0457B /* PersonalMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalMenuView.swift; sourceTree = "<group>"; };
+		1CD6E12528CDF3C700A0457B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		1CD6E12728CDF4CB00A0457B /* APIUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUser.swift; sourceTree = "<group>"; };
+		1CD6E12C28CDF8BD00A0457B /* APIUser+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIUser+Dummy.swift"; sourceTree = "<group>"; };
+		1CD6E12F28CDFA0C00A0457B /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		1CD6E13128CDFD1B00A0457B /* Bundle+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Version.swift"; sourceTree = "<group>"; };
 		1CD6FA6A2897955000B4B0D7 /* APIToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIToken.swift; sourceTree = "<group>"; };
 		1CD6FA6C289797B000B4B0D7 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		1CD6FA702897A7D300B4B0D7 /* LogInRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInRepository.swift; sourceTree = "<group>"; };
@@ -357,6 +369,7 @@
 				1C94DA1128996C8100ED0984 /* SError.swift */,
 				1C94DA19289BA04800ED0984 /* ErrorResponse.swift */,
 				1C516B9328A3A86000DB7B7B /* APISurvey.swift */,
+				1CD6E12728CDF4CB00A0457B /* APIUser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -416,6 +429,7 @@
 				1CD4E336289BC7AA00EA1E8B /* String+Validation.swift */,
 				1CEE603328A6375900748C63 /* Date+StringFormat.swift */,
 				1CA8B29C28BCD04E00E5C225 /* Array+Comparable.swift */,
+				1CD6E13128CDFD1B00A0457B /* Bundle+Version.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -697,8 +711,17 @@
 			isa = PBXGroup;
 			children = (
 				1C516B9728A3AB3A00DB7B7B /* APISurvey+Dummy.swift */,
+				1CD6E12C28CDF8BD00A0457B /* APIUser+Dummy.swift */,
 			);
 			path = Mocking;
+			sourceTree = "<group>";
+		};
+		1CD6E12E28CDF9CD00A0457B /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				1CD6E12F28CDFA0C00A0457B /* Localizable.strings */,
+			);
+			path = Localization;
 			sourceTree = "<group>";
 		};
 		1CD6FA772897AF1800B4B0D7 /* Environment */ = {
@@ -778,6 +801,7 @@
 			children = (
 				1C516B9928A3AF0C00DB7B7B /* SurveyItemView.swift */,
 				1CEE602F28A4B77D00748C63 /* HeaderHomeView.swift */,
+				1CD6E12328CDB76800A0457B /* PersonalMenuView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1062,6 +1086,7 @@
 		A60D6F6D69B2571A295C0A9E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1CD6E12E28CDF9CD00A0457B /* Localization */,
 				2CF27D885DD8507482E726E1 /* Assets */,
 				6FD75B0789EE724AD6F6C58D /* LaunchScreen */,
 			);
@@ -1171,6 +1196,7 @@
 			children = (
 				1CD6FA6C289797B000B4B0D7 /* Token.swift */,
 				1C516B9128A3A5C800DB7B7B /* Survey.swift */,
+				1CD6E12528CDF3C700A0457B /* User.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1378,6 +1404,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CD6E13028CDFA0D00A0457B /* Localizable.strings in Resources */,
 				1CB186992891587500372D50 /* NeuzeitSLTStd-Book.otf in Resources */,
 				1CB1869A2891587500372D50 /* NeuzeitSLTStd-BookHeavy.otf in Resources */,
 				CA1F500707F2936D39825740 /* Assets.xcassets in Resources */,
@@ -1639,6 +1666,7 @@
 				1CB18696289150D200372D50 /* Color+.swift in Sources */,
 				1CD6FA842898603300B4B0D7 /* KeychainService.swift in Sources */,
 				1CB18673288E532700372D50 /* ErrorTracker.swift in Sources */,
+				1CD6E12828CDF4CB00A0457B /* APIUser.swift in Sources */,
 				1CEE604A28ABC70500748C63 /* UserSessionUseCase.swift in Sources */,
 				1CEE602C28A4B1A700748C63 /* TitleTextModifier.swift in Sources */,
 				1C516B9528A3AAF300DB7B7B /* APISurvey.swift in Sources */,
@@ -1666,6 +1694,7 @@
 				1CE7C6BA288A77C400B0EB1B /* DataResponse.swift in Sources */,
 				F8F13CA10B7B9C104FB5B516 /* NetworkAPIProtocol.swift in Sources */,
 				1CD6FA862898641900B4B0D7 /* KeychainToken.swift in Sources */,
+				1CD6E12D28CDF8BD00A0457B /* APIUser+Dummy.swift in Sources */,
 				1CEE605D28ABFA7800748C63 /* SurveyDetailView.swift in Sources */,
 				1CE7C6D4288A89AE00B0EB1B /* SplashViewModel.swift in Sources */,
 				4237A58C15107740F342790E /* RequestConfiguration.swift in Sources */,
@@ -1697,6 +1726,7 @@
 				1CA8B28028B5310C00E5C225 /* SmallTagTextModifier.swift in Sources */,
 				1CE7C6BF288A795300B0EB1B /* SDecoderType.swift in Sources */,
 				1CE7C6E5288AB3A000B0EB1B /* Font+.swift in Sources */,
+				1CD6E12428CDB76800A0457B /* PersonalMenuView.swift in Sources */,
 				FA53AB0C4A65A8F81BC85C63 /* R.generated.swift in Sources */,
 				2DCFC13E272ADCD4CD027071 /* Typealiases.swift in Sources */,
 				1C94DA18289B9FAA00ED0984 /* AppRouter.swift in Sources */,
@@ -1704,7 +1734,9 @@
 				1CD4E357289FF54700EA1E8B /* HomeView.swift in Sources */,
 				1C94DA1228996C8100ED0984 /* SError.swift in Sources */,
 				1CB18675288E534400372D50 /* ActivityTracker.swift in Sources */,
+				1CD6E12628CDF3C700A0457B /* User.swift in Sources */,
 				1CA8B27C28B52FBA00E5C225 /* SurveyQuestionBodyView.swift in Sources */,
+				1CD6E13228CDFD1B00A0457B /* Bundle+Version.swift in Sources */,
 				1CD4E37828A0CF6200EA1E8B /* StoreTokenUseCase.swift in Sources */,
 				1C044B9D28ACD9A5001FF098 /* HomeUseCase.swift in Sources */,
 				1C94DA1E289BBC9B00ED0984 /* ErrorTextModifier.swift in Sources */,

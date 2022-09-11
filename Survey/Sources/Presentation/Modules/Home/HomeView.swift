@@ -16,6 +16,7 @@ struct HomeView: View {
     @State var currentPage = 0
     @State var tabSelection = 0
     @State var isModalPresented = false
+    @State var isShowingPersonalMenu = false
 
     private let loadTrigger = PassthroughSubject<Void, Never>()
     private let willGoToDetail = PassthroughSubject<Void, Never>()
@@ -29,9 +30,24 @@ struct HomeView: View {
                 ZStack {
                     setUpTabView()
                         .overlay(alignment: .top) {
-                            HeaderHomeView()
+                            // TODO: Remove dummy APIUser
+                            HeaderHomeView(
+                                imageURL: APIUser.dummy.avatarUrl,
+                                isShowingPersonalMenu: $isShowingPersonalMenu
+                            )
+                            .padding(.top, 60.0)
+                            .padding(.leading, 20.0)
+                        }
+                        .overlay {
+                            if isShowingPersonalMenu {
+                                // TODO: Remove dummy APIUser
+                                PersonalMenuView(
+                                    user: APIUser.dummy,
+                                    showPersonalMenu: $isShowingPersonalMenu
+                                )
                                 .padding(.top, 60.0)
-                                .padding(.leading, 20.0)
+                                .transition(.move(edge: .trailing))
+                            }
                         }
                 }
             }

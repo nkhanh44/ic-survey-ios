@@ -93,6 +93,9 @@
 		1CD6E13228CDFD1B00A0457B /* Bundle+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6E13128CDFD1B00A0457B /* Bundle+Version.swift */; };
 		1CD6E12028CD15B100A0457B /* TextFieldAnswerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6E11F28CD15B100A0457B /* TextFieldAnswerModifier.swift */; };
 		1CD6E12228CD17E600A0457B /* RatingIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6E12128CD17E600A0457B /* RatingIcon.swift */; };
+		1CD6E13428CE056A00A0457B /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6E13328CE056900A0457B /* UserUseCase.swift */; };
+		1CD6E13628CE057400A0457B /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6E13528CE057400A0457B /* UserRepository.swift */; };
+		1CD6E13828CE05AB00A0457B /* UserRequestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6E13728CE05AB00A0457B /* UserRequestConfiguration.swift */; };
 		1CD6FA6B2897955000B4B0D7 /* APIToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6FA6A2897955000B4B0D7 /* APIToken.swift */; };
 		1CD6FA6D289797B000B4B0D7 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6FA6C289797B000B4B0D7 /* Token.swift */; };
 		1CD6FA712897A7D300B4B0D7 /* LogInRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6FA702897A7D300B4B0D7 /* LogInRepository.swift */; };
@@ -287,6 +290,9 @@
 		1CD6E13128CDFD1B00A0457B /* Bundle+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Version.swift"; sourceTree = "<group>"; };
 		1CD6E11F28CD15B100A0457B /* TextFieldAnswerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldAnswerModifier.swift; sourceTree = "<group>"; };
 		1CD6E12128CD17E600A0457B /* RatingIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingIcon.swift; sourceTree = "<group>"; };
+		1CD6E13328CE056900A0457B /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
+		1CD6E13528CE057400A0457B /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		1CD6E13728CE05AB00A0457B /* UserRequestConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequestConfiguration.swift; sourceTree = "<group>"; };
 		1CD6FA6A2897955000B4B0D7 /* APIToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIToken.swift; sourceTree = "<group>"; };
 		1CD6FA6C289797B000B4B0D7 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		1CD6FA702897A7D300B4B0D7 /* LogInRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInRepository.swift; sourceTree = "<group>"; };
@@ -1093,6 +1099,7 @@
 				1CEE604928ABC70500748C63 /* UserSessionUseCase.swift */,
 				1C044B9C28ACD9A5001FF098 /* HomeUseCase.swift */,
 				1CA8B27328B507C500E5C225 /* SurveyQuestionUseCase.swift */,
+				1CD6E13328CE056900A0457B /* UserUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -1204,6 +1211,7 @@
 			children = (
 				1CD6FA702897A7D300B4B0D7 /* LogInRepository.swift */,
 				1CEE603B28A6483F00748C63 /* SurveyRepository.swift */,
+				1CD6E13528CE057400A0457B /* UserRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1369,6 +1377,7 @@
 			children = (
 				1CD6FA722897ACD900B4B0D7 /* LogInRequestConfiguration.swift */,
 				1CEE603528A6454500748C63 /* SurveyRequestConfiguration.swift */,
+				1CD6E13728CE05AB00A0457B /* UserRequestConfiguration.swift */,
 			);
 			path = RequestConfigurations;
 			sourceTree = "<group>";
@@ -1772,6 +1781,7 @@
 				1CD4E36728A021A800EA1E8B /* TestConstants.swift in Sources */,
 				1CEE603228A4EB5500748C63 /* PageControlView.swift in Sources */,
 				1CE7C6D0288A899C00B0EB1B /* SplashView.swift in Sources */,
+				1CD6E13828CE05AB00A0457B /* UserRequestConfiguration.swift in Sources */,
 				1CEE605F28AC05B000748C63 /* LargerTitleTextModifier.swift in Sources */,
 				1CD4E339289CCD0500EA1E8B /* View+Opacity.swift in Sources */,
 				1C2ADCB628CC7C9C00743802 /* RatingAnswerView.swift in Sources */,
@@ -1807,6 +1817,7 @@
 				4EB668FA98599FBE41D546B5 /* NetworkAPI.swift in Sources */,
 				1C516B9828A3AB3A00DB7B7B /* APISurvey+Dummy.swift in Sources */,
 				1CB186892890F9DA00372D50 /* LoginViewModel.swift in Sources */,
+				1CD6E13628CE057400A0457B /* UserRepository.swift in Sources */,
 				1C94DA162899845900ED0984 /* ActivityIndicator.swift in Sources */,
 				1CE7C6DA288A91BA00B0EB1B /* SurveyApp.swift in Sources */,
 				1CA8B27428B507C500E5C225 /* SurveyQuestionUseCase.swift in Sources */,
@@ -1816,6 +1827,7 @@
 				1CA8B27928B52E7400E5C225 /* CloseButtonModifier.swift in Sources */,
 				2CE4A0682D8CB5A1F2B4C717 /* Navigator+Transition.swift in Sources */,
 				1CB186902891310D00372D50 /* SButtonView.swift in Sources */,
+				1CD6E13428CE056A00A0457B /* UserUseCase.swift in Sources */,
 				1CA8B29328B763BC00E5C225 /* Constants+UserDefaultKeys.swift in Sources */,
 				891B2792ADE1280796829C60 /* Navigator.swift in Sources */,
 				1CD6FA7D2897AF5800B4B0D7 /* Configuration.swift in Sources */,

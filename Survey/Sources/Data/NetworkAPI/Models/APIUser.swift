@@ -16,3 +16,12 @@ struct APIUser: User, JapxCodable {
     let name: String
     let avatarUrl: String
 }
+
+extension APIUser {
+
+    enum CodingKeys: String, CodingKey {
+
+        case id, type, email, name
+        case avatarUrl = "avatar_url"
+    }
+}

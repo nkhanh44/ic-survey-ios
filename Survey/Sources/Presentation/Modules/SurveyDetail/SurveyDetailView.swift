@@ -68,7 +68,7 @@ struct SurveyDetailView: View {
             }
         }
         .fullScreenCover(isPresented: $isSurveyQuestionPresented) {
-            EmptyView()
+            SurveyQuestionView(isPresented: $isSurveyQuestionPresented)
         }
         .edgesIgnoringSafeArea(.all)
         .preferredColorScheme(.dark)

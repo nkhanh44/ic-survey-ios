@@ -10,6 +10,9 @@ import SwiftUI
 
 struct HeaderHomeView: View {
 
+    var imageURL: String
+    @Binding var isShowingPersonalMenu: Bool
+
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -23,6 +26,39 @@ struct HeaderHomeView: View {
                     .foregroundColor(.white)
             }
             Spacer()
+            setUpAvatarButton()
         }
+    }
+
+    private func setUpAvatarButton() -> some View {
+        Button(action: {
+            withAnimation(.easeIn) {
+                isShowingPersonalMenu.toggle()
+            }
+        }, label: {
+            AsyncImage(
+                url: URL(string: imageURL)
+            ) { phase in
+                switch phase {
+                case .empty:
+                    ProgressView().hidden()
+                case let .success(image):
+                    image
+                        .resizable()
+                        .scaledToFill()
+                        .clipShape(Circle())
+                case .failure:
+                    Image(systemName: "person.2.circle")
+                        .resizable()
+                        .scaledToFill()
+                        .clipShape(Circle())
+                @unknown default:
+                    EmptyView()
+                }
+            }
+            .frame(width: 36.0, height: 36.0)
+        })
+        .hidden(withAnimation(.easeIn) { isShowingPersonalMenu })
+        .padding()
     }
 }

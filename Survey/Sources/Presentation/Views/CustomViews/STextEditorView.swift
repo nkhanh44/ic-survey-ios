@@ -11,7 +11,7 @@ import SwiftUI
 struct STextEditorView: View {
 
     let placeholder: String
-    let padding: CGFloat = 5
+    let padding: CGFloat = 5.0
 
     @Binding var text: String
 

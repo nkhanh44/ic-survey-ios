@@ -19,7 +19,7 @@ struct ChoiceAnswerView: View {
                 .overlay {
                     Spacer()
                         .frame(height: 56.0)
-                        .padding(.horizontal, 30)
+                        .padding(.horizontal, 30.0)
                         .overlay(Divider().background(.white), alignment: .top)
                         .overlay(Divider().background(.white), alignment: .bottom)
                 }

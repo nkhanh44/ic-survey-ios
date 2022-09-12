@@ -31,7 +31,7 @@ struct TextFieldAnswerView: View {
                     TextField("", text: $textFieldAnswers[index].projectedValue)
                         .modifier(
                             TextFieldAnswerModifier(
-                                showPlaceHolder: textFieldAnswers[index].isEmpty,
+                                showPlaceholder: textFieldAnswers[index].isEmpty,
                                 placeholder: answerPlaceholders[index]
                             )
                         )

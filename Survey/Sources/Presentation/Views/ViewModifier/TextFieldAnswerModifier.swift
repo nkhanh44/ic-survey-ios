@@ -10,12 +10,12 @@ import SwiftUI
 
 struct TextFieldAnswerModifier: ViewModifier {
 
-    var showPlaceHolder: Bool
+    var showPlaceholder: Bool
     var placeholder: String
 
     func body(content: Content) -> some View {
         ZStack(alignment: .leading) {
-            if showPlaceHolder {
+            if showPlaceholder {
                 setupPlaceholder()
             }
             content
@@ -31,7 +31,7 @@ struct TextFieldAnswerModifier: ViewModifier {
                         style: .continuous
                     )
                     .fill(.white)
-                    .opacity(showPlaceHolder ? 0.2 : 0.3)
+                    .opacity(showPlaceholder ? 0.2 : 0.3)
                 )
                 .accentColor(.stoneGray)
                 .frame(height: 56.0)

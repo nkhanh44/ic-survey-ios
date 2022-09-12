@@ -10,12 +10,12 @@ import SwiftUI
 
 struct PlaceholderModifier: ViewModifier {
 
-    var showPlaceHolder: Bool
+    var showPlaceholder: Bool
     var placeholder: String
 
     func body(content: Content) -> some View {
         ZStack(alignment: .leading) {
-            if showPlaceHolder {
+            if showPlaceholder {
                 Text(placeholder)
                     .font(.regularBody)
                     .padding(.horizontal, 18.0)

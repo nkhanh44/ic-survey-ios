@@ -40,7 +40,7 @@ final class KeychainService: KeychainServiceProtocol {
     }
 
     func isLoggedIn() throws -> Bool {
-        try keychain.get(KeychainKeys.token.rawValue) != nil
+        return try keychain.get(KeychainKeys.token.rawValue) != nil
     }
 
     func removeToken(with key: KeychainKeys) throws {

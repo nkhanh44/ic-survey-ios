@@ -49,8 +49,12 @@ final class AuthenticationInterceptor: RequestInterceptor {
         refreshRequest = getRefreshToken { [weak self] result in
             switch result {
             case let .success(authToken):
-                try? self?.keychain.set(newToken: KeychainToken(token: authToken), for: .token)
-                completion(.retry)
+                do {
+                    try self?.keychain.set(newToken: KeychainToken(token: authToken), for: .token)
+                    completion(.retry)
+                } catch {
+                    completion(.doNotRetryWithError(error))
+                }
             case let .failure(error):
                 completion(.doNotRetryWithError(error))
             }

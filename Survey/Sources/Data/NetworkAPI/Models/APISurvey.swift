@@ -9,13 +9,17 @@
 import Foundation
 import Japx
 
-struct APISurvey: Survey, JapxCodable {
+struct APISurvey: Survey, JapxCodable, Comparable {
 
     let id: String
     let type: String
     let title: String
     let description: String
     var coverImageURL: String
+
+    static func < (lhs: APISurvey, rhs: APISurvey) -> Bool {
+        return lhs.id < rhs.id
+    }
 }
 
 extension APISurvey {

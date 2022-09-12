@@ -21,4 +21,12 @@ enum SurveyRequestConfiguration {
             ]
         )
     }
+
+    static func getSurveyDetail(id: String) -> RequestConfiguration {
+        RequestConfiguration(
+            endpoint: "surveys/\(id)",
+            method: .get,
+            encoding: URLEncoding.default
+        )
+    }
 }

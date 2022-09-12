@@ -15,23 +15,27 @@ import Quick
 final class SplashViewSpec: QuickSpec {
 
     override func spec() {
-        var useCase: UserSessionUseCaseMock!
+        var userSessionUseCase: UserSessionUseCaseMock!
+        var homeUseCase: HomeUseCaseMock!
+        var splashView: SplashView!
 
         describe("a SplashView") {
 
             beforeEach {
-                useCase = UserSessionUseCaseMock()
-                _ = SplashView(
+                userSessionUseCase = UserSessionUseCaseMock()
+                homeUseCase = HomeUseCaseMock()
+                splashView = SplashView(
                     viewModel: SplashViewModel(
-                        useCase: useCase
+                        userSessionUseCase: userSessionUseCase,
+                        homeUseCase: homeUseCase
                     )
                 )
             }
 
-            context("has checked user session called") {
+            context("has onAppear called") {
 
-                it("return correct response") {
-                    expect(useCase.hasUserLoggedInCalled) == true
+                it("is not loading") {
+                    expect(splashView.output.isLoading) == false
                 }
             }
         }

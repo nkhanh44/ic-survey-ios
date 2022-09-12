@@ -13,6 +13,7 @@ struct SurveyQuestionView: View {
 
     // TODO: Remove dummy survey and list
     let list = Array(APISurvey.dummyList.enumerated())
+    @Binding var isPresented: Bool
 
     var body: some View {
         LoadingView(
@@ -59,12 +60,15 @@ struct SurveyQuestionView: View {
                     Button("") {}
                         .modifier(
                             CloseButtonModifier(
-                                didAction: {}
+                                didAction: {
+                                    withoutAnimation {
+                                        isPresented = false
+                                    }
+                                }
                             )
                         )
                         .padding(.trailing, 20.0)
                 }
-
                 Spacer()
             }
         }
@@ -107,6 +111,6 @@ struct SurveyQuestionView: View {
 struct SurveyQuestionViewPreView: PreviewProvider {
 
     static var previews: some View {
-        SurveyQuestionView()
+        SurveyQuestionView(isPresented: .constant(true))
     }
 }

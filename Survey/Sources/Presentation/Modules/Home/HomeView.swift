@@ -191,11 +191,6 @@ struct HomeViewPreView: PreviewProvider {
                     api: AuthenticationNetworkAPI()
                 )
             ),
-            logoutUserUseCase: UserUseCase(
-                userRepository: UserRepository(
-                    api: AuthenticationNetworkAPI(decoder: .jSONDecoder)
-                )
-            ),
             userSessionUseCase: UserSessionUseCase()
         )
         HomeView(viewModel: viewModel)

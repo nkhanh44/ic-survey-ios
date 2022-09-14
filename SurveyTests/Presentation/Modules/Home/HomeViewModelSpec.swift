@@ -24,7 +24,6 @@ final class HomeViewModelSpec: QuickSpec {
         var viewModel: HomeViewModel!
         var homeUseCase: HomeUseCaseMock!
         var userUseCase: UserUseCaseMock!
-        var logoutUserUseCase: UserUseCaseMock!
         var userSessionUseCase: UserSessionUseCaseMock!
         let loadUserInfoTrigger = PassthroughSubject<Void, Never>()
         let loadTrigger = PassthroughSubject<Void, Never>()
@@ -36,12 +35,10 @@ final class HomeViewModelSpec: QuickSpec {
             beforeEach {
                 homeUseCase = HomeUseCaseMock()
                 userUseCase = UserUseCaseMock()
-                logoutUserUseCase = UserUseCaseMock()
                 userSessionUseCase = UserSessionUseCaseMock()
                 viewModel = HomeViewModel(
                     homeUseCase: homeUseCase,
                     userUseCase: userUseCase,
-                    logoutUserUseCase: logoutUserUseCase,
                     userSessionUseCase: userSessionUseCase
                 )
 
@@ -119,7 +116,7 @@ final class HomeViewModelSpec: QuickSpec {
                 }
 
                 it("has logout called") {
-                    expect(logoutUserUseCase.logoutCalled) == true
+                    expect(userUseCase.logoutCalled) == true
                 }
 
                 it("returns output with true") {
@@ -130,7 +127,7 @@ final class HomeViewModelSpec: QuickSpec {
             context("when user logout returns failure with error alert") {
 
                 it("returns output with alert displayed") {
-                    logoutUserUseCase.logoutReturnValue = .failure(TestError())
+                    userUseCase.logoutReturnValue = .failure(TestError())
 
                     loadUserInfoTrigger.send()
                     logoutTrigger.send()

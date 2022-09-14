@@ -13,7 +13,6 @@ struct HomeViewModel {
 
     let homeUseCase: HomeUseCaseProtocol
     let userUseCase: UserUseCaseProtocol
-    let logoutUserUseCase: UserUseCaseProtocol
     let userSessionUseCase: UserSessionUseCaseProtocol
 }
 
@@ -59,7 +58,7 @@ extension HomeViewModel: ViewModel {
 
         input.logoutTrigger
             .map { _ in
-                self.logoutUserUseCase.logout()
+                self.userUseCase.logout()
                     .trackError(errorTracker)
                     .trackActivity(activityTracker)
                     .asDriver()

@@ -50,16 +50,10 @@ struct SurveyApp: App {
                     api: AuthenticationNetworkAPI()
                 )
             )
-            let logoutUserUseCase = UserUseCase(
-                userRepository: UserRepository(
-                    api: AuthenticationNetworkAPI(decoder: .jSONDecoder)
-                )
-            )
             HomeView(
                 viewModel: HomeViewModel(
                     homeUseCase: homeUseCase,
                     userUseCase: userUseCase,
-                    logoutUserUseCase: logoutUserUseCase,
                     userSessionUseCase: UserSessionUseCase()
                 )
             )

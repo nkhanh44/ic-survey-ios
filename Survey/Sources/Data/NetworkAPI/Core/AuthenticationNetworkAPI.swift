@@ -30,4 +30,12 @@ final class AuthenticationNetworkAPI: NetworkAPIProtocol {
             decoder: decoder
         )
     }
+
+    func performEmptyRequest<T: Decodable & Encodable>(_ configuration: RequestConfiguration) -> Future<T, Error> {
+        request(
+            session: session,
+            configuration: configuration,
+            decoder: .jSONDecoder
+        )
+    }
 }

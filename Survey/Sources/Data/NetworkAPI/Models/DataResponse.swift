@@ -13,8 +13,7 @@ struct JapxResponse<T: Codable>: Codable {
     let data: T
 }
 
-struct JapxResponseArray<T: Codable>: Codable {
+struct EmptyJapxResponse<T: Codable>: Codable {
 
-    var data: [T]?
-    var meta: MetaData
+    let data: T?
 }

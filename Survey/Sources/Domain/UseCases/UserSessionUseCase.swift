@@ -12,6 +12,7 @@ import Foundation
 protocol UserSessionUseCaseProtocol {
 
     func hasUserLoggedIn() -> Observable<Bool>
+    func removeSession() -> Observable<Bool>
 }
 
 struct UserSessionUseCase: UserSessionUseCaseProtocol {
@@ -25,5 +26,14 @@ struct UserSessionUseCase: UserSessionUseCaseProtocol {
     func hasUserLoggedIn() -> Observable<Bool> {
         let isLoggedIn = (try? keychain.isLoggedIn()) ?? false
         return Just(isLoggedIn).asObservable()
+    }
+
+    func removeSession() -> Observable<Bool> {
+        do {
+            try keychain.removeToken(with: .token)
+            return try Just(!keychain.isLoggedIn()).asObservable()
+        } catch {
+            return Just(false).asObservable()
+        }
     }
 }

@@ -30,7 +30,7 @@ final class UserRepository: UserRepositoryProtocol {
     }
 
     func logout() -> Observable<Bool> {
-        networkAPI.performRequest(UserRequestConfiguration.logout())
+        networkAPI.performEmptyRequest(UserRequestConfiguration.logout())
             .map { $0 as Bool }
             .eraseToAnyPublisher()
     }

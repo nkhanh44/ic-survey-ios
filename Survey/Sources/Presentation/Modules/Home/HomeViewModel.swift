@@ -1,4 +1,4 @@
-//
+// swiftlint:disable function_body_length
 //  HomeViewModel.swift
 //  SurveyTests
 //
@@ -11,7 +11,9 @@ import SwiftUI
 
 struct HomeViewModel {
 
-    let useCase: HomeUseCaseProtocol
+    let homeUseCase: HomeUseCaseProtocol
+    let userUseCase: UserUseCaseProtocol
+    let userSessionUseCase: UserSessionUseCaseProtocol
 }
 
 extension HomeViewModel: ViewModel {
@@ -22,9 +24,21 @@ extension HomeViewModel: ViewModel {
         var pageNumber = 0
         let output = Output()
 
+        input.loadUserInfoTrigger
+            .map { _ in
+                self.userUseCase.getUser()
+                    .trackError(errorTracker)
+                    .trackActivity(activityTracker)
+                    .asDriver()
+            }
+            .switchToLatest()
+            .compactMap { $0 }
+            .assign(to: \.user, on: output)
+            .store(in: &output.cancelBag)
+
         input.loadTrigger
             .map { _ in
-                self.useCase.getSurveyList(pageNumber: pageNumber + 1, pageSize: 10)
+                self.homeUseCase.getSurveyList(pageNumber: pageNumber + 1, pageSize: 10)
                     .trackError(errorTracker)
                     .trackActivity(activityTracker)
                     .asDriver()
@@ -40,6 +54,21 @@ extension HomeViewModel: ViewModel {
                 return UserStorage.cachedSurveyList
             }
             .assign(to: \.surveys, on: output)
+            .store(in: &output.cancelBag)
+
+        input.logoutTrigger
+            .map { _ in
+                self.userUseCase.logout()
+                    .trackError(errorTracker)
+                    .trackActivity(activityTracker)
+                    .asDriver()
+            }
+            .switchToLatest()
+            .map { _ in
+                userSessionUseCase.removeSession().asDriver()
+            }
+            .switchToLatest()
+            .assign(to: \.didLogoutSuccessfully, on: output)
             .store(in: &output.cancelBag)
 
         input.willGoToDetail
@@ -68,15 +97,21 @@ extension HomeViewModel {
 
     final class Input: ObservableObject {
 
+        let loadUserInfoTrigger: Driver<Void>
         let loadTrigger: Driver<Void>
         let willGoToDetail: Driver<Void>
+        let logoutTrigger: Driver<Void>
 
         init(
+            loadUserInfoTrigger: Driver<Void>,
             loadTrigger: Driver<Void>,
-            willGoToDetail: Driver<Void>
+            willGoToDetail: Driver<Void>,
+            logoutTrigger: Driver<Void>
         ) {
+            self.loadUserInfoTrigger = loadUserInfoTrigger
             self.loadTrigger = loadTrigger
             self.willGoToDetail = willGoToDetail
+            self.logoutTrigger = logoutTrigger
         }
     }
 
@@ -88,5 +123,7 @@ extension HomeViewModel {
         @Published var isLoading = false
         @Published var surveys = [Survey]()
         @Published var willGoToDetail = false
+        @Published var user: User?
+        @Published var didLogoutSuccessfully = false
     }
 }

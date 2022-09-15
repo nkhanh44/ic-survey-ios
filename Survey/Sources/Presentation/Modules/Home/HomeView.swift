@@ -11,6 +11,7 @@ import SwiftUI
 
 struct HomeView: View {
 
+    @EnvironmentObject private var appRouter: AppRouter
     @ObservedObject var input: HomeViewModel.Input
     @ObservedObject var output: HomeViewModel.Output
     @State var currentPage = 0
@@ -18,6 +19,8 @@ struct HomeView: View {
     @State var isModalPresented = false
     @State var isShowingPersonalMenu = false
 
+    private let logoutTrigger = PassthroughSubject<Void, Never>()
+    private let loadUserInfoTrigger = PassthroughSubject<Void, Never>()
     private let loadTrigger = PassthroughSubject<Void, Never>()
     private let willGoToDetail = PassthroughSubject<Void, Never>()
     private let minDragTranslationForSwipe: CGFloat = 60.0
@@ -30,9 +33,8 @@ struct HomeView: View {
                 ZStack {
                     setUpTabView()
                         .overlay(alignment: .top) {
-                            // TODO: Remove dummy APIUser
                             HeaderHomeView(
-                                imageURL: APIUser.dummy.avatarUrl,
+                                imageURL: output.user?.avatarUrl ?? "",
                                 isShowingPersonalMenu: $isShowingPersonalMenu
                             )
                             .padding(.top, 60.0)
@@ -40,13 +42,7 @@ struct HomeView: View {
                         }
                         .overlay {
                             if isShowingPersonalMenu {
-                                // TODO: Remove dummy APIUser
-                                PersonalMenuView(
-                                    user: APIUser.dummy,
-                                    showPersonalMenu: $isShowingPersonalMenu
-                                )
-                                .padding(.top, 60.0)
-                                .transition(.move(edge: .trailing))
+                                setUpPersonalMenu()
                             }
                         }
                 }
@@ -54,6 +50,7 @@ struct HomeView: View {
         )
         .onAppear(perform: {
             output.surveys = UserStorage.cachedSurveyList
+            self.loadUserInfoTrigger.send()
             self.loadTrigger.send()
         })
         .preferredColorScheme(.dark)
@@ -61,11 +58,29 @@ struct HomeView: View {
 
     init(viewModel: HomeViewModel) {
         let input = HomeViewModel.Input(
+            loadUserInfoTrigger: loadUserInfoTrigger.asDriver(),
             loadTrigger: loadTrigger.asDriver(),
-            willGoToDetail: willGoToDetail.asDriver()
+            willGoToDetail: willGoToDetail.asDriver(),
+            logoutTrigger: logoutTrigger.asDriver()
         )
         output = viewModel.transform(input)
         self.input = input
+    }
+
+    private func setUpPersonalMenu() -> some View {
+        PersonalMenuView(
+            user: output.user,
+            willLogoutAction: {
+                logoutTrigger.send()
+            },
+            showPersonalMenu: $isShowingPersonalMenu
+        )
+        .padding(.top, 60.0)
+        .transition(.move(edge: .trailing))
+        .onReceive(output.$didLogoutSuccessfully) {
+            guard $0 else { return }
+            appRouter.state = .login
+        }
     }
 
     private func setUpTabView() -> some View {
@@ -166,11 +181,17 @@ struct HomeViewPreView: PreviewProvider {
 
     static var previews: some View {
         let viewModel = HomeViewModel(
-            useCase: HomeUseCase(
+            homeUseCase: HomeUseCase(
                 surveyRepository: SurveyRepository(
                     api: AuthenticationNetworkAPI()
                 )
-            )
+            ),
+            userUseCase: UserUseCase(
+                userRepository: UserRepository(
+                    api: AuthenticationNetworkAPI()
+                )
+            ),
+            userSessionUseCase: UserSessionUseCase()
         )
         HomeView(viewModel: viewModel)
     }

@@ -11,8 +11,6 @@ import SwiftUI
 
 struct SkeletonView: View {
 
-    @Binding var isAnimating: Bool
-
     private let style = ShimmerViewStyle(
         baseColor: .white.withAlphaComponent(0.12),
         highlightColor: .white.withAlphaComponent(0.3),
@@ -23,7 +21,7 @@ struct SkeletonView: View {
     )
 
     var body: some View {
-        ShimmerScope(style: style, isAnimating: $isAnimating) {
+        ShimmerScope(style: style, isAnimating: .constant(true)) {
             VStack(alignment: .leading) {
                 setUpHeaderComponents()
 
@@ -42,6 +40,11 @@ struct SkeletonView: View {
                     .cornerRadius(14.0)
             }
         }
+        .padding(.bottom, 62.0)
+        .padding(.leading, 20.0)
+        .padding(.trailing, 20.0)
+        .padding(.top, 62.0)
+        .edgesIgnoringSafeArea(.all)
         .background(.black)
     }
 
@@ -64,6 +67,6 @@ struct SkeletonView: View {
 struct SkeletonViewPreView: PreviewProvider {
 
     static var previews: some View {
-        SkeletonView(isAnimating: .constant(true))
+        SkeletonView()
     }
 }

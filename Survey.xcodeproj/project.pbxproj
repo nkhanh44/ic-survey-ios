@@ -93,13 +93,9 @@
 		1CD6E12D28CDF8BD00A0457B /* APIUser+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6E12C28CDF8BD00A0457B /* APIUser+Dummy.swift */; };
 		1CD6E13028CDFA0D00A0457B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1CD6E12F28CDFA0C00A0457B /* Localizable.strings */; };
 		1CD6E13228CDFD1B00A0457B /* Bundle+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6E13128CDFD1B00A0457B /* Bundle+Version.swift */; };
-		1CD6E12028CD15B100A0457B /* TextFieldAnswerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6E11F28CD15B100A0457B /* TextFieldAnswerModifier.swift */; };
-		1CD6E12228CD17E600A0457B /* RatingIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6E12128CD17E600A0457B /* RatingIcon.swift */; };
 		1CD6E13428CE056A00A0457B /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6E13328CE056900A0457B /* UserUseCase.swift */; };
 		1CD6E13628CE057400A0457B /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6E13528CE057400A0457B /* UserRepository.swift */; };
 		1CD6E13828CE05AB00A0457B /* UserRequestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6E13728CE05AB00A0457B /* UserRequestConfiguration.swift */; };
-		1CD6E12028CD15B100A0457B /* TextFieldAnswerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6E11F28CD15B100A0457B /* TextFieldAnswerModifier.swift */; };
-		1CD6E12228CD17E600A0457B /* RatingIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6E12128CD17E600A0457B /* RatingIcon.swift */; };
 		1CD6E13D28D0CC8F00A0457B /* EmptyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6E13C28D0CC8F00A0457B /* EmptyResponse.swift */; };
 		1CD6E14028D0D03E00A0457B /* UserUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6E13E28D0D01E00A0457B /* UserUseCaseMock.swift */; };
 		1CD6E14328D0D8CA00A0457B /* UserUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6E14128D0D8C100A0457B /* UserUseCaseSpec.swift */; };
@@ -297,13 +293,9 @@
 		1CD6E12C28CDF8BD00A0457B /* APIUser+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIUser+Dummy.swift"; sourceTree = "<group>"; };
 		1CD6E12F28CDFA0C00A0457B /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		1CD6E13128CDFD1B00A0457B /* Bundle+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Version.swift"; sourceTree = "<group>"; };
-		1CD6E11F28CD15B100A0457B /* TextFieldAnswerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldAnswerModifier.swift; sourceTree = "<group>"; };
-		1CD6E12128CD17E600A0457B /* RatingIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingIcon.swift; sourceTree = "<group>"; };
 		1CD6E13328CE056900A0457B /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
 		1CD6E13528CE057400A0457B /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		1CD6E13728CE05AB00A0457B /* UserRequestConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequestConfiguration.swift; sourceTree = "<group>"; };
-		1CD6E11F28CD15B100A0457B /* TextFieldAnswerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldAnswerModifier.swift; sourceTree = "<group>"; };
-		1CD6E12128CD17E600A0457B /* RatingIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingIcon.swift; sourceTree = "<group>"; };
 		1CD6E13C28D0CC8F00A0457B /* EmptyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResponse.swift; sourceTree = "<group>"; };
 		1CD6E13E28D0D01E00A0457B /* UserUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCaseMock.swift; sourceTree = "<group>"; };
 		1CD6E14128D0D8C100A0457B /* UserUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCaseSpec.swift; sourceTree = "<group>"; };
@@ -2120,7 +2112,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nimblehq.khanh.survey-ic.staging";
 				PRODUCT_NAME = Survey;
 				PROVISIONING_PROFILE_SPECIFIER = Automatic;
@@ -2381,7 +2373,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nimblehq.khanh.survey-ic";
 				PRODUCT_NAME = Survey;
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc co.nimblehq.khanh.survey-ic";
@@ -2409,7 +2401,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nimblehq.khanh.survey-ic.staging";
 				PRODUCT_NAME = Survey;
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc co.nimblehq.khanh.survey-ic.staging";
@@ -2462,7 +2454,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nimblehq.khanh.survey-ic";
 				PRODUCT_NAME = Survey;
 				PROVISIONING_PROFILE_SPECIFIER = "";

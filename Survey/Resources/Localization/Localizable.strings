@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  Survey
+
+  Created by Khanh on 11/09/2022.
+  Copyright © 2022 Nimble. All rights reserved.
+*/
+
+"common.cancel.text" = "Cancel";
+"common.logout.text" = "Log out";
+"common.logout.title" = "Are you sure you want to log out?";
+
+"user.logoutButton.text" = "Logout";

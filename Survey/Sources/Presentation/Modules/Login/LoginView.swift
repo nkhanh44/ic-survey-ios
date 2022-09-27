@@ -101,7 +101,7 @@ struct LoginView: View {
     private func setUpEmail() -> some View {
         VStack(alignment: .leading, spacing: 0.0) {
             TextField("", text: $input.email)
-                .modifier(PlaceholderModifier(showPlaceHolder: input.email.isEmpty, placeholder: "Email"))
+                .modifier(PlaceholderModifier(showPlaceholder: input.email.isEmpty, placeholder: "Email"))
                 .padding(.bottom, 3.0)
                 .accessibilityIdentifier(TestConstants.Login.emailInputTextField)
 
@@ -115,7 +115,7 @@ struct LoginView: View {
     private func setUpPassword() -> some View {
         VStack(alignment: .leading, spacing: 0.0) {
             SecureField("", text: $input.password)
-                .modifier(PlaceholderModifier(showPlaceHolder: input.password.isEmpty, placeholder: "Password"))
+                .modifier(PlaceholderModifier(showPlaceholder: input.password.isEmpty, placeholder: "Password"))
                 .padding(.bottom, 3.0)
                 .accessibilityIdentifier(TestConstants.Login.passwordInputTextField)
 

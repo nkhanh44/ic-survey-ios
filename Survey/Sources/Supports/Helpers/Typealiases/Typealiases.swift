@@ -13,3 +13,5 @@ typealias Observable<T> = AnyPublisher<T, Error>
 typealias CancelBag = Set<AnyCancellable>
 
 typealias Assets = R.image
+
+typealias AssetLocalization = R.string.localizable

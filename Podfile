@@ -15,6 +15,7 @@ target 'Survey' do
   # UI
   pod 'Kingfisher'
   pod 'SnapKit'
+  pod 'ShimmerView'
 
   # Storage
   pod 'KeychainAccess'

@@ -18,6 +18,7 @@ struct HomeView: View {
     @State var tabSelection = 0
     @State var isModalPresented = false
     @State var isShowingPersonalMenu = false
+    @State var showSkeletonAnimation = true
 
     private let logoutTrigger = PassthroughSubject<Void, Never>()
     private let loadUserInfoTrigger = PassthroughSubject<Void, Never>()
@@ -49,10 +50,17 @@ struct HomeView: View {
             }
         )
         .onAppear(perform: {
+            withAnimation(Animation.easeInOut(duration: 1.0).delay(1.0)) {
+                showSkeletonAnimation.toggle()
+            }
             output.surveys = UserStorage.cachedSurveyList
             self.loadUserInfoTrigger.send()
             self.loadTrigger.send()
         })
+        .overlay {
+            SkeletonView()
+                .hidden(!showSkeletonAnimation)
+        }
         .preferredColorScheme(.dark)
     }
 

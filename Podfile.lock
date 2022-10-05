@@ -59,6 +59,7 @@ PODS:
     - R.swift.Library (~> 5.3.0)
   - R.swift.Library (5.3.0)
   - Resolver (1.5.0)
+  - ShimmerView (0.4.0)
   - SnapKit (5.6.0)
   - Sourcery (1.8.0):
     - Sourcery/CLI-Only (= 1.8.0)
@@ -79,6 +80,7 @@ DEPENDENCIES:
   - Quick
   - R.swift
   - Resolver
+  - ShimmerView
   - SnapKit
   - Sourcery (= 1.8.0)
   - SwiftFormat/CLI
@@ -107,6 +109,7 @@ SPEC REPOS:
     - R.swift
     - R.swift.Library
     - Resolver
+    - ShimmerView
     - SnapKit
     - Sourcery
     - SwiftFormat
@@ -145,12 +148,13 @@ SPEC CHECKSUMS:
   R.swift: ec98ff71c4ab2f6fd01dd077e5afd15e63a4834c
   R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
   Resolver: 68984624572763018fd8ec7b8e3e8df0e3b6bba5
+  ShimmerView: efc599af603f5736ea3a2e052c8932e19cb7fe08
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   Sourcery: 6f5fe49b82b7e02e8c65560cbd52e1be67a1af2e
   SwiftFormat: 53864d9acbae3a954eb413736729500fe7051435
   SwiftLint: f80f1be7fa96d30e0aa68e58d45d4ea1ccaac519
   Wormholy: 3252bc3e55a1847ef9a0976c1377bd77bf3635fa
 
-PODFILE CHECKSUM: 5a51b244ecf4614fa075e8355c8a07b155905564
+PODFILE CHECKSUM: 3c5d90524b6fba63e7819e5ba377135a9c927b49
 
 COCOAPODS: 1.11.3

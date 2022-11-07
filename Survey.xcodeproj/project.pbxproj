@@ -2388,7 +2388,7 @@
 				MARKETING_VERSION = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nimblehq.khanh.survey-ic";
 				PRODUCT_NAME = Survey;
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore co.nimblehq.khanh.survey-ic";
+				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc co.nimblehq.khanh.survey-ic";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = PROD;
 				SWIFT_COMPILATION_MODE = wholemodule;

@@ -6,8 +6,8 @@ name: Deploy Build To App Store
 ### APPSTORE_CONNECT_API_KEY
 
 on:
-  push:
-    branches: [ master ]
+  pull_request:
+    types: [opened, reopened, edited, synchronize]
 
 jobs:
   lint:
@@ -26,7 +26,7 @@ jobs:
         
   build:
     name: Build
-    runs-on: macOS-latest
+    runs-on: macOS-12
     steps:
     - name: Cancel Previous Runs
       uses: styfle/cancel-workflow-action@0.5.0

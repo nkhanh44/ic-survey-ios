@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		19BF1440DDB106A937E8075D /* Pods_Survey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC97F33B9C3F5A9FA6EF11C /* Pods_Survey.framework */; };
 		1C044B9D28ACD9A5001FF098 /* HomeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C044B9C28ACD9A5001FF098 /* HomeUseCase.swift */; };
 		1C044B9F28ACDF58001FF098 /* AuthenticationInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C044B9E28ACDF58001FF098 /* AuthenticationInterceptor.swift */; };
 		1C044BA128ACE4C7001FF098 /* AuthenticationNetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C044BA028ACE4C7001FF098 /* AuthenticationNetworkAPI.swift */; };
@@ -21,6 +20,7 @@
 		1C2ADCC728CCDA7900743802 /* MultipleSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2ADCC628CCDA7900743802 /* MultipleSelectionView.swift */; };
 		1C2ADCC928CCDDA200743802 /* CheckButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2ADCC828CCDDA200743802 /* CheckButtonModifier.swift */; };
 		1C2ADCCB28CCEE7C00743802 /* StarTextModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2ADCCA28CCEE7C00743802 /* StarTextModifier.swift */; };
+		1C2E2722291CBCB1008B6C5D /* Pods_Survey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC97F33B9C3F5A9FA6EF11C /* Pods_Survey.framework */; };
 		1C516B7628A148AF00DB7B7B /* LoginRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C516B7528A148AF00DB7B7B /* LoginRepositoryMock.swift */; };
 		1C516B7828A152F600DB7B7B /* LoginUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C516B7728A152F600DB7B7B /* LoginUseCaseSpec.swift */; };
 		1C516B7B28A15BF600DB7B7B /* APIToken+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C516B7A28A15BF600DB7B7B /* APIToken+Dummy.swift */; };
@@ -172,16 +172,6 @@
 
 /* Begin PBXCopyFilesBuildPhase section */
 		1E7617E014B651634FB6C745 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E5AAC51FAA606E5E5C684F83 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
@@ -393,7 +383,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19BF1440DDB106A937E8075D /* Pods_Survey.framework in Frameworks */,
+				1C2E2722291CBCB1008B6C5D /* Pods_Survey.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1448,7 +1438,6 @@
 				3FF9D5A3C80227E65CBEF354 /* SwiftFormat Lint */,
 				1A3C2C2CE9A2E2A4092BEFDA /* Sources */,
 				4773642E325107803168F664 /* Resources */,
-				E5AAC51FAA606E5E5C684F83 /* Embed Frameworks */,
 				FF76644469CE368D62BA827C /* Frameworks */,
 				CC99E871FA1DDA8C64075BC0 /* Copy GoogleService-Info.plist */,
 				F3610D1FB43223CC5A0B23E6 /* [CP] Embed Pods Frameworks */,
@@ -1602,7 +1591,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -z \"$CI\" ]; then\n    \"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\" \"$SRCROOT\" --lint --lenient\nfi";
+			shellScript = "if [ -z \"$CI\" ]; then\n    \"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\" \"$SRCROOT\" --lint --lenient\nfi\n";
 		};
 		75D860676D980C7DF2D11E63 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1642,7 +1631,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -z \"$CI\" ]; then\n    ${PODS_ROOT}/SwiftLint/swiftlint\nfi";
+			shellScript = "if [ -z \"$CI\" ]; then\n    ${PODS_ROOT}/SwiftLint/swiftlint\nfi\n";
 		};
 		A3C000438E4A91EA9068C937 /* SwiftFormat */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1740,7 +1729,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH_TO_GOOGLE_PLISTS=\"$SRCROOT/$PROJECT_NAME/Configurations/Plists/GoogleService\"\n\ncase \"${CONFIGURATION}\" in\n\"Debug Staging\" | \"Release Staging\" )\ncp -r \"$PATH_TO_GOOGLE_PLISTS/Staging/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n;;\n\"Debug Production\" | \"Release Production\" )\ncp -r \"$PATH_TO_GOOGLE_PLISTS/Production/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n;;\n*)\n;;\nesac";
+			shellScript = "PATH_TO_GOOGLE_PLISTS=\"$SRCROOT/$PROJECT_NAME/Configurations/Plists/GoogleService\"\n\ncase \"${CONFIGURATION}\" in\n\"Debug Staging\" | \"Release Staging\" )\ncp -r \"$PATH_TO_GOOGLE_PLISTS/Staging/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n;;\n\"Debug Production\" | \"Release Production\" )\ncp -r \"$PATH_TO_GOOGLE_PLISTS/Production/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n;;\n*)\n;;\nesac\n";
 		};
 		DDD1E0B9B9D0F2D8DC3E9B3D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2272,6 +2261,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;

@@ -8,6 +8,7 @@
 
 import Combine
 import SwiftUI
+import SwiftUI_Pull_To_Refresh
 
 struct HomeView: View {
 
@@ -27,41 +28,52 @@ struct HomeView: View {
     private let minDragTranslationForSwipe: CGFloat = 60.0
 
     var body: some View {
-        LoadingView(
-            isShowing: $output.isLoading,
-            text: .constant(""),
-            content: {
-                ZStack {
-                    setUpTabView()
-                        .overlay(alignment: .top) {
-                            HeaderHomeView(
-                                imageURL: output.user?.avatarUrl ?? "",
-                                isShowingPersonalMenu: $isShowingPersonalMenu
+        RefreshableScrollView(onRefresh: { done in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                done()
+            }
+        }) {
+            LoadingView(
+                isShowing: $output.isLoading,
+                text: .constant(""),
+                content: {
+                    ZStack {
+                        setUpTabView()
+                            .frame(
+                                width: UIScreen.main.bounds.width,
+                                height: UIScreen.main.bounds.height
                             )
-                            .padding(.top, 60.0)
-                            .padding(.leading, 20.0)
-                        }
-                        .overlay {
-                            if isShowingPersonalMenu {
-                                setUpPersonalMenu()
+                            .overlay(alignment: .top) {
+                                HeaderHomeView(
+                                    imageURL: output.user?.avatarUrl ?? "",
+                                    isShowingPersonalMenu: $isShowingPersonalMenu
+                                )
+                                .padding(.top, 60.0)
+                                .padding(.leading, 20.0)
                             }
-                        }
+                            .overlay {
+                                if isShowingPersonalMenu {
+                                    setUpPersonalMenu()
+                                }
+                            }
+                    }
                 }
+            )
+            .onAppear(perform: {
+                withAnimation(Animation.easeInOut(duration: 1.0).delay(1.0)) {
+                    showSkeletonAnimation.toggle()
+                }
+                output.surveys = UserStorage.cachedSurveyList
+                self.loadUserInfoTrigger.send()
+                self.loadTrigger.send()
+            })
+            .overlay {
+                SkeletonView()
+                    .hidden(!showSkeletonAnimation)
             }
-        )
-        .onAppear(perform: {
-            withAnimation(Animation.easeInOut(duration: 1.0).delay(1.0)) {
-                showSkeletonAnimation.toggle()
-            }
-            output.surveys = UserStorage.cachedSurveyList
-            self.loadUserInfoTrigger.send()
-            self.loadTrigger.send()
-        })
-        .overlay {
-            SkeletonView()
-                .hidden(!showSkeletonAnimation)
+            .preferredColorScheme(.dark)
         }
-        .preferredColorScheme(.dark)
+        .ignoresSafeArea()
     }
 
     init(viewModel: HomeViewModel) {
@@ -102,9 +114,12 @@ struct HomeView: View {
                     and: survey
                 )
             }
-            .highPriorityGesture(DragGesture().onEnded {
-                handleSwipe(translation: $0.translation.width)
-            })
+            .gesture(
+                DragGesture(
+                    coordinateSpace: .local
+                )
+                .onEnded { handleSwipe(translation: $0.translation.width) }
+            )
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         .overlay(alignment: .leading) {

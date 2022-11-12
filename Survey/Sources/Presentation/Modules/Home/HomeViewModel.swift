@@ -56,6 +56,25 @@ extension HomeViewModel: ViewModel {
             .assign(to: \.surveys, on: output)
             .store(in: &output.cancelBag)
 
+        input.reloadTrigger
+            .map { _ in
+                self.homeUseCase.getSurveyList(pageNumber: 1, pageSize: 10)
+                    .trackError(errorTracker)
+                    .trackActivity(activityTracker)
+                    .asDriver()
+            }
+            .switchToLatest()
+            .map {
+                pageNumber = 1
+                if !$0.isEmpty {
+                    UserStorage.cachedSurveyList = $0 as? [APISurvey] ?? []
+                }
+
+                return UserStorage.cachedSurveyList
+            }
+            .assign(to: \.surveys, on: output)
+            .store(in: &output.cancelBag)
+
         input.logoutTrigger
             .map { _ in
                 self.userUseCase.logout()
@@ -101,17 +120,20 @@ extension HomeViewModel {
         let loadTrigger: Driver<Void>
         let willGoToDetail: Driver<Void>
         let logoutTrigger: Driver<Void>
+        let reloadTrigger: Driver<Void>
 
         init(
             loadUserInfoTrigger: Driver<Void>,
             loadTrigger: Driver<Void>,
             willGoToDetail: Driver<Void>,
-            logoutTrigger: Driver<Void>
+            logoutTrigger: Driver<Void>,
+            reloadTrigger: Driver<Void>
         ) {
             self.loadUserInfoTrigger = loadUserInfoTrigger
             self.loadTrigger = loadTrigger
             self.willGoToDetail = willGoToDetail
             self.logoutTrigger = logoutTrigger
+            self.reloadTrigger = reloadTrigger
         }
     }
 

@@ -25,10 +25,12 @@ struct HomeView: View {
     private let loadUserInfoTrigger = PassthroughSubject<Void, Never>()
     private let loadTrigger = PassthroughSubject<Void, Never>()
     private let willGoToDetail = PassthroughSubject<Void, Never>()
+    private let reloadTrigger = PassthroughSubject<Void, Never>()
     private let minDragTranslationForSwipe: CGFloat = 60.0
 
     var body: some View {
         RefreshableScrollView(onRefresh: { done in
+            reloadTrigger.send()
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 done()
             }
@@ -81,7 +83,8 @@ struct HomeView: View {
             loadUserInfoTrigger: loadUserInfoTrigger.asDriver(),
             loadTrigger: loadTrigger.asDriver(),
             willGoToDetail: willGoToDetail.asDriver(),
-            logoutTrigger: logoutTrigger.asDriver()
+            logoutTrigger: logoutTrigger.asDriver(),
+            reloadTrigger: reloadTrigger.asDriver()
         )
         output = viewModel.transform(input)
         self.input = input

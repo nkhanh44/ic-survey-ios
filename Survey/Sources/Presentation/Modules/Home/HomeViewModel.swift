@@ -60,7 +60,6 @@ extension HomeViewModel: ViewModel {
             .map { _ in
                 self.homeUseCase.getSurveyList(pageNumber: 1, pageSize: 10)
                     .trackError(errorTracker)
-                    .trackActivity(activityTracker)
                     .asDriver()
             }
             .switchToLatest()

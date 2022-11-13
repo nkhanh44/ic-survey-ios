@@ -29,41 +29,35 @@ struct HomeView: View {
     private let minDragTranslationForSwipe: CGFloat = 60.0
 
     var body: some View {
-        RefreshableScrollView(onRefresh: { done in
+        RefreshableScrollView { done in
             reloadTrigger.send()
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 done()
             }
-        }) {
+        } progress: { state in
+            RefreshActivityIndicator(isAnimating: state == .loading) {
+                $0.hidesWhenStopped = false
+            }
+            .padding(.top, 30.0)
+        } content: {
             LoadingView(
                 isShowing: $output.isLoading,
                 text: .constant(""),
                 content: {
                     ZStack {
                         setUpTabView()
-                            .frame(
-                                width: UIScreen.main.bounds.width,
-                                height: UIScreen.main.bounds.height
-                            )
                             .overlay(alignment: .top) {
-                                HeaderHomeView(
-                                    imageURL: output.user?.avatarUrl ?? "",
-                                    isShowingPersonalMenu: $isShowingPersonalMenu
-                                )
-                                .padding(.top, 60.0)
-                                .padding(.leading, 20.0)
+                                setUpHeaderHomeView()
                             }
                             .overlay {
-                                if isShowingPersonalMenu {
-                                    setUpPersonalMenu()
-                                }
+                                if isShowingPersonalMenu { setUpPersonalMenu() }
                             }
                     }
                 }
             )
             .onAppear(perform: {
                 withAnimation(Animation.easeInOut(duration: 1.0).delay(1.0)) {
-                    showSkeletonAnimation.toggle()
+                    showSkeletonAnimation = false
                 }
                 output.surveys = UserStorage.cachedSurveyList
                 self.loadUserInfoTrigger.send()
@@ -119,6 +113,7 @@ struct HomeView: View {
             }
             .gesture(
                 DragGesture(
+                    minimumDistance: 15.0,
                     coordinateSpace: .local
                 )
                 .onEnded { handleSwipe(translation: $0.translation.width) }
@@ -137,7 +132,10 @@ struct HomeView: View {
                 })
             )
         }
-        .edgesIgnoringSafeArea(.all)
+        .frame(
+            width: UIScreen.main.bounds.width,
+            height: UIScreen.main.bounds.height
+        )
     }
 
     private func setUpSurveyItemView(with index: Int, and survey: Survey) -> some View {
@@ -184,6 +182,15 @@ struct HomeView: View {
             .accessibilityIdentifier(TestConstants.Home.pageIndicator)
             .padding(.bottom, 200.0)
         }
+    }
+
+    private func setUpHeaderHomeView() -> some View {
+        HeaderHomeView(
+            imageURL: output.user?.avatarUrl ?? "",
+            isShowingPersonalMenu: $isShowingPersonalMenu
+        )
+        .padding(.top, 60.0)
+        .padding(.leading, 20.0)
     }
 
     private func handleSwipe(translation: CGFloat) {

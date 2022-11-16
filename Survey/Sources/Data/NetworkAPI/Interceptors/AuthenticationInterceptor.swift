@@ -42,7 +42,7 @@ final class AuthenticationInterceptor: RequestInterceptor {
         dueTo error: Error,
         completion: @escaping (RetryResult) -> Void
     ) {
-        guard request.retryCount == 0 else { return completion(.doNotRetry) }
+        guard request.retryCount < 4 else { return completion(.doNotRetry) }
 
         if refreshRequest != nil { return }
 

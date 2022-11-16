@@ -55,14 +55,14 @@ struct HomeView: View {
                     }
                 }
             )
-            .onAppear(perform: {
-                withAnimation(Animation.easeInOut(duration: 1.0).delay(1.0)) {
+            .onAppear {
+                withAnimation(.easeInOut(duration: 1.0).delay(1.0)) {
                     showSkeletonAnimation = false
                 }
                 output.surveys = UserStorage.cachedSurveyList
                 self.loadUserInfoTrigger.send()
                 self.loadTrigger.send()
-            })
+            }
             .overlay {
                 SkeletonView()
                     .hidden(!showSkeletonAnimation)

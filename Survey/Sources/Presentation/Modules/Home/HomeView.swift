@@ -110,10 +110,11 @@ struct HomeView: View {
                     with: index,
                     and: survey
                 )
+                .clipped()
             }
             .gesture(
                 DragGesture(
-                    minimumDistance: 15.0,
+                    minimumDistance: 11.0,
                     coordinateSpace: .local
                 )
                 .onEnded { handleSwipe(translation: $0.translation.width) }

@@ -10,8 +10,6 @@ import SwiftUI
 
 struct SurveyItemView: View {
 
-    @State private var fadeInOut = false
-
     let survey: Survey
     let willGoToDetail: () -> Void
 
@@ -24,15 +22,8 @@ struct SurveyItemView: View {
                             width: UIScreen.main.bounds.width,
                             height: UIScreen.main.bounds.height
                         )
-                        .opacity(fadeInOut ? 1.0 : 0.0)
                 }
         }
-        .onAppear(perform: {
-            fadeInOut = false
-            withAnimation(Animation.easeInOut(duration: 1.0)) {
-                fadeInOut.toggle()
-            }
-        })
     }
 
     private func setUpComponents() -> some View {
@@ -69,10 +60,7 @@ struct SurveyItemView: View {
     }
 
     private func setUpMainImage() -> some View {
-        AsyncImage(
-            url: survey.largeImageURL,
-            transaction: Transaction(animation: .easeInOut(duration: 1.0))
-        ) { phase in
+        AsyncImage(url: survey.largeImageURL) { phase in
             switch phase {
             case .empty:
                 ProgressView()
@@ -83,9 +71,6 @@ struct SurveyItemView: View {
                     .scaledToFill()
                     .edgesIgnoringSafeArea(.all)
                     .transition(.opacity)
-                    .onAppear(perform: {
-                        fadeInOut = true
-                    })
             case .failure:
                 Assets.ic_background.image
                     .resizable()
@@ -95,7 +80,7 @@ struct SurveyItemView: View {
                 EmptyView()
             }
         }
-        .opacity(fadeInOut ? 0.6 : 0.0)
+        .opacity(0.6)
         .frame(
             width: UIScreen.main.bounds.width,
             height: UIScreen.main.bounds.height

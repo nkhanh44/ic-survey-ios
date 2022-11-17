@@ -112,13 +112,6 @@ struct HomeView: View {
                 )
                 .clipped()
             }
-            .gesture(
-                DragGesture(
-                    minimumDistance: 11.0,
-                    coordinateSpace: .local
-                )
-                .onEnded { handleSwipe(translation: $0.translation.width) }
-            )
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         .overlay(alignment: .leading) {
@@ -137,6 +130,12 @@ struct HomeView: View {
             width: UIScreen.main.bounds.width,
             height: UIScreen.main.bounds.height
         )
+        .onChange(of: tabSelection) { tab in
+            let surveyListCount = output.surveys.count
+            if tab == surveyListCount - 1 {
+                loadTrigger.send()
+            }
+        }
     }
 
     private func setUpSurveyItemView(with index: Int, and survey: Survey) -> some View {

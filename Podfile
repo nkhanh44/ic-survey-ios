@@ -1,4 +1,4 @@
-platform :ios, '11.0'
+platform :ios, '13.0'
 use_frameworks!
 inhibit_all_warnings!
 
@@ -16,6 +16,7 @@ target 'Survey' do
   pod 'Kingfisher'
   pod 'SnapKit'
   pod 'ShimmerView'
+  pod 'SwiftUI-Pull-To-Refresh', '~> 1.1.8'
 
   # Storage
   pod 'KeychainAccess'

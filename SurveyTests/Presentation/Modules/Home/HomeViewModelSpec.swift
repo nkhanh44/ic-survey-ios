@@ -29,6 +29,7 @@ final class HomeViewModelSpec: QuickSpec {
         let loadTrigger = PassthroughSubject<Void, Never>()
         let willGoToDetail = PassthroughSubject<Void, Never>()
         let logoutTrigger = PassthroughSubject<Void, Never>()
+        let reloadTrigger = PassthroughSubject<Void, Never>()
 
         describe("a HomeViewModel") {
 
@@ -46,7 +47,8 @@ final class HomeViewModelSpec: QuickSpec {
                     loadUserInfoTrigger: loadUserInfoTrigger.eraseToAnyPublisher(),
                     loadTrigger: loadTrigger.eraseToAnyPublisher(),
                     willGoToDetail: willGoToDetail.eraseToAnyPublisher(),
-                    logoutTrigger: logoutTrigger.eraseToAnyPublisher()
+                    logoutTrigger: logoutTrigger.eraseToAnyPublisher(),
+                    reloadTrigger: reloadTrigger.eraseToAnyPublisher()
                 )
                 self.output = viewModel.transform(self.input)
             }
@@ -131,6 +133,32 @@ final class HomeViewModelSpec: QuickSpec {
 
                     loadUserInfoTrigger.send()
                     logoutTrigger.send()
+
+                    expect(self.output.alert).toEventuallyNot(beNil())
+                }
+            }
+
+            context("when reload survey list returns success") {
+
+                beforeEach {
+                    reloadTrigger.send()
+                }
+
+                it("has getSurveyList called") {
+                    expect(homeUseCase.getSurveyListCalled) == true
+                }
+
+                it("returns output with not empty items") {
+                    expect(self.output.surveys).toNotEventually(beEmpty())
+                }
+            }
+
+            context("when reload survey list returns failure with error alert") {
+
+                it("returns output with alert displayed") {
+                    homeUseCase.getSurveyListReturnValue = .failure(TestError())
+
+                    reloadTrigger.send()
 
                     expect(self.output.alert).toEventuallyNot(beNil())
                 }

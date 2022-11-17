@@ -6,8 +6,8 @@ name: Deploy Build To App Store
 ### APPSTORE_CONNECT_API_KEY
 
 on:
-  push:
-    branches: [ master, main ]
+  pull_request:
+    types: [opened, reopened, edited, synchronize]
 
 jobs:
   lint:

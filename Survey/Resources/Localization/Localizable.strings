@@ -11,3 +11,7 @@
 "common.logout.title" = "Are you sure you want to log out?";
 
 "user.logoutButton.text" = "Logout";
+
+// NPS
+"nps.notLikely.text" = "Not at all Likely";
+"nps.likely.text" = "Extremely Likely";

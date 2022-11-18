@@ -157,7 +157,13 @@ struct HomeView: View {
         }
         .fullScreenCover(isPresented: $isModalPresented) {
             SurveyDetailView(
-                viewModel: SurveyDetailViewModel(),
+                viewModel: SurveyDetailViewModel(
+                    surveyQuestionUseCase: SurveyQuestionUseCase(
+                        surveyRepository: SurveyRepository(
+                            api: AuthenticationNetworkAPI()
+                        )
+                    )
+                ),
                 isPresented: $isModalPresented,
                 survey: survey
             )

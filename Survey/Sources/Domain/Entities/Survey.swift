@@ -13,11 +13,16 @@ protocol Survey {
     var title: String { get }
     var description: String { get }
     var coverImageURL: String { get }
+    var questions: [SurveyQuestion]? { get }
 }
 
 extension Survey {
 
     var largeImageURL: URL? {
         URL(string: coverImageURL + "l")
+    }
+
+    var sortedQuestions: [SurveyQuestion]? {
+        questions?.sorted { $0.displayOrder < $1.displayOrder }
     }
 }

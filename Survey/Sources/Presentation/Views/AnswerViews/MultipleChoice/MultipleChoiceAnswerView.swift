@@ -10,15 +10,16 @@ import SwiftUI
 
 struct MultipleChoiceAnswerView: View {
 
-    var choices: [String]
+    @ObservedObject var input: AnswerViewModel.Input
+    @ObservedObject var output: AnswerViewModel.Output
 
     var body: some View {
         VStack(alignment: .center, spacing: 0.0) {
-            ForEach(choices, id: \.self) { item in
+            ForEach(output.answerTitles, id: \.self) { item in
                 MultipleSelectionView(title: item)
                     .padding()
 
-                if item != choices.last {
+                if item != output.answerTitles.last {
                     Divider()
                         .background(.white)
                 }
@@ -26,18 +27,10 @@ struct MultipleChoiceAnswerView: View {
         }
         .background(.clear)
     }
-}
 
-struct MultipleChoiceAnswerViewPreView: PreviewProvider {
-
-    static var previews: some View {
-        MultipleChoiceAnswerView(
-            choices: [
-                "Choice 1",
-                "Choice 2",
-                "Choice 3"
-            ]
-        )
-        .background(.black)
+    init(viewModel: AnswerViewModel) {
+        let input = AnswerViewModel.Input()
+        output = viewModel.transform(input)
+        self.input = input
     }
 }

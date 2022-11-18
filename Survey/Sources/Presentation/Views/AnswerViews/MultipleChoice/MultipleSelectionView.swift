@@ -16,6 +16,7 @@ struct MultipleSelectionView: View {
     var body: some View {
         HStack {
             Text(title)
+                .opacity(selected ? 1.0 : 0.5)
                 .font(.mediumBold)
                 .foregroundColor(.white)
 

@@ -17,8 +17,9 @@ struct SurveyDetailView: View {
     @State var fadeInOut = false
     @State var didScaleEffect = false
     @State var isSurveyQuestionPresented = false
+    @State var surveyQuestions = [SurveyQuestion]()
 
-    private let startSurveyTrigger = PassthroughSubject<Void, Never>()
+    private let startSurveyTrigger = PassthroughSubject<String, Never>()
     var isPresented: Binding<Bool>
     let survey: Survey
 
@@ -40,7 +41,7 @@ struct SurveyDetailView: View {
                         SButtonView(
                             isValid: .constant(true),
                             action: {
-                                startSurveyTrigger.send()
+                                startSurveyTrigger.send(survey.id)
                             },
                             title: "Start Survey"
                         )
@@ -55,23 +56,38 @@ struct SurveyDetailView: View {
                 }
             }
         })
+        .onReceive(output.$survey) {
+            guard let questions = $0?.questions else { return }
+            surveyQuestions = questions
+            withoutAnimation {
+                isSurveyQuestionPresented.toggle()
+            }
+        }
         .onAppear(perform: {
             fadeInOut = false
             withAnimation(Animation.easeInOut(duration: 1.0)) {
                 fadeInOut.toggle()
             }
         })
-        .onReceive(output.$willGoToNextSurvey) {
-            guard $0 else { return }
-            withoutAnimation {
-                isSurveyQuestionPresented.toggle()
-            }
-        }
         .fullScreenCover(isPresented: $isSurveyQuestionPresented) {
-            SurveyQuestionView(isPresented: $isSurveyQuestionPresented)
+            if !surveyQuestions.isEmpty {
+                SurveyQuestionView(
+                    isPresented: $isSurveyQuestionPresented,
+                    questions: surveyQuestions
+                )
+            }
         }
         .edgesIgnoringSafeArea(.all)
         .preferredColorScheme(.dark)
+        .alert(isPresented: .constant($output.alert.wrappedValue != nil)) {
+            Alert(
+                title: Text(output.alert?.title ?? ""),
+                message: Text(output.alert?.message ?? ""),
+                dismissButton: .default(Text("OK"), action: {
+                    $output.alert.wrappedValue = nil
+                })
+            )
+        }
     }
 
     init(

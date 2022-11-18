@@ -10,51 +10,54 @@ import SwiftUI
 
 struct TextFieldAnswerView: View {
 
-    var isMultipleLines = false
-    @State var textFieldAnswers: [String]
-    @State var text: String = ""
+    @ObservedObject var input: AnswerViewModel.Input
+    @ObservedObject var output: AnswerViewModel.Output
 
-    var answerPlaceholders: [String]
-    let placeholderText: String
+    var isMultipleLines: Bool
+    @State var answers: [String]
 
     var body: some View {
         VStack {
             if isMultipleLines {
-                STextEditorView(placeholder: placeholderText, text: $text)
-                    .font(.body)
-                    .background(.gray.opacity(0.2))
-                    .accentColor(.stoneGray)
-                    .frame(height: 168.0)
-                    .cornerRadius(10.0)
+                STextEditorView(
+                    placeholder: output.answerTitles.first ?? "",
+                    text: $answers.first ?? .constant("")
+                )
+                .font(.body)
+                .background(.gray.opacity(0.2))
+                .accentColor(.stoneGray)
+                .frame(height: 168.0)
+                .cornerRadius(10.0)
             } else {
-                ForEach(textFieldAnswers.indices, id: \.self) { index in
-                    TextField("", text: $textFieldAnswers[index].projectedValue)
+                ForEach(output.answerTitles.indices, id: \.self) { index in
+                    TextField("", text: $answers[index])
                         .modifier(
                             TextFieldAnswerModifier(
-                                showPlaceholder: textFieldAnswers[index].isEmpty,
-                                placeholder: answerPlaceholders[index]
+                                showPlaceholder: answers[index].isEmpty,
+                                placeholder: output.answerTitles[index]
                             )
                         )
+                        .tag(index)
                         .padding(.bottom, 16.0)
                 }
             }
         }
         .padding()
     }
-}
 
-struct TextFieldAnswerViewPreView: PreviewProvider {
+    init(viewModel: AnswerViewModel, isMultipleLines: Bool) {
+        let input = AnswerViewModel.Input()
+        output = viewModel.transform(input)
+        self.isMultipleLines = isMultipleLines
+        if !isMultipleLines {
+            answers = [String](
+                repeating: "",
+                count: viewModel.surveyAnswers.count
+            )
+        } else {
+            answers = [""]
+        }
 
-    static var previews: some View {
-        TextFieldAnswerView(
-            textFieldAnswers: ["", "", ""],
-            answerPlaceholders: [
-                "placeholder 1",
-                "placeholder 2",
-                "placeholder 3"
-            ],
-            placeholderText: "Your thoughts"
-        )
-        .background(.blue)
+        self.input = input
     }
 }

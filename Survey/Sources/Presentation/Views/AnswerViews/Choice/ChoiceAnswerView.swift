@@ -10,11 +10,16 @@ import SwiftUI
 
 struct ChoiceAnswerView: View {
 
-    var answerTexts: [String] = []
+    @ObservedObject var input: AnswerViewModel.Input
+    @ObservedObject var output: AnswerViewModel.Output
 
     var body: some View {
         ZStack {
-            PickerView(selections: .constant([1]), data: [answerTexts])
+            if !output.answerTitles.isEmpty {
+                PickerView(
+                    selections: .constant([output.answerTitles.count]),
+                    data: [output.answerTitles]
+                )
                 .background(.clear)
                 .overlay {
                     Spacer()
@@ -23,20 +28,13 @@ struct ChoiceAnswerView: View {
                         .overlay(Divider().background(.white), alignment: .top)
                         .overlay(Divider().background(.white), alignment: .bottom)
                 }
+            }
         }
     }
-}
 
-struct ChoiceAnswerViewPreView: PreviewProvider {
-
-    static var previews: some View {
-        ChoiceAnswerView(
-            answerTexts: [
-                "Very fulfilled",
-                "Somewhat fullfilled",
-                "Somewhat unfulfilled"
-            ]
-        )
-        .background(.black)
+    init(viewModel: AnswerViewModel) {
+        let input = AnswerViewModel.Input()
+        output = viewModel.transform(input)
+        self.input = input
     }
 }

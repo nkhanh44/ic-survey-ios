@@ -11,9 +11,8 @@ import SwiftUI
 
 struct SurveyQuestionView: View {
 
-    // TODO: Remove dummy survey and list
-    let list = Array(APISurvey.dummyList.enumerated())
     @Binding var isPresented: Bool
+    var questions: [SurveyQuestion]
 
     var body: some View {
         LoadingView(
@@ -21,8 +20,13 @@ struct SurveyQuestionView: View {
             text: .constant(""),
             content: {
                 TabView {
-                    ForEach(list, id: \.element.id) { _ in
-                        SurveyQuestionBodyView()
+                    ForEach(Array(questions.enumerated()), id: \.element.id) { question in
+                        SurveyQuestionBodyView(
+                            viewModel: SurveyQuestionBodyViewModel(
+                                question: question.element,
+                                numberOfQuestions: questions.count
+                            )
+                        )
                     }
                 }
                 .padding(.top, 60.0)
@@ -42,7 +46,7 @@ struct SurveyQuestionView: View {
         .padding(.top, 54.0)
         .background(
             // TODO: Remove dummy cover image url
-            Image(list.first?.element.coverImageURL ?? "")
+            Image(questions[0].coverImageUrl)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .opacity(0.6)
@@ -111,6 +115,9 @@ struct SurveyQuestionView: View {
 struct SurveyQuestionViewPreView: PreviewProvider {
 
     static var previews: some View {
-        SurveyQuestionView(isPresented: .constant(true))
+        SurveyQuestionView(
+            isPresented: .constant(true),
+            questions: []
+        )
     }
 }

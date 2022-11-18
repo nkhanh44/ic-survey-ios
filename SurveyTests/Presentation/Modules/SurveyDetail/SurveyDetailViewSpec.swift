@@ -32,7 +32,7 @@ final class SurveyDetailViewSpec: QuickSpec {
 
             context("has onAppear called") {
 
-                it("alert not showing") {
+                it("alert is not showing") {
                     expect(surveyDetailView.output.$alert).toNot(beNil())
                 }
             }

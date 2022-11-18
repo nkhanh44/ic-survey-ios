@@ -60,6 +60,5 @@ extension SurveyDetailViewModel {
 
         @Published var survey: Survey?
         @Published var alert: AlertMessage?
-        @Published var isLoading = false
     }
 }

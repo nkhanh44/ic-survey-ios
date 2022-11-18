@@ -11,6 +11,7 @@
 		1C044B9D28ACD9A5001FF098 /* HomeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C044B9C28ACD9A5001FF098 /* HomeUseCase.swift */; };
 		1C044B9F28ACDF58001FF098 /* AuthenticationInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C044B9E28ACDF58001FF098 /* AuthenticationInterceptor.swift */; };
 		1C044BA128ACE4C7001FF098 /* AuthenticationNetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C044BA028ACE4C7001FF098 /* AuthenticationNetworkAPI.swift */; };
+		1C1C2F97292BC54C00DF460B /* APISurveyQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1C2F96292BC54C00DF460B /* APISurveyQuestion.swift */; };
 		1C2ADCB628CC7C9C00743802 /* RatingAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2ADCB528CC7C9C00743802 /* RatingAnswerView.swift */; };
 		1C2ADCB828CC83D300743802 /* ChoiceAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2ADCB728CC83D300743802 /* ChoiceAnswerView.swift */; };
 		1C2ADCBD28CC9E6300743802 /* NPSAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2ADCBC28CC9E6300743802 /* NPSAnswerView.swift */; };
@@ -38,6 +39,8 @@
 		1C65921B2927410E007AD143 /* DisplayType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C65921A2927410E007AD143 /* DisplayType.swift */; };
 		1C65921D29274126007AD143 /* PickType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C65921C29274126007AD143 /* PickType.swift */; };
 		1C65922229274655007AD143 /* SurveyQuestionUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C65922029274644007AD143 /* SurveyQuestionUseCaseMock.swift */; };
+		1C659224292773C4007AD143 /* APISurveyQuestion+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C659223292773C4007AD143 /* APISurveyQuestion+Dummy.swift */; };
+		1C6592272927744F007AD143 /* APISurveyAnswer+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6592262927744F007AD143 /* APISurveyAnswer+Dummy.swift */; };
 		1C94DA1228996C8100ED0984 /* SError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C94DA1128996C8100ED0984 /* SError.swift */; };
 		1C94DA14289983EA00ED0984 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C94DA13289983EA00ED0984 /* LoadingView.swift */; };
 		1C94DA162899845900ED0984 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C94DA152899845900ED0984 /* ActivityIndicator.swift */; };
@@ -223,6 +226,7 @@
 		1C044B9C28ACD9A5001FF098 /* HomeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUseCase.swift; sourceTree = "<group>"; };
 		1C044B9E28ACDF58001FF098 /* AuthenticationInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationInterceptor.swift; sourceTree = "<group>"; };
 		1C044BA028ACE4C7001FF098 /* AuthenticationNetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationNetworkAPI.swift; sourceTree = "<group>"; };
+		1C1C2F96292BC54C00DF460B /* APISurveyQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISurveyQuestion.swift; sourceTree = "<group>"; };
 		1C2ADCB528CC7C9C00743802 /* RatingAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingAnswerView.swift; sourceTree = "<group>"; };
 		1C2ADCB728CC83D300743802 /* ChoiceAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceAnswerView.swift; sourceTree = "<group>"; };
 		1C2ADCBC28CC9E6300743802 /* NPSAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NPSAnswerView.swift; sourceTree = "<group>"; };
@@ -250,6 +254,8 @@
 		1C65921A2927410E007AD143 /* DisplayType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayType.swift; sourceTree = "<group>"; };
 		1C65921C29274126007AD143 /* PickType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickType.swift; sourceTree = "<group>"; };
 		1C65922029274644007AD143 /* SurveyQuestionUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyQuestionUseCaseMock.swift; sourceTree = "<group>"; };
+		1C659223292773C4007AD143 /* APISurveyQuestion+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APISurveyQuestion+Dummy.swift"; sourceTree = "<group>"; };
+		1C6592262927744F007AD143 /* APISurveyAnswer+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APISurveyAnswer+Dummy.swift"; sourceTree = "<group>"; };
 		1C94DA1128996C8100ED0984 /* SError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SError.swift; sourceTree = "<group>"; };
 		1C94DA13289983EA00ED0984 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		1C94DA152899845900ED0984 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -465,6 +471,7 @@
 			isa = PBXGroup;
 			children = (
 				1C516B7A28A15BF600DB7B7B /* APIToken+Dummy.swift */,
+				1C1C2F96292BC54C00DF460B /* APISurveyQuestion.swift */,
 			);
 			path = Dummy;
 			sourceTree = "<group>";
@@ -616,12 +623,12 @@
 			path = Keychain;
 			sourceTree = "<group>";
 		};
-		1C65921F2927462C007AD143 /* SurveyDetail */ = {
+		1C65921F2927462C007AD143 /* SurveyQuestion */ = {
 			isa = PBXGroup;
 			children = (
 				1C65922029274644007AD143 /* SurveyQuestionUseCaseMock.swift */,
 			);
-			path = SurveyDetail;
+			path = SurveyQuestion;
 			sourceTree = "<group>";
 		};
 		1CA8B27028B4014300E5C225 /* Base */ = {
@@ -856,6 +863,8 @@
 			children = (
 				1C516B9728A3AB3A00DB7B7B /* APISurvey+Dummy.swift */,
 				1CD6E12C28CDF8BD00A0457B /* APIUser+Dummy.swift */,
+				1C659223292773C4007AD143 /* APISurveyQuestion+Dummy.swift */,
+				1C6592262927744F007AD143 /* APISurveyAnswer+Dummy.swift */,
 			);
 			path = Mocking;
 			sourceTree = "<group>";
@@ -1069,7 +1078,7 @@
 		3BCCE08012756E065644651B /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				1C65921F2927462C007AD143 /* SurveyDetail */,
+				1C65921F2927462C007AD143 /* SurveyQuestion */,
 				1CA8B28B28B6636600E5C225 /* Home */,
 				1CEE605328ABCDCC00748C63 /* UserSession */,
 				1C516B8828A2C31100DB7B7B /* Keychain */,
@@ -1853,6 +1862,7 @@
 				1C2ADCC528CCD5B800743802 /* MultipleChoiceAnswerView.swift in Sources */,
 				1CC791EF2922576C008A1A81 /* SurveyAnswer.swift in Sources */,
 				1CD6FA732897ACD900B4B0D7 /* LogInRequestConfiguration.swift in Sources */,
+				1C6592272927744F007AD143 /* APISurveyAnswer+Dummy.swift in Sources */,
 				1CEE603628A6454500748C63 /* SurveyRequestConfiguration.swift in Sources */,
 				EABA6D4F0FE97293430D3FC9 /* Constants.swift in Sources */,
 				2400C67C20FEC1B8E2E7E70A /* NetworkAPIError.swift in Sources */,
@@ -1926,6 +1936,7 @@
 				1CD4E37828A0CF6200EA1E8B /* StoreTokenUseCase.swift in Sources */,
 				1C044B9D28ACD9A5001FF098 /* HomeUseCase.swift in Sources */,
 				1C2ADCC928CCDDA200743802 /* CheckButtonModifier.swift in Sources */,
+				1C659224292773C4007AD143 /* APISurveyQuestion+Dummy.swift in Sources */,
 				1C94DA1E289BBC9B00ED0984 /* ErrorTextModifier.swift in Sources */,
 				1C65921729254767007AD143 /* AnswerViewModel.swift in Sources */,
 				1CA8B29D28BCD04F00E5C225 /* Array+Comparable.swift in Sources */,
@@ -1970,6 +1981,7 @@
 				1CA8B29028B6644B00E5C225 /* HomeUseCaseMock.swift in Sources */,
 				1CEE604F28ABCD2200748C63 /* SplashViewSpec.swift in Sources */,
 				1C516B8528A1619D00DB7B7B /* LoginViewSpec.swift in Sources */,
+				1C1C2F97292BC54C00DF460B /* APISurveyQuestion.swift in Sources */,
 				1C516B8728A1CB6700DB7B7B /* StoreTokenUseCaseSpec.swift in Sources */,
 				1CEE605228ABCD8B00748C63 /* UserSessionUseCaseSpec.swift in Sources */,
 				1CD6E14028D0D03E00A0457B /* UserUseCaseMock.swift in Sources */,

@@ -6,8 +6,6 @@
 //  Copyright © 2022 Nimble. All rights reserved.
 //
 
-import Japx
-
 struct APISurveyQuestion: SurveyQuestion, Codable {
 
     let id: String

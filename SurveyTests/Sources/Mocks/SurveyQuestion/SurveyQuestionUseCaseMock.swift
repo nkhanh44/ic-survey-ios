@@ -13,7 +13,7 @@ import Combine
 final class SurveyQuestionUseCaseMock: SurveyQuestionUseCaseProtocol {
 
     var getSurveyDetailCalled = false
-    var getSurveyDetailReturnValue = Result<Survey, Error>.success(APISurvey.dummyList.first!)
+    var getSurveyDetailReturnValue = Result<Survey, Error>.success(APISurvey.dummyList[0])
 
     func getSurveyDetail(id: String) -> Observable<Survey> {
         getSurveyDetailCalled = true

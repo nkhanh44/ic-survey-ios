@@ -6,8 +6,6 @@
 //  Copyright © 2022 Nimble. All rights reserved.
 //
 
-import Foundation
-
 protocol SurveyAnswer {
 
     var id: String { get }

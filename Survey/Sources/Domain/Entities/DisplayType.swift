@@ -6,8 +6,6 @@
 //  Copyright © 2022 Nimble. All rights reserved.
 //
 
-import Foundation
-
 enum DisplayType: String, Codable {
 
     case star

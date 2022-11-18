@@ -6,8 +6,6 @@
 //  Copyright © 2022 Nimble. All rights reserved.
 //
 
-import Foundation
-
 enum PickType: String, Codable {
 
     case one, any, none

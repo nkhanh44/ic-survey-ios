@@ -21,8 +21,4 @@ extension Survey {
     var largeImageURL: URL? {
         URL(string: coverImageURL + "l")
     }
-
-    var sortedQuestions: [SurveyQuestion]? {
-        questions?.sorted { $0.displayOrder < $1.displayOrder }
-    }
 }

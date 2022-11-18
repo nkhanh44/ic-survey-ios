@@ -6,8 +6,6 @@
 //  Copyright © 2022 Nimble. All rights reserved.
 //
 
-//  swiftlint:disable file_types_order
-
 import Foundation
 
 protocol SurveyQuestion {
@@ -26,27 +24,4 @@ extension SurveyQuestion {
     var largeImageURL: URL? {
         URL(string: coverImageUrl + "l")
     }
-
-    var sortedAnswers: [SurveyAnswer] {
-        answers?.sorted { $0.displayOrder < $1.displayOrder } ?? []
-    }
-}
-
-enum DisplayType: String, Codable {
-
-    case star
-    case heart
-    case smiley
-    case choice
-    case dropdown
-    case nps
-    case textarea
-    case textfield
-    case intro
-    case outro
-}
-
-enum PickType: String, Codable {
-
-    case one, any, none
 }

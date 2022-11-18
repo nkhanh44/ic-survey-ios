@@ -17,28 +17,48 @@ final class SurveyDetailViewModelSpec: QuickSpec {
 
     var input: SurveyDetailViewModel.Input!
     var output: SurveyDetailViewModel.Output!
+    var surveyQuestionUseCase: SurveyQuestionUseCaseMock!
 
     override func spec() {
         var viewModel: SurveyDetailViewModel!
-        let startSurveyTrigger = PassthroughSubject<Void, Never>()
+        let startSurveyTrigger = PassthroughSubject<String, Never>()
 
         describe("a SurveyDetailViewModel") {
 
             beforeEach {
-                viewModel = SurveyDetailViewModel()
-
+                self.surveyQuestionUseCase = SurveyQuestionUseCaseMock()
+                viewModel = SurveyDetailViewModel(
+                    surveyQuestionUseCase: self.surveyQuestionUseCase
+                )
                 self.input = SurveyDetailViewModel.Input(
                     startSurveyTrigger: startSurveyTrigger.asDriver()
                 )
                 self.output = viewModel.transform(self.input)
             }
 
-            context("when tap next button returns success") {
+            context("when tap next button") {
 
-                it("returns output willGoToNextSurvey with true") {
-                    startSurveyTrigger.send(())
+                context("returns success") {
 
-                    expect(self.output.willGoToNextSurvey).toEventually(beTrue())
+                    beforeEach {
+                        startSurveyTrigger.send("id")
+                    }
+
+                    it("returns output survey not nil") {
+                        expect(self.output.$survey).toEventuallyNot(beNil())
+                    }
+                }
+
+                context("returns failure") {
+
+                    beforeEach {
+                        self.surveyQuestionUseCase.getSurveyDetailReturnValue = .failure(TestError())
+                        startSurveyTrigger.send("id")
+                    }
+
+                    it("returns output alert not nil") {
+                        expect(self.output.alert).toEventuallyNot(beNil())
+                    }
                 }
             }
         }

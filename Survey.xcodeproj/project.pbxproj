@@ -37,6 +37,7 @@
 		1C6592192926302E007AD143 /* NPSTextModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6592182926302E007AD143 /* NPSTextModifier.swift */; };
 		1C65921B2927410E007AD143 /* DisplayType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C65921A2927410E007AD143 /* DisplayType.swift */; };
 		1C65921D29274126007AD143 /* PickType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C65921C29274126007AD143 /* PickType.swift */; };
+		1C65922229274655007AD143 /* SurveyQuestionUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C65922029274644007AD143 /* SurveyQuestionUseCaseMock.swift */; };
 		1C94DA1228996C8100ED0984 /* SError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C94DA1128996C8100ED0984 /* SError.swift */; };
 		1C94DA14289983EA00ED0984 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C94DA13289983EA00ED0984 /* LoadingView.swift */; };
 		1C94DA162899845900ED0984 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C94DA152899845900ED0984 /* ActivityIndicator.swift */; };
@@ -248,6 +249,7 @@
 		1C6592182926302E007AD143 /* NPSTextModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NPSTextModifier.swift; sourceTree = "<group>"; };
 		1C65921A2927410E007AD143 /* DisplayType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayType.swift; sourceTree = "<group>"; };
 		1C65921C29274126007AD143 /* PickType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickType.swift; sourceTree = "<group>"; };
+		1C65922029274644007AD143 /* SurveyQuestionUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyQuestionUseCaseMock.swift; sourceTree = "<group>"; };
 		1C94DA1128996C8100ED0984 /* SError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SError.swift; sourceTree = "<group>"; };
 		1C94DA13289983EA00ED0984 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		1C94DA152899845900ED0984 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -612,6 +614,14 @@
 				1C516B8928A2C31A00DB7B7B /* KeychainServiceMock.swift */,
 			);
 			path = Keychain;
+			sourceTree = "<group>";
+		};
+		1C65921F2927462C007AD143 /* SurveyDetail */ = {
+			isa = PBXGroup;
+			children = (
+				1C65922029274644007AD143 /* SurveyQuestionUseCaseMock.swift */,
+			);
+			path = SurveyDetail;
 			sourceTree = "<group>";
 		};
 		1CA8B27028B4014300E5C225 /* Base */ = {
@@ -1059,6 +1069,7 @@
 		3BCCE08012756E065644651B /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				1C65921F2927462C007AD143 /* SurveyDetail */,
 				1CA8B28B28B6636600E5C225 /* Home */,
 				1CEE605328ABCDCC00748C63 /* UserSession */,
 				1C516B8828A2C31100DB7B7B /* Keychain */,
@@ -1969,6 +1980,7 @@
 				1CEE605528ABCDDE00748C63 /* UserSessionUseCaseMock.swift in Sources */,
 				1CAFBB2428B325AE00D068DD /* SurveyDetailViewSpec.swift in Sources */,
 				1C516B7828A152F600DB7B7B /* LoginUseCaseSpec.swift in Sources */,
+				1C65922229274655007AD143 /* SurveyQuestionUseCaseMock.swift in Sources */,
 				1CD4E37A28A0EEC100EA1E8B /* StoreTokenUseCaseMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

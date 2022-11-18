@@ -19,6 +19,7 @@ struct SurveyQuestionBodyView: View {
     var body: some View {
         VStack(alignment: .leading) {
             // MARK: - Remove dummy
+
             Text("x/x")
                 .modifier(SmallTagTextModifier())
                 .padding(.bottom, 10.0)

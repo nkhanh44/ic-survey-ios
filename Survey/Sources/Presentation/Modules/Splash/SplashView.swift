@@ -27,9 +27,7 @@ struct SplashView: View {
             content: {
                 setUpView()
                     .preferredColorScheme(.dark)
-                    .onAppear(perform: {
-                        loadTrigger.send()
-                    })
+                    .onAppear { loadTrigger.send() }
                     .onReceive(output.$hasUserLoggedIn.dropFirst()) { hasUserLoggedIn in
                         guard hasUserLoggedIn else {
                             appRouter.state = .login

@@ -92,6 +92,10 @@ final class AuthenticationInterceptor: RequestInterceptor {
                     self.appRouter.state = .login
                 }
             } catch {
+                if (try? self.keychain.get(key: .token)) != nil,
+                   data.response?.statusCode == 400 {
+                    try? self.keychain.removeToken(with: .token)
+                }
                 completion(.failure(error))
             }
         }

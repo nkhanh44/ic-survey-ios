@@ -48,6 +48,9 @@ struct SplashView: View {
                             title: Text(output.alert?.title ?? ""),
                             message: Text(output.alert?.message ?? ""),
                             dismissButton: .default(Text("OK"), action: {
+                                if (try? KeychainService.shared.get(key: .token)) == nil {
+                                    appRouter.state = .login
+                                }
                                 $output.alert.wrappedValue = nil
                             })
                         )

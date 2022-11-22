@@ -60,6 +60,7 @@ struct NPSAnswerView: View {
         }
         .frame(width: 330.0)
     }
+    
 }
 
 struct NPSAnswerViewPreView: PreviewProvider {

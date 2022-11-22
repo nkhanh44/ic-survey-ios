@@ -28,12 +28,12 @@ extension AnswerViewModel: ViewModel {
             .store(in: &output.cancelBag)
 
         input.npsRatingTrigger?
-            .compactMap { ($0 < 5) && ($0 >= 0) }
+            .compactMap { ($0 < 5) && ($0 >= 0) ? 1.0 : 0.5 }
             .assign(to: \.notLikelyLabelOpacity, on: output)
             .store(in: &output.cancelBag)
 
         input.npsRatingTrigger?
-            .compactMap { $0 >= 5 }
+            .compactMap { $0 >= 5 ? 1.0 : 0.5 }
             .assign(to: \.likelyLabelOpacity, on: output)
             .store(in: &output.cancelBag)
 
@@ -60,7 +60,7 @@ extension AnswerViewModel {
 
         @Published var answerTitles = [String]()
         @Published var answerPlaceholders = [String]()
-        @Published var notLikelyLabelOpacity = false
-        @Published var likelyLabelOpacity = false
+        @Published var notLikelyLabelOpacity = 0.5
+        @Published var likelyLabelOpacity = 0.5
     }
 }

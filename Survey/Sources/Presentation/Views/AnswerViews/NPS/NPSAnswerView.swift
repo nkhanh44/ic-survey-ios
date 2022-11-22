@@ -78,12 +78,12 @@ extension NPSAnswerView {
     private func setUpDescription() -> some View {
         HStack {
             Text(AssetLocalization.npsNotLikelyText())
-                .opacity(output.notLikelyLabelOpacity ? 1.0 : 0.5)
+                .opacity(output.notLikelyLabelOpacity)
                 .foregroundColor(.white)
                 .font(.boldBody)
             Spacer()
             Text(AssetLocalization.npsLikelyText())
-                .opacity(output.likelyLabelOpacity ? 1.0 : 0.5)
+                .opacity(output.likelyLabelOpacity)
                 .foregroundColor(.white)
                 .font(.boldBody)
         }

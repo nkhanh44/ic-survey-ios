@@ -27,9 +27,7 @@ struct SplashView: View {
             content: {
                 setUpView()
                     .preferredColorScheme(.dark)
-                    .onAppear(perform: {
-                        loadTrigger.send()
-                    })
+                    .onAppear { loadTrigger.send() }
                     .onReceive(output.$hasUserLoggedIn.dropFirst()) { hasUserLoggedIn in
                         guard hasUserLoggedIn else {
                             appRouter.state = .login
@@ -48,6 +46,9 @@ struct SplashView: View {
                             title: Text(output.alert?.title ?? ""),
                             message: Text(output.alert?.message ?? ""),
                             dismissButton: .default(Text("OK"), action: {
+                                if (try? KeychainService.shared.get(key: .token)) == nil {
+                                    appRouter.state = .login
+                                }
                                 $output.alert.wrappedValue = nil
                             })
                         )

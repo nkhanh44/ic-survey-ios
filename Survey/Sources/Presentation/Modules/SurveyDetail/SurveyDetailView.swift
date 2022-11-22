@@ -20,6 +20,7 @@ struct SurveyDetailView: View {
     @State var surveyQuestions = [SurveyQuestion]()
 
     private let startSurveyTrigger = PassthroughSubject<String, Never>()
+    private let dismissAlertTrigger = PassthroughSubject<Void, Never>()
     var isPresented: Binding<Bool>
     let survey: Survey
 
@@ -83,8 +84,8 @@ struct SurveyDetailView: View {
             Alert(
                 title: Text(output.alert?.title ?? ""),
                 message: Text(output.alert?.message ?? ""),
-                dismissButton: .default(Text("OK"), action: {
-                    $output.alert.wrappedValue = nil
+                dismissButton: .default(Text(AssetLocalization.commonOkText()), action: {
+                    dismissAlertTrigger.send()
                 })
             )
         }
@@ -98,7 +99,8 @@ struct SurveyDetailView: View {
         self.survey = survey
         self.isPresented = isPresented
         let input = SurveyDetailViewModel.Input(
-            startSurveyTrigger: startSurveyTrigger.asDriver()
+            startSurveyTrigger: startSurveyTrigger.asDriver(),
+            dismissAlert: dismissAlertTrigger.asDriver()
         )
         output = viewModel.transform(input)
         self.input = input

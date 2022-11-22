@@ -31,6 +31,11 @@ extension SurveyDetailViewModel: ViewModel {
             .assign(to: \.survey, on: output)
             .store(in: &output.cancelBag)
 
+        input.dismissAlert
+            .map { _ in nil }
+            .assign(to: \.alert, on: output)
+            .store(in: &output.cancelBag)
+
         errorTracker
             .receive(on: RunLoop.main)
             .map { AlertMessage(error: $0) }
@@ -48,9 +53,14 @@ extension SurveyDetailViewModel {
     final class Input: ObservableObject {
 
         let startSurveyTrigger: Driver<String>
+        let dismissAlert: Driver<Void>
 
-        init(startSurveyTrigger: Driver<String>) {
+        init(
+            startSurveyTrigger: Driver<String>,
+            dismissAlert: Driver<Void>
+        ) {
             self.startSurveyTrigger = startSurveyTrigger
+            self.dismissAlert = dismissAlert
         }
     }
 

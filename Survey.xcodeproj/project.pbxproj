@@ -12,6 +12,7 @@
 		1C044B9F28ACDF58001FF098 /* AuthenticationInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C044B9E28ACDF58001FF098 /* AuthenticationInterceptor.swift */; };
 		1C044BA128ACE4C7001FF098 /* AuthenticationNetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C044BA028ACE4C7001FF098 /* AuthenticationNetworkAPI.swift */; };
 		1C1C2F97292BC54C00DF460B /* APISurveyQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1C2F96292BC54C00DF460B /* APISurveyQuestion.swift */; };
+		1C1C2F98292CA56300DF460B /* APISurvey+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C516B9728A3AB3A00DB7B7B /* APISurvey+Dummy.swift */; };
 		1C2ADCB628CC7C9C00743802 /* RatingAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2ADCB528CC7C9C00743802 /* RatingAnswerView.swift */; };
 		1C2ADCB828CC83D300743802 /* ChoiceAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2ADCB728CC83D300743802 /* ChoiceAnswerView.swift */; };
 		1C2ADCBD28CC9E6300743802 /* NPSAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2ADCBC28CC9E6300743802 /* NPSAnswerView.swift */; };
@@ -31,7 +32,6 @@
 		1C516B9028A2D6AA00DB7B7B /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C516B8E28A2D68A00DB7B7B /* KeychainKeys.swift */; };
 		1C516B9528A3AAF300DB7B7B /* APISurvey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C516B9328A3A86000DB7B7B /* APISurvey.swift */; };
 		1C516B9628A3AB0400DB7B7B /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C516B9128A3A5C800DB7B7B /* Survey.swift */; };
-		1C516B9828A3AB3A00DB7B7B /* APISurvey+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C516B9728A3AB3A00DB7B7B /* APISurvey+Dummy.swift */; };
 		1C516B9A28A3AF0C00DB7B7B /* SurveyItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C516B9928A3AF0C00DB7B7B /* SurveyItemView.swift */; };
 		1C6592152924C55B007AD143 /* SurveyQuestionBodyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6592142924C55B007AD143 /* SurveyQuestionBodyViewModel.swift */; };
 		1C65921729254767007AD143 /* AnswerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C65921629254767007AD143 /* AnswerViewModel.swift */; };
@@ -470,8 +470,9 @@
 		0AC9D04FCC10A589FD8E0E78 /* Dummy */ = {
 			isa = PBXGroup;
 			children = (
-				1C516B7A28A15BF600DB7B7B /* APIToken+Dummy.swift */,
+				1C516B9728A3AB3A00DB7B7B /* APISurvey+Dummy.swift */,
 				1C1C2F96292BC54C00DF460B /* APISurveyQuestion.swift */,
+				1C516B7A28A15BF600DB7B7B /* APIToken+Dummy.swift */,
 			);
 			path = Dummy;
 			sourceTree = "<group>";
@@ -861,7 +862,6 @@
 		1CD4E36B28A0237F00EA1E8B /* Mocking */ = {
 			isa = PBXGroup;
 			children = (
-				1C516B9728A3AB3A00DB7B7B /* APISurvey+Dummy.swift */,
 				1CD6E12C28CDF8BD00A0457B /* APIUser+Dummy.swift */,
 				1C659223292773C4007AD143 /* APISurveyQuestion+Dummy.swift */,
 				1C6592262927744F007AD143 /* APISurveyAnswer+Dummy.swift */,
@@ -1887,7 +1887,6 @@
 				1CB186A22892400A00372D50 /* PlaceholderModifier.swift in Sources */,
 				1CD6FA7F2897AFC000B4B0D7 /* LogInUseCase.swift in Sources */,
 				4EB668FA98599FBE41D546B5 /* NetworkAPI.swift in Sources */,
-				1C516B9828A3AB3A00DB7B7B /* APISurvey+Dummy.swift in Sources */,
 				1CB186892890F9DA00372D50 /* LoginViewModel.swift in Sources */,
 				1CD6E13628CE057400A0457B /* UserRepository.swift in Sources */,
 				1C94DA162899845900ED0984 /* ActivityIndicator.swift in Sources */,
@@ -1972,6 +1971,7 @@
 				1CA8B28F28B6644800E5C225 /* SurveyRepositoryMock.swift in Sources */,
 				1C516B8A28A2C31A00DB7B7B /* KeychainServiceMock.swift in Sources */,
 				1CA8B28728B662B200E5C225 /* HomeViewSpec.swift in Sources */,
+				1C1C2F98292CA56300DF460B /* APISurvey+Dummy.swift in Sources */,
 				1CD6E14628D0D93900A0457B /* UserRepositoryMock.swift in Sources */,
 				1CAFBB2528B3269A00D068DD /* SurveyDetailViewModelSpec.swift in Sources */,
 				1CA8B29128B6724E00E5C225 /* HomeUseCaseSpec.swift in Sources */,

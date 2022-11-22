@@ -22,6 +22,7 @@ final class SurveyDetailViewModelSpec: QuickSpec {
     override func spec() {
         var viewModel: SurveyDetailViewModel!
         let startSurveyTrigger = PassthroughSubject<String, Never>()
+        let dismissAlertTrigger = PassthroughSubject<Void, Never>()
 
         describe("a SurveyDetailViewModel") {
 
@@ -31,7 +32,8 @@ final class SurveyDetailViewModelSpec: QuickSpec {
                     surveyQuestionUseCase: self.surveyQuestionUseCase
                 )
                 self.input = SurveyDetailViewModel.Input(
-                    startSurveyTrigger: startSurveyTrigger.asDriver()
+                    startSurveyTrigger: startSurveyTrigger.asDriver(),
+                    dismissAlert: dismissAlertTrigger.asDriver()
                 )
                 self.output = viewModel.transform(self.input)
             }

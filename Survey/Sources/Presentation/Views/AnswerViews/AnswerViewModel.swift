@@ -27,6 +27,16 @@ extension AnswerViewModel: ViewModel {
             .assign(to: \.answerPlaceholders, on: output)
             .store(in: &output.cancelBag)
 
+        input.npsRatingTrigger?
+            .compactMap { ($0 < 5) && ($0 >= 0) }
+            .assign(to: \.notLikelyLabelOpacity, on: output)
+            .store(in: &output.cancelBag)
+
+        input.npsRatingTrigger?
+            .compactMap { $0 >= 5 }
+            .assign(to: \.likelyLabelOpacity, on: output)
+            .store(in: &output.cancelBag)
+
         return output
     }
 }
@@ -37,7 +47,11 @@ extension AnswerViewModel {
 
     final class Input: ObservableObject {
 
-        init() {}
+        let npsRatingTrigger: Driver<Int>?
+
+        init(npsRatingTrigger: Driver<Int>? = nil) {
+            self.npsRatingTrigger = npsRatingTrigger
+        }
     }
 
     final class Output: ObservableObject {
@@ -46,5 +60,7 @@ extension AnswerViewModel {
 
         @Published var answerTitles = [String]()
         @Published var answerPlaceholders = [String]()
+        @Published var notLikelyLabelOpacity = false
+        @Published var likelyLabelOpacity = false
     }
 }

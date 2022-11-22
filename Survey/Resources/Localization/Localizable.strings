@@ -6,6 +6,7 @@
   Copyright © 2022 Nimble. All rights reserved.
 */
 
+"common.ok.text" = "OK";
 "common.cancel.text" = "Cancel";
 "common.logout.text" = "Log out";
 "common.logout.title" = "Are you sure you want to log out?";

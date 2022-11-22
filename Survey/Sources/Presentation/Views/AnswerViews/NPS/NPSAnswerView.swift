@@ -6,14 +6,16 @@
 //  Copyright © 2022 Nimble. All rights reserved.
 //
 
+import Combine
 import SwiftUI
 
 struct NPSAnswerView: View {
 
     @ObservedObject var input: AnswerViewModel.Input
     @ObservedObject var output: AnswerViewModel.Output
-
     @State var rating: Int = -1
+
+    private let npsRatingTrigger = PassthroughSubject<Int, Never>()
 
     var body: some View {
         VStack {
@@ -31,7 +33,9 @@ struct NPSAnswerView: View {
     }
 
     init(viewModel: AnswerViewModel) {
-        let input = AnswerViewModel.Input()
+        let input = AnswerViewModel.Input(
+            npsRatingTrigger: npsRatingTrigger.asDriver()
+        )
         output = viewModel.transform(input)
         self.input = input
     }
@@ -41,8 +45,7 @@ extension NPSAnswerView {
 
     private func setUpComponents() -> some View {
         HStack(alignment: .center, spacing: 0.0) {
-            let pointList = Array(1 ... 10)
-            ForEach(Array(pointList.enumerated()), id: \.offset) { index, point in
+            ForEach(Array(Array(1 ... 10).enumerated()), id: \.offset) { index, point in
                 ZStack {
                     Text("\(point)")
                         .modifier(
@@ -54,6 +57,7 @@ extension NPSAnswerView {
                         )
                         .onTapGesture {
                             rating = index
+                            npsRatingTrigger.send(rating)
                         }
                         .foregroundColor(.white)
                         .tag(index)
@@ -74,12 +78,12 @@ extension NPSAnswerView {
     private func setUpDescription() -> some View {
         HStack {
             Text(AssetLocalization.npsNotLikelyText())
-                .opacity((rating < 5) && (rating >= 0) ? 1.0 : 0.5)
+                .opacity(output.notLikelyLabelOpacity ? 1.0 : 0.5)
                 .foregroundColor(.white)
                 .font(.boldBody)
             Spacer()
             Text(AssetLocalization.npsLikelyText())
-                .opacity(rating >= 5 ? 1.0 : 0.5)
+                .opacity(output.likelyLabelOpacity ? 1.0 : 0.5)
                 .foregroundColor(.white)
                 .font(.boldBody)
         }

@@ -12,12 +12,13 @@ struct ChoiceAnswerView: View {
 
     @ObservedObject var input: AnswerViewModel.Input
     @ObservedObject var output: AnswerViewModel.Output
+    @State var selectedIndex: Int = 0
 
     var body: some View {
         ZStack {
             if !output.answerTitles.isEmpty {
                 PickerView(
-                    selections: .constant([output.answerTitles.count]),
+                    selection: $selectedIndex,
                     data: [output.answerTitles]
                 )
                 .background(.clear)

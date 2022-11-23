@@ -31,6 +31,10 @@ extension SurveyDetailViewModel: ViewModel {
             .assign(to: \.survey, on: output)
             .store(in: &output.cancelBag)
 
+        input.willShowQuestions
+            .assign(to: \.isSurveyQuestionPresented, on: output)
+            .store(in: &output.cancelBag)
+
         input.dismissAlert
             .map { _ in nil }
             .assign(to: \.alert, on: output)
@@ -53,13 +57,16 @@ extension SurveyDetailViewModel {
     final class Input: ObservableObject {
 
         let startSurveyTrigger: Driver<String>
+        let willShowQuestions: Driver<Bool>
         let dismissAlert: Driver<Void>
 
         init(
             startSurveyTrigger: Driver<String>,
+            willShowQuestions: Driver<Bool>,
             dismissAlert: Driver<Void>
         ) {
             self.startSurveyTrigger = startSurveyTrigger
+            self.willShowQuestions = willShowQuestions
             self.dismissAlert = dismissAlert
         }
     }
@@ -70,5 +77,6 @@ extension SurveyDetailViewModel {
 
         @Published var survey: Survey?
         @Published var alert: AlertMessage?
+        @Published var isSurveyQuestionPresented = false
     }
 }

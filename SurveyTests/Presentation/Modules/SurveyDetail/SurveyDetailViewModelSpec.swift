@@ -6,6 +6,8 @@
 //  Copyright © 2022 Nimble. All rights reserved.
 //
 
+//  swiftlint:disable closure_body_length
+
 import Combine
 import Nimble
 import Quick
@@ -22,6 +24,7 @@ final class SurveyDetailViewModelSpec: QuickSpec {
     override func spec() {
         var viewModel: SurveyDetailViewModel!
         let startSurveyTrigger = PassthroughSubject<String, Never>()
+        let willShowQuestions = PassthroughSubject<Bool, Never>()
         let dismissAlertTrigger = PassthroughSubject<Void, Never>()
 
         describe("a SurveyDetailViewModel") {
@@ -33,6 +36,7 @@ final class SurveyDetailViewModelSpec: QuickSpec {
                 )
                 self.input = SurveyDetailViewModel.Input(
                     startSurveyTrigger: startSurveyTrigger.asDriver(),
+                    willShowQuestions: willShowQuestions.asDriver(),
                     dismissAlert: dismissAlertTrigger.asDriver()
                 )
                 self.output = viewModel.transform(self.input)

@@ -16,10 +16,10 @@ struct SurveyDetailView: View {
 
     @State var fadeInOut = false
     @State var didScaleEffect = false
-    @State var isSurveyQuestionPresented = false
     @State var surveyQuestions = [SurveyQuestion]()
 
     private let startSurveyTrigger = PassthroughSubject<String, Never>()
+    private let willShowQuestions = PassthroughSubject<Bool, Never>()
     private let dismissAlertTrigger = PassthroughSubject<Void, Never>()
     var isPresented: Binding<Bool>
     let survey: Survey
@@ -61,7 +61,7 @@ struct SurveyDetailView: View {
             guard let questions = $0?.questions else { return }
             surveyQuestions = questions
             withoutAnimation {
-                isSurveyQuestionPresented.toggle()
+                self.willShowQuestions.send(!surveyQuestions.isEmpty)
             }
         }
         .onAppear(perform: {
@@ -70,14 +70,13 @@ struct SurveyDetailView: View {
                 fadeInOut.toggle()
             }
         })
-        .fullScreenCover(isPresented: $isSurveyQuestionPresented) {
-            if !surveyQuestions.isEmpty {
-                SurveyQuestionView(
-                    isPresented: $isSurveyQuestionPresented,
-                    questions: surveyQuestions
-                )
-            }
+        .fullScreenCover(isPresented: $output.isSurveyQuestionPresented) {
+            SurveyQuestionView(
+                isPresented: $output.isSurveyQuestionPresented,
+                questions: surveyQuestions
+            )
         }
+        .transaction { $0.disablesAnimations = true }
         .edgesIgnoringSafeArea(.all)
         .preferredColorScheme(.dark)
         .alert(isPresented: .constant($output.alert.wrappedValue != nil)) {
@@ -100,6 +99,7 @@ struct SurveyDetailView: View {
         self.isPresented = isPresented
         let input = SurveyDetailViewModel.Input(
             startSurveyTrigger: startSurveyTrigger.asDriver(),
+            willShowQuestions: willShowQuestions.asDriver(),
             dismissAlert: dismissAlertTrigger.asDriver()
         )
         output = viewModel.transform(input)

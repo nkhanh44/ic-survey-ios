@@ -9,16 +9,41 @@
 import Combine
 import SwiftUI
 
-struct SurveyDetailViewModel {}
+struct SurveyDetailViewModel {
+
+    let surveyQuestionUseCase: SurveyQuestionUseCaseProtocol
+}
 
 extension SurveyDetailViewModel: ViewModel {
 
     func transform(_ input: Input) -> Output {
+        let errorTracker = ErrorTracker()
         let output = Output()
 
         input.startSurveyTrigger
-            .map { true }
-            .assign(to: \.willGoToNextSurvey, on: output)
+            .map {
+                self.surveyQuestionUseCase.getSurveyDetail(id: $0)
+                    .trackError(errorTracker)
+                    .asDriver()
+            }
+            .switchToLatest()
+            .compactMap { $0 }
+            .assign(to: \.survey, on: output)
+            .store(in: &output.cancelBag)
+
+        input.willShowQuestions
+            .assign(to: \.isSurveyQuestionPresented, on: output)
+            .store(in: &output.cancelBag)
+
+        input.dismissAlert
+            .map { _ in nil }
+            .assign(to: \.alert, on: output)
+            .store(in: &output.cancelBag)
+
+        errorTracker
+            .receive(on: RunLoop.main)
+            .map { AlertMessage(error: $0) }
+            .assign(to: \.alert, on: output)
             .store(in: &output.cancelBag)
 
         return output
@@ -31,10 +56,18 @@ extension SurveyDetailViewModel {
 
     final class Input: ObservableObject {
 
-        let startSurveyTrigger: Driver<Void>
+        let startSurveyTrigger: Driver<String>
+        let willShowQuestions: Driver<Bool>
+        let dismissAlert: Driver<Void>
 
-        init(startSurveyTrigger: Driver<Void>) {
+        init(
+            startSurveyTrigger: Driver<String>,
+            willShowQuestions: Driver<Bool>,
+            dismissAlert: Driver<Void>
+        ) {
             self.startSurveyTrigger = startSurveyTrigger
+            self.willShowQuestions = willShowQuestions
+            self.dismissAlert = dismissAlert
         }
     }
 
@@ -42,6 +75,8 @@ extension SurveyDetailViewModel {
 
         var cancelBag = CancelBag()
 
-        @Published var willGoToNextSurvey = false
+        @Published var survey: Survey?
+        @Published var alert: AlertMessage?
+        @Published var isSurveyQuestionPresented = false
     }
 }

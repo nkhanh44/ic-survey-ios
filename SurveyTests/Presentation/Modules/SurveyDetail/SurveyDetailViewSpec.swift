@@ -16,13 +16,15 @@ final class SurveyDetailViewSpec: QuickSpec {
 
     override func spec() {
         var surveyDetailView: SurveyDetailView!
+        var surveyQuestionUseCase: SurveyQuestionUseCaseMock!
 
         describe("a SurveyDetailView") {
 
             beforeEach {
                 guard let survey = APISurvey.dummyList.first else { return }
+                surveyQuestionUseCase = SurveyQuestionUseCaseMock()
                 surveyDetailView = SurveyDetailView(
-                    viewModel: SurveyDetailViewModel(),
+                    viewModel: SurveyDetailViewModel(surveyQuestionUseCase: surveyQuestionUseCase),
                     isPresented: .constant(true),
                     survey: survey
                 )
@@ -30,8 +32,8 @@ final class SurveyDetailViewSpec: QuickSpec {
 
             context("has onAppear called") {
 
-                it("does not call next") {
-                    expect(surveyDetailView.output.willGoToNextSurvey) == false
+                it("alert is not showing") {
+                    expect(surveyDetailView.output.$alert).toNot(beNil())
                 }
             }
         }

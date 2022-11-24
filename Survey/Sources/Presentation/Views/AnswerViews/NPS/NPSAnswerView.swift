@@ -6,9 +6,16 @@
 //  Copyright © 2022 Nimble. All rights reserved.
 //
 
+import Combine
 import SwiftUI
 
 struct NPSAnswerView: View {
+
+    @ObservedObject var input: AnswerViewModel.Input
+    @ObservedObject var output: AnswerViewModel.Output
+    @State var rating: Int = -1
+
+    private let npsRatingTrigger = PassthroughSubject<Int, Never>()
 
     var body: some View {
         VStack {
@@ -25,15 +32,35 @@ struct NPSAnswerView: View {
         }
     }
 
+    init(viewModel: AnswerViewModel) {
+        let input = AnswerViewModel.Input(
+            npsRatingTrigger: npsRatingTrigger.asDriver()
+        )
+        output = viewModel.transform(input)
+        self.input = input
+    }
+}
+
+extension NPSAnswerView {
+
     private func setUpComponents() -> some View {
         HStack(alignment: .center, spacing: 0.0) {
-            let pointList = Array(1 ... 10)
-            ForEach(pointList, id: \.self) { point in
+            ForEach(Array(Array(1 ... 10).enumerated()), id: \.offset) { index, point in
                 ZStack {
                     Text("\(point)")
-                        .font(.boldBody)
-                        .frame(width: 33.0, height: 56.0)
+                        .modifier(
+                            NPSTextModifier(
+                                rating: $rating,
+                                index: index,
+                                selected: false
+                            )
+                        )
+                        .onTapGesture {
+                            rating = index
+                            npsRatingTrigger.send(rating)
+                        }
                         .foregroundColor(.white)
+                        .tag(index)
                     if point != 10 {
                         Divider()
                             .background(.white)
@@ -50,24 +77,16 @@ struct NPSAnswerView: View {
 
     private func setUpDescription() -> some View {
         HStack {
-            Text("Not at all Likely")
+            Text(AssetLocalization.npsNotLikelyText())
+                .opacity(output.notLikelyLabelOpacity)
                 .foregroundColor(.white)
                 .font(.boldBody)
             Spacer()
-            Text("Extremely Likely")
+            Text(AssetLocalization.npsLikelyText())
+                .opacity(output.likelyLabelOpacity)
                 .foregroundColor(.white)
                 .font(.boldBody)
         }
         .frame(width: 330.0)
-    }
-}
-
-struct NPSAnswerViewPreView: PreviewProvider {
-
-    static var previews: some View {
-        Group {
-            NPSAnswerView()
-                .background(.black)
-        }
     }
 }

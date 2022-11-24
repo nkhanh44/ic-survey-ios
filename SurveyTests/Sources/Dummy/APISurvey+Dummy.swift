@@ -6,7 +6,7 @@
 //  Copyright © 2022 Nimble. All rights reserved.
 //
 
-import Foundation
+@testable import Survey
 
 extension APISurvey {
 
@@ -16,7 +16,8 @@ extension APISurvey {
             type: "type1",
             title: "Title1",
             description: "description1",
-            coverImageURL: Assets.ic_background_exp_1.name
+            coverImageURL: Assets.ic_background_exp_1.name,
+            apiQuestions: APISurveyQuestion.dummy
         ),
         APISurvey(
             id: "2",

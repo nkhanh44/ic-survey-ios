@@ -16,9 +16,11 @@ struct SurveyDetailView: View {
 
     @State var fadeInOut = false
     @State var didScaleEffect = false
-    @State var isSurveyQuestionPresented = false
+    @State var surveyQuestions = [SurveyQuestion]()
 
-    private let startSurveyTrigger = PassthroughSubject<Void, Never>()
+    private let startSurveyTrigger = PassthroughSubject<String, Never>()
+    private let willShowQuestions = PassthroughSubject<Bool, Never>()
+    private let dismissAlertTrigger = PassthroughSubject<Void, Never>()
     var isPresented: Binding<Bool>
     let survey: Survey
 
@@ -40,7 +42,7 @@ struct SurveyDetailView: View {
                         SButtonView(
                             isValid: .constant(true),
                             action: {
-                                startSurveyTrigger.send()
+                                startSurveyTrigger.send(survey.id)
                             },
                             title: "Start Survey"
                         )
@@ -55,23 +57,37 @@ struct SurveyDetailView: View {
                 }
             }
         })
+        .onReceive(output.$survey) {
+            guard let questions = $0?.questions else { return }
+            surveyQuestions = questions
+            withoutAnimation {
+                self.willShowQuestions.send(!surveyQuestions.isEmpty)
+            }
+        }
         .onAppear(perform: {
             fadeInOut = false
             withAnimation(Animation.easeInOut(duration: 1.0)) {
                 fadeInOut.toggle()
             }
         })
-        .onReceive(output.$willGoToNextSurvey) {
-            guard $0 else { return }
-            withoutAnimation {
-                isSurveyQuestionPresented.toggle()
-            }
+        .fullScreenCover(isPresented: $output.isSurveyQuestionPresented) {
+            SurveyQuestionView(
+                isPresented: $output.isSurveyQuestionPresented,
+                questions: surveyQuestions
+            )
         }
-        .fullScreenCover(isPresented: $isSurveyQuestionPresented) {
-            SurveyQuestionView(isPresented: $isSurveyQuestionPresented)
-        }
+        .transaction { $0.disablesAnimations = true }
         .edgesIgnoringSafeArea(.all)
         .preferredColorScheme(.dark)
+        .alert(isPresented: .constant($output.alert.wrappedValue != nil)) {
+            Alert(
+                title: Text(output.alert?.title ?? ""),
+                message: Text(output.alert?.message ?? ""),
+                dismissButton: .default(Text(AssetLocalization.commonOkText()), action: {
+                    dismissAlertTrigger.send()
+                })
+            )
+        }
     }
 
     init(
@@ -82,7 +98,9 @@ struct SurveyDetailView: View {
         self.survey = survey
         self.isPresented = isPresented
         let input = SurveyDetailViewModel.Input(
-            startSurveyTrigger: startSurveyTrigger.asDriver()
+            startSurveyTrigger: startSurveyTrigger.asDriver(),
+            willShowQuestions: willShowQuestions.asDriver(),
+            dismissAlert: dismissAlertTrigger.asDriver()
         )
         output = viewModel.transform(input)
         self.input = input

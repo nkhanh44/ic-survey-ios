@@ -16,9 +16,16 @@ struct APISurvey: Survey, JapxCodable, Comparable {
     let title: String
     let description: String
     var coverImageURL: String
+    var apiQuestions: [APISurveyQuestion]?
+
+    var questions: [SurveyQuestion]? { apiQuestions }
 
     static func < (lhs: APISurvey, rhs: APISurvey) -> Bool {
         return lhs.id < rhs.id
+    }
+
+    static func == (lhs: APISurvey, rhs: APISurvey) -> Bool {
+        return lhs.id == rhs.id
     }
 }
 
@@ -28,5 +35,6 @@ extension APISurvey {
 
         case id, type, title, description
         case coverImageURL = "cover_image_url"
+        case apiQuestions = "questions"
     }
 }

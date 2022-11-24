@@ -17,22 +17,21 @@ import SwiftUI
 
 final class AnswerViewModelSpec: QuickSpec {
 
-    var input: AnswerViewModel.Input!
-    var output: AnswerViewModel.Output!
-
     override func spec() {
+        var input: AnswerViewModel.Input!
+        var output: AnswerViewModel.Output!
         var viewModel: AnswerViewModel!
         let npsRatingTrigger = PassthroughSubject<Int, Never>()
 
-        describe("a AnswerViewModel") {
+        describe("an AnswerViewModel") {
 
             beforeEach {
                 viewModel = AnswerViewModel(surveyAnswers: APISurveyAnswer.dummy)
 
-                self.input = AnswerViewModel.Input(
+                input = AnswerViewModel.Input(
                     npsRatingTrigger: npsRatingTrigger.eraseToAnyPublisher()
                 )
-                self.output = viewModel.transform(self.input)
+                output = viewModel.transform(input)
             }
 
             context("when surveyAnswers are not nil") {
@@ -40,11 +39,11 @@ final class AnswerViewModelSpec: QuickSpec {
                 let expectedSurveyAnswer = APISurveyAnswer.dummy
 
                 it("returns output answerTitles with true") {
-                    expect(self.output.answerTitles) == expectedSurveyAnswer.map { $0.text ?? "" }
+                    expect(output.answerTitles) == expectedSurveyAnswer.map { $0.text ?? "" }
                 }
 
                 it("returns output answerTitles with true") {
-                    expect(self.output.answerPlaceholders) == expectedSurveyAnswer.map { $0.inputMaskPlaceholder ?? "" }
+                    expect(output.answerPlaceholders) == expectedSurveyAnswer.map { $0.inputMaskPlaceholder ?? "" }
                 }
 
                 context("npsRatingTrigger is not nil and select index 2") {
@@ -54,11 +53,11 @@ final class AnswerViewModelSpec: QuickSpec {
                     }
 
                     it("returns output notLikelyLabelOpacity to 1.0") {
-                        expect(self.output.notLikelyLabelOpacity) == 1.0
+                        expect(output.notLikelyLabelOpacity) == 1.0
                     }
 
                     it("returns output likelyLabelOpacity to 0.5") {
-                        expect(self.output.likelyLabelOpacity) == 0.5
+                        expect(output.likelyLabelOpacity) == 0.5
                     }
                 }
 
@@ -69,11 +68,11 @@ final class AnswerViewModelSpec: QuickSpec {
                     }
 
                     it("returns output notLikelyLabelOpacity to 0.5") {
-                        expect(self.output.notLikelyLabelOpacity) == 0.5
+                        expect(output.notLikelyLabelOpacity) == 0.5
                     }
 
                     it("returns output likelyLabelOpacity to 1.0") {
-                        expect(self.output.likelyLabelOpacity) == 1.0
+                        expect(output.likelyLabelOpacity) == 1.0
                     }
                 }
             }

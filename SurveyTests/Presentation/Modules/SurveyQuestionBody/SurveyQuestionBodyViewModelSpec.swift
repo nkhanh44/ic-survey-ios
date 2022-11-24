@@ -15,10 +15,9 @@ import SwiftUI
 
 final class SurveyQuestionBodyViewModelSpec: QuickSpec {
 
-    var input: SurveyQuestionBodyViewModel.Input!
-    var output: SurveyQuestionBodyViewModel.Output!
-
     override func spec() {
+        var input: SurveyQuestionBodyViewModel.Input!
+        var output: SurveyQuestionBodyViewModel.Output!
         var viewModel: SurveyQuestionBodyViewModel!
         let loadTrigger = PassthroughSubject<Void, Never>()
 
@@ -30,13 +29,13 @@ final class SurveyQuestionBodyViewModelSpec: QuickSpec {
                     numberOfQuestions: 2
                 )
 
-                self.input = SurveyQuestionBodyViewModel.Input(
+                input = SurveyQuestionBodyViewModel.Input(
                     loadTrigger: loadTrigger.eraseToAnyPublisher()
                 )
-                self.output = viewModel.transform(self.input)
+                output = viewModel.transform(input)
             }
 
-            context("when loadingTrigger called") {
+            context("when loadingTrigger is called") {
 
                 let expectedSurveyQuestion = APISurveyQuestion.dummy[0]
 
@@ -45,7 +44,7 @@ final class SurveyQuestionBodyViewModelSpec: QuickSpec {
                 }
 
                 it("returns output question") {
-                    expect(self.output.question?.id) == expectedSurveyQuestion.id
+                    expect(output.question?.id) == expectedSurveyQuestion.id
                 }
             }
         }

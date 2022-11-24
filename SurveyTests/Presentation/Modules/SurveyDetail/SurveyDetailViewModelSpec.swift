@@ -17,11 +17,10 @@ import SwiftUI
 
 final class SurveyDetailViewModelSpec: QuickSpec {
 
-    var input: SurveyDetailViewModel.Input!
-    var output: SurveyDetailViewModel.Output!
-    var surveyQuestionUseCase: SurveyQuestionUseCaseMock!
-
     override func spec() {
+        var input: SurveyDetailViewModel.Input!
+        var output: SurveyDetailViewModel.Output!
+        var surveyQuestionUseCase: SurveyQuestionUseCaseMock!
         var viewModel: SurveyDetailViewModel!
         let startSurveyTrigger = PassthroughSubject<String, Never>()
         let willShowQuestions = PassthroughSubject<Bool, Never>()
@@ -30,16 +29,16 @@ final class SurveyDetailViewModelSpec: QuickSpec {
         describe("a SurveyDetailViewModel") {
 
             beforeEach {
-                self.surveyQuestionUseCase = SurveyQuestionUseCaseMock()
+                surveyQuestionUseCase = SurveyQuestionUseCaseMock()
                 viewModel = SurveyDetailViewModel(
-                    surveyQuestionUseCase: self.surveyQuestionUseCase
+                    surveyQuestionUseCase: surveyQuestionUseCase
                 )
-                self.input = SurveyDetailViewModel.Input(
+                input = SurveyDetailViewModel.Input(
                     startSurveyTrigger: startSurveyTrigger.asDriver(),
                     willShowQuestions: willShowQuestions.asDriver(),
                     dismissAlert: dismissAlertTrigger.asDriver()
                 )
-                self.output = viewModel.transform(self.input)
+                output = viewModel.transform(input)
             }
 
             context("when tap next button") {
@@ -48,22 +47,31 @@ final class SurveyDetailViewModelSpec: QuickSpec {
 
                     beforeEach {
                         startSurveyTrigger.send("id")
+                        willShowQuestions.send(true)
                     }
 
                     it("returns output survey not nil") {
-                        expect(self.output.$survey).toEventuallyNot(beNil())
+                        expect(output.$survey).toEventuallyNot(beNil())
+                    }
+
+                    it("returns output isSurveyQuestionPresented is true") {
+                        expect(output.isSurveyQuestionPresented).toEventually(beTrue())
                     }
                 }
 
                 context("returns failure") {
 
                     beforeEach {
-                        self.surveyQuestionUseCase.getSurveyDetailReturnValue = .failure(TestError())
+                        surveyQuestionUseCase.getSurveyDetailReturnValue = .failure(TestError())
                         startSurveyTrigger.send("id")
                     }
 
                     it("returns output alert not nil") {
-                        expect(self.output.alert).toEventuallyNot(beNil())
+                        expect(output.alert).toEventuallyNot(beNil())
+                    }
+
+                    it("returns output isSurveyQuestionPresented is false") {
+                        expect(output.isSurveyQuestionPresented) == false
                     }
                 }
             }

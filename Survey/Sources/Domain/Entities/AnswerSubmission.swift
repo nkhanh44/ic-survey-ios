@@ -9,7 +9,7 @@
 import Foundation
 
 struct AnswerSubmission {
-    
+
     var id: String
     var answer: String?
 }

@@ -19,6 +19,10 @@ final class SurveyRepositoryMock: SurveyRepositoryProtocol {
 
     var getSurveyListReturnValue = Observable.just(APISurvey.dummyList)
 
+    var submitCalled = false
+
+    var submitReturnValue = Observable.just(true)
+
     func getSurveyList(pageNumber: Int, pageSize: Int) -> Observable<[Survey]> {
         getSurveyListCalled = true
         return getSurveyListReturnValue.map { $0 as [Survey] }.asObservable()
@@ -27,5 +31,10 @@ final class SurveyRepositoryMock: SurveyRepositoryProtocol {
     func getSurveyDetail(id: String) -> Observable<Survey> {
         getSurveyDetailCalled = true
         return getSurveyDetailReturnValue.map { $0 as Survey }.asObservable()
+    }
+
+    func submit(id: String, questionSubmissions: [QuestionSubmission]) -> Observable<Bool> {
+        submitCalled = true
+        return submitReturnValue.asObservable()
     }
 }

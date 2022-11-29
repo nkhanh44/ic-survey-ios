@@ -26,22 +26,33 @@ final class SubmitSurveyUseCaseSpec: QuickSpec {
 
             context("when submit is called") {
 
+                let id = "d5de6a8f8f5f1cfe51bc"
+                let questionSubmissions = [
+                    QuestionSubmission(
+                        id: "d3afbcf2b1d60af845dc",
+                        answers: [
+                            AnswerSubmission(id: "f09f1a680789b636459b")
+                        ]
+                    )
+                ]
+
                 beforeEach {
                     _ = submitSurveyUseCase.submit(
-                        id: "d5de6a8f8f5f1cfe51bc",
-                        questionSubmissions: [
-                            QuestionSubmission(
-                                id: "d3afbcf2b1d60af845dc",
-                                answers: [
-                                    AnswerSubmission(id: "f09f1a680789b636459b")
-                                ]
-                            )
-                        ]
+                        id: id,
+                        questionSubmissions: questionSubmissions
                     )
                 }
 
-                it("returns correct response") {
+                it("returns submitCalled is true") {
                     expect(surveyRepository.submitCalled) == true
+                }
+
+                it("returns correct id argument") {
+                    expect(surveyRepository.submitIdArgument) == id
+                }
+
+                it("returns correct questionSubmissions argument") {
+                    expect(surveyRepository.submitQuestionSubmissionsArgument?.count) == questionSubmissions.count
                 }
             }
         }

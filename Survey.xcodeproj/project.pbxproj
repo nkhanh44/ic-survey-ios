@@ -42,6 +42,8 @@
 		1C516B9628A3AB0400DB7B7B /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C516B9128A3A5C800DB7B7B /* Survey.swift */; };
 		1C516B9A28A3AF0C00DB7B7B /* SurveyItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C516B9928A3AF0C00DB7B7B /* SurveyItemView.swift */; };
 		1C57AC552933AD90000C71DA /* SubmitSurveyUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57AC532933ACA0000C71DA /* SubmitSurveyUseCaseSpec.swift */; };
+		1C57AC5D293504BA000C71DA /* Encodable+Parameterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57AC5C293504BA000C71DA /* Encodable+Parameterable.swift */; };
+		1C57AC61293510BC000C71DA /* SurveyRepositorySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57AC5F293510AC000C71DA /* SurveyRepositorySpec.swift */; };
 		1C6592152924C55B007AD143 /* SurveyQuestionBodyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6592142924C55B007AD143 /* SurveyQuestionBodyViewModel.swift */; };
 		1C65921729254767007AD143 /* AnswerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C65921629254767007AD143 /* AnswerViewModel.swift */; };
 		1C6592192926302E007AD143 /* NPSTextModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6592182926302E007AD143 /* NPSTextModifier.swift */; };
@@ -94,6 +96,7 @@
 		1CC791EF2922576C008A1A81 /* SurveyAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC791EE2922576C008A1A81 /* SurveyAnswer.swift */; };
 		1CC791F129227C1E008A1A81 /* APISurveyQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC791F029227C1E008A1A81 /* APISurveyQuestion.swift */; };
 		1CC791F329227C4E008A1A81 /* APISurveyAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC791F229227C4E008A1A81 /* APISurveyAnswer.swift */; };
+		1CCFDFBE2935E50700C358F0 /* NetworkAPIMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCFDFBC2935E4FD00C358F0 /* NetworkAPIMock.swift */; };
 		1CD4E337289BC7AA00EA1E8B /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD4E336289BC7AA00EA1E8B /* String+Validation.swift */; };
 		1CD4E339289CCD0500EA1E8B /* View+Opacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD4E338289CCD0500EA1E8B /* View+Opacity.swift */; };
 		1CD4E341289F9B1300EA1E8B /* TestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD4E340289F9B1300EA1E8B /* TestError.swift */; };
@@ -266,6 +269,8 @@
 		1C516B9728A3AB3A00DB7B7B /* APISurvey+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APISurvey+Dummy.swift"; sourceTree = "<group>"; };
 		1C516B9928A3AF0C00DB7B7B /* SurveyItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyItemView.swift; sourceTree = "<group>"; };
 		1C57AC532933ACA0000C71DA /* SubmitSurveyUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitSurveyUseCaseSpec.swift; sourceTree = "<group>"; };
+		1C57AC5C293504BA000C71DA /* Encodable+Parameterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Parameterable.swift"; sourceTree = "<group>"; };
+		1C57AC5F293510AC000C71DA /* SurveyRepositorySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyRepositorySpec.swift; sourceTree = "<group>"; };
 		1C6592142924C55B007AD143 /* SurveyQuestionBodyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyQuestionBodyViewModel.swift; sourceTree = "<group>"; };
 		1C65921629254767007AD143 /* AnswerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerViewModel.swift; sourceTree = "<group>"; };
 		1C6592182926302E007AD143 /* NPSTextModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NPSTextModifier.swift; sourceTree = "<group>"; };
@@ -318,6 +323,7 @@
 		1CC791EE2922576C008A1A81 /* SurveyAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyAnswer.swift; sourceTree = "<group>"; };
 		1CC791F029227C1E008A1A81 /* APISurveyQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISurveyQuestion.swift; sourceTree = "<group>"; };
 		1CC791F229227C4E008A1A81 /* APISurveyAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISurveyAnswer.swift; sourceTree = "<group>"; };
+		1CCFDFBC2935E4FD00C358F0 /* NetworkAPIMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPIMock.swift; sourceTree = "<group>"; };
 		1CD4E336289BC7AA00EA1E8B /* String+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Validation.swift"; sourceTree = "<group>"; };
 		1CD4E338289CCD0500EA1E8B /* View+Opacity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Opacity.swift"; sourceTree = "<group>"; };
 		1CD4E340289F9B1300EA1E8B /* TestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestError.swift; sourceTree = "<group>"; };
@@ -525,6 +531,7 @@
 				1CEE603328A6375900748C63 /* Date+StringFormat.swift */,
 				1CA8B29C28BCD04E00E5C225 /* Array+Comparable.swift */,
 				1CD6E13128CDFD1B00A0457B /* Bundle+Version.swift */,
+				1C57AC5C293504BA000C71DA /* Encodable+Parameterable.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -667,6 +674,30 @@
 				1C57AC532933ACA0000C71DA /* SubmitSurveyUseCaseSpec.swift */,
 			);
 			path = Survey;
+			sourceTree = "<group>";
+		};
+		1C57AC5E29351097000C71DA /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				1C57AC6229351199000C71DA /* Repositories */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		1C57AC6229351199000C71DA /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				1C57AC5F293510AC000C71DA /* SurveyRepositorySpec.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		1C57AC632935E32E000C71DA /* NetworkAPI */ = {
+			isa = PBXGroup;
+			children = (
+				1CCFDFBC2935E4FD00C358F0 /* NetworkAPIMock.swift */,
+			);
+			path = NetworkAPI;
 			sourceTree = "<group>";
 		};
 		1C65921F2927462C007AD143 /* SurveyQuestion */ = {
@@ -1062,6 +1093,7 @@
 		2143AD7D23F2679C226897FD /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1C57AC5E29351097000C71DA /* Data */,
 				0AC9D04FCC10A589FD8E0E78 /* Dummy */,
 				3BCCE08012756E065644651B /* Mocks */,
 				E2CFD90AA709E93E3B8B225B /* Specs */,
@@ -1126,6 +1158,7 @@
 		3BCCE08012756E065644651B /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				1C57AC632935E32E000C71DA /* NetworkAPI */,
 				1C65921F2927462C007AD143 /* SurveyQuestion */,
 				1CA8B28B28B6636600E5C225 /* Home */,
 				1CEE605328ABCDCC00748C63 /* UserSession */,
@@ -1882,6 +1915,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C516B9028A2D6AA00DB7B7B /* KeychainKeys.swift in Sources */,
+				1C57AC5D293504BA000C71DA /* Encodable+Parameterable.swift in Sources */,
 				1CB18678288E57AD00372D50 /* AlertMessage.swift in Sources */,
 				1CAFBB2328B2AD4200D068DD /* SurveyDetailViewModel.swift in Sources */,
 				1CB186852890F9C700372D50 /* LoginView.swift in Sources */,
@@ -2024,6 +2058,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C516B7628A148AF00DB7B7B /* LoginRepositoryMock.swift in Sources */,
+				1CCFDFBE2935E50700C358F0 /* NetworkAPIMock.swift in Sources */,
 				1CA8B28F28B6644800E5C225 /* SurveyRepositoryMock.swift in Sources */,
 				1C516B8A28A2C31A00DB7B7B /* KeychainServiceMock.swift in Sources */,
 				1CA8B28728B662B200E5C225 /* HomeViewSpec.swift in Sources */,
@@ -2037,6 +2072,7 @@
 				1CA8B29028B6644B00E5C225 /* HomeUseCaseMock.swift in Sources */,
 				1C57AC552933AD90000C71DA /* SubmitSurveyUseCaseSpec.swift in Sources */,
 				1C1C2FA6292E02A300DF460B /* SurveyQuestionBodyViewModelSpec.swift in Sources */,
+				1C57AC61293510BC000C71DA /* SurveyRepositorySpec.swift in Sources */,
 				1CEE604F28ABCD2200748C63 /* SplashViewSpec.swift in Sources */,
 				1C516B8528A1619D00DB7B7B /* LoginViewSpec.swift in Sources */,
 				1C1C2F97292BC54C00DF460B /* APISurveyQuestion+Dummy.swift in Sources */,

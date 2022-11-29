@@ -55,7 +55,6 @@ final class SurveyRepository: SurveyRepositoryProtocol {
                     }
                 )
             )
-            .map { $0 as Bool }
             .eraseToAnyPublisher()
     }
 }

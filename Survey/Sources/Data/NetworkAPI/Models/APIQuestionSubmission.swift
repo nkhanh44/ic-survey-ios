@@ -18,11 +18,3 @@ struct APIQuestionSubmission: Codable {
         answers = questionSubmission.answers.map(APIAnswerSubmission.init)
     }
 }
-
-extension APIQuestionSubmission {
-
-    var asParameters: [String: Any]? {
-        let encoder = JSONEncoder()
-        return (try? JSONSerialization.jsonObject(with: encoder.encode(self))) as? [String: Any]
-    }
-}

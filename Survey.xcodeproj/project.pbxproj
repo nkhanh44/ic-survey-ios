@@ -681,7 +681,8 @@
 			children = (
 				1C57AC6229351199000C71DA /* Repositories */,
 			);
-			path = Data;
+			name = Data;
+			path = ../Data;
 			sourceTree = "<group>";
 		};
 		1C57AC6229351199000C71DA /* Repositories */ = {
@@ -1093,7 +1094,6 @@
 		2143AD7D23F2679C226897FD /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				1C57AC5E29351097000C71DA /* Data */,
 				0AC9D04FCC10A589FD8E0E78 /* Dummy */,
 				3BCCE08012756E065644651B /* Mocks */,
 				E2CFD90AA709E93E3B8B225B /* Specs */,
@@ -1322,8 +1322,6 @@
 		A185BA19FAD5CD46ED2A474F /* SurveyTests */ = {
 			isa = PBXGroup;
 			children = (
-				1CD4E348289F9BE500EA1E8B /* Domain */,
-				1CD4E344289F9B6900EA1E8B /* Presentation */,
 				1AB1AA1B1189C47D8E8D8004 /* Configurations */,
 				4351410E5CA39F3D28DA9931 /* Resources */,
 				2143AD7D23F2679C226897FD /* Sources */,
@@ -1489,6 +1487,9 @@
 		E2CFD90AA709E93E3B8B225B /* Specs */ = {
 			isa = PBXGroup;
 			children = (
+				1C57AC5E29351097000C71DA /* Data */,
+				1CD4E344289F9B6900EA1E8B /* Presentation */,
+				1CD4E348289F9BE500EA1E8B /* Domain */,
 				B90B0AAED49EDB18D8210FEB /* Supports */,
 			);
 			path = Specs;

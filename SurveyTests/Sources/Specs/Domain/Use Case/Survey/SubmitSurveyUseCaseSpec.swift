@@ -24,7 +24,7 @@ final class SubmitSurveyUseCaseSpec: QuickSpec {
                 submitSurveyUseCase = SubmitSurveyUseCase(surveyRepository: surveyRepository)
             }
 
-            context("when submit is called") {
+            describe("its submit") {
 
                 let id = "d5de6a8f8f5f1cfe51bc"
                 let questionSubmissions = [

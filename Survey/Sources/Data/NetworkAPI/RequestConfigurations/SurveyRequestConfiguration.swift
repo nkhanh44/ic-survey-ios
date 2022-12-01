@@ -29,4 +29,16 @@ enum SurveyRequestConfiguration {
             encoding: URLEncoding.default
         )
     }
+
+    static func submit(id: String, questionSubmissions: [APIQuestionSubmission]) -> RequestConfiguration {
+        RequestConfiguration(
+            endpoint: "responses",
+            method: .post,
+            encoding: JSONEncoding.default,
+            parameters: [
+                "survey_id": id,
+                "questions": questionSubmissions.map { $0.asParameters }
+            ]
+        )
+    }
 }

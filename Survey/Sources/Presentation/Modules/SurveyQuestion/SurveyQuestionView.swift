@@ -111,13 +111,3 @@ struct SurveyQuestionView: View {
         }
     }
 }
-
-struct SurveyQuestionViewPreView: PreviewProvider {
-
-    static var previews: some View {
-        SurveyQuestionView(
-            isPresented: .constant(true),
-            questions: []
-        )
-    }
-}

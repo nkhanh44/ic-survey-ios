@@ -43,15 +43,15 @@ final class SubmitSurveyUseCaseSpec: QuickSpec {
                     )
                 }
 
-                it("returns submitCalled is true") {
+                it("surveyRepository calls submit") {
                     expect(surveyRepository.submitCalled) == true
                 }
 
-                it("returns correct id argument") {
+                it("surveyRepository calls submit with correct id") {
                     expect(surveyRepository.submitIdArgument) == id
                 }
 
-                it("returns correct questionSubmissions argument") {
+                it("surveyRepository calls submit with correct questionSubmissions") {
                     expect(surveyRepository.submitQuestionSubmissionsArgument?.count) == questionSubmissions.count
                 }
             }

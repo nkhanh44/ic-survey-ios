@@ -27,7 +27,7 @@ final class SurveyRepositorySpec: QuickSpec {
                 surveyRepository = SurveyRepository(api: networkAPIMock)
             }
 
-            context("when getSurveyList is called") {
+            describe("its getSurveyList") {
 
                 let surveyListAPI = APISurvey.dummyList
 
@@ -46,7 +46,7 @@ final class SurveyRepositorySpec: QuickSpec {
                 }
             }
 
-            context("when getSurveyDetail is called") {
+            describe("its getSurveyList") {
 
                 let detailSurveyAPI = APISurvey.dummyList[0]
 
@@ -65,7 +65,7 @@ final class SurveyRepositorySpec: QuickSpec {
                 }
             }
 
-            context("when submitSurvey is called") {
+            describe("its getSurveyList") {
 
                 let id = APISurvey.dummyList[0].id
                 let questionSubmissions = [QuestionSubmission]()

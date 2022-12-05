@@ -20,14 +20,14 @@ struct SurveyQuestionView: View {
     var questions: [SurveyQuestion]
     private let submitTrigger = PassthroughSubject<Void, Never>()
     private let dismissAlertTrigger = PassthroughSubject<Void, Never>()
-    private let minDragTranslationForSwipe: CGFloat = 60.0
+    private let minDragTranslationForSwipe: CGFloat = 30.0
 
     var body: some View {
         LoadingView(
             isShowing: .constant(false),
             text: .constant(""),
             content: {
-                TabView {
+                TabView(selection: $tabSelection) {
                     ForEach(Array(questions.enumerated()), id: \.element.id) { question in
                         SurveyQuestionBodyView(
                             viewModel: SurveyQuestionBodyViewModel(
@@ -36,16 +36,16 @@ struct SurveyQuestionView: View {
                             )
                         )
                         .tag(question.offset)
+                        .contentShape(Rectangle())
+                        .highPriorityGesture(DragGesture().onEnded {
+                            handleSwipe(translation: $0.translation.width)
+                        })
                         .clipped()
                     }
                 }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 .padding(.top, 60.0)
                 .padding(.bottom, 60.0)
-                .tabViewStyle(
-                    PageTabViewStyle(
-                        indexDisplayMode: .never
-                    )
-                )
             }
         )
         .overlay {
@@ -87,6 +87,17 @@ struct SurveyQuestionView: View {
         self.input = input
     }
 
+    private func handleSwipe(translation: CGFloat) {
+        let didMoveLeft = translation > minDragTranslationForSwipe && tabSelection > 0
+        let didMoveRight = translation < -minDragTranslationForSwipe && tabSelection < questions.count - 1
+
+        if didMoveLeft {
+            tabSelection -= 1
+        } else if didMoveRight {
+            tabSelection += 1
+        }
+    }
+
     private func setUpCloseButton() -> some View {
         ZStack(alignment: .top) {
             VStack {
@@ -123,9 +134,7 @@ struct SurveyQuestionView: View {
                         Button("") {}
                             .modifier(
                                 CircleButtonModifier(
-                                    didAction: {
-//                                        tabSelection += 1
-                                    }
+                                    didAction: { tabSelection += 1 }
                                 )
                             )
                             .hidden(tabSelection == questions.count - 1)

@@ -17,6 +17,7 @@ target 'Survey' do
   pod 'SnapKit'
   pod 'ShimmerView'
   pod 'SwiftUI-Pull-To-Refresh', '~> 1.1.8'
+  pod 'lottie-ios'
 
   # Storage
   pod 'KeychainAccess'

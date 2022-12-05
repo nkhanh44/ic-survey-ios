@@ -47,7 +47,7 @@ final class SurveyRepository: SurveyRepositoryProtocol {
 
     func submit(id: String, questionSubmissions: [QuestionSubmission]) -> Observable<Bool> {
         networkAPI
-            .performRequest(
+            .performEmptyRequest(
                 SurveyRequestConfiguration.submit(
                     id: id,
                     questionSubmissions: questionSubmissions.map {

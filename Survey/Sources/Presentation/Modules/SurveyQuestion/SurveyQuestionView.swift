@@ -15,6 +15,7 @@ struct SurveyQuestionView: View {
     @ObservedObject var output: SurveyQuestionViewModel.Output
     @State var answers = [SelectedAnswer]()
     @State var tabSelection = 0
+    @State var didShowLottie = false
 
     var isPresented: Binding<Bool>
     var questions: [SurveyQuestion]
@@ -52,6 +53,36 @@ struct SurveyQuestionView: View {
             setUpCloseButton()
             setUpNextQuestionButton()
         }
+        .fullScreenCover(isPresented: $didShowLottie) {
+            ZStack {
+                LottieView(lottieFile: "successful")
+                    .frame(
+                        width: 200.0,
+                        height: 200.0
+                    )
+            }
+            .frame(
+                width: UIScreen.main.bounds.width,
+                height: UIScreen.main.bounds.height
+            )
+            .background(.black)
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    withoutAnimation {
+                        didShowLottie = false
+                        isPresented.wrappedValue.toggle()
+                    }
+                }
+            }
+        }
+        .onChange(of: output.isSuccess, perform: { isSuccess in
+            print("@@@ isSuccess", isSuccess)
+            guard isSuccess else { return }
+            withoutAnimation {
+                didShowLottie = true
+            }
+            UserStorage.questionsSubmission = []
+        })
         .padding(.bottom, 54.0)
         .padding(.top, 54.0)
         .background(

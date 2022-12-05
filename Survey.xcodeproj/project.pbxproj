@@ -140,6 +140,8 @@
 		1CD6FA862898641900B4B0D7 /* KeychainToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6FA852898641900B4B0D7 /* KeychainToken.swift */; };
 		1CD6FA8A2898EC8000B4B0D7 /* AlamofireLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6FA892898EC8000B4B0D7 /* AlamofireLogger.swift */; };
 		1CD9B960293D05C900DA6581 /* SubmissionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B95F293D05C900DA6581 /* SubmissionUseCase.swift */; };
+		1CD9B962293E6E3C00DA6581 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B961293E6E3C00DA6581 /* LottieView.swift */; };
+		1CD9B965293E71BB00DA6581 /* successful.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CD9B964293E71BB00DA6581 /* successful.json */; };
 		1CE7C6BA288A77C400B0EB1B /* DataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7C6B9288A77C400B0EB1B /* DataResponse.swift */; };
 		1CE7C6BC288A786400B0EB1B /* MetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7C6BB288A786400B0EB1B /* MetaData.swift */; };
 		1CE7C6BF288A795300B0EB1B /* SDecoderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7C6BE288A795300B0EB1B /* SDecoderType.swift */; };
@@ -370,6 +372,8 @@
 		1CD6FA892898EC8000B4B0D7 /* AlamofireLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireLogger.swift; sourceTree = "<group>"; };
 		1CD6FA8C2898F32F00B4B0D7 /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
 		1CD9B95F293D05C900DA6581 /* SubmissionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionUseCase.swift; sourceTree = "<group>"; };
+		1CD9B961293E6E3C00DA6581 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		1CD9B964293E71BB00DA6581 /* successful.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = successful.json; sourceTree = "<group>"; };
 		1CE7C6B9288A77C400B0EB1B /* DataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataResponse.swift; sourceTree = "<group>"; };
 		1CE7C6BB288A786400B0EB1B /* MetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaData.swift; sourceTree = "<group>"; };
 		1CE7C6BE288A795300B0EB1B /* SDecoderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDecoderType.swift; sourceTree = "<group>"; };
@@ -812,6 +816,7 @@
 				1CEE603128A4EB5500748C63 /* PageControlView.swift */,
 				1C2ADCC228CCCAAC00743802 /* STextEditorView.swift */,
 				1CEF01CC28CCF91E0032BD4E /* PickerView.swift */,
+				1CD9B961293E6E3C00DA6581 /* LottieView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -1011,6 +1016,14 @@
 			children = (
 			);
 			path = UserDefaults;
+			sourceTree = "<group>";
+		};
+		1CD9B963293E71A700DA6581 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				1CD9B964293E71BB00DA6581 /* successful.json */,
+			);
+			path = Lottie;
 			sourceTree = "<group>";
 		};
 		1CE7C6BD288A793D00B0EB1B /* Types */ = {
@@ -1347,6 +1360,7 @@
 		A60D6F6D69B2571A295C0A9E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1CD9B963293E71A700DA6581 /* Lottie */,
 				1CD6E12E28CDF9CD00A0457B /* Localization */,
 				2CF27D885DD8507482E726E1 /* Assets */,
 				6FD75B0789EE724AD6F6C58D /* LaunchScreen */,
@@ -1683,6 +1697,7 @@
 				1CD6E13028CDFA0D00A0457B /* Localizable.strings in Resources */,
 				1CB186992891587500372D50 /* NeuzeitSLTStd-Book.otf in Resources */,
 				1CB1869A2891587500372D50 /* NeuzeitSLTStd-BookHeavy.otf in Resources */,
+				1CD9B965293E71BB00DA6581 /* successful.json in Resources */,
 				CA1F500707F2936D39825740 /* Assets.xcassets in Resources */,
 				EE08DEF68E0F23B6777E9BED /* LaunchScreen.storyboard in Resources */,
 			);
@@ -2010,6 +2025,7 @@
 				1CC791F329227C4E008A1A81 /* APISurveyAnswer.swift in Sources */,
 				1CA8B29328B763BC00E5C225 /* Constants+UserDefaultKeys.swift in Sources */,
 				891B2792ADE1280796829C60 /* Navigator.swift in Sources */,
+				1CD9B962293E6E3C00DA6581 /* LottieView.swift in Sources */,
 				1CD6FA7D2897AF5800B4B0D7 /* Configuration.swift in Sources */,
 				1C0CBC35292F598000FEBD4C /* SubmitSurveyUseCase.swift in Sources */,
 				1CD4E35A289FFFED00EA1E8B /* HomeViewModel.swift in Sources */,

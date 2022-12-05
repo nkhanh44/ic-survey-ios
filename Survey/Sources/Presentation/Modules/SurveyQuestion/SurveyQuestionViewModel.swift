@@ -25,14 +25,7 @@ extension SurveyQuestionViewModel: ViewModel {
             .map { _ in
                 self.submitSurveyUseCase.submit(
                     id: id,
-                    questionSubmissions: [
-                        QuestionSubmission(
-                            id: "d3afbcf2b1d60af845dc",
-                            answers: [
-                                AnswerSubmission(id: "f09f1a680789b636459b")
-                            ]
-                        )
-                    ]
+                    questionSubmissions: UserStorage.questionsSubmission
                 )
                 .trackError(errorTracker)
                 .asDriver()

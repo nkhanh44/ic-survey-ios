@@ -11,8 +11,16 @@ import SwiftUI
 
 struct SurveyQuestionView: View {
 
-    @Binding var isPresented: Bool
+    @ObservedObject var input: SurveyQuestionViewModel.Input
+    @ObservedObject var output: SurveyQuestionViewModel.Output
+    @State var answers = [SelectedAnswer]()
+    @State var tabSelection = 0
+
+    var isPresented: Binding<Bool>
     var questions: [SurveyQuestion]
+    private let submitTrigger = PassthroughSubject<Void, Never>()
+    private let dismissAlertTrigger = PassthroughSubject<Void, Never>()
+    private let minDragTranslationForSwipe: CGFloat = 60.0
 
     var body: some View {
         LoadingView(
@@ -27,6 +35,8 @@ struct SurveyQuestionView: View {
                                 numberOfQuestions: questions.count
                             )
                         )
+                        .tag(question.offset)
+                        .clipped()
                     }
                 }
                 .padding(.top, 60.0)
@@ -45,14 +55,36 @@ struct SurveyQuestionView: View {
         .padding(.bottom, 54.0)
         .padding(.top, 54.0)
         .background(
-            // TODO: Remove dummy cover image url
-            Image(questions[0].coverImageUrl)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
+            setUpBackground()
                 .opacity(0.6)
         )
         .edgesIgnoringSafeArea(.all)
         .preferredColorScheme(.dark)
+        .onAppear {
+            UserStorage.questionsSubmission = []
+            UserStorage.questionsSubmission = questions
+                .map {
+                    QuestionSubmission(
+                        id: $0.id,
+                        answers: []
+                    )
+                }
+        }
+    }
+
+    init(
+        viewModel: SurveyQuestionViewModel,
+        isPresented: Binding<Bool>,
+        questions: [SurveyQuestion]
+    ) {
+        self.isPresented = isPresented
+        self.questions = questions
+        let input = SurveyQuestionViewModel.Input(
+            submitTrigger: submitTrigger.eraseToAnyPublisher(),
+            dismissAlert: dismissAlertTrigger.eraseToAnyPublisher()
+        )
+        output = viewModel.transform(input)
+        self.input = input
     }
 
     private func setUpCloseButton() -> some View {
@@ -66,7 +98,8 @@ struct SurveyQuestionView: View {
                             CloseButtonModifier(
                                 didAction: {
                                     withoutAnimation {
-                                        isPresented = false
+                                        UserStorage.questionsSubmission = []
+                                        isPresented.wrappedValue.toggle()
                                     }
                                 }
                             )
@@ -90,23 +123,50 @@ struct SurveyQuestionView: View {
                         Button("") {}
                             .modifier(
                                 CircleButtonModifier(
-                                    didAction: {}
+                                    didAction: {
+//                                        tabSelection += 1
+                                    }
                                 )
                             )
+                            .hidden(tabSelection == questions.count - 1)
 
                         SButtonView(
                             isValid: .constant(true),
-                            action: {},
+                            action: {
+                                submitTrigger.send(())
+                            },
                             title: "Submit"
                         )
                         .frame(
                             width: 120.0,
                             height: 56.0
                         )
-                        .hidden()
+                        .hidden(tabSelection != questions.count - 1)
                     }
                     .padding(.trailing, 20.0)
                 }
+            }
+        }
+    }
+
+    private func setUpBackground() -> some View {
+        AsyncImage(
+            url: questions[tabSelection].largeImageURL
+        ) { phase in
+            switch phase {
+            case .empty:
+                ProgressView().hidden()
+            case let .success(image):
+                image
+                    .resizable()
+                    .scaledToFill()
+            case .failure:
+                Image(systemName: "person.2.circle")
+                    .resizable()
+                    .scaledToFill()
+                    .clipShape(Circle())
+            @unknown default:
+                EmptyView()
             }
         }
     }

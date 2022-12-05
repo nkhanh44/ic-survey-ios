@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct QuestionSubmission {
+struct QuestionSubmission: Codable {
 
     var id: String
     var answers: [AnswerSubmission]

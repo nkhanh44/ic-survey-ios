@@ -18,12 +18,11 @@ struct SurveyQuestionBodyView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            // TODO: Remove dummy
-            Text("x/x")
+            Text("\((output.question?.displayOrder ?? 0) + 1)/\(output.numberOfQuestions)")
                 .modifier(SmallTagTextModifier())
                 .padding(.bottom, 10.0)
 
-            Text("Question")
+            Text(output.question?.text ?? "")
                 .modifier(LargerTitleTextModifier())
                 .padding(.bottom, 10.0)
 
@@ -57,8 +56,13 @@ extension SurveyQuestionBodyView {
 
     private func setUpAnswer() -> some View {
         VStack {
-            let viewModel = AnswerViewModel(surveyAnswers: output.question?.answers ?? [])
             let displayType = output.question?.displayType
+            let viewModel = AnswerViewModel(
+                surveyAnswers: output.question?.answers ?? [],
+                displayType: displayType ?? .smiley,
+                pickType: output.question?.pick ?? .none,
+                idQuestion: output.question?.id ?? ""
+            )
             switch displayType {
             case .star, .heart, .smiley:
                 RatingAnswerView(
@@ -75,7 +79,13 @@ extension SurveyQuestionBodyView {
             case .choice, .dropdown, .intro, .outro:
                 switch output.question?.pick ?? .none {
                 case .any:
-                    MultipleChoiceAnswerView(viewModel: viewModel)
+                    MultipleChoiceAnswerView(
+                        viewModel: viewModel,
+                        answers: [Bool](
+                            repeating: false,
+                            count: output.question?.answers?.count ?? 0
+                        )
+                    )
                 case .one, .none:
                     ChoiceAnswerView(viewModel: viewModel)
                 }

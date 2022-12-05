@@ -16,6 +16,7 @@ struct NPSAnswerView: View {
     @State var rating: Int = -1
 
     private let npsRatingTrigger = PassthroughSubject<Int, Never>()
+    private let selectedAnswersTrigger = PassthroughSubject<[SelectedAnswer]?, Never>()
 
     var body: some View {
         VStack {
@@ -30,11 +31,15 @@ struct NPSAnswerView: View {
 
             setUpDescription()
         }
+        .onChange(of: rating) {
+            selectedAnswersTrigger.send([SelectedAnswer(index: $0)])
+        }
     }
 
     init(viewModel: AnswerViewModel) {
         let input = AnswerViewModel.Input(
-            npsRatingTrigger: npsRatingTrigger.asDriver()
+            npsRatingTrigger: npsRatingTrigger.asDriver(),
+            selectedAnswers: selectedAnswersTrigger.asDriver()
         )
         output = viewModel.transform(input)
         self.input = input

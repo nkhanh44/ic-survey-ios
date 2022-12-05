@@ -72,6 +72,14 @@ struct SurveyDetailView: View {
         })
         .fullScreenCover(isPresented: $output.isSurveyQuestionPresented) {
             SurveyQuestionView(
+                viewModel: SurveyQuestionViewModel(
+                    submitSurveyUseCase: SubmitSurveyUseCase(
+                        surveyRepository: SurveyRepository(
+                            api: AuthenticationNetworkAPI()
+                        )
+                    ),
+                    id: survey.id
+                ),
                 isPresented: $output.isSurveyQuestionPresented,
                 questions: surveyQuestions
             )

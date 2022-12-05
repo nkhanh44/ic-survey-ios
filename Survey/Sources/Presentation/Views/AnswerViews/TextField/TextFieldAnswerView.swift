@@ -6,6 +6,7 @@
 //  Copyright © 2022 Nimble. All rights reserved.
 //
 
+import Combine
 import SwiftUI
 
 struct TextFieldAnswerView: View {
@@ -15,6 +16,7 @@ struct TextFieldAnswerView: View {
 
     var isMultipleLines: Bool
     @State var answers: [String]
+    private let selectedAnswersTrigger = PassthroughSubject<[SelectedAnswer]?, Never>()
 
     var body: some View {
         VStack {
@@ -23,6 +25,9 @@ struct TextFieldAnswerView: View {
                     placeholder: output.answerTitles.first ?? "",
                     text: $answers.first ?? .constant("")
                 )
+                .onChange(of: answers, perform: { _ in
+                    selectedAnswersTrigger.send([SelectedAnswer(index: 0, text: answers.first)])
+                })
                 .font(.body)
                 .background(.gray.opacity(0.2))
                 .accentColor(.stoneGray)
@@ -37,6 +42,16 @@ struct TextFieldAnswerView: View {
                                 placeholder: output.answerTitles[index]
                             )
                         )
+                        .onChange(of: answers[index], perform: { newValue in
+                            selectedAnswersTrigger.send(
+                                [
+                                    SelectedAnswer(
+                                        index: index,
+                                        text: newValue
+                                    )
+                                ]
+                            )
+                        })
                         .tag(index)
                         .padding(.bottom, 16.0)
                 }
@@ -46,7 +61,7 @@ struct TextFieldAnswerView: View {
     }
 
     init(viewModel: AnswerViewModel, isMultipleLines: Bool) {
-        let input = AnswerViewModel.Input()
+        let input = AnswerViewModel.Input(selectedAnswers: selectedAnswersTrigger.asDriver())
         output = viewModel.transform(input)
         self.isMultipleLines = isMultipleLines
         if !isMultipleLines {

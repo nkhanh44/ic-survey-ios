@@ -6,6 +6,7 @@
 //  Copyright © 2022 Nimble. All rights reserved.
 //
 
+import Combine
 import SwiftUI
 
 struct RatingAnswerView: View {
@@ -14,8 +15,10 @@ struct RatingAnswerView: View {
     @ObservedObject var output: AnswerViewModel.Output
 
     @State var displayType: DisplayType
-    @State var rating: Int = 0
+    @State var rating: Int = -1
     @State var icons: [RatingIcon] = []
+
+    private let selectedAnswersTrigger = PassthroughSubject<[SelectedAnswer]?, Never>()
 
     var body: some View {
         HStack(alignment: .center, spacing: 0.0) {
@@ -39,13 +42,16 @@ struct RatingAnswerView: View {
         .onAppear {
             setUpRatingView()
         }
+        .onChange(of: rating) {
+            selectedAnswersTrigger.send([SelectedAnswer(index: $0)])
+        }
     }
 
     init(
         viewModel: AnswerViewModel,
         displayType: DisplayType
     ) {
-        let input = AnswerViewModel.Input()
+        let input = AnswerViewModel.Input(selectedAnswers: selectedAnswersTrigger.asDriver())
         output = viewModel.transform(input)
         self.displayType = displayType
         self.input = input

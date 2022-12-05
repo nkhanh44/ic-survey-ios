@@ -12,4 +12,5 @@ import Foundation
 extension Constants.UserDefaultKeys {
 
     static let cachedSurveyList = "cachedSurveyList"
+    static let questionsSubmission = "questionsSubmission"
 }

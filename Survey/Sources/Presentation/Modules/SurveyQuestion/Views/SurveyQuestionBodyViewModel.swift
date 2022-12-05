@@ -27,6 +27,12 @@ extension SurveyQuestionBodyViewModel: ViewModel {
             .assign(to: \.question, on: output)
             .store(in: &output.cancelBag)
 
+        input.loadTrigger
+            .map { _ in numberOfQuestions }
+            .compactMap { $0 }
+            .assign(to: \.numberOfQuestions, on: output)
+            .store(in: &output.cancelBag)
+
         errorTracker
             .receive(on: RunLoop.main)
             .map { AlertMessage(error: $0) }
@@ -57,5 +63,6 @@ extension SurveyQuestionBodyViewModel {
         @Published var survey: Survey?
         @Published var alert: AlertMessage?
         @Published var question: SurveyQuestion?
+        @Published var numberOfQuestions = 0
     }
 }

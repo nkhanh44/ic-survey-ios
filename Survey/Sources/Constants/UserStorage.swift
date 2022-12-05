@@ -13,4 +13,8 @@ enum UserStorage {
     @Storage(key: Constants.UserDefaultKeys.cachedSurveyList, defaultValue: [])
 
     static var cachedSurveyList: [APISurvey]
+
+    @Storage(key: Constants.UserDefaultKeys.questionsSubmission, defaultValue: [])
+
+    static var questionsSubmission: [QuestionSubmission]
 }

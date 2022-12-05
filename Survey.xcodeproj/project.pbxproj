@@ -42,6 +42,7 @@
 		1C516B9628A3AB0400DB7B7B /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C516B9128A3A5C800DB7B7B /* Survey.swift */; };
 		1C516B9A28A3AF0C00DB7B7B /* SurveyItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C516B9928A3AF0C00DB7B7B /* SurveyItemView.swift */; };
 		1C57AC552933AD90000C71DA /* SubmitSurveyUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57AC532933ACA0000C71DA /* SubmitSurveyUseCaseSpec.swift */; };
+		1C57AC592934AC5B000C71DA /* SelectedAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57AC582934AC5B000C71DA /* SelectedAnswer.swift */; };
 		1C57AC5D293504BA000C71DA /* Encodable+Parameterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57AC5C293504BA000C71DA /* Encodable+Parameterable.swift */; };
 		1C57AC61293510BC000C71DA /* SurveyRepositorySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57AC5F293510AC000C71DA /* SurveyRepositorySpec.swift */; };
 		1C6592152924C55B007AD143 /* SurveyQuestionBodyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6592142924C55B007AD143 /* SurveyQuestionBodyViewModel.swift */; };
@@ -92,6 +93,7 @@
 		1CB1869F28923ED200372D50 /* PaddingTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1869E28923ED200372D50 /* PaddingTextFieldStyle.swift */; };
 		1CB186A22892400A00372D50 /* PlaceholderModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB186A12892400A00372D50 /* PlaceholderModifier.swift */; };
 		1CB186A62893B2D800372D50 /* ImageResource+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB186A52893B2D800372D50 /* ImageResource+.swift */; };
+		1CC2AF7D293CDBE60025C5AF /* SurveyQuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2AF7C293CDBE60025C5AF /* SurveyQuestionViewModel.swift */; };
 		1CC791ED29225725008A1A81 /* SurveyQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC791EC29225725008A1A81 /* SurveyQuestion.swift */; };
 		1CC791EF2922576C008A1A81 /* SurveyAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC791EE2922576C008A1A81 /* SurveyAnswer.swift */; };
 		1CC791F129227C1E008A1A81 /* APISurveyQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC791F029227C1E008A1A81 /* APISurveyQuestion.swift */; };
@@ -137,6 +139,7 @@
 		1CD6FA842898603300B4B0D7 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6FA832898603300B4B0D7 /* KeychainService.swift */; };
 		1CD6FA862898641900B4B0D7 /* KeychainToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6FA852898641900B4B0D7 /* KeychainToken.swift */; };
 		1CD6FA8A2898EC8000B4B0D7 /* AlamofireLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6FA892898EC8000B4B0D7 /* AlamofireLogger.swift */; };
+		1CD9B960293D05C900DA6581 /* SubmissionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B95F293D05C900DA6581 /* SubmissionUseCase.swift */; };
 		1CE7C6BA288A77C400B0EB1B /* DataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7C6B9288A77C400B0EB1B /* DataResponse.swift */; };
 		1CE7C6BC288A786400B0EB1B /* MetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7C6BB288A786400B0EB1B /* MetaData.swift */; };
 		1CE7C6BF288A795300B0EB1B /* SDecoderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7C6BE288A795300B0EB1B /* SDecoderType.swift */; };
@@ -269,6 +272,7 @@
 		1C516B9728A3AB3A00DB7B7B /* APISurvey+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APISurvey+Dummy.swift"; sourceTree = "<group>"; };
 		1C516B9928A3AF0C00DB7B7B /* SurveyItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyItemView.swift; sourceTree = "<group>"; };
 		1C57AC532933ACA0000C71DA /* SubmitSurveyUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitSurveyUseCaseSpec.swift; sourceTree = "<group>"; };
+		1C57AC582934AC5B000C71DA /* SelectedAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedAnswer.swift; sourceTree = "<group>"; };
 		1C57AC5C293504BA000C71DA /* Encodable+Parameterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Parameterable.swift"; sourceTree = "<group>"; };
 		1C57AC5F293510AC000C71DA /* SurveyRepositorySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyRepositorySpec.swift; sourceTree = "<group>"; };
 		1C6592142924C55B007AD143 /* SurveyQuestionBodyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyQuestionBodyViewModel.swift; sourceTree = "<group>"; };
@@ -319,6 +323,7 @@
 		1CB1869E28923ED200372D50 /* PaddingTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingTextFieldStyle.swift; sourceTree = "<group>"; };
 		1CB186A12892400A00372D50 /* PlaceholderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderModifier.swift; sourceTree = "<group>"; };
 		1CB186A52893B2D800372D50 /* ImageResource+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageResource+.swift"; sourceTree = "<group>"; };
+		1CC2AF7C293CDBE60025C5AF /* SurveyQuestionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyQuestionViewModel.swift; sourceTree = "<group>"; };
 		1CC791EC29225725008A1A81 /* SurveyQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyQuestion.swift; sourceTree = "<group>"; };
 		1CC791EE2922576C008A1A81 /* SurveyAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyAnswer.swift; sourceTree = "<group>"; };
 		1CC791F029227C1E008A1A81 /* APISurveyQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISurveyQuestion.swift; sourceTree = "<group>"; };
@@ -364,6 +369,7 @@
 		1CD6FA852898641900B4B0D7 /* KeychainToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainToken.swift; sourceTree = "<group>"; };
 		1CD6FA892898EC8000B4B0D7 /* AlamofireLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireLogger.swift; sourceTree = "<group>"; };
 		1CD6FA8C2898F32F00B4B0D7 /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
+		1CD9B95F293D05C900DA6581 /* SubmissionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionUseCase.swift; sourceTree = "<group>"; };
 		1CE7C6B9288A77C400B0EB1B /* DataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataResponse.swift; sourceTree = "<group>"; };
 		1CE7C6BB288A786400B0EB1B /* MetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaData.swift; sourceTree = "<group>"; };
 		1CE7C6BE288A795300B0EB1B /* SDecoderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDecoderType.swift; sourceTree = "<group>"; };
@@ -466,6 +472,7 @@
 				1CC791F229227C4E008A1A81 /* APISurveyAnswer.swift */,
 				1C0CBC30292F2D8C00FEBD4C /* APIQuestionSubmission.swift */,
 				1C0CBC32292F564500FEBD4C /* APIAnswerSubmission.swift */,
+				1C57AC582934AC5B000C71DA /* SelectedAnswer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -679,18 +686,9 @@
 		1C57AC5E29351097000C71DA /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				1C57AC6229351199000C71DA /* Repositories */,
 			);
 			name = Data;
 			path = ../Data;
-			sourceTree = "<group>";
-		};
-		1C57AC6229351199000C71DA /* Repositories */ = {
-			isa = PBXGroup;
-			children = (
-				1C57AC5F293510AC000C71DA /* SurveyRepositorySpec.swift */,
-			);
-			path = Repositories;
 			sourceTree = "<group>";
 		};
 		1C57AC632935E32E000C71DA /* NetworkAPI */ = {
@@ -720,8 +718,9 @@
 		1CA8B27528B52AA000E5C225 /* SurveyQuestion */ = {
 			isa = PBXGroup;
 			children = (
-				1CA8B27A28B52F9500E5C225 /* Views */,
 				1CA8B27628B52AB200E5C225 /* SurveyQuestionView.swift */,
+				1CC2AF7C293CDBE60025C5AF /* SurveyQuestionViewModel.swift */,
+				1CA8B27A28B52F9500E5C225 /* Views */,
 			);
 			path = SurveyQuestion;
 			sourceTree = "<group>";
@@ -854,6 +853,14 @@
 				1C6592182926302E007AD143 /* NPSTextModifier.swift */,
 			);
 			path = ViewModifier;
+			sourceTree = "<group>";
+		};
+		1CC2AF7B293CDBA60025C5AF /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				1C57AC5F293510AC000C71DA /* SurveyRepositorySpec.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		1CD4E344289F9B6900EA1E8B /* Presentation */ = {
@@ -997,6 +1004,13 @@
 				1CD6FA8C2898F32F00B4B0D7 /* Secret.xcconfig */,
 			);
 			path = Secret;
+			sourceTree = "<group>";
+		};
+		1CD9B95E293CFE7400DA6581 /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UserDefaults;
 			sourceTree = "<group>";
 		};
 		1CE7C6BD288A793D00B0EB1B /* Types */ = {
@@ -1245,6 +1259,7 @@
 				1CA8B27328B507C500E5C225 /* SurveyQuestionUseCase.swift */,
 				1CD6E13328CE056900A0457B /* UserUseCase.swift */,
 				1C0CBC34292F598000FEBD4C /* SubmitSurveyUseCase.swift */,
+				1CD9B95F293D05C900DA6581 /* SubmissionUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -1421,6 +1436,7 @@
 		C675DF15EBCAEB383781A061 /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
+				1CD9B95E293CFE7400DA6581 /* UserDefaults */,
 				1CD6FA822898602300B4B0D7 /* Keychain */,
 				1CD6FA772897AF1800B4B0D7 /* Environment */,
 				55EABAFCBB17BA5B89B6AD9D /* Plists */,
@@ -1541,6 +1557,7 @@
 				A72253F1937688568C1A31CD /* Frameworks */,
 				586803EF3EEDDB6484551736 /* Products */,
 				18E8ED2FA2512085EC5A207E /* Pods */,
+				1CC2AF7B293CDBA60025C5AF /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1683,7 +1700,6 @@
 /* Begin PBXShellScriptBuildPhase section */
 		364701D01D6D730E26E263DF /* R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -1734,7 +1750,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -z \"$CI\" ]; then\n    \"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\" \"$SRCROOT\" --lint --lenient\nfi";
+			shellScript = "if [ -z \"$CI\" ]; then\n    \"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\" \"$SRCROOT\" --lint --lenient\nfi\n";
 		};
 		75D860676D980C7DF2D11E63 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1760,6 +1776,7 @@
 		};
 		9BD4EA3F047610A3BE9C5FD8 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -1774,7 +1791,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -z \"$CI\" ]; then\n    ${PODS_ROOT}/SwiftLint/swiftlint\nfi";
+			shellScript = "if [ -z \"$CI\" ]; then\n    ${PODS_ROOT}/SwiftLint/swiftlint\nfi\n";
 		};
 		A3C000438E4A91EA9068C937 /* SwiftFormat */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1818,6 +1835,7 @@
 		};
 		B85F179315C39B4798E604CA /* Sourcery */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -1872,7 +1890,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH_TO_GOOGLE_PLISTS=\"$SRCROOT/$PROJECT_NAME/Configurations/Plists/GoogleService\"\n\ncase \"${CONFIGURATION}\" in\n\"Debug Staging\" | \"Release Staging\" )\ncp -r \"$PATH_TO_GOOGLE_PLISTS/Staging/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n;;\n\"Debug Production\" | \"Release Production\" )\ncp -r \"$PATH_TO_GOOGLE_PLISTS/Production/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n;;\n*)\n;;\nesac";
+			shellScript = "PATH_TO_GOOGLE_PLISTS=\"$SRCROOT/$PROJECT_NAME/Configurations/Plists/GoogleService\"\n\ncase \"${CONFIGURATION}\" in\n\"Debug Staging\" | \"Release Staging\" )\ncp -r \"$PATH_TO_GOOGLE_PLISTS/Staging/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n;;\n\"Debug Production\" | \"Release Production\" )\ncp -r \"$PATH_TO_GOOGLE_PLISTS/Production/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n;;\n*)\n;;\nesac\n";
 		};
 		DDD1E0B9B9D0F2D8DC3E9B3D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1970,6 +1988,7 @@
 				1CD6E12D28CDF8BD00A0457B /* APIUser+Dummy.swift in Sources */,
 				1C0CBC33292F564500FEBD4C /* APIAnswerSubmission.swift in Sources */,
 				1CEE605D28ABFA7800748C63 /* SurveyDetailView.swift in Sources */,
+				1CC2AF7D293CDBE60025C5AF /* SurveyQuestionViewModel.swift in Sources */,
 				1CE7C6D4288A89AE00B0EB1B /* SplashViewModel.swift in Sources */,
 				4237A58C15107740F342790E /* RequestConfiguration.swift in Sources */,
 				1CB186A22892400A00372D50 /* PlaceholderModifier.swift in Sources */,
@@ -1985,6 +2004,7 @@
 				1CD4E337289BC7AA00EA1E8B /* String+Validation.swift in Sources */,
 				1CA8B27928B52E7400E5C225 /* CloseButtonModifier.swift in Sources */,
 				2CE4A0682D8CB5A1F2B4C717 /* Navigator+Transition.swift in Sources */,
+				1CD9B960293D05C900DA6581 /* SubmissionUseCase.swift in Sources */,
 				1CB186902891310D00372D50 /* SButtonView.swift in Sources */,
 				1CD6E13428CE056A00A0457B /* UserUseCase.swift in Sources */,
 				1CC791F329227C4E008A1A81 /* APISurveyAnswer.swift in Sources */,
@@ -2004,6 +2024,7 @@
 				1CA8B29A28BBCC8800E5C225 /* UserStorage.swift in Sources */,
 				1CB186A62893B2D800372D50 /* ImageResource+.swift in Sources */,
 				1CEE603428A6375900748C63 /* Date+StringFormat.swift in Sources */,
+				1C57AC592934AC5B000C71DA /* SelectedAnswer.swift in Sources */,
 				1CA8B28028B5310C00E5C225 /* SmallTagTextModifier.swift in Sources */,
 				1CE7C6BF288A795300B0EB1B /* SDecoderType.swift in Sources */,
 				1CE7C6E5288AB3A000B0EB1B /* Font+.swift in Sources */,

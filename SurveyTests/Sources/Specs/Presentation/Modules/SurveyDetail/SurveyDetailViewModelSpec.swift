@@ -66,10 +66,6 @@ final class SurveyDetailViewModelSpec: QuickSpec {
                         startSurveyTrigger.send("id")
                     }
 
-                    it("returns output alert not nil") {
-                        expect(output.alert).toEventuallyNot(beNil())
-                    }
-
                     it("returns output isSurveyQuestionPresented is false") {
                         expect(output.isSurveyQuestionPresented) == false
                     }

@@ -59,7 +59,7 @@ struct HomeView: View {
                 withAnimation(.easeInOut(duration: 1.0).delay(1.0)) {
                     showSkeletonAnimation = false
                 }
-                output.surveys = UserStorage.cachedSurveyList
+                output.surveys = CachedUserStorage.shared.getValue()
                 self.loadUserInfoTrigger.send()
                 self.loadTrigger.send()
             }
@@ -136,6 +136,19 @@ struct HomeView: View {
                 loadTrigger.send()
             }
         }
+        .fullScreenCover(isPresented: $isModalPresented) {
+            SurveyDetailView(
+                viewModel: SurveyDetailViewModel(
+                    surveyQuestionUseCase: SurveyQuestionUseCase(
+                        surveyRepository: SurveyRepository(
+                            api: AuthenticationNetworkAPI()
+                        )
+                    )
+                ),
+                isPresented: $isModalPresented,
+                survey: output.surveys[tabSelection]
+            )
+        }
     }
 
     private func setUpSurveyItemView(with index: Int, and survey: Survey) -> some View {
@@ -154,19 +167,6 @@ struct HomeView: View {
             withoutAnimation {
                 isModalPresented = true
             }
-        }
-        .fullScreenCover(isPresented: $isModalPresented) {
-            SurveyDetailView(
-                viewModel: SurveyDetailViewModel(
-                    surveyQuestionUseCase: SurveyQuestionUseCase(
-                        surveyRepository: SurveyRepository(
-                            api: AuthenticationNetworkAPI()
-                        )
-                    )
-                ),
-                isPresented: $isModalPresented,
-                survey: survey
-            )
         }
     }
 

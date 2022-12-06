@@ -11,8 +11,6 @@
 		1C044B9D28ACD9A5001FF098 /* HomeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C044B9C28ACD9A5001FF098 /* HomeUseCase.swift */; };
 		1C044B9F28ACDF58001FF098 /* AuthenticationInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C044B9E28ACDF58001FF098 /* AuthenticationInterceptor.swift */; };
 		1C044BA128ACE4C7001FF098 /* AuthenticationNetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C044BA028ACE4C7001FF098 /* AuthenticationNetworkAPI.swift */; };
-		1C0CBC2D292F2BF700FEBD4C /* AnswerSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0CBC2C292F2BF700FEBD4C /* AnswerSubmission.swift */; };
-		1C0CBC2F292F2CC700FEBD4C /* QuestionSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0CBC2E292F2CC700FEBD4C /* QuestionSubmission.swift */; };
 		1C0CBC31292F2D8C00FEBD4C /* APIQuestionSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0CBC30292F2D8C00FEBD4C /* APIQuestionSubmission.swift */; };
 		1C0CBC33292F564500FEBD4C /* APIAnswerSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0CBC32292F564500FEBD4C /* APIAnswerSubmission.swift */; };
 		1C0CBC35292F598000FEBD4C /* SubmitSurveyUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0CBC34292F598000FEBD4C /* SubmitSurveyUseCase.swift */; };
@@ -44,7 +42,6 @@
 		1C57AC552933AD90000C71DA /* SubmitSurveyUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57AC532933ACA0000C71DA /* SubmitSurveyUseCaseSpec.swift */; };
 		1C57AC592934AC5B000C71DA /* SelectedAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57AC582934AC5B000C71DA /* SelectedAnswer.swift */; };
 		1C57AC5D293504BA000C71DA /* Encodable+Parameterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57AC5C293504BA000C71DA /* Encodable+Parameterable.swift */; };
-		1C57AC61293510BC000C71DA /* SurveyRepositorySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57AC5F293510AC000C71DA /* SurveyRepositorySpec.swift */; };
 		1C6592152924C55B007AD143 /* SurveyQuestionBodyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6592142924C55B007AD143 /* SurveyQuestionBodyViewModel.swift */; };
 		1C65921729254767007AD143 /* AnswerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C65921629254767007AD143 /* AnswerViewModel.swift */; };
 		1C6592192926302E007AD143 /* NPSTextModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6592182926302E007AD143 /* NPSTextModifier.swift */; };
@@ -73,7 +70,7 @@
 		1CA8B29128B6724E00E5C225 /* HomeUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA8B28928B6635D00E5C225 /* HomeUseCaseSpec.swift */; };
 		1CA8B29328B763BC00E5C225 /* Constants+UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA8B29228B763BC00E5C225 /* Constants+UserDefaultKeys.swift */; };
 		1CA8B29828BBCBBC00E5C225 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA8B29728BBCBBC00E5C225 /* Storage.swift */; };
-		1CA8B29A28BBCC8800E5C225 /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA8B29928BBCC8800E5C225 /* UserStorage.swift */; };
+		1CA8B29A28BBCC8800E5C225 /* UserStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA8B29928BBCC8800E5C225 /* UserStorageProtocol.swift */; };
 		1CA8B29D28BCD04F00E5C225 /* Array+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA8B29C28BCD04E00E5C225 /* Array+Comparable.swift */; };
 		1CAFBB1B28B2AA3800D068DD /* View+Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAFBB1A28B2AA3800D068DD /* View+Transaction.swift */; };
 		1CAFBB2328B2AD4200D068DD /* SurveyDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAFBB2228B2AD4200D068DD /* SurveyDetailViewModel.swift */; };
@@ -142,6 +139,11 @@
 		1CD9B960293D05C900DA6581 /* SubmissionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B95F293D05C900DA6581 /* SubmissionUseCase.swift */; };
 		1CD9B962293E6E3C00DA6581 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B961293E6E3C00DA6581 /* LottieView.swift */; };
 		1CD9B965293E71BB00DA6581 /* successful.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CD9B964293E71BB00DA6581 /* successful.json */; };
+		1CD9B970293F12CB00DA6581 /* SurveyRepositorySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B96E293F129000DA6581 /* SurveyRepositorySpec.swift */; };
+		1CD9B976293F9E0400DA6581 /* QuestionSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B974293F9E0400DA6581 /* QuestionSubmission.swift */; };
+		1CD9B977293F9E0400DA6581 /* AnswerSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B975293F9E0400DA6581 /* AnswerSubmission.swift */; };
+		1CD9B979293FBE5000DA6581 /* CachedUserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B978293FBE5000DA6581 /* CachedUserStorage.swift */; };
+		1CD9B97B293FBE7400DA6581 /* QuestionSubmissionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B97A293FBE7400DA6581 /* QuestionSubmissionStorage.swift */; };
 		1CE7C6BA288A77C400B0EB1B /* DataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7C6B9288A77C400B0EB1B /* DataResponse.swift */; };
 		1CE7C6BC288A786400B0EB1B /* MetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7C6BB288A786400B0EB1B /* MetaData.swift */; };
 		1CE7C6BF288A795300B0EB1B /* SDecoderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7C6BE288A795300B0EB1B /* SDecoderType.swift */; };
@@ -243,8 +245,6 @@
 		1C044B9C28ACD9A5001FF098 /* HomeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUseCase.swift; sourceTree = "<group>"; };
 		1C044B9E28ACDF58001FF098 /* AuthenticationInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationInterceptor.swift; sourceTree = "<group>"; };
 		1C044BA028ACE4C7001FF098 /* AuthenticationNetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationNetworkAPI.swift; sourceTree = "<group>"; };
-		1C0CBC2C292F2BF700FEBD4C /* AnswerSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerSubmission.swift; sourceTree = "<group>"; };
-		1C0CBC2E292F2CC700FEBD4C /* QuestionSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionSubmission.swift; sourceTree = "<group>"; };
 		1C0CBC30292F2D8C00FEBD4C /* APIQuestionSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIQuestionSubmission.swift; sourceTree = "<group>"; };
 		1C0CBC32292F564500FEBD4C /* APIAnswerSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAnswerSubmission.swift; sourceTree = "<group>"; };
 		1C0CBC34292F598000FEBD4C /* SubmitSurveyUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitSurveyUseCase.swift; sourceTree = "<group>"; };
@@ -305,7 +305,7 @@
 		1CA8B28E28B6644800E5C225 /* SurveyRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyRepositoryMock.swift; sourceTree = "<group>"; };
 		1CA8B29228B763BC00E5C225 /* Constants+UserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+UserDefaultKeys.swift"; sourceTree = "<group>"; };
 		1CA8B29728BBCBBC00E5C225 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
-		1CA8B29928BBCC8800E5C225 /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
+		1CA8B29928BBCC8800E5C225 /* UserStorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorageProtocol.swift; sourceTree = "<group>"; };
 		1CA8B29C28BCD04E00E5C225 /* Array+Comparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Comparable.swift"; sourceTree = "<group>"; };
 		1CAFBB1A28B2AA3800D068DD /* View+Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Transaction.swift"; sourceTree = "<group>"; };
 		1CAFBB1E28B2AC8800D068DD /* SurveyDetailViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyDetailViewSpec.swift; sourceTree = "<group>"; };
@@ -374,6 +374,11 @@
 		1CD9B95F293D05C900DA6581 /* SubmissionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionUseCase.swift; sourceTree = "<group>"; };
 		1CD9B961293E6E3C00DA6581 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		1CD9B964293E71BB00DA6581 /* successful.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = successful.json; sourceTree = "<group>"; };
+		1CD9B96E293F129000DA6581 /* SurveyRepositorySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyRepositorySpec.swift; sourceTree = "<group>"; };
+		1CD9B974293F9E0400DA6581 /* QuestionSubmission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionSubmission.swift; sourceTree = "<group>"; };
+		1CD9B975293F9E0400DA6581 /* AnswerSubmission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerSubmission.swift; sourceTree = "<group>"; };
+		1CD9B978293FBE5000DA6581 /* CachedUserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedUserStorage.swift; sourceTree = "<group>"; };
+		1CD9B97A293FBE7400DA6581 /* QuestionSubmissionStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionSubmissionStorage.swift; sourceTree = "<group>"; };
 		1CE7C6B9288A77C400B0EB1B /* DataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataResponse.swift; sourceTree = "<group>"; };
 		1CE7C6BB288A786400B0EB1B /* MetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaData.swift; sourceTree = "<group>"; };
 		1CE7C6BE288A795300B0EB1B /* SDecoderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDecoderType.swift; sourceTree = "<group>"; };
@@ -685,14 +690,6 @@
 				1C57AC532933ACA0000C71DA /* SubmitSurveyUseCaseSpec.swift */,
 			);
 			path = Survey;
-			sourceTree = "<group>";
-		};
-		1C57AC5E29351097000C71DA /* Data */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Data;
-			path = ../Data;
 			sourceTree = "<group>";
 		};
 		1C57AC632935E32E000C71DA /* NetworkAPI */ = {
@@ -1014,6 +1011,9 @@
 		1CD9B95E293CFE7400DA6581 /* UserDefaults */ = {
 			isa = PBXGroup;
 			children = (
+				1CA8B29928BBCC8800E5C225 /* UserStorageProtocol.swift */,
+				1CD9B978293FBE5000DA6581 /* CachedUserStorage.swift */,
+				1CD9B97A293FBE7400DA6581 /* QuestionSubmissionStorage.swift */,
 			);
 			path = UserDefaults;
 			sourceTree = "<group>";
@@ -1024,6 +1024,22 @@
 				1CD9B964293E71BB00DA6581 /* successful.json */,
 			);
 			path = Lottie;
+			sourceTree = "<group>";
+		};
+		1CD9B96C293F126E00DA6581 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				1CD9B96D293F127B00DA6581 /* Repositories */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		1CD9B96D293F127B00DA6581 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				1CD9B96E293F129000DA6581 /* SurveyRepositorySpec.swift */,
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 		1CE7C6BD288A793D00B0EB1B /* Types */ = {
@@ -1257,7 +1273,6 @@
 			children = (
 				71A1F95D20E1E58589F4CD31 /* Constants.swift */,
 				1CD4E36628A021A800EA1E8B /* TestConstants.swift */,
-				1CA8B29928BBCC8800E5C225 /* UserStorage.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1472,16 +1487,16 @@
 		D48B569B5C2E9B9AE0FF732D /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				1CD9B975293F9E0400DA6581 /* AnswerSubmission.swift */,
 				1C65921A2927410E007AD143 /* DisplayType.swift */,
 				1C65921C29274126007AD143 /* PickType.swift */,
+				1CD9B974293F9E0400DA6581 /* QuestionSubmission.swift */,
 				1CD6E12128CD17E600A0457B /* RatingIcon.swift */,
 				1C516B9128A3A5C800DB7B7B /* Survey.swift */,
 				1CC791EE2922576C008A1A81 /* SurveyAnswer.swift */,
 				1CC791EC29225725008A1A81 /* SurveyQuestion.swift */,
 				1CD6FA6C289797B000B4B0D7 /* Token.swift */,
 				1CD6E12528CDF3C700A0457B /* User.swift */,
-				1C0CBC2C292F2BF700FEBD4C /* AnswerSubmission.swift */,
-				1C0CBC2E292F2CC700FEBD4C /* QuestionSubmission.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1517,7 +1532,7 @@
 		E2CFD90AA709E93E3B8B225B /* Specs */ = {
 			isa = PBXGroup;
 			children = (
-				1C57AC5E29351097000C71DA /* Data */,
+				1CD9B96C293F126E00DA6581 /* Data */,
 				1CD4E344289F9B6900EA1E8B /* Presentation */,
 				1CD4E348289F9BE500EA1E8B /* Domain */,
 				B90B0AAED49EDB18D8210FEB /* Supports */,
@@ -1715,6 +1730,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		364701D01D6D730E26E263DF /* R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -1956,6 +1972,7 @@
 				1CAFBB1B28B2AA3800D068DD /* View+Transaction.swift in Sources */,
 				1CC791ED29225725008A1A81 /* SurveyQuestion.swift in Sources */,
 				1CD6FA712897A7D300B4B0D7 /* LogInRepository.swift in Sources */,
+				1CD9B976293F9E0400DA6581 /* QuestionSubmission.swift in Sources */,
 				1C2ADCBD28CC9E6300743802 /* NPSAnswerView.swift in Sources */,
 				1C6592152924C55B007AD143 /* SurveyQuestionBodyViewModel.swift in Sources */,
 				1CA8B27728B52AB200E5C225 /* SurveyQuestionView.swift in Sources */,
@@ -1966,13 +1983,14 @@
 				1CEE604A28ABC70500748C63 /* UserSessionUseCase.swift in Sources */,
 				1CEE602C28A4B1A700748C63 /* TitleTextModifier.swift in Sources */,
 				1C516B9528A3AAF300DB7B7B /* APISurvey.swift in Sources */,
+				1CD9B977293F9E0400DA6581 /* AnswerSubmission.swift in Sources */,
 				1CD4E36728A021A800EA1E8B /* TestConstants.swift in Sources */,
 				1CEE603228A4EB5500748C63 /* PageControlView.swift in Sources */,
-				1C0CBC2F292F2CC700FEBD4C /* QuestionSubmission.swift in Sources */,
 				1CE7C6D0288A899C00B0EB1B /* SplashView.swift in Sources */,
 				1CD6E13828CE05AB00A0457B /* UserRequestConfiguration.swift in Sources */,
 				1CEE605F28AC05B000748C63 /* LargerTitleTextModifier.swift in Sources */,
 				1CD4E339289CCD0500EA1E8B /* View+Opacity.swift in Sources */,
+				1CD9B97B293FBE7400DA6581 /* QuestionSubmissionStorage.swift in Sources */,
 				1C2ADCB628CC7C9C00743802 /* RatingAnswerView.swift in Sources */,
 				1C2ADCC728CCDA7900743802 /* MultipleSelectionView.swift in Sources */,
 				1C6592192926302E007AD143 /* NPSTextModifier.swift in Sources */,
@@ -2032,12 +2050,11 @@
 				1C65921D29274126007AD143 /* PickType.swift in Sources */,
 				1CEF01CD28CCF91E0032BD4E /* PickerView.swift in Sources */,
 				1CB1869F28923ED200372D50 /* PaddingTextFieldStyle.swift in Sources */,
-				1C0CBC2D292F2BF700FEBD4C /* AnswerSubmission.swift in Sources */,
 				1CD6E13D28D0CC8F00A0457B /* EmptyResponse.swift in Sources */,
 				1CD6FA752897AE6900B4B0D7 /* Constants+API.swift in Sources */,
 				1CC791F129227C1E008A1A81 /* APISurveyQuestion.swift in Sources */,
 				1CD6FA6D289797B000B4B0D7 /* Token.swift in Sources */,
-				1CA8B29A28BBCC8800E5C225 /* UserStorage.swift in Sources */,
+				1CA8B29A28BBCC8800E5C225 /* UserStorageProtocol.swift in Sources */,
 				1CB186A62893B2D800372D50 /* ImageResource+.swift in Sources */,
 				1CEE603428A6375900748C63 /* Date+StringFormat.swift in Sources */,
 				1C57AC592934AC5B000C71DA /* SelectedAnswer.swift in Sources */,
@@ -2058,6 +2075,7 @@
 				1CD6E12628CDF3C700A0457B /* User.swift in Sources */,
 				1C2ADCC328CCCAAC00743802 /* STextEditorView.swift in Sources */,
 				1CA8B27C28B52FBA00E5C225 /* SurveyQuestionBodyView.swift in Sources */,
+				1CD9B979293FBE5000DA6581 /* CachedUserStorage.swift in Sources */,
 				1CD6E13228CDFD1B00A0457B /* Bundle+Version.swift in Sources */,
 				1CD4E37828A0CF6200EA1E8B /* StoreTokenUseCase.swift in Sources */,
 				1C044B9D28ACD9A5001FF098 /* HomeUseCase.swift in Sources */,
@@ -2110,7 +2128,6 @@
 				1CA8B29028B6644B00E5C225 /* HomeUseCaseMock.swift in Sources */,
 				1C57AC552933AD90000C71DA /* SubmitSurveyUseCaseSpec.swift in Sources */,
 				1C1C2FA6292E02A300DF460B /* SurveyQuestionBodyViewModelSpec.swift in Sources */,
-				1C57AC61293510BC000C71DA /* SurveyRepositorySpec.swift in Sources */,
 				1CEE604F28ABCD2200748C63 /* SplashViewSpec.swift in Sources */,
 				1C516B8528A1619D00DB7B7B /* LoginViewSpec.swift in Sources */,
 				1C1C2F97292BC54C00DF460B /* APISurveyQuestion+Dummy.swift in Sources */,
@@ -2126,6 +2143,7 @@
 				1CAFBB2428B325AE00D068DD /* SurveyDetailViewSpec.swift in Sources */,
 				1C516B7828A152F600DB7B7B /* LoginUseCaseSpec.swift in Sources */,
 				1C65922229274655007AD143 /* SurveyQuestionUseCaseMock.swift in Sources */,
+				1CD9B970293F12CB00DA6581 /* SurveyRepositorySpec.swift in Sources */,
 				1CD4E37A28A0EEC100EA1E8B /* StoreTokenUseCaseMock.swift in Sources */,
 				1C1C2FA1292DF77C00DF460B /* AnswerViewModelSpec.swift in Sources */,
 			);

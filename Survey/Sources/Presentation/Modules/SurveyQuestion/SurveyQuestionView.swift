@@ -25,7 +25,7 @@ struct SurveyQuestionView: View {
 
     var body: some View {
         LoadingView(
-            isShowing: .constant(false),
+            isShowing: $output.isLoading,
             text: .constant(""),
             content: {
                 TabView(selection: $tabSelection) {
@@ -76,12 +76,11 @@ struct SurveyQuestionView: View {
             }
         }
         .onChange(of: output.isSuccess, perform: { isSuccess in
-            print("@@@ isSuccess", isSuccess)
             guard isSuccess else { return }
             withoutAnimation {
                 didShowLottie = true
             }
-            UserStorage.questionsSubmission = []
+            QuestionSubmissionStorage.shared.remove()
         })
         .padding(.bottom, 54.0)
         .padding(.top, 54.0)
@@ -92,14 +91,25 @@ struct SurveyQuestionView: View {
         .edgesIgnoringSafeArea(.all)
         .preferredColorScheme(.dark)
         .onAppear {
-            UserStorage.questionsSubmission = []
-            UserStorage.questionsSubmission = questions
-                .map {
-                    QuestionSubmission(
-                        id: $0.id,
-                        answers: []
-                    )
-                }
+            QuestionSubmissionStorage.shared.remove()
+            QuestionSubmissionStorage.shared.set(
+                objects: questions
+                    .map {
+                        QuestionSubmission(
+                            id: $0.id,
+                            answers: []
+                        )
+                    }
+            )
+        }
+        .alert(isPresented: .constant($output.alert.wrappedValue != nil)) {
+            Alert(
+                title: Text(output.alert?.title ?? ""),
+                message: Text(output.alert?.message ?? ""),
+                dismissButton: .default(Text("OK"), action: {
+                    dismissAlertTrigger.send()
+                })
+            )
         }
     }
 
@@ -140,7 +150,7 @@ struct SurveyQuestionView: View {
                             CloseButtonModifier(
                                 didAction: {
                                     withoutAnimation {
-                                        UserStorage.questionsSubmission = []
+                                        QuestionSubmissionStorage.shared.remove()
                                         isPresented.wrappedValue.toggle()
                                     }
                                 }
@@ -175,7 +185,7 @@ struct SurveyQuestionView: View {
                             action: {
                                 submitTrigger.send(())
                             },
-                            title: "Submit"
+                            title: AssetLocalization.submissionSubmitText()
                         )
                         .frame(
                             width: 120.0,

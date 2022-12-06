@@ -46,12 +46,13 @@ extension HomeViewModel: ViewModel {
             .switchToLatest()
             .map {
                 pageNumber += 1
-                if !UserStorage.cachedSurveyList.hasSameChildren(as: $0 as? [APISurvey] ?? []) {
-                    UserStorage.cachedSurveyList = output.surveys + $0 as? [APISurvey] ?? []
+                let cached = CachedUserStorage.shared
+                if !cached.getValue().hasSameChildren(as: $0 as? [APISurvey] ?? []) {
+                    cached.set(objects: output.surveys + $0 as? [APISurvey] ?? [])
                     return output.surveys + $0
                 }
 
-                return UserStorage.cachedSurveyList
+                return cached.getValue()
             }
             .assign(to: \.surveys, on: output)
             .store(in: &output.cancelBag)
@@ -65,11 +66,12 @@ extension HomeViewModel: ViewModel {
             .switchToLatest()
             .map {
                 pageNumber = 1
+                let cached = CachedUserStorage.shared
                 if !$0.isEmpty {
-                    UserStorage.cachedSurveyList = $0 as? [APISurvey] ?? []
+                    cached.set(objects: $0 as? [APISurvey] ?? [])
                 }
 
-                return UserStorage.cachedSurveyList
+                return cached.getValue()
             }
             .assign(to: \.surveys, on: output)
             .store(in: &output.cancelBag)

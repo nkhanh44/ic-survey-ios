@@ -18,7 +18,7 @@ struct RatingAnswerView: View {
     @State var rating: Int = -1
     @State var icons: [RatingIcon] = []
 
-    private let selectedAnswersTrigger = PassthroughSubject<[SelectedAnswer]?, Never>()
+    private let selectedAnswersTrigger = PassthroughSubject<SelectedAnswer?, Never>()
 
     var body: some View {
         HStack(alignment: .center, spacing: 0.0) {
@@ -43,7 +43,7 @@ struct RatingAnswerView: View {
             setUpRatingView()
         }
         .onChange(of: rating) {
-            selectedAnswersTrigger.send([SelectedAnswer(index: $0)])
+            selectedAnswersTrigger.send(SelectedAnswer(index: $0))
         }
     }
 

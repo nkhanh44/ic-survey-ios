@@ -71,7 +71,7 @@ final class SurveyRepositorySpec: QuickSpec {
                 let questionSubmissions = [QuestionSubmission]()
 
                 beforeEach {
-                    networkAPIMock.performRequestReturnValue = Future<Bool, Error> { promise in
+                    networkAPIMock.performEmptyRequestReturnValue = Future<Bool, Error> { promise in
                         promise(Result.success(true))
                     }
                 }

@@ -14,7 +14,7 @@ struct ChoiceAnswerView: View {
     @ObservedObject var input: AnswerViewModel.Input
     @ObservedObject var output: AnswerViewModel.Output
     @State var selectedIndex: Int = 0
-    private let selectedAnswersTrigger = PassthroughSubject<[SelectedAnswer]?, Never>()
+    private let selectedAnswersTrigger = PassthroughSubject<SelectedAnswer?, Never>()
 
     var body: some View {
         ZStack {
@@ -34,7 +34,7 @@ struct ChoiceAnswerView: View {
             }
         }
         .onChange(of: selectedIndex) {
-            selectedAnswersTrigger.send([SelectedAnswer(index: $0 - 1)])
+            selectedAnswersTrigger.send(SelectedAnswer(index: $0 - 1))
         }
     }
 

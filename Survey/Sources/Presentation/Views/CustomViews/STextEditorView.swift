@@ -31,6 +31,7 @@ struct STextEditorView: View {
                     .padding(padding)
             }
             TextEditor(text: $text)
+                .scrollContentBackground(.hidden)
                 .padding(padding)
         }
         .onAppear {

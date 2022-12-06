@@ -5,6 +5,7 @@
 //  Created by Khanh on 10/09/2022.
 //  Copyright © 2022 Nimble. All rights reserved.
 //
+// swiftlint:disable closure_body_length
 
 import Combine
 import SwiftUI
@@ -16,7 +17,7 @@ struct TextFieldAnswerView: View {
 
     var isMultipleLines: Bool
     @State var answers: [String]
-    private let selectedAnswersTrigger = PassthroughSubject<[SelectedAnswer]?, Never>()
+    private let selectedAnswersTrigger = PassthroughSubject<SelectedAnswer?, Never>()
 
     var body: some View {
         VStack {
@@ -26,7 +27,7 @@ struct TextFieldAnswerView: View {
                     text: $answers.first ?? .constant("")
                 )
                 .onChange(of: answers, perform: { _ in
-                    selectedAnswersTrigger.send([SelectedAnswer(index: 0, text: answers.first)])
+                    selectedAnswersTrigger.send(SelectedAnswer(index: 0, text: answers.first))
                 })
                 .font(.body)
                 .background(.gray.opacity(0.2))
@@ -44,12 +45,10 @@ struct TextFieldAnswerView: View {
                         )
                         .onChange(of: answers[index], perform: { newValue in
                             selectedAnswersTrigger.send(
-                                [
-                                    SelectedAnswer(
-                                        index: index,
-                                        text: newValue
-                                    )
-                                ]
+                                SelectedAnswer(
+                                    index: index,
+                                    text: newValue
+                                )
                             )
                         })
                         .tag(index)

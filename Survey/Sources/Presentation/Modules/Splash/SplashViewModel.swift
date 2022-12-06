@@ -43,7 +43,7 @@ extension SplashViewModel: ViewModel {
                 guard let list = $0 as? [APISurvey] else {
                     return false
                 }
-                UserStorage.cachedSurveyList = list
+                CachedUserStorage.shared.set(objects: list)
                 return true
             }
             .assign(to: \.fetchSuccessfully, on: output)

@@ -5,6 +5,7 @@
 //  Created by Khanh on 23/08/2022.
 //  Copyright © 2022 Nimble. All rights reserved.
 //
+// swiftlint:disable closure_body_length
 
 import Combine
 import SwiftUI

@@ -42,56 +42,78 @@ extension AnswerViewModel: ViewModel {
 
         input.selectedAnswers
             .compactMap { $0 }
-            .map { anwsers in
+            .map { answer in
                 let isMultipleChoices = ((displayType == .choice && pickType == .any) || displayType == .textfield)
-                var submission = UserStorage.questionsSubmission
-                if isMultipleChoices {
-                    let id = surveyAnswers[anwsers.first?.index ?? 0].id
-                    for index in 0 ..< submission.count where submission[index].id == idQuestion {
-                        if submission[index].answers.contains(where: { $0.id == id }) {
-                            guard displayType != .choice else {
-                                if let removedIndex = submission[index].answers.firstIndex(where: { $0.id == id }) {
-                                    submission[index].answers.remove(at: removedIndex)
-                                }
-                                continue
-                            }
-                            if let addedIndex = submission[index].answers.firstIndex(where: { $0.id == id }) {
-                                submission[index].answers[addedIndex] = AnswerSubmission(
-                                    id: surveyAnswers[anwsers[0].index].id,
-                                    answer: anwsers[0].text
-                                )
-                            }
-                        } else {
-                            submission[index].answers += anwsers.map {
-                                AnswerSubmission(
-                                    id: surveyAnswers[$0.index].id,
-                                    answer: $0.text
-                                )
-                            }
-                        }
-                    }
-                } else {
-                    for index in 0 ..< submission.count where submission[index].id == idQuestion {
-                        guard displayType == .choice && anwsers[0].index == -1 else {
-                            submission[index].answers = anwsers.map {
-                                AnswerSubmission(
-                                    id: surveyAnswers[$0.index].id,
-                                    answer: $0.text
-                                )
-                            }
-                            continue
-                        }
-                        submission[index].answers.removeFirst()
-                    }
-                }
-                UserStorage.questionsSubmission = submission
-                print("@@@ list", UserStorage.questionsSubmission)
+                handleSelectedAnswers(isMultipleChoices: isMultipleChoices, selectedAnswer: answer)
             }
             .map { _ in true }
             .assign(to: \.didAnswer, on: output)
             .store(in: &output.cancelBag)
 
         return output
+    }
+}
+
+// MARK: - Private
+
+extension AnswerViewModel {
+
+    private func handleSelectedAnswers(isMultipleChoices: Bool, selectedAnswer: SelectedAnswer) {
+        var submission = QuestionSubmissionStorage.shared.getValue()
+        for index in 0 ..< submission.count where submission[index].id == idQuestion {
+            if isMultipleChoices {
+                submission = handleMultipleChoices(
+                    submission: submission,
+                    index: index,
+                    selectedAnswer: selectedAnswer,
+                    id: surveyAnswers[selectedAnswer.index].id
+                )
+            } else {
+                guard displayType == .choice, selectedAnswer.index == -1 else {
+                    // Add answer to storage
+                    submission[index].answers = [
+                        AnswerSubmission(
+                            id: surveyAnswers[selectedAnswer.index].id,
+                            answer: selectedAnswer.text
+                        )
+                    ]
+                    continue
+                }
+                submission[index].answers.removeFirst() // Remove answer when we want to undo the choice
+            }
+        }
+        QuestionSubmissionStorage.shared.set(objects: submission)
+    }
+
+    private func handleMultipleChoices(
+        submission: [QuestionSubmission],
+        index: Int,
+        selectedAnswer: SelectedAnswer,
+        id: String
+    ) -> [QuestionSubmission] {
+        var tempSubmission = submission
+
+        if let selectedIndex = tempSubmission[index].answers.firstIndex(where: { $0.id == id }) {
+            // When there is an already answer, remove the answer if we want to undo the choice
+            guard displayType != .choice else {
+                tempSubmission[index].answers.remove(at: selectedIndex)
+                return tempSubmission
+            }
+            // When there is an already answer, we modify it in the storage
+            tempSubmission[index].answers[selectedIndex] = AnswerSubmission(
+                id: id,
+                answer: selectedAnswer.text
+            )
+        } else {
+            // When there is no answer yet, we add it to the storage
+            tempSubmission[index].answers += [
+                AnswerSubmission(
+                    id: id,
+                    answer: selectedAnswer.text
+                )
+            ]
+        }
+        return tempSubmission
     }
 }
 
@@ -102,11 +124,11 @@ extension AnswerViewModel {
     final class Input: ObservableObject {
 
         let npsRatingTrigger: Driver<Int>?
-        let selectedAnswers: Driver<[SelectedAnswer]?>
+        let selectedAnswers: Driver<SelectedAnswer?>
 
         init(
             npsRatingTrigger: Driver<Int>? = nil,
-            selectedAnswers: Driver<[SelectedAnswer]?>
+            selectedAnswers: Driver<SelectedAnswer?>
         ) {
             self.npsRatingTrigger = npsRatingTrigger
             self.selectedAnswers = selectedAnswers

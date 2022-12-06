@@ -14,7 +14,7 @@ struct MultipleChoiceAnswerView: View {
     @ObservedObject var input: AnswerViewModel.Input
     @ObservedObject var output: AnswerViewModel.Output
     @State var answers: [Bool]
-    private let selectedAnswersTrigger = PassthroughSubject<[SelectedAnswer]?, Never>()
+    private let selectedAnswersTrigger = PassthroughSubject<SelectedAnswer?, Never>()
 
     var body: some View {
         VStack(alignment: .center, spacing: 0.0) {
@@ -24,14 +24,8 @@ struct MultipleChoiceAnswerView: View {
                     selected: $answers[index]
                 )
                 .padding()
-                .onChange(of: answers[index]) { newValue in
-                    selectedAnswersTrigger.send(
-                        [
-                            SelectedAnswer(
-                                index: index
-                            )
-                        ]
-                    )
+                .onChange(of: answers[index]) { _ in
+                    selectedAnswersTrigger.send(SelectedAnswer(index: index))
                 }
 
                 if output.answerTitles[index] != output.answerTitles.last {

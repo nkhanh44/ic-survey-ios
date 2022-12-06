@@ -6,8 +6,8 @@
 //  Copyright © 2022 Nimble. All rights reserved.
 //
 
-import SwiftUI
 import Lottie
+import SwiftUI
 
 struct LottieView: UIViewRepresentable {
 

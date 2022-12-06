@@ -19,15 +19,26 @@ extension SurveyQuestionViewModel: ViewModel {
 
     func transform(_ input: Input) -> Output {
         let errorTracker = ErrorTracker()
+        let activityTracker = ActivityTracker(false)
         let output = Output()
 
         input.submitTrigger
+            .debounce(
+                for: .seconds(1),
+                scheduler: DispatchQueue.main
+            )
+            .filter { _ in
+                QuestionSubmissionStorage.shared.getValue().contains(where: {
+                    !$0.answers.isEmpty
+                })
+            }
             .map { _ in
                 self.submitSurveyUseCase.submit(
                     id: id,
-                    questionSubmissions: UserStorage.questionsSubmission
+                    questionSubmissions: QuestionSubmissionStorage.shared.getValue()
                 )
                 .trackError(errorTracker)
+                .trackActivity(activityTracker)
                 .asDriver()
             }
             .switchToLatest()
@@ -44,6 +55,11 @@ extension SurveyQuestionViewModel: ViewModel {
             .receive(on: RunLoop.main)
             .map { AlertMessage(error: $0) }
             .assign(to: \.alert, on: output)
+            .store(in: &output.cancelBag)
+
+        activityTracker
+            .receive(on: RunLoop.main)
+            .assign(to: \.isLoading, on: output)
             .store(in: &output.cancelBag)
 
         return output
@@ -74,5 +90,6 @@ extension SurveyQuestionViewModel {
 
         @Published var alert: AlertMessage?
         @Published var isSuccess: Bool = false
+        @Published var isLoading = false
     }
 }

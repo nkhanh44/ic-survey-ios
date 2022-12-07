@@ -5,36 +5,15 @@
 //  Created by Khanh on 07/12/2022.
 //  Copyright © 2022 Nimble. All rights reserved.
 //
+// swiftlint:disable let_var_whitespace
 
-final class QuestionSubmissionStorage: StorageProtocol {
+protocol QuestionSubmissionCachable {
 
-    static let shared = QuestionSubmissionStorage(key: Constants.UserDefaultKeys.questionsSubmission)
+    var questionsSubmission: [QuestionSubmission] { get set }
+}
 
-    private var storage: Storage<[QuestionSubmission]>
+struct QuestionSubmissionStorage: QuestionSubmissionCachable {
 
-    init(
-        key: String,
-        defaultValue: [QuestionSubmission] = []
-    ) {
-        storage = Storage(
-            key: key,
-            defaultValue: defaultValue
-        )
-    }
-
-    func get() -> [Any] {
-        storage.wrappedValue
-    }
-
-    func getValue() -> [QuestionSubmission] {
-        get() as? [QuestionSubmission] ?? []
-    }
-
-    func set(objects: [Any]) {
-        storage.wrappedValue = objects as? [QuestionSubmission] ?? []
-    }
-
-    func remove() {
-        storage.wrappedValue = []
-    }
+    @Storage(key: Constants.UserDefaultKeys.questionsSubmission, defaultValue: [])
+    var questionsSubmission: [QuestionSubmission]
 }

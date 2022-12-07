@@ -25,6 +25,11 @@ extension HomeViewModel: ViewModel {
         var pageNumber = 0
         let output = Output()
 
+        input.onAppearTrigger
+            .map { _ in cachedStorageUseCase.load() }
+            .assign(to: \.surveys, on: output)
+            .store(in: &output.cancelBag)
+
         input.loadUserInfoTrigger
             .map { _ in
                 self.userUseCase.getUser()
@@ -124,19 +129,22 @@ extension HomeViewModel {
         let willGoToDetail: Driver<Void>
         let logoutTrigger: Driver<Void>
         let reloadTrigger: Driver<Void>
+        let onAppearTrigger: Driver<Void>
 
         init(
             loadUserInfoTrigger: Driver<Void>,
             loadTrigger: Driver<Void>,
             willGoToDetail: Driver<Void>,
             logoutTrigger: Driver<Void>,
-            reloadTrigger: Driver<Void>
+            reloadTrigger: Driver<Void>,
+            onAppearTrigger: Driver<Void>
         ) {
             self.loadUserInfoTrigger = loadUserInfoTrigger
             self.loadTrigger = loadTrigger
             self.willGoToDetail = willGoToDetail
             self.logoutTrigger = logoutTrigger
             self.reloadTrigger = reloadTrigger
+            self.onAppearTrigger = onAppearTrigger
         }
     }
 

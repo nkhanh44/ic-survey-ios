@@ -30,6 +30,7 @@ final class HomeViewModelSpec: QuickSpec {
         let willGoToDetail = PassthroughSubject<Void, Never>()
         let logoutTrigger = PassthroughSubject<Void, Never>()
         let reloadTrigger = PassthroughSubject<Void, Never>()
+        let onAppearTrigger = PassthroughSubject<Void, Never>()
 
         describe("a HomeViewModel") {
 
@@ -50,7 +51,8 @@ final class HomeViewModelSpec: QuickSpec {
                     loadTrigger: loadTrigger.eraseToAnyPublisher(),
                     willGoToDetail: willGoToDetail.eraseToAnyPublisher(),
                     logoutTrigger: logoutTrigger.eraseToAnyPublisher(),
-                    reloadTrigger: reloadTrigger.eraseToAnyPublisher()
+                    reloadTrigger: reloadTrigger.eraseToAnyPublisher(),
+                    onAppearTrigger: onAppearTrigger.eraseToAnyPublisher()
                 )
                 self.output = viewModel.transform(self.input)
             }

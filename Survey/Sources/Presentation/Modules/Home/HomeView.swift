@@ -26,6 +26,7 @@ struct HomeView: View {
     private let loadTrigger = PassthroughSubject<Void, Never>()
     private let willGoToDetail = PassthroughSubject<Void, Never>()
     private let reloadTrigger = PassthroughSubject<Void, Never>()
+    private let onAppearTrigger = PassthroughSubject<Void, Never>()
     private let minDragTranslationForSwipe: CGFloat = 60.0
 
     var body: some View {
@@ -59,7 +60,7 @@ struct HomeView: View {
                 withAnimation(.easeInOut(duration: 1.0).delay(1.0)) {
                     showSkeletonAnimation = false
                 }
-                output.surveys = CachedUserStorage.shared.getValue()
+                self.onAppearTrigger.send()
                 self.loadUserInfoTrigger.send()
                 self.loadTrigger.send()
             }
@@ -78,7 +79,8 @@ struct HomeView: View {
             loadTrigger: loadTrigger.asDriver(),
             willGoToDetail: willGoToDetail.asDriver(),
             logoutTrigger: logoutTrigger.asDriver(),
-            reloadTrigger: reloadTrigger.asDriver()
+            reloadTrigger: reloadTrigger.asDriver(),
+            onAppearTrigger: onAppearTrigger.asDriver()
         )
         output = viewModel.transform(input)
         self.input = input

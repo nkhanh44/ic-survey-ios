@@ -40,9 +40,7 @@ struct SurveyQuestionView: View {
                         )
                         .tag(question.offset)
                         .contentShape(Rectangle())
-                        .highPriorityGesture(DragGesture().onEnded {
-                            handleSwipe(translation: $0.translation.width)
-                        })
+                        .highPriorityGesture(DragGesture())
                         .clipped()
                     }
                 }
@@ -121,17 +119,6 @@ struct SurveyQuestionView: View {
         )
         output = viewModel.transform(input)
         self.input = input
-    }
-
-    private func handleSwipe(translation: CGFloat) {
-        let didMoveLeft = translation > minDragTranslationForSwipe && tabSelection > 0
-        let didMoveRight = translation < -minDragTranslationForSwipe && tabSelection < questions.count - 1
-
-        if didMoveLeft {
-            tabSelection -= 1
-        } else if didMoveRight {
-            tabSelection += 1
-        }
     }
 
     private func setUpCloseButton() -> some View {

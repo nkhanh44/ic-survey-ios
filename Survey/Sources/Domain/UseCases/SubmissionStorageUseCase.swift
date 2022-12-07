@@ -16,30 +16,24 @@ protocol SubmissionStorageUseCaseProtocol {
     func delete() -> Observable<Bool>
 }
 
-struct SubmissionStorageUseCase: SubmissionStorageUseCaseProtocol {
+final class SubmissionStorageUseCase: SubmissionStorageUseCaseProtocol {
 
-    let storage: StorageProtocol
+    var storage: QuestionSubmissionCachable
 
-    init(storage: StorageProtocol = QuestionSubmissionStorage.shared) {
+    init(storage: QuestionSubmissionCachable = QuestionSubmissionStorage()) {
         self.storage = storage
     }
 
     func store(data: [QuestionSubmission]) {
-        storage.set(objects: data)
+        storage.questionsSubmission = data
     }
 
     func load() -> [QuestionSubmission] {
-        guard let data = storage.get() as? [QuestionSubmission] else {
-            return []
-        }
-        return data
+        storage.questionsSubmission
     }
 
     func delete() -> Observable<Bool> {
-        storage.remove()
-        guard let data = storage.get() as? [QuestionSubmission] else {
-            return Just(false).asObservable()
-        }
-        return Just(data.isEmpty).asObservable()
+        storage.questionsSubmission = []
+        return Just(storage.questionsSubmission.isEmpty).asObservable()
     }
 }

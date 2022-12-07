@@ -21,6 +21,8 @@ struct SurveyQuestionView: View {
     var questions: [SurveyQuestion]
     private let submitTrigger = PassthroughSubject<Void, Never>()
     private let dismissAlertTrigger = PassthroughSubject<Void, Never>()
+    private let clearSubmissionTrigger = PassthroughSubject<Void, Never>()
+    private let onAppearTrigger = PassthroughSubject<[SurveyQuestion], Never>()
     private let minDragTranslationForSwipe: CGFloat = 30.0
 
     var body: some View {
@@ -80,7 +82,7 @@ struct SurveyQuestionView: View {
             withoutAnimation {
                 didShowLottie = true
             }
-            QuestionSubmissionStorage.shared.remove()
+            clearSubmissionTrigger.send()
         })
         .padding(.bottom, 54.0)
         .padding(.top, 54.0)
@@ -91,16 +93,7 @@ struct SurveyQuestionView: View {
         .edgesIgnoringSafeArea(.all)
         .preferredColorScheme(.dark)
         .onAppear {
-            QuestionSubmissionStorage.shared.remove()
-            QuestionSubmissionStorage.shared.set(
-                objects: questions
-                    .map {
-                        QuestionSubmission(
-                            id: $0.id,
-                            answers: []
-                        )
-                    }
-            )
+            onAppearTrigger.send(questions)
         }
         .alert(isPresented: .constant($output.alert.wrappedValue != nil)) {
             Alert(
@@ -122,7 +115,9 @@ struct SurveyQuestionView: View {
         self.questions = questions
         let input = SurveyQuestionViewModel.Input(
             submitTrigger: submitTrigger.eraseToAnyPublisher(),
-            dismissAlert: dismissAlertTrigger.eraseToAnyPublisher()
+            dismissAlert: dismissAlertTrigger.eraseToAnyPublisher(),
+            clearSubmissionTrigger: clearSubmissionTrigger.eraseToAnyPublisher(),
+            onAppearTrigger: onAppearTrigger.eraseToAnyPublisher()
         )
         output = viewModel.transform(input)
         self.input = input
@@ -150,7 +145,7 @@ struct SurveyQuestionView: View {
                             CloseButtonModifier(
                                 didAction: {
                                     withoutAnimation {
-                                        QuestionSubmissionStorage.shared.remove()
+                                        clearSubmissionTrigger.send()
                                         isPresented.wrappedValue.toggle()
                                     }
                                 }

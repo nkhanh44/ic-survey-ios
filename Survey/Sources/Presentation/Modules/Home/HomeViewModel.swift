@@ -14,6 +14,7 @@ struct HomeViewModel {
     let homeUseCase: HomeUseCaseProtocol
     let userUseCase: UserUseCaseProtocol
     let userSessionUseCase: UserSessionUseCaseProtocol
+    let cachedStorageUseCase: CachedStorageUseCaseProtocol
 }
 
 extension HomeViewModel: ViewModel {
@@ -44,15 +45,16 @@ extension HomeViewModel: ViewModel {
                     .asDriver()
             }
             .switchToLatest()
-            .map {
+            .map { (cachedStorageUseCase.load(), $0) }
+            .map { args in
+                let (cachedSurveys, resultSurveys) = args as? ([APISurvey], [APISurvey]) ?? ([], [])
                 pageNumber += 1
-                let cached = CachedUserStorage.shared
-                if !cached.getValue().hasSameChildren(as: $0 as? [APISurvey] ?? []) {
-                    cached.set(objects: output.surveys + $0 as? [APISurvey] ?? [])
-                    return output.surveys + $0
+                if !cachedSurveys.hasSameChildren(as: resultSurveys) {
+                    cachedStorageUseCase.store(data: output.surveys + resultSurveys as? [APISurvey] ?? [])
+                    return output.surveys + resultSurveys
                 }
 
-                return cached.getValue()
+                return cachedSurveys
             }
             .assign(to: \.surveys, on: output)
             .store(in: &output.cancelBag)
@@ -66,12 +68,11 @@ extension HomeViewModel: ViewModel {
             .switchToLatest()
             .map {
                 pageNumber = 1
-                let cached = CachedUserStorage.shared
                 if !$0.isEmpty {
-                    cached.set(objects: $0 as? [APISurvey] ?? [])
+                    cachedStorageUseCase.store(data: $0 as? [APISurvey] ?? [])
                 }
 
-                return cached.getValue()
+                return cachedStorageUseCase.load()
             }
             .assign(to: \.surveys, on: output)
             .store(in: &output.cancelBag)

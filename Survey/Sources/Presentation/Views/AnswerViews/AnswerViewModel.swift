@@ -15,6 +15,7 @@ struct AnswerViewModel {
     let displayType: DisplayType
     let pickType: PickType
     let idQuestion: String
+    let submissionStorageUseCase: SubmissionStorageUseCaseProtocol
 }
 
 extension AnswerViewModel: ViewModel {
@@ -42,11 +43,16 @@ extension AnswerViewModel: ViewModel {
 
         input.selectedAnswers
             .compactMap { $0 }
-            .map { answer in
+            .map { (submissionStorageUseCase.load(), $0) }
+            .map { args in
+                let (questionSubmission, answer) = args
                 let isMultipleChoices = ((displayType == .choice && pickType == .any) || displayType == .textfield)
-                handleSelectedAnswers(isMultipleChoices: isMultipleChoices, selectedAnswer: answer)
+                handleSelectedAnswers(
+                    isMultipleChoices: isMultipleChoices,
+                    selectedAnswer: answer,
+                    questionSubmission: questionSubmission
+                )
             }
-            .map { _ in true }
             .assign(to: \.didAnswer, on: output)
             .store(in: &output.cancelBag)
 
@@ -58,8 +64,12 @@ extension AnswerViewModel: ViewModel {
 
 extension AnswerViewModel {
 
-    private func handleSelectedAnswers(isMultipleChoices: Bool, selectedAnswer: SelectedAnswer) {
-        var submission = QuestionSubmissionStorage.shared.getValue()
+    private func handleSelectedAnswers(
+        isMultipleChoices: Bool,
+        selectedAnswer: SelectedAnswer,
+        questionSubmission: [QuestionSubmission]
+    ) {
+        var submission = questionSubmission
         for index in 0 ..< submission.count where submission[index].id == idQuestion {
             if isMultipleChoices {
                 submission = handleMultipleChoices(
@@ -82,7 +92,7 @@ extension AnswerViewModel {
                 submission[index].answers.removeFirst() // Remove answer when we want to undo the choice
             }
         }
-        QuestionSubmissionStorage.shared.set(objects: submission)
+        submissionStorageUseCase.store(data: submission)
     }
 
     private func handleMultipleChoices(
@@ -143,6 +153,6 @@ extension AnswerViewModel {
         @Published var answerPlaceholders = [String]()
         @Published var notLikelyLabelOpacity = 0.5
         @Published var likelyLabelOpacity = 0.5
-        @Published var didAnswer = false
+        @Published var didAnswer: () = ()
     }
 }

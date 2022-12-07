@@ -230,7 +230,8 @@ struct HomeViewPreView: PreviewProvider {
                     api: AuthenticationNetworkAPI()
                 )
             ),
-            userSessionUseCase: UserSessionUseCase()
+            userSessionUseCase: UserSessionUseCase(),
+            cachedStorageUseCase: CachedStorageUseCase()
         )
         HomeView(viewModel: viewModel)
     }

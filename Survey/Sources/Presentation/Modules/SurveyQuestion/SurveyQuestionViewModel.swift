@@ -1,4 +1,4 @@
-//
+//  swiftlint:disable function_body_length
 //  SurveyQuestionViewModel.swift
 //  Survey
 //
@@ -12,6 +12,7 @@ import SwiftUI
 struct SurveyQuestionViewModel {
 
     let submitSurveyUseCase: SubmitSurveyUseCaseProtocol
+    let submissionStorageUseCase: SubmissionStorageUseCaseProtocol
     let id: String
 }
 
@@ -22,20 +23,39 @@ extension SurveyQuestionViewModel: ViewModel {
         let activityTracker = ActivityTracker(false)
         let output = Output()
 
+        input.onAppearTrigger
+            .map {
+                _ = submissionStorageUseCase.delete()
+                submissionStorageUseCase.store(data: $0
+                    .map {
+                        QuestionSubmission(
+                            id: $0.id,
+                            answers: []
+                        )
+                    }
+                )
+            }
+            .assign(to: \.done, on: output)
+            .store(in: &output.cancelBag)
+
+        input.clearSubmissionTrigger
+            .map { _ in
+                _ = submissionStorageUseCase.delete()
+            }
+            .assign(to: \.done, on: output)
+            .store(in: &output.cancelBag)
+
         input.submitTrigger
-            .debounce(
-                for: .seconds(1),
-                scheduler: DispatchQueue.main
-            )
-            .filter { _ in
-                QuestionSubmissionStorage.shared.getValue().contains(where: {
+            .map { _ in submissionStorageUseCase.load() }
+            .filter { data in
+                data.contains(where: {
                     !$0.answers.isEmpty
                 })
             }
-            .map { _ in
+            .map { data in
                 self.submitSurveyUseCase.submit(
                     id: id,
-                    questionSubmissions: QuestionSubmissionStorage.shared.getValue()
+                    questionSubmissions: data
                 )
                 .trackError(errorTracker)
                 .trackActivity(activityTracker)
@@ -74,13 +94,19 @@ extension SurveyQuestionViewModel {
 
         let submitTrigger: Driver<Void>
         let dismissAlert: Driver<Void>
+        let clearSubmissionTrigger: Driver<Void>
+        let onAppearTrigger: Driver<[SurveyQuestion]>
 
         init(
             submitTrigger: Driver<Void>,
-            dismissAlert: Driver<Void>
+            dismissAlert: Driver<Void>,
+            clearSubmissionTrigger: Driver<Void>,
+            onAppearTrigger: Driver<[SurveyQuestion]>
         ) {
             self.submitTrigger = submitTrigger
             self.dismissAlert = dismissAlert
+            self.clearSubmissionTrigger = clearSubmissionTrigger
+            self.onAppearTrigger = onAppearTrigger
         }
     }
 
@@ -91,5 +117,6 @@ extension SurveyQuestionViewModel {
         @Published var alert: AlertMessage?
         @Published var isSuccess: Bool = false
         @Published var isLoading = false
+        @Published var done: () = ()
     }
 }

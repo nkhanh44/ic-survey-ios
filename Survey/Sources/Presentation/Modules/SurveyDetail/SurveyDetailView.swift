@@ -83,6 +83,7 @@ struct SurveyDetailView: View {
                             api: AuthenticationNetworkAPI()
                         )
                     ),
+                    submissionStorageUseCase: SubmissionStorageUseCase(),
                     id: survey.id
                 ),
                 isPresented: $output.isSurveyQuestionPresented,

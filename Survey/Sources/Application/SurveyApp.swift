@@ -24,7 +24,8 @@ struct SurveyApp: App {
                         surveyRepository: SurveyRepository(
                             api: AuthenticationNetworkAPI()
                         )
-                    )
+                    ),
+                    cachedStorageUseCase: CachedStorageUseCase()
                 )
             )
         case .login:
@@ -54,7 +55,8 @@ struct SurveyApp: App {
                 viewModel: HomeViewModel(
                     homeUseCase: homeUseCase,
                     userUseCase: userUseCase,
-                    userSessionUseCase: UserSessionUseCase()
+                    userSessionUseCase: UserSessionUseCase(),
+                    cachedStorageUseCase: CachedStorageUseCase()
                 )
             )
         }

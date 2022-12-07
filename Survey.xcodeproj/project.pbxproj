@@ -144,6 +144,8 @@
 		1CD9B977293F9E0400DA6581 /* AnswerSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B975293F9E0400DA6581 /* AnswerSubmission.swift */; };
 		1CD9B979293FBE5000DA6581 /* CachedUserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B978293FBE5000DA6581 /* CachedUserStorage.swift */; };
 		1CD9B97B293FBE7400DA6581 /* QuestionSubmissionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B97A293FBE7400DA6581 /* QuestionSubmissionStorage.swift */; };
+		1CD9B97D293FC64B00DA6581 /* CachedStorageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B97C293FC64B00DA6581 /* CachedStorageUseCase.swift */; };
+		1CD9B97F293FC66200DA6581 /* SubmissionStorageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B97E293FC66200DA6581 /* SubmissionStorageUseCase.swift */; };
 		1CE7C6BA288A77C400B0EB1B /* DataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7C6B9288A77C400B0EB1B /* DataResponse.swift */; };
 		1CE7C6BC288A786400B0EB1B /* MetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7C6BB288A786400B0EB1B /* MetaData.swift */; };
 		1CE7C6BF288A795300B0EB1B /* SDecoderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7C6BE288A795300B0EB1B /* SDecoderType.swift */; };
@@ -379,6 +381,8 @@
 		1CD9B975293F9E0400DA6581 /* AnswerSubmission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerSubmission.swift; sourceTree = "<group>"; };
 		1CD9B978293FBE5000DA6581 /* CachedUserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedUserStorage.swift; sourceTree = "<group>"; };
 		1CD9B97A293FBE7400DA6581 /* QuestionSubmissionStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionSubmissionStorage.swift; sourceTree = "<group>"; };
+		1CD9B97C293FC64B00DA6581 /* CachedStorageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedStorageUseCase.swift; sourceTree = "<group>"; };
+		1CD9B97E293FC66200DA6581 /* SubmissionStorageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionStorageUseCase.swift; sourceTree = "<group>"; };
 		1CE7C6B9288A77C400B0EB1B /* DataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataResponse.swift; sourceTree = "<group>"; };
 		1CE7C6BB288A786400B0EB1B /* MetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaData.swift; sourceTree = "<group>"; };
 		1CE7C6BE288A795300B0EB1B /* SDecoderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDecoderType.swift; sourceTree = "<group>"; };
@@ -1288,6 +1292,8 @@
 				1CD6E13328CE056900A0457B /* UserUseCase.swift */,
 				1C0CBC34292F598000FEBD4C /* SubmitSurveyUseCase.swift */,
 				1CD9B95F293D05C900DA6581 /* SubmissionUseCase.swift */,
+				1CD9B97C293FC64B00DA6581 /* CachedStorageUseCase.swift */,
+				1CD9B97E293FC66200DA6581 /* SubmissionStorageUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -2046,6 +2052,7 @@
 				1CD9B962293E6E3C00DA6581 /* LottieView.swift in Sources */,
 				1CD6FA7D2897AF5800B4B0D7 /* Configuration.swift in Sources */,
 				1C0CBC35292F598000FEBD4C /* SubmitSurveyUseCase.swift in Sources */,
+				1CD9B97F293FC66200DA6581 /* SubmissionStorageUseCase.swift in Sources */,
 				1CD4E35A289FFFED00EA1E8B /* HomeViewModel.swift in Sources */,
 				1C65921D29274126007AD143 /* PickType.swift in Sources */,
 				1CEF01CD28CCF91E0032BD4E /* PickerView.swift in Sources */,
@@ -2075,6 +2082,7 @@
 				1CD6E12628CDF3C700A0457B /* User.swift in Sources */,
 				1C2ADCC328CCCAAC00743802 /* STextEditorView.swift in Sources */,
 				1CA8B27C28B52FBA00E5C225 /* SurveyQuestionBodyView.swift in Sources */,
+				1CD9B97D293FC64B00DA6581 /* CachedStorageUseCase.swift in Sources */,
 				1CD9B979293FBE5000DA6581 /* CachedUserStorage.swift in Sources */,
 				1CD6E13228CDFD1B00A0457B /* Bundle+Version.swift in Sources */,
 				1CD4E37828A0CF6200EA1E8B /* StoreTokenUseCase.swift in Sources */,

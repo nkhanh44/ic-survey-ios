@@ -22,10 +22,6 @@ extension SurveyDetailViewModel: ViewModel {
         let output = Output()
 
         input.startSurveyTrigger
-            .debounce(
-                for: .seconds(1),
-                scheduler: DispatchQueue.main
-            )
             .map {
                 self.surveyQuestionUseCase.getSurveyDetail(id: $0)
                     .trackError(errorTracker)

@@ -27,7 +27,9 @@ final class SplashViewSpec: QuickSpec {
                 splashView = SplashView(
                     viewModel: SplashViewModel(
                         userSessionUseCase: userSessionUseCase,
-                        homeUseCase: homeUseCase
+                        homeUseCase: homeUseCase,
+                        // TODO: Add SubmissionStorageUseCaseMock in part 2
+                        cachedStorageUseCase: CachedStorageUseCase()
                     )
                 )
             }

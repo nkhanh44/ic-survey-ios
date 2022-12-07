@@ -32,7 +32,9 @@ final class AnswerViewModelSpec: QuickSpec {
                     surveyAnswers: APISurveyAnswer.dummy,
                     displayType: .choice,
                     pickType: .any,
-                    idQuestion: "id"
+                    idQuestion: "id",
+                    // TODO: Add SubmissionStorageUseCaseMock in part 2
+                    submissionStorageUseCase: SubmissionStorageUseCase()
                 )
 
                 input = AnswerViewModel.Input(

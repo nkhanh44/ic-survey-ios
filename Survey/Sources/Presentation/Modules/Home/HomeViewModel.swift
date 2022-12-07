@@ -50,8 +50,9 @@ extension HomeViewModel: ViewModel {
                 let (cachedSurveys, resultSurveys) = args as? ([APISurvey], [APISurvey]) ?? ([], [])
                 pageNumber += 1
                 if !cachedSurveys.hasSameChildren(as: resultSurveys) {
-                    cachedStorageUseCase.store(data: output.surveys + resultSurveys as? [APISurvey] ?? [])
-                    return output.surveys + resultSurveys
+                    let updatedSurveys = output.surveys + resultSurveys as? [APISurvey] ?? []
+                    cachedStorageUseCase.store(data: updatedSurveys)
+                    return updatedSurveys
                 }
 
                 return cachedSurveys

@@ -40,7 +40,9 @@ final class HomeViewModelSpec: QuickSpec {
                 viewModel = HomeViewModel(
                     homeUseCase: homeUseCase,
                     userUseCase: userUseCase,
-                    userSessionUseCase: userSessionUseCase
+                    userSessionUseCase: userSessionUseCase,
+                    // TODO: Add CachedStorageUseCaseMock in part 2
+                    cachedStorageUseCase: CachedStorageUseCase()
                 )
 
                 self.input = HomeViewModel.Input(

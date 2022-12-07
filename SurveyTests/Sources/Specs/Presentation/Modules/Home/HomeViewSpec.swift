@@ -24,7 +24,9 @@ final class HomeViewSpec: QuickSpec {
                     viewModel: HomeViewModel(
                         homeUseCase: HomeUseCaseMock(),
                         userUseCase: UserUseCaseMock(),
-                        userSessionUseCase: UserSessionUseCaseMock()
+                        userSessionUseCase: UserSessionUseCaseMock(),
+                        // TODO: Add CachedStorageUseCaseMock in part 2
+                        cachedStorageUseCase: CachedStorageUseCase()
                     )
                 )
             }

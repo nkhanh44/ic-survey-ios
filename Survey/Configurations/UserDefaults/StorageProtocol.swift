@@ -1,5 +1,5 @@
 //
-//  UserStorageProtocol.swift
+//  StorageProtocol.swift
 //  Survey
 //
 //  Created by Khanh on 28/08/2022.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol UserStorageProtocol: AnyObject {
+protocol StorageProtocol: AnyObject {
 
     func get() -> [Any]
     func set(objects: [Any])

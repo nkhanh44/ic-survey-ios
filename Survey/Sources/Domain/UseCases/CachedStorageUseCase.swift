@@ -18,9 +18,9 @@ protocol CachedStorageUseCaseProtocol {
 
 struct CachedStorageUseCase: CachedStorageUseCaseProtocol {
 
-    let storage: UserStorageProtocol
+    let storage: StorageProtocol
 
-    init(storage: UserStorageProtocol = CachedUserStorage.shared) {
+    init(storage: StorageProtocol = CachedUserStorage.shared) {
         self.storage = storage
     }
 

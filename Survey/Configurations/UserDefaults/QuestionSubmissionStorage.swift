@@ -6,7 +6,7 @@
 //  Copyright © 2022 Nimble. All rights reserved.
 //
 
-final class QuestionSubmissionStorage: UserStorageProtocol {
+final class QuestionSubmissionStorage: StorageProtocol {
 
     static let shared = QuestionSubmissionStorage(key: Constants.UserDefaultKeys.questionsSubmission)
 

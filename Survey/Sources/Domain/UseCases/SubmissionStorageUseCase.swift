@@ -18,9 +18,9 @@ protocol SubmissionStorageUseCaseProtocol {
 
 struct SubmissionStorageUseCase: SubmissionStorageUseCaseProtocol {
 
-    let storage: UserStorageProtocol
+    let storage: StorageProtocol
 
-    init(storage: UserStorageProtocol = QuestionSubmissionStorage.shared) {
+    init(storage: StorageProtocol = QuestionSubmissionStorage.shared) {
         self.storage = storage
     }
 

@@ -6,7 +6,7 @@
 //  Copyright © 2022 Nimble. All rights reserved.
 //
 
-final class CachedUserStorage: UserStorageProtocol {
+final class CachedUserStorage: StorageProtocol {
 
     static let shared = CachedUserStorage(key: Constants.UserDefaultKeys.cachedSurveyList)
 

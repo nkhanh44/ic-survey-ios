@@ -16,6 +16,7 @@ final class SurveyListStorageMock: SurveyListCachable {
     var performGetDataCalled = false
     var performSetDataCalled = false
     var performGetDataReturnValue = APISurvey.dummyList
+    var performSetDataReturnValue = [APISurvey]()
 
     var cachedSurveyList: [APISurvey] {
         get {
@@ -24,6 +25,7 @@ final class SurveyListStorageMock: SurveyListCachable {
         }
 
         set {
+            performSetDataReturnValue = newValue
             performSetDataCalled = true
         }
     }

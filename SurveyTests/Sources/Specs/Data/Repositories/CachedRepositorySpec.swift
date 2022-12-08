@@ -54,6 +54,10 @@ final class CachedRepositorySpec: QuickSpec {
                 it("gets called") {
                     expect(storage.performSetDataCalled).to(beTrue())
                 }
+
+                it("returns a correct response") {
+                    expect(storage.performSetDataReturnValue) == APISurvey.dummyList
+                }
             }
 
             describe("its removeData") {

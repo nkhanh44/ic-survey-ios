@@ -16,6 +16,7 @@ final class QuestionSubmissionStorageMock: QuestionSubmissionCachable {
     var performGetDataCalled = false
     var performSetDataCalled = false
     var performGetDataReturnValue = QuestionSubmission.dummy
+    var performSetDataReturnValue = [QuestionSubmission]()
 
     var questionsSubmission: [QuestionSubmission] {
         get {
@@ -24,6 +25,7 @@ final class QuestionSubmissionStorageMock: QuestionSubmissionCachable {
         }
 
         set {
+            performSetDataReturnValue = newValue
             performSetDataCalled = true
         }
     }

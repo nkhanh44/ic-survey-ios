@@ -54,6 +54,10 @@ final class QuestionSubmissionRepositorySpec: QuickSpec {
                 it("gets called") {
                     expect(storage.performSetDataCalled).to(beTrue())
                 }
+
+                it("returns a correct response") {
+                    expect(storage.performSetDataReturnValue) == QuestionSubmission.dummy
+                }
             }
 
             describe("its removeData") {
@@ -67,7 +71,7 @@ final class QuestionSubmissionRepositorySpec: QuickSpec {
                     expect(storage.performSetDataCalled).to(beTrue())
                 }
 
-                it("returns correct response") {
+                it("returns a correct response") {
                     _ = repository.removeData()
                         .sink { _ in
                         } receiveValue: {

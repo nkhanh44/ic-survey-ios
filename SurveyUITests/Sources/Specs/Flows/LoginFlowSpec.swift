@@ -31,8 +31,6 @@ class LoginFlowSpec: QuickSpec {
                     app.secureTextFields[TestConstants.Login.passwordInputTextField]
                         .tapThen()
                         .typeText("12345678")
-                    app.toolbars.buttons[TestConstants.Toolbar.keyboardDonebutton]
-                        .tap()
                     app.buttons[TestConstants.Login.loginButton]
                         .tap()
                 }

@@ -147,6 +147,20 @@
 		1CD9B97F293FC66200DA6581 /* SubmissionStorageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B97E293FC66200DA6581 /* SubmissionStorageUseCase.swift */; };
 		1CD9B9812941A59500DA6581 /* CachedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B9802941A59500DA6581 /* CachedRepository.swift */; };
 		1CD9B9832941BCEE00DA6581 /* QuestionSubmissionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B9822941BCEE00DA6581 /* QuestionSubmissionRepository.swift */; };
+		1CD9B98A29421E8400DA6581 /* SubmissionStorageUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B98829421E8000DA6581 /* SubmissionStorageUseCaseSpec.swift */; };
+		1CD9B98B29421E8600DA6581 /* CachedStorageUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B98629421E6E00DA6581 /* CachedStorageUseCaseSpec.swift */; };
+		1CD9B9932942204100DA6581 /* QuestionSubmissionRepositorySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B98C29421EA800DA6581 /* QuestionSubmissionRepositorySpec.swift */; };
+		1CD9B9942942204300DA6581 /* CachedRepositorySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B98E29421EB500DA6581 /* CachedRepositorySpec.swift */; };
+		1CD9B9952942204500DA6581 /* SurveyQuestionViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B99129421F1F00DA6581 /* SurveyQuestionViewModelSpec.swift */; };
+		1CD9B9992942217D00DA6581 /* QuestionSubmissionStorageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B9972942215D00DA6581 /* QuestionSubmissionStorageMock.swift */; };
+		1CD9B99C2942230000DA6581 /* QuestionSubmission+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B99A294222F900DA6581 /* QuestionSubmission+Dummy.swift */; };
+		1CD9B99F2942233100DA6581 /* AnswerSubmission+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B99D2942232900DA6581 /* AnswerSubmission+Dummy.swift */; };
+		1CD9B9A22942248F00DA6581 /* SurveyListStorageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B9A02942246E00DA6581 /* SurveyListStorageMock.swift */; };
+		1CD9B9A82942282B00DA6581 /* QuestionSubmission+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B9A72942282B00DA6581 /* QuestionSubmission+Equatable.swift */; };
+		1CD9B9AA29422B2100DA6581 /* QuestionSubmissionRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B9A929422B2100DA6581 /* QuestionSubmissionRepositoryMock.swift */; };
+		1CD9B9AC29422B3100DA6581 /* CachedRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B9AB29422B3100DA6581 /* CachedRepositoryMock.swift */; };
+		1CD9B9AF29423B7D00DA6581 /* SubmitSurveyUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B9AE29423B7D00DA6581 /* SubmitSurveyUseCaseMock.swift */; };
+		1CD9B9B129423B8700DA6581 /* SubmissionStorageUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B9B029423B8700DA6581 /* SubmissionStorageUseCaseMock.swift */; };
 		1CE7C6BA288A77C400B0EB1B /* DataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7C6B9288A77C400B0EB1B /* DataResponse.swift */; };
 		1CE7C6BC288A786400B0EB1B /* MetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7C6BB288A786400B0EB1B /* MetaData.swift */; };
 		1CE7C6BF288A795300B0EB1B /* SDecoderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7C6BE288A795300B0EB1B /* SDecoderType.swift */; };
@@ -385,6 +399,20 @@
 		1CD9B97E293FC66200DA6581 /* SubmissionStorageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionStorageUseCase.swift; sourceTree = "<group>"; };
 		1CD9B9802941A59500DA6581 /* CachedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedRepository.swift; sourceTree = "<group>"; };
 		1CD9B9822941BCEE00DA6581 /* QuestionSubmissionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionSubmissionRepository.swift; sourceTree = "<group>"; };
+		1CD9B98629421E6E00DA6581 /* CachedStorageUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedStorageUseCaseSpec.swift; sourceTree = "<group>"; };
+		1CD9B98829421E8000DA6581 /* SubmissionStorageUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionStorageUseCaseSpec.swift; sourceTree = "<group>"; };
+		1CD9B98C29421EA800DA6581 /* QuestionSubmissionRepositorySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionSubmissionRepositorySpec.swift; sourceTree = "<group>"; };
+		1CD9B98E29421EB500DA6581 /* CachedRepositorySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedRepositorySpec.swift; sourceTree = "<group>"; };
+		1CD9B99129421F1F00DA6581 /* SurveyQuestionViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyQuestionViewModelSpec.swift; sourceTree = "<group>"; };
+		1CD9B9972942215D00DA6581 /* QuestionSubmissionStorageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionSubmissionStorageMock.swift; sourceTree = "<group>"; };
+		1CD9B99A294222F900DA6581 /* QuestionSubmission+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuestionSubmission+Dummy.swift"; sourceTree = "<group>"; };
+		1CD9B99D2942232900DA6581 /* AnswerSubmission+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnswerSubmission+Dummy.swift"; sourceTree = "<group>"; };
+		1CD9B9A02942246E00DA6581 /* SurveyListStorageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyListStorageMock.swift; sourceTree = "<group>"; };
+		1CD9B9A72942282B00DA6581 /* QuestionSubmission+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuestionSubmission+Equatable.swift"; sourceTree = "<group>"; };
+		1CD9B9A929422B2100DA6581 /* QuestionSubmissionRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionSubmissionRepositoryMock.swift; sourceTree = "<group>"; };
+		1CD9B9AB29422B3100DA6581 /* CachedRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedRepositoryMock.swift; sourceTree = "<group>"; };
+		1CD9B9AE29423B7D00DA6581 /* SubmitSurveyUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitSurveyUseCaseMock.swift; sourceTree = "<group>"; };
+		1CD9B9B029423B8700DA6581 /* SubmissionStorageUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionStorageUseCaseMock.swift; sourceTree = "<group>"; };
 		1CE7C6B9288A77C400B0EB1B /* DataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataResponse.swift; sourceTree = "<group>"; };
 		1CE7C6BB288A786400B0EB1B /* MetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaData.swift; sourceTree = "<group>"; };
 		1CE7C6BE288A795300B0EB1B /* SDecoderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDecoderType.swift; sourceTree = "<group>"; };
@@ -522,6 +550,8 @@
 				1C1C2F96292BC54C00DF460B /* APISurveyQuestion+Dummy.swift */,
 				1C516B7A28A15BF600DB7B7B /* APIToken+Dummy.swift */,
 				1C1C2FA2292DFC3E00DF460B /* APISurveyAnswer+Dummy.swift */,
+				1CD9B99A294222F900DA6581 /* QuestionSubmission+Dummy.swift */,
+				1CD9B99D2942232900DA6581 /* AnswerSubmission+Dummy.swift */,
 			);
 			path = Dummy;
 			sourceTree = "<group>";
@@ -554,6 +584,7 @@
 				1CA8B29C28BCD04E00E5C225 /* Array+Comparable.swift */,
 				1CD6E13128CDFD1B00A0457B /* Bundle+Version.swift */,
 				1C57AC5C293504BA000C71DA /* Encodable+Parameterable.swift */,
+				1CD9B9A72942282B00DA6581 /* QuestionSubmission+Equatable.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -882,6 +913,7 @@
 		1CD4E345289F9B9100EA1E8B /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				1CD9B99029421F1100DA6581 /* SurveyQuestion */,
 				1C1C2F9E292DF67500DF460B /* AnswerView */,
 				1CA8B28128B6627C00E5C225 /* Home */,
 				1CD4E346289F9B9E00EA1E8B /* Login */,
@@ -912,6 +944,8 @@
 		1CD4E349289F9BEB00EA1E8B /* Use Case */ = {
 			isa = PBXGroup;
 			children = (
+				1CD9B98529421E3200DA6581 /* Submission */,
+				1CD9B98429421E2500DA6581 /* Cached */,
 				1CA8B28828B662D900E5C225 /* Home */,
 				1C516B7928A15B9400DB7B7B /* Login */,
 				1C57AC522933AC62000C71DA /* Survey */,
@@ -1043,8 +1077,54 @@
 			isa = PBXGroup;
 			children = (
 				1CD9B96E293F129000DA6581 /* SurveyRepositorySpec.swift */,
+				1CD9B98C29421EA800DA6581 /* QuestionSubmissionRepositorySpec.swift */,
+				1CD9B98E29421EB500DA6581 /* CachedRepositorySpec.swift */,
 			);
 			path = Repositories;
+			sourceTree = "<group>";
+		};
+		1CD9B98429421E2500DA6581 /* Cached */ = {
+			isa = PBXGroup;
+			children = (
+				1CD9B98629421E6E00DA6581 /* CachedStorageUseCaseSpec.swift */,
+			);
+			path = Cached;
+			sourceTree = "<group>";
+		};
+		1CD9B98529421E3200DA6581 /* Submission */ = {
+			isa = PBXGroup;
+			children = (
+				1CD9B98829421E8000DA6581 /* SubmissionStorageUseCaseSpec.swift */,
+			);
+			path = Submission;
+			sourceTree = "<group>";
+		};
+		1CD9B99029421F1100DA6581 /* SurveyQuestion */ = {
+			isa = PBXGroup;
+			children = (
+				1CD9B99129421F1F00DA6581 /* SurveyQuestionViewModelSpec.swift */,
+			);
+			path = SurveyQuestion;
+			sourceTree = "<group>";
+		};
+		1CD9B9962942213200DA6581 /* Cachable */ = {
+			isa = PBXGroup;
+			children = (
+				1CD9B9972942215D00DA6581 /* QuestionSubmissionStorageMock.swift */,
+				1CD9B9A02942246E00DA6581 /* SurveyListStorageMock.swift */,
+				1CD9B9A929422B2100DA6581 /* QuestionSubmissionRepositoryMock.swift */,
+				1CD9B9AB29422B3100DA6581 /* CachedRepositoryMock.swift */,
+			);
+			path = Cachable;
+			sourceTree = "<group>";
+		};
+		1CD9B9AD29423B5900DA6581 /* Submission */ = {
+			isa = PBXGroup;
+			children = (
+				1CD9B9AE29423B7D00DA6581 /* SubmitSurveyUseCaseMock.swift */,
+				1CD9B9B029423B8700DA6581 /* SubmissionStorageUseCaseMock.swift */,
+			);
+			path = Submission;
 			sourceTree = "<group>";
 		};
 		1CE7C6BD288A793D00B0EB1B /* Types */ = {
@@ -1206,6 +1286,8 @@
 		3BCCE08012756E065644651B /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				1CD9B9AD29423B5900DA6581 /* Submission */,
+				1CD9B9962942213200DA6581 /* Cachable */,
 				1C57AC632935E32E000C71DA /* NetworkAPI */,
 				1C65921F2927462C007AD143 /* SurveyQuestion */,
 				1CA8B28B28B6636600E5C225 /* Home */,
@@ -1248,13 +1330,6 @@
 				5A115DAC86D72B7F2CCCC346 /* SurveyUITests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		5D88A4B1856FCA4081A623A7 /* Foundation */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Foundation;
 			sourceTree = "<group>";
 		};
 		6FD75B0789EE724AD6F6C58D /* LaunchScreen */ = {
@@ -1513,7 +1588,6 @@
 		DF055850B8D2FBAE29389971 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				5D88A4B1856FCA4081A623A7 /* Foundation */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1794,7 +1868,7 @@
 		};
 		75D860676D980C7DF2D11E63 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
-            alwaysOutOfDate = 1;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -2027,6 +2101,7 @@
 				1CEE603C28A6483F00748C63 /* SurveyRepository.swift in Sources */,
 				1CE7C6BA288A77C400B0EB1B /* DataResponse.swift in Sources */,
 				F8F13CA10B7B9C104FB5B516 /* NetworkAPIProtocol.swift in Sources */,
+				1CD9B9A82942282B00DA6581 /* QuestionSubmission+Equatable.swift in Sources */,
 				1CD6FA862898641900B4B0D7 /* KeychainToken.swift in Sources */,
 				1CD6E12D28CDF8BD00A0457B /* APIUser+Dummy.swift in Sources */,
 				1C0CBC33292F564500FEBD4C /* APIAnswerSubmission.swift in Sources */,
@@ -2126,14 +2201,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C516B7628A148AF00DB7B7B /* LoginRepositoryMock.swift in Sources */,
+				1CD9B9992942217D00DA6581 /* QuestionSubmissionStorageMock.swift in Sources */,
+				1CD9B9952942204500DA6581 /* SurveyQuestionViewModelSpec.swift in Sources */,
+				1CD9B9A22942248F00DA6581 /* SurveyListStorageMock.swift in Sources */,
 				1CCFDFBE2935E50700C358F0 /* NetworkAPIMock.swift in Sources */,
 				1CA8B28F28B6644800E5C225 /* SurveyRepositoryMock.swift in Sources */,
 				1C516B8A28A2C31A00DB7B7B /* KeychainServiceMock.swift in Sources */,
+				1CD9B9AC29422B3100DA6581 /* CachedRepositoryMock.swift in Sources */,
+				1CD9B9932942204100DA6581 /* QuestionSubmissionRepositorySpec.swift in Sources */,
 				1CA8B28728B662B200E5C225 /* HomeViewSpec.swift in Sources */,
 				1C1C2F98292CA56300DF460B /* APISurvey+Dummy.swift in Sources */,
 				1CD6E14628D0D93900A0457B /* UserRepositoryMock.swift in Sources */,
 				1CAFBB2528B3269A00D068DD /* SurveyDetailViewModelSpec.swift in Sources */,
+				1CD9B98A29421E8400DA6581 /* SubmissionStorageUseCaseSpec.swift in Sources */,
 				1CA8B29128B6724E00E5C225 /* HomeUseCaseSpec.swift in Sources */,
+				1CD9B9942942204300DA6581 /* CachedRepositorySpec.swift in Sources */,
 				1CA8B28628B662AE00E5C225 /* HomeViewModelSpec.swift in Sources */,
 				1CEE604E28ABCD1D00748C63 /* SplashViewModelSpec.swift in Sources */,
 				1CD4E341289F9B1300EA1E8B /* TestError.swift in Sources */,
@@ -2147,17 +2229,23 @@
 				1CEE605228ABCD8B00748C63 /* UserSessionUseCaseSpec.swift in Sources */,
 				1CD6E14028D0D03E00A0457B /* UserUseCaseMock.swift in Sources */,
 				1CD6E14328D0D8CA00A0457B /* UserUseCaseSpec.swift in Sources */,
+				1CD9B9AA29422B2100DA6581 /* QuestionSubmissionRepositoryMock.swift in Sources */,
 				1CD4E34F289F9C4E00EA1E8B /* LoginViewModelSpec.swift in Sources */,
+				1CD9B99C2942230000DA6581 /* QuestionSubmission+Dummy.swift in Sources */,
 				1C516B7B28A15BF600DB7B7B /* APIToken+Dummy.swift in Sources */,
 				1C1C2FA4292DFC4B00DF460B /* APISurveyAnswer+Dummy.swift in Sources */,
+				1CD9B9AF29423B7D00DA6581 /* SubmitSurveyUseCaseMock.swift in Sources */,
 				1CD4E353289FA24000EA1E8B /* LoginUseCaseMock.swift in Sources */,
+				1CD9B99F2942233100DA6581 /* AnswerSubmission+Dummy.swift in Sources */,
 				1CEE605528ABCDDE00748C63 /* UserSessionUseCaseMock.swift in Sources */,
+				1CD9B98B29421E8600DA6581 /* CachedStorageUseCaseSpec.swift in Sources */,
 				1CAFBB2428B325AE00D068DD /* SurveyDetailViewSpec.swift in Sources */,
 				1C516B7828A152F600DB7B7B /* LoginUseCaseSpec.swift in Sources */,
 				1C65922229274655007AD143 /* SurveyQuestionUseCaseMock.swift in Sources */,
 				1CD9B970293F12CB00DA6581 /* SurveyRepositorySpec.swift in Sources */,
 				1CD4E37A28A0EEC100EA1E8B /* StoreTokenUseCaseMock.swift in Sources */,
 				1C1C2FA1292DF77C00DF460B /* AnswerViewModelSpec.swift in Sources */,
+				1CD9B9B129423B8700DA6581 /* SubmissionStorageUseCaseMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,7 +6,7 @@
 //  Copyright © 2022 Nimble. All rights reserved.
 //
 
-//  swiftlint:disable closure_body_length
+//  swiftlint:disable function_body_length closure_body_length
 
 import Combine
 import Nimble
@@ -18,6 +18,7 @@ import SwiftUI
 final class AnswerViewModelSpec: QuickSpec {
 
     override func spec() {
+        var submissionStorageUseCase: SubmissionStorageUseCaseMock!
         var input: AnswerViewModel.Input!
         var output: AnswerViewModel.Output!
         var viewModel: AnswerViewModel!
@@ -26,17 +27,18 @@ final class AnswerViewModelSpec: QuickSpec {
 
         describe("an AnswerViewModel") {
 
+            let id = "1"
+            let displayType: DisplayType = .choice
+            let pickType: PickType = .any
+
             beforeEach {
-                // TODO: - Remove placeholder in Integrate Part 2
+                submissionStorageUseCase = SubmissionStorageUseCaseMock()
                 viewModel = AnswerViewModel(
                     surveyAnswers: APISurveyAnswer.dummy,
-                    displayType: .choice,
-                    pickType: .any,
-                    idQuestion: "id",
-                    // TODO: Add SubmissionStorageUseCaseMock in part 2
-                    submissionStorageUseCase: SubmissionStorageUseCase(
-                        repository: QuestionSubmissionRepository(storage: QuestionSubmissionStorage.shared)
-                    )
+                    displayType: displayType,
+                    pickType: pickType,
+                    idQuestion: id,
+                    submissionStorageUseCase: submissionStorageUseCase
                 )
 
                 input = AnswerViewModel.Input(
@@ -86,6 +88,28 @@ final class AnswerViewModelSpec: QuickSpec {
                     it("returns output likelyLabelOpacity to 1.0") {
                         expect(output.likelyLabelOpacity) == 1.0
                     }
+                }
+            }
+
+            context("when selectedAnswers called and complete answer") {
+
+                let selectedAnswer = SelectedAnswer(index: 1, text: "name")
+
+                beforeEach {
+                    submissionStorageUseCase.loadReturnValue = QuestionSubmission.dummy
+                    selectedAnswers.send(selectedAnswer)
+                }
+
+                it("submissionStorageUseCase calls load") {
+                    expect(submissionStorageUseCase.loadCalled) == true
+                }
+
+                it("submissionStorageUseCase calls store") {
+                    expect(submissionStorageUseCase.storeCalled) == true
+                }
+
+                it("returns output didAnswer with Void") {
+                    expect(output.didAnswer) == ()
                 }
             }
         }

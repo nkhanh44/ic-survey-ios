@@ -29,7 +29,11 @@ final class SplashViewSpec: QuickSpec {
                         userSessionUseCase: userSessionUseCase,
                         homeUseCase: homeUseCase,
                         // TODO: Add SubmissionStorageUseCaseMock in part 2
-                        cachedStorageUseCase: CachedStorageUseCase()
+                        cachedStorageUseCase: CachedStorageUseCase(
+                            cachedRepository: CachedRepository(
+                                surveyListStorage: SurveyListStorage()
+                            )
+                        )
                     )
                 )
             }

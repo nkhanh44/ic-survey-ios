@@ -16,24 +16,19 @@ protocol CachedStorageUseCaseProtocol {
     func delete() -> Observable<Bool>
 }
 
-final class CachedStorageUseCase: CachedStorageUseCaseProtocol {
+struct CachedStorageUseCase: CachedStorageUseCaseProtocol {
 
-    var surveyListStorage: SurveyListCachable
-
-    init(surveyListStorage: SurveyListCachable = SurveyListStorage()) {
-        self.surveyListStorage = surveyListStorage
-    }
+    let cachedRepository: CachedRepositoryProtocol
 
     func store(data: [Survey]) {
-        surveyListStorage.cachedSurveyList = data as? [APISurvey] ?? []
+        cachedRepository.save(data: data)
     }
 
     func load() -> [Survey] {
-        surveyListStorage.cachedSurveyList
+        cachedRepository.getData()
     }
 
     func delete() -> Observable<Bool> {
-        surveyListStorage.cachedSurveyList = []
-        return Just(surveyListStorage.cachedSurveyList.isEmpty).asObservable()
+        cachedRepository.removeData()
     }
 }

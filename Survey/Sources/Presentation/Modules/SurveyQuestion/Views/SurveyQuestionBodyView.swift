@@ -63,7 +63,11 @@ extension SurveyQuestionBodyView {
                 displayType: displayType ?? .smiley,
                 pickType: output.question?.pick ?? .none,
                 idQuestion: output.question?.id ?? "",
-                submissionStorageUseCase: SubmissionStorageUseCase()
+                submissionStorageUseCase: SubmissionStorageUseCase(
+                    repository: QuestionSubmissionRepository(
+                        storage: QuestionSubmissionStorage()
+                    )
+                )
             )
             switch displayType {
             case .star, .heart, .smiley:

@@ -34,7 +34,9 @@ final class AnswerViewModelSpec: QuickSpec {
                     pickType: .any,
                     idQuestion: "id",
                     // TODO: Add SubmissionStorageUseCaseMock in part 2
-                    submissionStorageUseCase: SubmissionStorageUseCase()
+                    submissionStorageUseCase: SubmissionStorageUseCase(
+                        repository: QuestionSubmissionRepository(storage: QuestionSubmissionStorage())
+                    )
                 )
 
                 input = AnswerViewModel.Input(

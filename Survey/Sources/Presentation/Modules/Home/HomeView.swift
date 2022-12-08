@@ -233,7 +233,11 @@ struct HomeViewPreView: PreviewProvider {
                 )
             ),
             userSessionUseCase: UserSessionUseCase(),
-            cachedStorageUseCase: CachedStorageUseCase()
+            cachedStorageUseCase: CachedStorageUseCase(
+                cachedRepository: CachedRepository(
+                    surveyListStorage: SurveyListStorage()
+                )
+            )
         )
         HomeView(viewModel: viewModel)
     }

@@ -26,7 +26,11 @@ final class HomeViewSpec: QuickSpec {
                         userUseCase: UserUseCaseMock(),
                         userSessionUseCase: UserSessionUseCaseMock(),
                         // TODO: Add CachedStorageUseCaseMock in part 2
-                        cachedStorageUseCase: CachedStorageUseCase()
+                        cachedStorageUseCase: CachedStorageUseCase(
+                            cachedRepository: CachedRepository(
+                                surveyListStorage: SurveyListStorage()
+                            )
+                        )
                     )
                 )
             }

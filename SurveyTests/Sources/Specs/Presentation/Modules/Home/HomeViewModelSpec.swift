@@ -43,7 +43,11 @@ final class HomeViewModelSpec: QuickSpec {
                     userUseCase: userUseCase,
                     userSessionUseCase: userSessionUseCase,
                     // TODO: Add CachedStorageUseCaseMock in part 2
-                    cachedStorageUseCase: CachedStorageUseCase()
+                    cachedStorageUseCase: CachedStorageUseCase(
+                        cachedRepository: CachedRepository(
+                            surveyListStorage: SurveyListStorage()
+                        )
+                    )
                 )
 
                 self.input = HomeViewModel.Input(

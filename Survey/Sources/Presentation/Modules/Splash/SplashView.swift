@@ -96,7 +96,11 @@ struct SplashViewPreView: PreviewProvider {
                     api: AuthenticationNetworkAPI()
                 )
             ),
-            cachedStorageUseCase: CachedStorageUseCase()
+            cachedStorageUseCase: CachedStorageUseCase(
+                cachedRepository: CachedRepository(
+                    surveyListStorage: SurveyListStorage()
+                )
+            )
         )
         return SplashView(viewModel: viewModel)
     }

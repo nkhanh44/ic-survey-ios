@@ -35,7 +35,11 @@ final class SplashViewModelSpec: QuickSpec {
                     userSessionUseCase: self.userSessionUseCase,
                     homeUseCase: self.homeUseCase,
                     // TODO: Add CachedStorageUseCaseMock in part 2
-                    cachedStorageUseCase: CachedStorageUseCase()
+                    cachedStorageUseCase: CachedStorageUseCase(
+                        cachedRepository: CachedRepository(
+                            surveyListStorage: SurveyListStorage()
+                        )
+                    )
                 )
 
                 self.input = SplashViewModel.Input(

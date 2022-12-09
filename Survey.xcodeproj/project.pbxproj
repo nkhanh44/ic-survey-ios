@@ -1794,7 +1794,7 @@
 		};
 		75D860676D980C7DF2D11E63 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
-            alwaysOutOfDate = 1;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -2597,7 +2597,7 @@
 		};
 		D18CE29614745C9A7FBE61AF /* Release Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1430ED5264385E6CE899AEAF /* Pods-Survey.release production.xcconfig */;
+			baseConfigurationReference = 1CD6FA8C2898F32F00B4B0D7 /* Secret.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Distribution: Nimbl3 Ltd. (4TWS7E2EPE)";

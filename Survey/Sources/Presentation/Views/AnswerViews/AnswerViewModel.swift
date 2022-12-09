@@ -12,6 +12,10 @@ import SwiftUI
 struct AnswerViewModel {
 
     let surveyAnswers: [SurveyAnswer]
+    let displayType: DisplayType
+    let pickType: PickType
+    let idQuestion: String
+    let submissionStorageUseCase: SubmissionStorageUseCaseProtocol
 }
 
 extension AnswerViewModel: ViewModel {
@@ -37,7 +41,89 @@ extension AnswerViewModel: ViewModel {
             .assign(to: \.likelyLabelOpacity, on: output)
             .store(in: &output.cancelBag)
 
+        input.selectedAnswers
+            .compactMap { $0 }
+            .map { (submissionStorageUseCase.load(), $0) }
+            .map { args in
+                let (questionSubmission, answer) = args
+                let isMultipleChoices = ((displayType == .choice && pickType == .any) || displayType == .textfield)
+                handleSelectedAnswers(
+                    isMultipleChoices: isMultipleChoices,
+                    selectedAnswer: answer,
+                    questionSubmission: questionSubmission
+                )
+            }
+            .assign(to: \.didAnswer, on: output)
+            .store(in: &output.cancelBag)
+
         return output
+    }
+}
+
+// MARK: - Private
+
+extension AnswerViewModel {
+
+    private func handleSelectedAnswers(
+        isMultipleChoices: Bool,
+        selectedAnswer: SelectedAnswer,
+        questionSubmission: [QuestionSubmission]
+    ) {
+        var submission = questionSubmission
+        for index in 0 ..< submission.count where submission[index].id == idQuestion {
+            if isMultipleChoices {
+                submission = handleMultipleChoices(
+                    submission: submission,
+                    index: index,
+                    selectedAnswer: selectedAnswer,
+                    id: surveyAnswers[selectedAnswer.index].id
+                )
+            } else {
+                guard displayType == .choice, selectedAnswer.index == -1 else {
+                    // Add answer to storage
+                    submission[index].answers = [
+                        AnswerSubmission(
+                            id: surveyAnswers[selectedAnswer.index].id,
+                            answer: selectedAnswer.text
+                        )
+                    ]
+                    continue
+                }
+                submission[index].answers.removeFirst() // Remove answer when we want to undo the choice
+            }
+        }
+        submissionStorageUseCase.store(data: submission)
+    }
+
+    private func handleMultipleChoices(
+        submission: [QuestionSubmission],
+        index: Int,
+        selectedAnswer: SelectedAnswer,
+        id: String
+    ) -> [QuestionSubmission] {
+        var tempSubmission = submission
+
+        if let selectedIndex = tempSubmission[index].answers.firstIndex(where: { $0.id == id }) {
+            // When there is an already answer, remove the answer if we want to undo the choice
+            guard displayType != .choice else {
+                tempSubmission[index].answers.remove(at: selectedIndex)
+                return tempSubmission
+            }
+            // When there is an already answer, we modify it in the storage
+            tempSubmission[index].answers[selectedIndex] = AnswerSubmission(
+                id: id,
+                answer: selectedAnswer.text
+            )
+        } else {
+            // When there is no answer yet, we add it to the storage
+            tempSubmission[index].answers += [
+                AnswerSubmission(
+                    id: id,
+                    answer: selectedAnswer.text
+                )
+            ]
+        }
+        return tempSubmission
     }
 }
 
@@ -48,9 +134,14 @@ extension AnswerViewModel {
     final class Input: ObservableObject {
 
         let npsRatingTrigger: Driver<Int>?
+        let selectedAnswers: Driver<SelectedAnswer?>
 
-        init(npsRatingTrigger: Driver<Int>? = nil) {
+        init(
+            npsRatingTrigger: Driver<Int>? = nil,
+            selectedAnswers: Driver<SelectedAnswer?>
+        ) {
             self.npsRatingTrigger = npsRatingTrigger
+            self.selectedAnswers = selectedAnswers
         }
     }
 
@@ -62,5 +153,6 @@ extension AnswerViewModel {
         @Published var answerPlaceholders = [String]()
         @Published var notLikelyLabelOpacity = 0.5
         @Published var likelyLabelOpacity = 0.5
+        @Published var didAnswer: () = ()
     }
 }

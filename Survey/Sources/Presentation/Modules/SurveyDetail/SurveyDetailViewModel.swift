@@ -18,12 +18,14 @@ extension SurveyDetailViewModel: ViewModel {
 
     func transform(_ input: Input) -> Output {
         let errorTracker = ErrorTracker()
+        let activityTracker = ActivityTracker(false)
         let output = Output()
 
         input.startSurveyTrigger
             .map {
                 self.surveyQuestionUseCase.getSurveyDetail(id: $0)
                     .trackError(errorTracker)
+                    .trackActivity(activityTracker)
                     .asDriver()
             }
             .switchToLatest()
@@ -44,6 +46,11 @@ extension SurveyDetailViewModel: ViewModel {
             .receive(on: RunLoop.main)
             .map { AlertMessage(error: $0) }
             .assign(to: \.alert, on: output)
+            .store(in: &output.cancelBag)
+
+        activityTracker
+            .receive(on: RunLoop.main)
+            .assign(to: \.isLoading, on: output)
             .store(in: &output.cancelBag)
 
         return output
@@ -76,6 +83,7 @@ extension SurveyDetailViewModel {
         var cancelBag = CancelBag()
 
         @Published var survey: Survey?
+        @Published var isLoading = false
         @Published var alert: AlertMessage?
         @Published var isSurveyQuestionPresented = false
     }

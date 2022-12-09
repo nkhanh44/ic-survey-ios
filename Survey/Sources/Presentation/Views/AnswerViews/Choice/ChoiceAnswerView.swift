@@ -6,6 +6,7 @@
 //  Copyright © 2022 Nimble. All rights reserved.
 //
 
+import Combine
 import SwiftUI
 
 struct ChoiceAnswerView: View {
@@ -13,13 +14,14 @@ struct ChoiceAnswerView: View {
     @ObservedObject var input: AnswerViewModel.Input
     @ObservedObject var output: AnswerViewModel.Output
     @State var selectedIndex: Int = 0
+    private let selectedAnswersTrigger = PassthroughSubject<SelectedAnswer?, Never>()
 
     var body: some View {
         ZStack {
             if !output.answerTitles.isEmpty {
                 PickerView(
                     selection: $selectedIndex,
-                    data: [output.answerTitles]
+                    data: [[""] + output.answerTitles]
                 )
                 .background(.clear)
                 .overlay {
@@ -31,10 +33,15 @@ struct ChoiceAnswerView: View {
                 }
             }
         }
+        .onChange(of: selectedIndex) {
+            selectedAnswersTrigger.send(SelectedAnswer(index: $0 - 1))
+        }
     }
 
     init(viewModel: AnswerViewModel) {
-        let input = AnswerViewModel.Input()
+        let input = AnswerViewModel.Input(
+            selectedAnswers: selectedAnswersTrigger.asDriver()
+        )
         output = viewModel.transform(input)
         self.input = input
     }

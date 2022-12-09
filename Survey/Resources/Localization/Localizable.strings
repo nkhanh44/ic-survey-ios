@@ -16,3 +16,6 @@
 // NPS
 "nps.notLikely.text" = "Not at all Likely";
 "nps.likely.text" = "Extremely Likely";
+
+// Survey submission
+"submission.submit.text" = "Submit";

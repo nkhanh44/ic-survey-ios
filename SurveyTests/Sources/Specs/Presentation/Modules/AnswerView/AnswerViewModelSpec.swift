@@ -22,14 +22,26 @@ final class AnswerViewModelSpec: QuickSpec {
         var output: AnswerViewModel.Output!
         var viewModel: AnswerViewModel!
         let npsRatingTrigger = PassthroughSubject<Int, Never>()
+        let selectedAnswers = PassthroughSubject<SelectedAnswer?, Never>()
 
         describe("an AnswerViewModel") {
 
             beforeEach {
-                viewModel = AnswerViewModel(surveyAnswers: APISurveyAnswer.dummy)
+                // TODO: - Remove placeholder in Integrate Part 2
+                viewModel = AnswerViewModel(
+                    surveyAnswers: APISurveyAnswer.dummy,
+                    displayType: .choice,
+                    pickType: .any,
+                    idQuestion: "id",
+                    // TODO: Add SubmissionStorageUseCaseMock in part 2
+                    submissionStorageUseCase: SubmissionStorageUseCase(
+                        repository: QuestionSubmissionRepository(storage: QuestionSubmissionStorage.shared)
+                    )
+                )
 
                 input = AnswerViewModel.Input(
-                    npsRatingTrigger: npsRatingTrigger.eraseToAnyPublisher()
+                    npsRatingTrigger: npsRatingTrigger.eraseToAnyPublisher(),
+                    selectedAnswers: selectedAnswers.eraseToAnyPublisher()
                 )
                 output = viewModel.transform(input)
             }

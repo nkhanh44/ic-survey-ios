@@ -11,7 +11,7 @@ import SwiftUI
 struct MultipleSelectionView: View {
 
     var title: String
-    @State var selected = false
+    @Binding var selected: Bool
 
     var body: some View {
         HStack {
@@ -30,13 +30,5 @@ struct MultipleSelectionView: View {
                     )
                 )
         }
-    }
-}
-
-struct MultipleSelectionViewPreView: PreviewProvider {
-
-    static var previews: some View {
-        MultipleSelectionView(title: "Choice 1")
-            .background(.black)
     }
 }

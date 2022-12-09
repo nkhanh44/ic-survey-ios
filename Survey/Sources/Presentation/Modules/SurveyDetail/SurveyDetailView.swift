@@ -26,9 +26,14 @@ struct SurveyDetailView: View {
 
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            ZStack(alignment: .topLeading) {
-                setUpMainImage()
-                setUpComponents()
+            LoadingView(
+                isShowing: $output.isLoading,
+                text: .constant("")
+            ) {
+                ZStack(alignment: .topLeading) {
+                    setUpMainImage()
+                    setUpComponents()
+                }
             }
         }
         .overlay(content: {
@@ -72,6 +77,19 @@ struct SurveyDetailView: View {
         })
         .fullScreenCover(isPresented: $output.isSurveyQuestionPresented) {
             SurveyQuestionView(
+                viewModel: SurveyQuestionViewModel(
+                    submitSurveyUseCase: SubmitSurveyUseCase(
+                        surveyRepository: SurveyRepository(
+                            api: AuthenticationNetworkAPI()
+                        )
+                    ),
+                    submissionStorageUseCase: SubmissionStorageUseCase(
+                        repository: QuestionSubmissionRepository(
+                            storage: QuestionSubmissionStorage.shared
+                        )
+                    ),
+                    id: survey.id
+                ),
                 isPresented: $output.isSurveyQuestionPresented,
                 questions: surveyQuestions
             )

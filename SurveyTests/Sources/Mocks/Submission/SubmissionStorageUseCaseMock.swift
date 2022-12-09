@@ -13,13 +13,10 @@ import Combine
 final class SubmissionStorageUseCaseMock: SubmissionStorageUseCaseProtocol {
 
     var storeCalled = false
-
     var loadCalled = false
     var loadReturnValue = QuestionSubmission.dummy
-
     var deleteCalled = false
     var deleteReturnValue = Observable.just(true)
-
     var dataArgument: [QuestionSubmission]?
 
     func store(data: [QuestionSubmission]) {

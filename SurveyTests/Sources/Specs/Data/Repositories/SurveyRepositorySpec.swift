@@ -38,11 +38,9 @@ final class SurveyRepositorySpec: QuickSpec {
                 }
 
                 it("returns correct response") {
-                    _ = surveyRepository.getSurveyList(pageNumber: 1, pageSize: 10)
-                        .sink { _ in
-                        } receiveValue: {
-                            expect($0.count) == surveyListAPI.count
-                        }
+                    let response = surveyRepository.getSurveyList(pageNumber: 1, pageSize: 10)
+                    let result = try self.awaitPublisher(response)
+                    expect(result.count) == surveyListAPI.count
                 }
             }
 
@@ -57,11 +55,9 @@ final class SurveyRepositorySpec: QuickSpec {
                 }
 
                 it("returns correct response") {
-                    _ = surveyRepository.getSurveyDetail(id: detailSurveyAPI.id)
-                        .sink { _ in
-                        } receiveValue: {
-                            expect($0.id) == detailSurveyAPI.id
-                        }
+                    let response = surveyRepository.getSurveyDetail(id: detailSurveyAPI.id)
+                    let result = try self.awaitPublisher(response)
+                    expect(result.id) == detailSurveyAPI.id
                 }
             }
 

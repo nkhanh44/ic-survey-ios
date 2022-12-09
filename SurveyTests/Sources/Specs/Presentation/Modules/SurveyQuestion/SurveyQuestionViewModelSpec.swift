@@ -68,12 +68,10 @@ final class SurveyQuestionViewModelSpec: QuickSpec {
                         expect(submissionStorageUseCase.deleteCalled) == true
                     }
 
-                    it("returns correct response") {
-                        _ = submissionStorageUseCase.delete()
-                            .sink { _ in
-                            } receiveValue: {
-                                expect($0) == true
-                            }
+                    it("delete returns correct response") {
+                        let response = submissionStorageUseCase.delete()
+                        let result = try self.awaitPublisher(response)
+                        expect(result) == true
                     }
                 }
             }
@@ -90,12 +88,10 @@ final class SurveyQuestionViewModelSpec: QuickSpec {
                         expect(output.done) == ()
                     }
 
-                    it("returns a correct response") {
-                        _ = submissionStorageUseCase.delete()
-                            .sink { _ in
-                            } receiveValue: {
-                                expect($0) == true
-                            }
+                    it("delete returns a correct response") {
+                        let response = submissionStorageUseCase.delete()
+                        let result = try self.awaitPublisher(response)
+                        expect(result) == true
                     }
                 }
             }

@@ -27,7 +27,7 @@ final class QuestionSubmissionRepositorySpec: QuickSpec {
                 repository = QuestionSubmissionRepository(storage: storage)
             }
 
-            describe("its getData") {
+            describe("storage calls GetData") {
 
                 let expectedData = QuestionSubmission.dummy
 
@@ -36,7 +36,7 @@ final class QuestionSubmissionRepositorySpec: QuickSpec {
                     _ = repository.getData()
                 }
 
-                it("gets called") {
+                it("storage calls GetData") {
                     expect(storage.performGetDataCalled).to(beTrue())
                 }
 
@@ -51,7 +51,7 @@ final class QuestionSubmissionRepositorySpec: QuickSpec {
                     repository.save(data: QuestionSubmission.dummy)
                 }
 
-                it("gets called") {
+                it("storage calls SetData") {
                     expect(storage.performSetDataCalled).to(beTrue())
                 }
 
@@ -72,11 +72,9 @@ final class QuestionSubmissionRepositorySpec: QuickSpec {
                 }
 
                 it("returns a correct response") {
-                    _ = repository.removeData()
-                        .sink { _ in
-                        } receiveValue: {
-                            expect($0) == true
-                        }
+                    let response = repository.removeData()
+                    let result = try self.awaitPublisher(response)
+                    expect(result) == true
                 }
             }
         }

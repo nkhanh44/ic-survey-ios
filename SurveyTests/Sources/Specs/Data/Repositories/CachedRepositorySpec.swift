@@ -51,7 +51,7 @@ final class CachedRepositorySpec: QuickSpec {
                     repository.save(data: APISurvey.dummyList)
                 }
 
-                it("gets called") {
+                it("storage calls GetData") {
                     expect(storage.performSetDataCalled).to(beTrue())
                 }
 
@@ -67,16 +67,14 @@ final class CachedRepositorySpec: QuickSpec {
                     _ = repository.removeData()
                 }
 
-                it("gets called") {
+                it("storage calls GetData") {
                     expect(storage.performSetDataCalled).to(beTrue())
                 }
 
                 it("returns correct response") {
-                    _ = repository.removeData()
-                        .sink { _ in
-                        } receiveValue: {
-                            expect($0) == true
-                        }
+                    let response = repository.removeData()
+                    let result = try self.awaitPublisher(response)
+                    expect(result) == true
                 }
             }
         }

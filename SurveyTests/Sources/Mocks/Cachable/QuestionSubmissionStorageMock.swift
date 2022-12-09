@@ -23,7 +23,6 @@ final class QuestionSubmissionStorageMock: QuestionSubmissionCachable {
             performGetDataCalled = true
             return performGetDataReturnValue
         }
-
         set {
             performSetDataReturnValue = newValue
             performSetDataCalled = true

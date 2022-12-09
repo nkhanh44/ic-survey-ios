@@ -72,11 +72,9 @@ final class CachedStorageUseCaseSpec: QuickSpec {
                 }
 
                 it("repository calls removeData with correct response") {
-                    _ = repository.removeData()
-                        .sink { _ in
-                        } receiveValue: {
-                            expect($0) == true
-                        }
+                    let response = repository.removeData()
+                    let result = try self.awaitPublisher(response)
+                    expect(result) == true
                 }
             }
         }

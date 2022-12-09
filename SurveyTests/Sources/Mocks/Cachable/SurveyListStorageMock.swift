@@ -23,7 +23,6 @@ final class SurveyListStorageMock: SurveyListCachable {
             performGetDataCalled = true
             return performGetDataReturnValue
         }
-
         set {
             performSetDataReturnValue = newValue
             performSetDataCalled = true

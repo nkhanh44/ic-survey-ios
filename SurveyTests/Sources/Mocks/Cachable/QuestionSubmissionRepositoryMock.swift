@@ -12,15 +12,10 @@ import Combine
 final class QuestionSubmissionRepositoryMock: QuestionSubmissionRepositoryProtocol {
 
     var getDataCalled = false
-
     var getDataReturnValue = QuestionSubmission.dummy
-
     var saveCalled = false
-
     var removeDataCalled = false
-
     var removeDataReturnValue = Observable.just(true)
-
     var dataArgument: [QuestionSubmission]?
 
     func getData() -> [QuestionSubmission] {

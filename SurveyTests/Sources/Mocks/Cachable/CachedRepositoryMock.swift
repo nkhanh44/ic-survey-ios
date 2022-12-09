@@ -12,15 +12,10 @@ import Combine
 final class CachedRepositoryMock: CachedRepositoryProtocol {
 
     var getDataCalled = false
-
     var getDataReturnValue = APISurvey.dummyList
-
     var saveCalled = false
-
     var removeDataCalled = false
-
     var removeDataReturnValue = Observable.just(true)
-
     var dataArgument: [Survey]?
 
     func getData() -> [Survey] {

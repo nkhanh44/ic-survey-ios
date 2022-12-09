@@ -161,6 +161,7 @@
 		1CD9B9AC29422B3100DA6581 /* CachedRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B9AB29422B3100DA6581 /* CachedRepositoryMock.swift */; };
 		1CD9B9AF29423B7D00DA6581 /* SubmitSurveyUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B9AE29423B7D00DA6581 /* SubmitSurveyUseCaseMock.swift */; };
 		1CD9B9B129423B8700DA6581 /* SubmissionStorageUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B9B029423B8700DA6581 /* SubmissionStorageUseCaseMock.swift */; };
+		1CD9B9B32942F1AC00DA6581 /* XCTestCase+awaitPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B9B22942F1AC00DA6581 /* XCTestCase+awaitPublisher.swift */; };
 		1CE7C6BA288A77C400B0EB1B /* DataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7C6B9288A77C400B0EB1B /* DataResponse.swift */; };
 		1CE7C6BC288A786400B0EB1B /* MetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7C6BB288A786400B0EB1B /* MetaData.swift */; };
 		1CE7C6BF288A795300B0EB1B /* SDecoderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7C6BE288A795300B0EB1B /* SDecoderType.swift */; };
@@ -413,6 +414,7 @@
 		1CD9B9AB29422B3100DA6581 /* CachedRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedRepositoryMock.swift; sourceTree = "<group>"; };
 		1CD9B9AE29423B7D00DA6581 /* SubmitSurveyUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitSurveyUseCaseMock.swift; sourceTree = "<group>"; };
 		1CD9B9B029423B8700DA6581 /* SubmissionStorageUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionStorageUseCaseMock.swift; sourceTree = "<group>"; };
+		1CD9B9B22942F1AC00DA6581 /* XCTestCase+awaitPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "XCTestCase+awaitPublisher.swift"; path = "SurveyTests/Sources/Mocks/Submission/XCTestCase+awaitPublisher.swift"; sourceTree = SOURCE_ROOT; };
 		1CE7C6B9288A77C400B0EB1B /* DataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataResponse.swift; sourceTree = "<group>"; };
 		1CE7C6BB288A786400B0EB1B /* MetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaData.swift; sourceTree = "<group>"; };
 		1CE7C6BE288A795300B0EB1B /* SDecoderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDecoderType.swift; sourceTree = "<group>"; };
@@ -1588,6 +1590,7 @@
 		DF055850B8D2FBAE29389971 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1CD9B9B22942F1AC00DA6581 /* XCTestCase+awaitPublisher.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2213,6 +2216,7 @@
 				1C1C2F98292CA56300DF460B /* APISurvey+Dummy.swift in Sources */,
 				1CD6E14628D0D93900A0457B /* UserRepositoryMock.swift in Sources */,
 				1CAFBB2528B3269A00D068DD /* SurveyDetailViewModelSpec.swift in Sources */,
+				1CD9B9B32942F1AC00DA6581 /* XCTestCase+awaitPublisher.swift in Sources */,
 				1CD9B98A29421E8400DA6581 /* SubmissionStorageUseCaseSpec.swift in Sources */,
 				1CA8B29128B6724E00E5C225 /* HomeUseCaseSpec.swift in Sources */,
 				1CD9B9942942204300DA6581 /* CachedRepositorySpec.swift in Sources */,

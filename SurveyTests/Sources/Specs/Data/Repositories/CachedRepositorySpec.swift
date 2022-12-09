@@ -36,7 +36,7 @@ final class CachedRepositorySpec: QuickSpec {
                     _ = repository.getData()
                 }
 
-                it("gets called") {
+                it("storage calls SetData") {
                     expect(storage.performGetDataCalled).to(beTrue())
                 }
 

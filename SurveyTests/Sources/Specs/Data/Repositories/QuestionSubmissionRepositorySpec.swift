@@ -67,7 +67,7 @@ final class QuestionSubmissionRepositorySpec: QuickSpec {
                     _ = repository.removeData()
                 }
 
-                it("gets called") {
+                it("storage calls SetData") {
                     expect(storage.performSetDataCalled).to(beTrue())
                 }
 

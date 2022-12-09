@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		19BF1440DDB106A937E8075D /* Pods_Survey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC97F33B9C3F5A9FA6EF11C /* Pods_Survey.framework */; };
+		19BF1440DDB106A937E8075D /* Pods_Survey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC97F33B9C3F5A9FA6EF11C /* Pods_Survey.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		1C044B9D28ACD9A5001FF098 /* HomeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C044B9C28ACD9A5001FF098 /* HomeUseCase.swift */; };
 		1C044B9F28ACDF58001FF098 /* AuthenticationInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C044B9E28ACDF58001FF098 /* AuthenticationInterceptor.swift */; };
 		1C044BA128ACE4C7001FF098 /* AuthenticationNetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C044BA028ACE4C7001FF098 /* AuthenticationNetworkAPI.swift */; };
@@ -147,6 +147,7 @@
 		1CD9B97F293FC66200DA6581 /* SubmissionStorageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B97E293FC66200DA6581 /* SubmissionStorageUseCase.swift */; };
 		1CD9B9812941A59500DA6581 /* CachedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B9802941A59500DA6581 /* CachedRepository.swift */; };
 		1CD9B9832941BCEE00DA6581 /* QuestionSubmissionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B9822941BCEE00DA6581 /* QuestionSubmissionRepository.swift */; };
+		1CD9B9B52943365600DA6581 /* SecretRelease.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1CD9B9B42943365600DA6581 /* SecretRelease.xcconfig */; };
 		1CE7C6BA288A77C400B0EB1B /* DataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7C6B9288A77C400B0EB1B /* DataResponse.swift */; };
 		1CE7C6BC288A786400B0EB1B /* MetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7C6BB288A786400B0EB1B /* MetaData.swift */; };
 		1CE7C6BF288A795300B0EB1B /* SDecoderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7C6BE288A795300B0EB1B /* SDecoderType.swift */; };
@@ -385,6 +386,7 @@
 		1CD9B97E293FC66200DA6581 /* SubmissionStorageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionStorageUseCase.swift; sourceTree = "<group>"; };
 		1CD9B9802941A59500DA6581 /* CachedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedRepository.swift; sourceTree = "<group>"; };
 		1CD9B9822941BCEE00DA6581 /* QuestionSubmissionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionSubmissionRepository.swift; sourceTree = "<group>"; };
+		1CD9B9B42943365600DA6581 /* SecretRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SecretRelease.xcconfig; sourceTree = "<group>"; };
 		1CE7C6B9288A77C400B0EB1B /* DataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataResponse.swift; sourceTree = "<group>"; };
 		1CE7C6BB288A786400B0EB1B /* MetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaData.swift; sourceTree = "<group>"; };
 		1CE7C6BE288A795300B0EB1B /* SDecoderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDecoderType.swift; sourceTree = "<group>"; };
@@ -1010,6 +1012,7 @@
 			isa = PBXGroup;
 			children = (
 				1CD6FA8C2898F32F00B4B0D7 /* Secret.xcconfig */,
+				1CD9B9B42943365600DA6581 /* SecretRelease.xcconfig */,
 			);
 			path = Secret;
 			sourceTree = "<group>";
@@ -1721,6 +1724,7 @@
 				1CD6E13028CDFA0D00A0457B /* Localizable.strings in Resources */,
 				1CB186992891587500372D50 /* NeuzeitSLTStd-Book.otf in Resources */,
 				1CB1869A2891587500372D50 /* NeuzeitSLTStd-BookHeavy.otf in Resources */,
+				1CD9B9B52943365600DA6581 /* SecretRelease.xcconfig in Resources */,
 				1CD9B965293E71BB00DA6581 /* successful.json in Resources */,
 				CA1F500707F2936D39825740 /* Assets.xcassets in Resources */,
 				EE08DEF68E0F23B6777E9BED /* LaunchScreen.storyboard in Resources */,
@@ -2597,7 +2601,7 @@
 		};
 		D18CE29614745C9A7FBE61AF /* Release Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1CD6FA8C2898F32F00B4B0D7 /* Secret.xcconfig */;
+			baseConfigurationReference = 1CD9B9B42943365600DA6581 /* SecretRelease.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Distribution: Nimbl3 Ltd. (4TWS7E2EPE)";

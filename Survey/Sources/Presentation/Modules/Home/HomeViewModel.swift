@@ -14,6 +14,7 @@ struct HomeViewModel {
     let homeUseCase: HomeUseCaseProtocol
     let userUseCase: UserUseCaseProtocol
     let userSessionUseCase: UserSessionUseCaseProtocol
+    let cachedStorageUseCase: CachedStorageUseCaseProtocol
 }
 
 extension HomeViewModel: ViewModel {
@@ -23,6 +24,11 @@ extension HomeViewModel: ViewModel {
         let activityTracker = ActivityTracker(false)
         var pageNumber = 0
         let output = Output()
+
+        input.onAppearTrigger
+            .map { _ in cachedStorageUseCase.load() }
+            .assign(to: \.surveys, on: output)
+            .store(in: &output.cancelBag)
 
         input.loadUserInfoTrigger
             .map { _ in
@@ -44,14 +50,35 @@ extension HomeViewModel: ViewModel {
                     .asDriver()
             }
             .switchToLatest()
-            .map {
+            .map { (cachedStorageUseCase.load(), $0) }
+            .map { args in
+                let (cachedSurveys, resultSurveys) = args as? ([APISurvey], [APISurvey]) ?? ([], [])
                 pageNumber += 1
-                if !UserStorage.cachedSurveyList.hasSameChildren(as: $0 as? [APISurvey] ?? []) {
-                    UserStorage.cachedSurveyList = output.surveys + $0 as? [APISurvey] ?? []
-                    return output.surveys + $0
+                if !cachedSurveys.hasSameChildren(as: resultSurveys) {
+                    let updatedSurveys = output.surveys + resultSurveys as? [APISurvey] ?? []
+                    cachedStorageUseCase.store(data: updatedSurveys)
+                    return updatedSurveys
                 }
 
-                return UserStorage.cachedSurveyList
+                return cachedSurveys
+            }
+            .assign(to: \.surveys, on: output)
+            .store(in: &output.cancelBag)
+
+        input.reloadTrigger
+            .map { _ in
+                self.homeUseCase.getSurveyList(pageNumber: 1, pageSize: 10)
+                    .trackError(errorTracker)
+                    .asDriver()
+            }
+            .switchToLatest()
+            .map {
+                pageNumber = 1
+                if !$0.isEmpty {
+                    cachedStorageUseCase.store(data: $0 as? [APISurvey] ?? [])
+                }
+
+                return cachedStorageUseCase.load()
             }
             .assign(to: \.surveys, on: output)
             .store(in: &output.cancelBag)
@@ -101,17 +128,23 @@ extension HomeViewModel {
         let loadTrigger: Driver<Void>
         let willGoToDetail: Driver<Void>
         let logoutTrigger: Driver<Void>
+        let reloadTrigger: Driver<Void>
+        let onAppearTrigger: Driver<Void>
 
         init(
             loadUserInfoTrigger: Driver<Void>,
             loadTrigger: Driver<Void>,
             willGoToDetail: Driver<Void>,
-            logoutTrigger: Driver<Void>
+            logoutTrigger: Driver<Void>,
+            reloadTrigger: Driver<Void>,
+            onAppearTrigger: Driver<Void>
         ) {
             self.loadUserInfoTrigger = loadUserInfoTrigger
             self.loadTrigger = loadTrigger
             self.willGoToDetail = willGoToDetail
             self.logoutTrigger = logoutTrigger
+            self.reloadTrigger = reloadTrigger
+            self.onAppearTrigger = onAppearTrigger
         }
     }
 

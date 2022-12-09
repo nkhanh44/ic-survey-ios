@@ -13,6 +13,7 @@ protocol SurveyRepositoryProtocol: AnyObject {
 
     func getSurveyList(pageNumber: Int, pageSize: Int) -> Observable<[Survey]>
     func getSurveyDetail(id: String) -> Observable<Survey>
+    func submit(id: String, questionSubmissions: [QuestionSubmission]) -> Observable<Bool>
 }
 
 final class SurveyRepository: SurveyRepositoryProtocol {
@@ -41,6 +42,19 @@ final class SurveyRepository: SurveyRepositoryProtocol {
                 SurveyRequestConfiguration.getSurveyDetail(id: id)
             )
             .map { $0 as APISurvey }
+            .eraseToAnyPublisher()
+    }
+
+    func submit(id: String, questionSubmissions: [QuestionSubmission]) -> Observable<Bool> {
+        networkAPI
+            .performEmptyRequest(
+                SurveyRequestConfiguration.submit(
+                    id: id,
+                    questionSubmissions: questionSubmissions.map {
+                        APIQuestionSubmission(questionSubmission: $0)
+                    }
+                )
+            )
             .eraseToAnyPublisher()
     }
 }

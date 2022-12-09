@@ -42,7 +42,7 @@ final class AuthenticationInterceptor: RequestInterceptor {
         dueTo error: Error,
         completion: @escaping (RetryResult) -> Void
     ) {
-        guard request.retryCount == 0 else { return completion(.doNotRetry) }
+        guard request.retryCount < 4 else { return completion(.doNotRetry) }
 
         if refreshRequest != nil { return }
 
@@ -92,6 +92,10 @@ final class AuthenticationInterceptor: RequestInterceptor {
                     self.appRouter.state = .login
                 }
             } catch {
+                if (try? self.keychain.get(key: .token)) != nil,
+                   data.response?.statusCode == 400 {
+                    try? self.keychain.removeToken(with: .token)
+                }
                 completion(.failure(error))
             }
         }

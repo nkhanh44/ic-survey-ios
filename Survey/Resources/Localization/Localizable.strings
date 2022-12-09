@@ -6,8 +6,16 @@
   Copyright © 2022 Nimble. All rights reserved.
 */
 
+"common.ok.text" = "OK";
 "common.cancel.text" = "Cancel";
 "common.logout.text" = "Log out";
 "common.logout.title" = "Are you sure you want to log out?";
 
 "user.logoutButton.text" = "Logout";
+
+// NPS
+"nps.notLikely.text" = "Not at all Likely";
+"nps.likely.text" = "Extremely Likely";
+
+// Survey submission
+"submission.submit.text" = "Submit";

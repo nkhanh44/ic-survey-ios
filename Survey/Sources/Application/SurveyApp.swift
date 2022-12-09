@@ -24,6 +24,11 @@ struct SurveyApp: App {
                         surveyRepository: SurveyRepository(
                             api: AuthenticationNetworkAPI()
                         )
+                    ),
+                    cachedStorageUseCase: CachedStorageUseCase(
+                        cachedRepository: CachedRepository(
+                            surveyListStorage: SurveyListStorage()
+                        )
                     )
                 )
             )
@@ -54,7 +59,12 @@ struct SurveyApp: App {
                 viewModel: HomeViewModel(
                     homeUseCase: homeUseCase,
                     userUseCase: userUseCase,
-                    userSessionUseCase: UserSessionUseCase()
+                    userSessionUseCase: UserSessionUseCase(),
+                    cachedStorageUseCase: CachedStorageUseCase(
+                        cachedRepository: CachedRepository(
+                            surveyListStorage: SurveyListStorage()
+                        )
+                    )
                 )
             )
         }
@@ -68,8 +78,6 @@ struct SurveyApp: App {
     }
 
     private func configure() {
-        UIScrollView.appearance().bounces = false
-
         let IQKeyboard = IQKeyboardManager.shared
         IQKeyboard.enable = true
         IQKeyboard.shouldResignOnTouchOutside = true

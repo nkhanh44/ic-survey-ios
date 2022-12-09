@@ -13,6 +13,7 @@ protocol Survey {
     var title: String { get }
     var description: String { get }
     var coverImageURL: String { get }
+    var questions: [SurveyQuestion]? { get }
 }
 
 extension Survey {

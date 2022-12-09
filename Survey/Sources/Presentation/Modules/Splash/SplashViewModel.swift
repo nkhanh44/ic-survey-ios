@@ -13,6 +13,7 @@ struct SplashViewModel {
 
     let userSessionUseCase: UserSessionUseCaseProtocol
     let homeUseCase: HomeUseCaseProtocol
+    let cachedStorageUseCase: CachedStorageUseCaseProtocol
 }
 
 extension SplashViewModel: ViewModel {
@@ -43,7 +44,7 @@ extension SplashViewModel: ViewModel {
                 guard let list = $0 as? [APISurvey] else {
                     return false
                 }
-                UserStorage.cachedSurveyList = list
+                cachedStorageUseCase.store(data: list)
                 return true
             }
             .assign(to: \.fetchSuccessfully, on: output)

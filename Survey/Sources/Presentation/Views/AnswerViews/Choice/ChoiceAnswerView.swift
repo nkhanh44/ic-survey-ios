@@ -6,15 +6,23 @@
 //  Copyright © 2022 Nimble. All rights reserved.
 //
 
+import Combine
 import SwiftUI
 
 struct ChoiceAnswerView: View {
 
-    var answerTexts: [String] = []
+    @ObservedObject var input: AnswerViewModel.Input
+    @ObservedObject var output: AnswerViewModel.Output
+    @State var selectedIndex: Int = 0
+    private let selectedAnswersTrigger = PassthroughSubject<SelectedAnswer?, Never>()
 
     var body: some View {
         ZStack {
-            PickerView(selections: .constant([1]), data: [answerTexts])
+            if !output.answerTitles.isEmpty {
+                PickerView(
+                    selection: $selectedIndex,
+                    data: [[""] + output.answerTitles]
+                )
                 .background(.clear)
                 .overlay {
                     Spacer()
@@ -23,20 +31,18 @@ struct ChoiceAnswerView: View {
                         .overlay(Divider().background(.white), alignment: .top)
                         .overlay(Divider().background(.white), alignment: .bottom)
                 }
+            }
+        }
+        .onChange(of: selectedIndex) {
+            selectedAnswersTrigger.send(SelectedAnswer(index: $0 - 1))
         }
     }
-}
 
-struct ChoiceAnswerViewPreView: PreviewProvider {
-
-    static var previews: some View {
-        ChoiceAnswerView(
-            answerTexts: [
-                "Very fulfilled",
-                "Somewhat fullfilled",
-                "Somewhat unfulfilled"
-            ]
+    init(viewModel: AnswerViewModel) {
+        let input = AnswerViewModel.Input(
+            selectedAnswers: selectedAnswersTrigger.asDriver()
         )
-        .background(.black)
+        output = viewModel.transform(input)
+        self.input = input
     }
 }

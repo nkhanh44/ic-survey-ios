@@ -35,11 +35,11 @@ struct PickerView: UIViewRepresentable {
         }
 
         func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-            parent.selections[component] = row
+            parent.selection = row
         }
     }
 
-    @Binding var selections: [Int]
+    @Binding var selection: Int
 
     var data: [[String]]
 

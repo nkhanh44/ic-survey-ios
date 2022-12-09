@@ -1,4 +1,4 @@
-platform :ios, '11.0'
+platform :ios, '13.0'
 use_frameworks!
 inhibit_all_warnings!
 
@@ -16,6 +16,8 @@ target 'Survey' do
   pod 'Kingfisher'
   pod 'SnapKit'
   pod 'ShimmerView'
+  pod 'SwiftUI-Pull-To-Refresh', '~> 1.1.8'
+  pod 'lottie-ios'
 
   # Storage
   pod 'KeychainAccess'
@@ -49,6 +51,13 @@ post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
       config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+      config.build_settings['ENABLE_BITCODE'] = 'NO'
+      # Fix some pods creating bundle, asking for signing
+      if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
+        target.build_configurations.each do |config|
+            config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+        end
+      end
     end
   end
 end

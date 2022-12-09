@@ -11,11 +11,12 @@ import SwiftUI
 struct MultipleSelectionView: View {
 
     var title: String
-    @State var selected = false
+    @Binding var selected: Bool
 
     var body: some View {
         HStack {
             Text(title)
+                .opacity(selected ? 1.0 : 0.5)
                 .font(.mediumBold)
                 .foregroundColor(.white)
 
@@ -29,13 +30,5 @@ struct MultipleSelectionView: View {
                     )
                 )
         }
-    }
-}
-
-struct MultipleSelectionViewPreView: PreviewProvider {
-
-    static var previews: some View {
-        MultipleSelectionView(title: "Choice 1")
-            .background(.black)
     }
 }

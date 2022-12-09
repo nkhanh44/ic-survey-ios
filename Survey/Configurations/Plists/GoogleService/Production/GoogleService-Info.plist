@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>859927641745-pn5hpdeqsog4mnospccftgn7a089pf2l.apps.googleusercontent.com</string>
+	<string>1042384710612-5mum9u65bbafqkb38fpv7ckmart15ra2.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.859927641745-pn5hpdeqsog4mnospccftgn7a089pf2l</string>
+	<string>com.googleusercontent.apps.1042384710612-5mum9u65bbafqkb38fpv7ckmart15ra2</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAhD-360LnB7HnqMZsmKwUNYRjj2xXp7r8</string>
+	<string>AIzaSyCBShSy2icIAYXZAeRAskp4dd5Yx70EEtg</string>
 	<key>GCM_SENDER_ID</key>
-	<string>859927641745</string>
+	<string>1042384710612</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>co.nimblehq.khanh.survey-ic</string>
 	<key>PROJECT_ID</key>
-	<string>survey-359608</string>
+	<string>survey-production-5654e</string>
 	<key>STORAGE_BUCKET</key>
-	<string>survey-359608.appspot.com</string>
+	<string>survey-production-5654e.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:859927641745:ios:d67ae5746cfda10e374930</string>
+	<string>1:1042384710612:ios:d9f0e619ed6c0a84de0441</string>
 </dict>
 </plist>

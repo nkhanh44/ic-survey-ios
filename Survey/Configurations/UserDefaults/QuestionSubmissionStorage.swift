@@ -14,6 +14,8 @@ protocol QuestionSubmissionCachable {
 
 struct QuestionSubmissionStorage: QuestionSubmissionCachable {
 
+    static let shared = QuestionSubmissionStorage()
+
     @Storage(key: Constants.UserDefaultKeys.questionsSubmission, defaultValue: [])
     var questionsSubmission: [QuestionSubmission]
 }

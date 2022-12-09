@@ -85,7 +85,7 @@ struct SurveyDetailView: View {
                     ),
                     submissionStorageUseCase: SubmissionStorageUseCase(
                         repository: QuestionSubmissionRepository(
-                            storage: QuestionSubmissionStorage()
+                            storage: QuestionSubmissionStorage.shared
                         )
                     ),
                     id: survey.id

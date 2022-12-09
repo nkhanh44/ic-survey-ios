@@ -65,7 +65,7 @@ extension SurveyQuestionBodyView {
                 idQuestion: output.question?.id ?? "",
                 submissionStorageUseCase: SubmissionStorageUseCase(
                     repository: QuestionSubmissionRepository(
-                        storage: QuestionSubmissionStorage()
+                        storage: QuestionSubmissionStorage.shared
                     )
                 )
             )

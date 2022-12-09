@@ -34,7 +34,9 @@ class LoginFlowSpec: QuickSpec {
                     app.buttons[TestConstants.Login.loginButton]
                         .tap()
                 }
+
                 // MARK: - Somehow this test works on local but not on CI some commit, and UITest is optional so I comment it for now
+
 //                it("shows Home screen") {
 //                    let viewExists = app.pageIndicators[TestConstants.Home.pageIndicator].waitForExistence(timeout: 5)
 //                    expect(viewExists).toEventually(beTrue())

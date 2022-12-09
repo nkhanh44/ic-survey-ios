@@ -35,7 +35,7 @@ final class AnswerViewModelSpec: QuickSpec {
                     idQuestion: "id",
                     // TODO: Add SubmissionStorageUseCaseMock in part 2
                     submissionStorageUseCase: SubmissionStorageUseCase(
-                        repository: QuestionSubmissionRepository(storage: QuestionSubmissionStorage())
+                        repository: QuestionSubmissionRepository(storage: QuestionSubmissionStorage.shared)
                     )
                 )
 

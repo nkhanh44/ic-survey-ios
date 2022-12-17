@@ -1739,7 +1739,6 @@
 /* Begin PBXShellScriptBuildPhase section */
 		364701D01D6D730E26E263DF /* R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -1817,7 +1816,6 @@
 		};
 		9BD4EA3F047610A3BE9C5FD8 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
